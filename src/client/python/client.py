@@ -11,7 +11,7 @@ from thrift.transport import TTransport
 @author: anant bhardwaj
 @date: Mar 24, 2014
 
-Sample Python client
+Sample Python client for Barista
 '''
 
 try:
