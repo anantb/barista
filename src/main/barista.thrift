@@ -45,7 +45,7 @@ struct Cell {
 }
 
 // A tuple
-struct Row {
+struct Tuple {
   1: optional list <Cell> cells
 }
 
@@ -54,7 +54,9 @@ struct ResultSet {
   1: required bool status,
   2: Connection con,
   3: optional i32 row_count,
-  4: optional list <Row> rows
+  4: optional list <Tuple> tuples,
+  5: optional list <string> field_names,
+  6: optional list <string> field_types
 }
 
 
