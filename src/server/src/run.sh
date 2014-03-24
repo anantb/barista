@@ -1,12 +1,12 @@
 #!/bin/sh
 abspath=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
 
-basepath=$(cd "$abspath/.."; pwd)
+basepath=$(cd "$abspath/../../.."; pwd)
 
-rm -rf $abspath/sec/gen-go
-mkdir -p $abspath/src/gen-go/pkg
-thrift --gen go -out $abspath/src/gen-go/src $basepath/src/barista.thrift
-GOPATH=$basepath:$abspath/gen-go
+rm -rf $abspath/gen-go
+mkdir -p $abspath/gen-go/src
+thrift --gen go -out $abspath/gen-go/src $basepath/src/barista.thrift
+GOPATH=$basepath/src/server:$abspath/gen-go
 export GOPATH
 
 go run $abspath/main/server.go $abspath/main/handler.go
