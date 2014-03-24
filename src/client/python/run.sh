@@ -8,4 +8,4 @@ thrift --gen py -o $abspath $basepath/src/barista.thrift
 PYTHONPATH=$abspath/gen-py
 export PYTHONPATH
 
-python client.py
+python $abspath/client.py

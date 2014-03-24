@@ -9,4 +9,4 @@ thrift --gen go -out $abspath/gen-go/src $basepath/src/barista.thrift
 GOPATH=$abspath/gen-go
 export GOPATH
 
-go run client.go
+go run $abspath/client.go
