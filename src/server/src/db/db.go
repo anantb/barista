@@ -50,7 +50,6 @@ func (manager *DBManager) ExecuteSql(
   for rows.Next() {
     cells := make([][]byte, n_columns)
     rows.Scan(cells)
-    fmt.Println(cells)
     tuples = append(tuples, cells)
   }
 

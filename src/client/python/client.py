@@ -19,6 +19,7 @@ try:
   transport = TTransport.TBufferedTransport(transport)
   protocol = TBinaryProtocol.TBinaryProtocol(transport)
   client = Barista.Client(protocol)
+
   transport.open()
 
   con_params = ConnectionParams(
@@ -26,7 +27,11 @@ try:
 
   con = client.connect(con_params)
   res = client.execute_sql(con=con, query="SELECT 6824", query_params=None)
-  print res
+  
+  for t in res.tuples:
+  	for cell in t.cells:
+  		print cell.value
+
   transport.close()
 except Exception, e:
     print 'Something went wrong : %s' % (e)

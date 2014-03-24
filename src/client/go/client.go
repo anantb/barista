@@ -11,11 +11,11 @@ import "fmt"
 import "barista"
 import "git.apache.org/thrift.git/lib/go/thrift"
 
-const addr = "localhost:9000"
+const ADDR = "localhost:9000"
 
 func main() {  
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
-  transport, err := thrift.NewTSocket(addr)
+  transport, err := thrift.NewTSocket(ADDR)
 
   if err != nil {
     fmt.Println("Error: ", err)
@@ -36,5 +36,11 @@ func main() {
   con, _ := client.Connect(&con_params)
   res, _ := client.ExecuteSql(con, "SELECT 6824", nil)
 
-  fmt.Println(res)
+  for _, tuple := range *(res.Tuples) {
+    for _, cell := range *(tuple.Cells) {
+      fmt.Printf("%s\t", *(cell.Value))
+    }
+    fmt.Println()
+  }
+  
 }
