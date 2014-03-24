@@ -22,17 +22,18 @@ Barista is a distributed, synchronously replicated, fault tolerant, relational d
 \par{
 Barista APIs are exposed as Thrift IDL. Thrift is a framework, for scalable cross-language services development, combines a software stack with a code generation engine to build RPC services that work efficiently and seamlessly between C++, Java, Go, Python, Ruby, JavaScript, and various other languages. Although we are implementing Barista in Go on the server side, we expect the client call to be in any language.
 }
+\subsection{A Sample Client Code in Python}
 \par{
-For example Barista client RPC stubs in Python can be generated as the following:
-\tiny{
+Barista RPC stubs for Python can be generated as the following:
 \begin{spverbatim}
 thrift --gen py barista.thrift
+
 \end{spverbatim}
 }
-}
-\subsection{Sample Client Code}
 \par{
-A sample python client calling Barista APIs may look like the following:
+Once RPC stubs are generated, a python code can call Barista APIs. Below is a sample client code:
+}
+\par{
 \tiny {
 \begin{spverbatim}
 transport = TSocket(`any_replica_host', `port')
@@ -58,7 +59,8 @@ transport.close()
 \end{spverbatim}
 }
 }
-\subsection{Barista Client API Interface}
+\subsection{Barista Client APIs}
+\emph{barista.thrift}
 \tiny{
 \begin{spverbatim}
 /* Database Connection */
