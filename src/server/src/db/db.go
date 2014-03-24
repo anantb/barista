@@ -49,7 +49,13 @@ func (manager *DBManager) ExecuteSql(
 
   for rows.Next() {
     cells := make([][]byte, n_columns)
-    rows.Scan(cells)
+
+    dest := make([]interface{}, n_columns)
+    for i, _ := range cells {
+        dest[i] = &cells[i]
+    }
+
+    rows.Scan(dest...)
     tuples = append(tuples, cells)
   }
 
