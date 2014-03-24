@@ -29,8 +29,8 @@ try:
   res = client.execute_sql(con=con, query="SELECT 6824", query_params=None)
   
   for t in res.tuples:
-    for cell in t.cells:
-      print cell.value
+    cells = [cell.value for cell in t.cells]
+    print ", ".join(cells)
 
   transport.close()
 except Exception, e:
