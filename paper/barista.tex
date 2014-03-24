@@ -22,7 +22,7 @@ Barista is a distributed, synchronously replicated, fault tolerant, relational d
 
 \section{Client APIs}
 \par{
-Barista APIs are exposed as a Thrift IDL. Thrift is a framework, for scalable cross-language services development, combines a software stack with a code generation engine to build RPC services that work efficiently and seamlessly between C++, Java, Go, Python, Ruby, JavaScript, and various other languages. Although we are implementing Barista in Go on the server side, we expect the client call to be in any language.
+Barista APIs are exposed as a Thrift IDL file (\emph{barista.thrift}). Thrift is a framework, for scalable cross-language services development, combines a software stack with a code generation engine to build RPC services that work efficiently and seamlessly between C++, Java, Go, Python, Ruby, JavaScript, and various other languages. A Thrift IDL file is processed by the Thrift code generator to produce code for the various target languages to support the defined data types and services in the IDL file. Although we are implementing Barista in Go on the server side, we expect the client call to be in any language.
 }
 \subsection{A Sample Python Client}
 \par{
@@ -62,7 +62,7 @@ transport.close()
 }
 }
 \subsection{Barista Client APIs}
-Below is the list of data types and methods available to client applications:
+Below is the list of data types and methods available to client applications through \emph{barista.thrift}:
 \tiny{
 \begin{spverbatim}
 /* Database Connection */
