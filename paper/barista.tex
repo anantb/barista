@@ -43,7 +43,7 @@ client = Barista.Client(protocol)
 
 transport.open()
 
-con_params = ConnectionParams(user='postgres', password='postgres')
+con_params = ConnectionParams(user=`postgres', password=`postgres')
 con = client.connect(con_params=con_params)
 
 res  = client.execute_sql(
@@ -60,7 +60,7 @@ transport.close()
 }
 }
 \subsection{Barista Client APIs}
-\emph{barista.thrift}
+Below is the list of data types and methods available to client applications:
 \tiny{
 \begin{spverbatim}
 /* Database Connection */
