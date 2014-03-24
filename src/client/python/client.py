@@ -21,8 +21,12 @@ try:
   client = Barista.Client(protocol)
   transport.open()
 
-  print client.get_version()
+  con_params = ConnectionParams(
+  	user="postgres", password="postgres", database="postgres")
 
+  con = client.connect(con_params)
+  res = client.execute_sql(con=con, query="SELECT 6824", query_params=None)
+  print res
   transport.close()
 except Exception, e:
     print 'Something went wrong : %s' % (e)

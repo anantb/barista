@@ -33,9 +33,16 @@ func (manager * DBManager) Connect(
 }
 
 func (manager *DBManager) ExecuteSql(
-    query string, args interface{}) ([]string, error) { 
+    query string, args interface{}) ([]interface{}, []string, error) { 
 
   rows, err := manager.db.Query(query, args)
-  column_names, _ := rows.Columns()
-  return column_names, err
+  columns, _ := rows.Columns()
+  n_columns := len(columns)
+  tuples := []interface{}{}
+  for rows.Next() {
+    cells := make([]sql.RawBytes, n_columns)
+    rows.Scan(cells)
+    tuples = append(tuples, cells)
+  }
+  return tuples, columns, err
 }
