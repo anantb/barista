@@ -9,6 +9,7 @@ package main
 
 import "barista"
 import "db"
+import "fmt"
 import "reflect"
 
 type Handler struct {
@@ -32,7 +33,13 @@ func (handler *Handler) Connect(
   password := *(con_params.Password)
   database := *(con_params.Database)
 
-  handler.manager.Connect(user, password, database)
+  err := handler.manager.Connect(user, password, database)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+
   con := new(barista.Connection)
   con.User = &user
   con.Database = &database
@@ -42,7 +49,13 @@ func (handler *Handler) Connect(
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
   
-  rows, columns, _ := handler.manager.ExecuteSql(query, query_params)
+  rows, columns, err := handler.manager.ExecuteSql(query, query_params)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+
   tuples := []*barista.Tuple{}
   for _, row := range rows {
     cells := []*barista.Cell{}

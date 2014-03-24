@@ -7,10 +7,12 @@ package db
  * @date: 03/23/2014
  */
 
-import (
-  "database/sql"
-  "fmt"
-)
+import _ "github.com/lib/pq"
+import "database/sql"
+import "fmt"
+
+const HOST = "localhost"
+const PORT = 5432
 
 type DBManager struct {
   db *sql.DB
@@ -27,7 +29,7 @@ func (manager * DBManager) Connect(
   var err error
   manager.db, err = sql.Open(
     "postgres",
-    fmt.Sprintf("user=%s dbname=%s password=%s", user, password, dbname))
+    fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=disable", HOST, PORT, user, password, dbname))
 
   return err
 }
@@ -35,14 +37,22 @@ func (manager * DBManager) Connect(
 func (manager *DBManager) ExecuteSql(
     query string, args interface{}) ([]interface{}, []string, error) { 
 
-  rows, err := manager.db.Query(query, args)
-  columns, _ := rows.Columns()
+  rows, err := manager.db.Query(query)
+  
+  if err != nil {
+    return nil, nil, err
+  }
+
+  columns, err := rows.Columns()
   n_columns := len(columns)
   tuples := []interface{}{}
+
   for rows.Next() {
-    cells := make([]sql.RawBytes, n_columns)
+    cells := make([][]byte, n_columns)
     rows.Scan(cells)
+    fmt.Println(cells)
     tuples = append(tuples, cells)
   }
+
   return tuples, columns, err
 }

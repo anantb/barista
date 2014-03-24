@@ -26,6 +26,15 @@ func main() {
   defer transport.Close()
 
   client := barista.NewBaristaClientFactory(transport, protocolFactory)
-  version, _ := client.GetVersion()
-  fmt.Println(version)
+
+  user, password, database := "postgres", "postgres", "postgres"
+  con_params := barista.ConnectionParams{
+      User: &user,
+      Password: &password,
+      Database: &database}
+
+  con, _ := client.Connect(&con_params)
+  res, _ := client.ExecuteSql(con, "SELECT 6824", nil)
+
+  fmt.Println(res)
 }
