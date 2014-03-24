@@ -26,11 +26,12 @@ try:
     user="postgres", password="postgres", database="postgres")
 
   con = client.connect(con_params)
-  res = client.execute_sql(con=con, query="SELECT 6824", query_params=None)
+  res = client.execute_sql(con=con, query="SELECT 6.824, 'Distributed Systems'", query_params=None)
   
+  print "\t".join(res.field_names)
   for t in res.tuples:
     cells = [cell.value for cell in t.cells]
-    print ", ".join(cells)
+    print "\t".join(cells)
 
   transport.close()
 except Exception, e:

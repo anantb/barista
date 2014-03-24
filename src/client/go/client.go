@@ -34,7 +34,13 @@ func main() {
       Database: &database}
 
   con, _ := client.Connect(&con_params)
-  res, _ := client.ExecuteSql(con, "SELECT 6824", nil)
+  res, _ := client.ExecuteSql(con, "SELECT 6.824, 'Distributed Systems'", nil)
+
+  for _, field_name := range *(res.FieldNames) {
+    fmt.Printf("%s\t", field_name)
+  }
+  
+  fmt.Println()
 
   for _, tuple := range *(res.Tuples) {
     for _, cell := range *(tuple.Cells) {
