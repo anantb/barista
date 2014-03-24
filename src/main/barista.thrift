@@ -8,12 +8,9 @@
  */
 
 namespace cpp barista
-namespace java barista
-namespace php barista
-namespace perl barista
-namespace py barista
-namespace rb barista
 namespace go barista
+namespace java barista
+namespace py barista
 
 
 /* Barista constants */
@@ -33,9 +30,10 @@ struct ConnectionParams {
 
 // connection info -- must be passed in every execute_sql call
 struct Connection {
-  1: optional string id,
-  2: optional string user,
-  3: optional string database
+  1: optional string client_id,
+  2: optional string seq_id,
+  3: optional string user,
+  4: optional string database
 }
 
 
