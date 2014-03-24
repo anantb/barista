@@ -1,4 +1,4 @@
-drds
+Distributed Relational Data Store
 ====
 
-Distributed Relational Data Store (written over postgres
+Distributed Relational Data Store (written over postgres)
