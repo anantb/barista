@@ -23,14 +23,14 @@ try:
   transport.open()
 
   con_params = ConnectionParams(
-  	user="postgres", password="postgres", database="postgres")
+    user="postgres", password="postgres", database="postgres")
 
   con = client.connect(con_params)
   res = client.execute_sql(con=con, query="SELECT 6824", query_params=None)
   
   for t in res.tuples:
-  	for cell in t.cells:
-  		print cell.value
+    for cell in t.cells:
+      print cell.value
 
   transport.close()
 except Exception, e:
