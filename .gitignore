@@ -1,6 +1,10 @@
 # Emacs backup file
 *.*~
 
+# Java files
+bin/*
+*.class
+
 # Thrift generated files
 gen-*
 
