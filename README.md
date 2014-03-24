@@ -1,5 +1,5 @@
-Distributed Relational Data Store
+Barista
 ====
-Distributed Relational Data Store is a virtualization layer written over postgres that replicates the data to multiple machines in a distributed infrastructure in realtime -- all writes are propagated synchronously using paxos to provide fault-tolerance and load balancing. Distributed Relational Data Store exposes SQL for Data Management.
+Barista is a distributed, synchronously replicated, fault tolerant relational data store. It is a layer written over postgres that manages realtime replication of data in a distributed infrastructure to provide fault-tolerance and load balancing. All writes are propagated synchronously using paxos. Barista exposes SQL for data management.
  
-Applications will continue to use same SQL and this virtualization layer would ensure load balancing, consistency, and fault-tolerance seamlessly.
+Client applications can use the same SQL with Barista and under the hood it takes care of load balancing, consistency, and fault-tolerance seamlessly.
