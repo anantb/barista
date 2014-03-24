@@ -5,18 +5,15 @@ package main
  *
  * @author: Anant Bhardwaj
  * @date: 03/23/2014
- *
  */
 
-import (
-  "fmt"
-  "barista"
-  "git.apache.org/thrift.git/lib/go/thrift"
-)
+import "fmt"
+import "barista"
+import "git.apache.org/thrift.git/lib/go/thrift"
 
-func main() {
-  const addr = "localhost:9000"
-  
+const addr = "localhost:9000"
+
+func main() {  
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transportFactory := thrift.NewTTransportFactory()
   transport, err := thrift.NewTServerSocket(addr)
@@ -31,6 +28,5 @@ func main() {
   server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
 
   fmt.Println("Starting the Barista server on ", addr)
-  server.Serve()
-  
+  server.Serve() 
 }
