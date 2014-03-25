@@ -23,13 +23,15 @@ func NewDBManager() *DBManager {
   return manager
 }
 
-func (manager * DBManager) Connect(
+func (manager *DBManager) Connect(
     user string, password string, dbname string) error {
 
   var err error
   manager.db, err = sql.Open(
     "postgres",
-    fmt.Sprintf("host=%s port=%v user=%s dbname=%s password=%s sslmode=disable", HOST, PORT, user, password, dbname))
+    fmt.Sprintf(
+        "host=%s port=%v user=%s dbname=%s password=%s sslmode=disable",
+        HOST, PORT, user, password, dbname))
 
   return err
 }

@@ -26,7 +26,9 @@ try:
     user="postgres", password="postgres", database="postgres")
 
   con = client.connect(con_params)
-  res = client.execute_sql(con=con, query="SELECT 6.824 as id, 'Distributed Systems' as name", query_params=None)
+  res = client.execute_sql(con=con,
+      query="SELECT 6.824 as id, 'Distributed Systems' as name",
+      query_params=None)
   
   print "\t".join(res.field_names)
   for t in res.tuples:

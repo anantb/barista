@@ -28,7 +28,7 @@ func main() {
   client := barista.NewBaristaClientFactory(transport, protocolFactory)
 
   user, password, database := "postgres", "postgres", "postgres"
-  con_params := barista.ConnectionParams{
+  con_params := barista.ConnectionParams {
       User: &user,
       Password: &password,
       Database: &database}
@@ -40,7 +40,8 @@ func main() {
     return
   }
 
-  res, err := client.ExecuteSql(con, "SELECT 6.824 as id, 'Distributed Systems' as name", nil)
+  res, err := client.ExecuteSql(
+      con, "SELECT 6.824 as id, 'Distributed Systems' as name", nil)
 
   if err != nil {
     fmt.Println("Error: ", err)

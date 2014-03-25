@@ -27,7 +27,8 @@ public class Client {
       con_params.setDatabase("postgres");
 
       Connection con = client.connect(con_params);	     
-      ResultSet res = client.execute_sql(con, "SELECT 6.824 as id, 'Distributed Systems' as name", null);
+      ResultSet res = client.execute_sql(
+          con, "SELECT 6.824 as id, 'Distributed Systems' as name", null);
 
       for (String fielf_name : res.getField_names()) {
         System.out.print(fielf_name + "\t");
