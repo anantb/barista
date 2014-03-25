@@ -15,7 +15,6 @@
 \maketitle
 \begin{multicols}{2}
 \begin{abstract}
-\noindent
 Barista is a distributed, synchronously replicated, fault tolerant, relational data store. It is a layer written over PostgreSQL that manages realtime replication of data in a distributed infrastructure to provide fault-tolerance and load balancing. All writes are propagated synchronously using paxos. Barista exposes SQL for data management. Client applications can use the same SQL with Barista and under the hood it takes care of load balancing, consistency, and fault-tolerance seamlessly.
 \end{abstract}
 \section{Introduction}
@@ -38,24 +37,25 @@ Once RPC stubs are generated, a python code can call Barista APIs. Below is a sa
 \par{
 \tiny {
 \begin{spverbatim}
-transport = TSocket(`any_replica_host', `port')
+transport = TSocket.TSocket('localhost', 9000)
 transport = TTransport.TBufferedTransport(transport)
 protocol = TBinaryProtocol.TBinaryProtocol(transport)
 client = Barista.Client(protocol)
 
 transport.open()
 
-con_params = ConnectionParams(user=`postgres', password=`postgres')
-con = client.connect(con_params=con_params)
+con_params = ConnectionParams(
+  user="postgres", password="postgres", database="postgres")
 
-res  = client.execute_sql(
-  con=con,
-  query='select * from db',
-  query_params=None)
+con = client.connect(con_params)
+res = client.execute_sql(con=con,
+    query="SELECT 6.824 as id, 'Distributed Systems' as name",
+    query_params=None)
 
-for tuple in res.tuples:
-  for cell in tuple.cells:
-    print cell
+print "\t".join(res.field_names)
+for t in res.tuples:
+  cells = [cell.value for cell in t.cells]
+  print "\t".join(cells)
 
 transport.close()
 \end{spverbatim}
@@ -117,13 +117,11 @@ exception DBException {
 service Barista {
   double get_version()
 
-  Connection connect (
-     1: ConnectionParams con_params) throws (1: DBException ex)
+  Connection connect (1: ConnectionParams con_params)
+      throws (1: DBException ex)
 
-  ResultSet execute_sql (
-     1: Connection con,
-     2: string query,
-     3: list <binary> query_params) throws (1: DBException ex)
+  ResultSet execute_sql (1: Connection con, 2: string query,
+      3: list <binary> query_params) throws (1: DBException ex)
 }
 \end{spverbatim}
 }
