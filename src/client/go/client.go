@@ -33,8 +33,19 @@ func main() {
       Password: &password,
       Database: &database}
 
-  con, _ := client.Connect(&con_params)
-  res, _ := client.ExecuteSql(con, "SELECT 6.824 as id, 'Distributed Systems' as name", nil)
+  con, err := client.Connect(&con_params)
+
+  if err != nil {
+    fmt.Println("Error: ", err)
+    return
+  }
+
+  res, err := client.ExecuteSql(con, "SELECT 6.824 as id, 'Distributed Systems' as name", nil)
+
+  if err != nil {
+    fmt.Println("Error: ", err)
+    return
+  }
 
   for _, field_name := range *(res.FieldNames) {
     fmt.Printf("%s\t", field_name)
