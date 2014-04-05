@@ -37,7 +37,7 @@ func (manager *DBManager) Connect(
 }
 
 func (manager *DBManager) ExecuteSql(
-    query string, args interface{}) ([]interface{}, []string, error) { 
+    query string, args interface{}) ([][][]byte, []string, error) { 
 
   rows, err := manager.db.Query(query)
   
@@ -47,7 +47,7 @@ func (manager *DBManager) ExecuteSql(
 
   columns, err := rows.Columns()
   n_columns := len(columns)
-  tuples := []interface{}{}
+  tuples := make([][][]byte, 0)
 
   for rows.Next() {
     cells := make([][]byte, n_columns)

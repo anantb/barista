@@ -10,7 +10,6 @@ package main
 import "barista"
 import "db"
 import "fmt"
-import "reflect"
 
 type Handler struct {
   manager *db.DBManager 
@@ -58,13 +57,7 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    cells := make([][]byte, 0)
-    vals := reflect.ValueOf(row)
-    for i:=0; i < vals.Len(); i++ {
-      val := vals.Index(i).Interface().([]byte)
-      cells = append(cells, val)
-    }
-    tuple := barista.Tuple{Cells: &cells}
+    tuple := barista.Tuple{Cells: &row}
     tuples = append(tuples, &tuple)
   }
  
