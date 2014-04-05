@@ -54,7 +54,7 @@ func (manager *DBManager) ExecuteSql(
 
     dest := make([]interface{}, n_columns)
     for i, _ := range cells {
-        dest[i] = &cells[i]
+      dest[i] = &cells[i]
     }
 
     rows.Scan(dest...)
