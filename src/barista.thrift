@@ -38,14 +38,9 @@ struct Connection {
 
 /* ResultSet */
 
-// A cell in a table
-struct Cell {
-  1: optional binary value
-}
-
 // A tuple
 struct Tuple {
-  1: optional list <Cell> cells
+  1: optional list <binary> cells
 }
 
 // A result set (list of tuples)

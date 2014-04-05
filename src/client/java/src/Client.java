@@ -2,6 +2,7 @@ import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import java.nio.ByteBuffer;
 import barista.*;
 
 /** 
@@ -37,8 +38,8 @@ public class Client {
       System.out.println();
 
       for (Tuple t : res.getTuples()) {
-        for (Cell cell : t.getCells()) {
-          System.out.print(new String(cell.getValue()) + "\t");
+        for (ByteBuffer cell : t.getCells()) {
+          System.out.print(new String(cell.array()) + "\t");
         }
         System.out.println();
       }

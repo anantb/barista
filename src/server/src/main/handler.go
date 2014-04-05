@@ -58,12 +58,11 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    cells := []*barista.Cell{}
+    cells := make([][]byte, 0)
     vals := reflect.ValueOf(row)
     for i:=0; i < vals.Len(); i++ {
       val := vals.Index(i).Interface().([]byte)
-      cell := barista.Cell{Value: &val}
-      cells = append(cells, &cell)
+      cells = append(cells, val)
     }
     tuple := barista.Tuple{Cells: &cells}
     tuples = append(tuples, &tuple)

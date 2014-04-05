@@ -32,8 +32,7 @@ try:
   
   print "\t".join(res.field_names)
   for t in res.tuples:
-    cells = [cell.value for cell in t.cells]
-    print "\t".join(cells)
+    print "\t".join(t.cells)
 
   transport.close()
 except Exception, e:

@@ -56,7 +56,7 @@ func main() {
 
   for _, tuple := range *(res.Tuples) {
     for _, cell := range *(tuple.Cells) {
-      fmt.Printf("%s\t", *(cell.Value))
+      fmt.Printf("%s\t", cell)
     }
     fmt.Println()
   }
