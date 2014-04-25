@@ -13,6 +13,7 @@ import "encoding/gob"
 import "math/rand"
 import "strconv"
 import "math"
+import "json"
 
 const Debug=0
 
@@ -53,6 +54,30 @@ type SQLPaxos struct {
   data map[string]string // the database
   lastSeen map[int64]Op // the last request/reply for this client  	   		 
   next int // the next sequence number to be executed
+  logger *logger.Logger // logger to write paxos log to file
+  manager *db.DBManager // DB manager
+}
+
+func (sp *SQLPaxos) ExecuteSqlHelper(Con barista.Connection, query string, query_params [][]byte) 
+  (*barista.ResultSet, error) {
+  rows, columns, err := manager.ExecuteSql(query, query_params)
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+
+  tuples := []*barista.Tuple{}
+  for _, row := range rows {
+    tuple := barista.Tuple{Cells: &row}
+    tuples = append(tuples, &tuple)
+  }
+ 
+  result_set := new(barista.ResultSet)
+  result_set.Con = con
+  result_set.Tuples = &tuples
+  result_set.FieldNames = &columns
+
+  return result_set, nil
 }
 
 func (sp *SQLPaxos) execute(args interface {}) interface {} {
@@ -100,6 +125,22 @@ func (sp *SQLPaxos) execute(args interface {}) interface {} {
          reply.Err = ErrNoKey
       }
 
+   case ExecArgs:
+      // stuff goes here
+      // get op that has been decided on, set its seqnum if not already set
+      if op.NoOp {
+        args.Query = ""
+      }
+      query = "BEGIN TRANSACTION;" + args.Query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + i + 
+        "; END TRANSACTION;"
+      
+      // 1. write paxos log to file
+      b, err := json.Marshal(op)
+      check(err)
+      check(logger.writeToLog(b))
+      
+      // 2. update transactions and execute on the database
+      handler.ExecuteSqlHelper(op.Args.Con, op.Args.Query, op.Args.Query_params)
       return reply
 
    }
@@ -338,7 +379,9 @@ func StartServer(servers []string, me int) *SQLPaxos {
   sp.data = make(map[string]string)
   sp.lastSeen = make(map[int64]Op)
   sp.next = 0
-
+  sp.logger = new(logger.Logger{filename:"sqlpaxos_log.txt"})
+  sp.manager = new(db.DBManager)
+  
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
 

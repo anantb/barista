@@ -25,6 +25,7 @@ type ExecArgs struct {
   QueryParams [][]byte
   ClientId int64
   RequestId int
+  Con barista.Connection
 }
 
 type ExecReply struct {
