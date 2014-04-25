@@ -1,5 +1,6 @@
 package sqlpaxos
 import "hash/fnv"
+import "barista"
 
 const (
   OK = "OK"
@@ -17,6 +18,18 @@ type PutArgs struct {
 
   ClientId int64
   RequestId int
+}
+
+type ExecArgs struct {
+  Query string
+  QueryParams [][]byte
+  ClientId int64
+  RequestId int
+}
+
+type ExecReply struct {
+  Err Err
+  Result barista.ResultSet
 }
 
 type PutReply struct {

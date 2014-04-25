@@ -26,12 +26,17 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 
 type Op struct {
   // Your definitions here.
-  Args interface {}
-  Reply interface {}
-  ClientId int64 // unique client id
-  RequestId int // sequential request id
-  NoOp bool // true if this is a no-op
-  Done bool // true if we can delete this data
+  Args ExecArgs
+  NoOp bool
+  SeqNum int
+  
+
+  //Args interface {}
+  //Reply interface {}
+  //ClientId int64 // unique client id
+  //RequestId int // sequential request id
+  //NoOp bool // true if this is a no-op
+  //Done bool // true if we can delete this data
 }
 
 
@@ -278,6 +283,20 @@ func (sp *SQLPaxos) Get(args *GetArgs, reply *GetReply) error {
 }
 
 func (sp *SQLPaxos) Put(args *PutArgs, reply *PutReply) error {
+  // Your code here.
+
+  // execute this operation and store the response in r
+  r := sp.commit(*args, args.ClientId, args.RequestId)
+
+  if r != nil {
+     reply.PreviousValue = r.(PutReply).PreviousValue
+     reply.Err = r.(PutReply).Err
+  }
+
+  return nil
+}
+
+func (sp *SQLPaxos) ExecuteSQL(args *PutArgs, reply *PutReply) error {
   // Your code here.
 
   // execute this operation and store the response in r
