@@ -296,7 +296,7 @@ func (sp *SQLPaxos) Put(args *PutArgs, reply *PutReply) error {
   return nil
 }
 
-func (sp *SQLPaxos) ExecuteSQL(args *PutArgs, reply *PutReply) error {
+func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   // Your code here.
 
   // execute this operation and store the response in r
