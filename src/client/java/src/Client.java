@@ -27,7 +27,7 @@ public class Client {
       con_params.setPassword("postgres");
       con_params.setDatabase("postgres");
 
-      Connection con = client.connect(con_params);	     
+      Connection con = client.open_connection(con_params);	     
       ResultSet res = client.execute_sql(
           con, "SELECT 6.824 as id, 'Distributed Systems' as name", null);
 

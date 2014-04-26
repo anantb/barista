@@ -33,7 +33,7 @@ func main() {
       Password: &password,
       Database: &database}
 
-  con, err := client.Connect(&con_params)
+  con, err := client.OpenConnection(&con_params)
 
   if err != nil {
     fmt.Println("Error: ", err)

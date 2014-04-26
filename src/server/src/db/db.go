@@ -23,7 +23,7 @@ func NewDBManager() *DBManager {
   return manager
 }
 
-func (manager *DBManager) Connect(
+func (manager *DBManager) OpenConnection(
     user string, password string, dbname string) error {
 
   var err error

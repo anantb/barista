@@ -8,43 +8,31 @@ package main
  */
 
 import "barista"
-import "logger"
 import "db"
 import "fmt"
-import "reflect"
-import "encoding/json"
 
 type Handler struct {
-  sqlPaxos *sqlpaxos.SQLPaxos
+  manager *db.DBManager 
 }
-
-// need to store result and error to do duplicate detection
 
 func NewBaristaHandler() *Handler {
   handler := new(Handler)
-  handler.sqlPaxos = new(sqlpaxos.SQLPaxos)
-  // TODO: StartServer
+  handler.manager = new(db.DBManager)
   return handler
-}
-
-func check(e error) {
-  if e != nil {
-    panic(e)
-  }
 }
 
 func (handler *Handler) GetVersion() (float64, error) {
   return barista.VERSION, nil
 }
 
-func (handler *Handler) Connect(
+func (handler *Handler) OpenConnection(
     con_params *barista.ConnectionParams) (*barista.Connection, error) {
   
   user := *(con_params.User)
   password := *(con_params.Password)
   database := *(con_params.Database)
 
-  err := handler.manager.Connect(user, password, database)
+  err := handler.manager.OpenConnection(user, password, database)
 
   if err != nil {
     fmt.Println("Error :", err)
@@ -59,9 +47,30 @@ func (handler *Handler) Connect(
 
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
-  args := sqlpaxos.ExecArgs{Query:query, QueryParams:query_params, 
-    ClientId:con.client_id, RequestId:con.request_id, Con: *con}
-  var reply ExecReply
-  sqlPaxos.ExecuteSql(&args, &reply)
-  return reply.Result, reply.Error
+  
+  rows, columns, err := handler.manager.ExecuteSql(query, query_params)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+
+  tuples := []*barista.Tuple{}
+  for _, row := range rows {
+    tuple := barista.Tuple{Cells: &row}
+    tuples = append(tuples, &tuple)
+  }
+ 
+  result_set := new(barista.ResultSet)
+  result_set.Con = con
+  result_set.Tuples = &tuples
+  result_set.FieldNames = &columns
+
+  return result_set, nil
+}
+
+func (handler *Handler) CloseConnection(
+    con *barista.Connection) (bool, error) {
+
+  return true, nil
 }

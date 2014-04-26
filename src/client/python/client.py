@@ -25,7 +25,7 @@ try:
   con_params = ConnectionParams(
     user="postgres", password="postgres", database="postgres")
 
-  con = client.connect(con_params)
+  con = client.open_connection(con_params)
   res = client.execute_sql(con=con,
       query="SELECT 6.824 as id, 'Distributed Systems' as name",
       query_params=None)

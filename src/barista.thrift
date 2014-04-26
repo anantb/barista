@@ -69,9 +69,12 @@ exception DBException {
 service Barista {
   double get_version()
 
-  Connection connect (1: ConnectionParams con_params)
+  Connection open_connection (1: ConnectionParams con_params)
       throws (1: DBException ex)
 
   ResultSet execute_sql (1: Connection con, 2: string query,
       3: list <binary> query_params) throws (1: DBException ex)
+
+  bool close_connection (1: Connection con)
+      throws (1: DBException ex)
 }
