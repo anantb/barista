@@ -22,9 +22,11 @@ const double VERSION = 0.1
 
 // connection parameters
 struct ConnectionParams {
-  1: optional string user,
-  2: optional string password,
-  3: optional string database
+  1: optional string client_id,
+  2: optional string seq_id,
+  3: optional string user,
+  4: optional string password,
+  5: optional string database
 }
 
 // connection info -- must be passed in every execute_sql call
