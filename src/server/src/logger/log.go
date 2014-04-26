@@ -19,17 +19,13 @@ func Make(filename string) *Logger {
   px.filename = filename
 }
 
-func (lg *Logger) writeToLog(toWrite []byte) error {
-  return ioutil.WriteFile(lg.filename, toWrite, 0644)
+func (lg *Logger) writeToLog(op Op) error {
+  b, err := json.Marshal(op)
+  check(err) 
+  return ioutil.WriteFile(lg.filename, b, 0644)
 }
 
-func (lg *Logger) writeToLog(instance SQLPaxosInstance) error {
-  return ioutil.WriteFile(lg.filename, toWrite, 0644)
+func (lg *Logger) readFromLog() []byte, error {
+  return ioutil.ReadFile(lg.filename, toWrite, 0644)
 }
-
-func (lg *Logger) readFromLog() SQLPaxosInstance {
-  return ioutil.WriteFile(lg.filename, toWrite, 0644)
-}
-
-// may need to write a reader to read in the log for recovery
 

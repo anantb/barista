@@ -5,6 +5,8 @@ import "hash/fnv"
 const (
   OK = "OK"
   ErrNoKey = "ErrNoKey"
+  ConnAlreadyOpen = "ConnectionAlreadyOpen"
+  ConnAlreadyClosed = "ConnectionAlreadyClosed"
 )
 type Err string
 
@@ -20,8 +22,7 @@ type ExecArgs struct {
   QueryParams [][]byte
   ClientId int64
   RequestId int
-  //Con barista.Connection
-
+  
   // some stuff for testing
   Type ExecType
   Key string
@@ -35,6 +36,25 @@ type ExecReply struct {
 
   // some stuff for testing
   Value string
+}
+
+type OpenArgs struct {
+  ClientId int64
+  Username string
+  Password string
+  Database string
+}
+
+type OpenReply struct {
+  Err Err
+}
+
+type CloseArgs struct {
+  ClientId int64
+}
+
+type CloseReply struct {
+  Err Err
 }
 
 func hash(s string) uint32 {
