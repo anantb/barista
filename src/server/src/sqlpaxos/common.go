@@ -1,6 +1,6 @@
 package sqlpaxos
 import "hash/fnv"
-import "barista"
+//import "barista"
 
 const (
   OK = "OK"
@@ -8,46 +8,32 @@ const (
 )
 type Err string
 
-type PutArgs struct {
-  Key string
-  Value string
-  DoHash bool  // For PutHash
-  // You'll have to add definitions here.
-  // Field names must start with capital letters,
-  // otherwise RPC will break.
-
-  ClientId int64
-  RequestId int
-}
+// for testing
+const (
+  Put = "Put"
+  Get = "Get"
+)
+type ExecType string
 
 type ExecArgs struct {
   Query string
   QueryParams [][]byte
   ClientId int64
   RequestId int
-  Con barista.Connection
+  //Con barista.Connection
+
+  // some stuff for testing
+  Type ExecType
+  Key string
+  Value string
+  DoHash bool
 }
 
 type ExecReply struct {
   Err Err
-  Result barista.ResultSet
-}
+  //Result barista.ResultSet
 
-type PutReply struct {
-  Err Err
-  PreviousValue string   // For PutHash
-}
-
-type GetArgs struct {
-  Key string
-  // You'll have to add definitions here.
-
-  ClientId int64
-  RequestId int
-}
-
-type GetReply struct {
-  Err Err
+  // some stuff for testing
   Value string
 }
 

@@ -76,15 +76,18 @@ func (ck *Clerk) Get(key string) string {
   ck.curRequest++
 
   // try each server 
-  for _, srv := range ck.servers {
-     args := &GetArgs{}
-     args.Key = key
-     args.ClientId = ck.me
-     args.RequestId = ck.curRequest
-     var reply GetReply
-     ok := call(srv, "SQLPaxos.Get", args, &reply)
-     if ok && (reply.Err == OK || reply.Err == ErrNoKey) {
-        return reply.Value
+  for {
+     for _, srv := range ck.servers {
+     	args := &ExecArgs{}
+	args.Type = Get
+     	args.Key = key
+    	args.ClientId = ck.me
+     	args.RequestId = ck.curRequest
+     	var reply ExecReply
+     	ok := call(srv, "SQLPaxos.ExecuteSQL", args, &reply)
+     	if ok && (reply.Err == OK || reply.Err == ErrNoKey) {
+           return reply.Value
+        }
      }
   }
 
@@ -95,20 +98,23 @@ func (ck *Clerk) PutExt(key string, value string, dohash bool) string {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
-  // You'll have to modify Put().
   ck.curRequest++
 
-  for _, srv := range ck.servers {
-     args := &PutArgs{}
-     args.Key = key
-     args.Value = value
-     args.DoHash = dohash
-     args.ClientId = ck.me
-     args.RequestId = ck.curRequest
-     var reply PutReply
-     ok := call(srv, "SQLPaxos.Put", args, &reply)
-     if ok && reply.Err == OK {
-        return reply.PreviousValue
+  // try each server 
+  for {
+     for _, srv := range ck.servers {
+        args := &ExecArgs{}
+	args.Type = Put
+     	args.Key = key
+     	args.Value = value
+     	args.DoHash = dohash
+     	args.ClientId = ck.me
+     	args.RequestId = ck.curRequest
+     	var reply ExecReply
+     	ok := call(srv, "SQLPaxos.ExecuteSQL", args, &reply)
+     	if ok && reply.Err == OK {
+           return reply.Value
+        }
      }
   }
 

@@ -13,7 +13,9 @@ import "encoding/gob"
 import "math/rand"
 import "strconv"
 import "math"
-import "json"
+//import "encoding/json"
+//import "logger"
+//import "db"
 
 const Debug=0
 
@@ -26,20 +28,15 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 
 
 type Op struct {
-  // Your definitions here.
   Args ExecArgs
-  NoOp bool
-  SeqNum int
-  
-
-  //Args interface {}
-  //Reply interface {}
-  //ClientId int64 // unique client id
-  //RequestId int // sequential request id
-  //NoOp bool // true if this is a no-op
-  //Done bool // true if we can delete this data
+  SeqNum int  
+  NoOp bool // true if this is a no-op
 }
 
+type LastSeen struct {
+  RequestId int 
+  Reply ExecReply
+}
 
 type SQLPaxos struct {
   mu sync.Mutex
@@ -51,15 +48,17 @@ type SQLPaxos struct {
 
   // Your definitions here.
   ops map[int]Op // log of operations
+  replies map[int]ExecReply // the replies for this sequence number
+  done map[int]bool // true if we can delete the data for this sequence number
   data map[string]string // the database
-  lastSeen map[int64]Op // the last request/reply for this client  	   		 
+  lastSeen map[int64]LastSeen // the last request/reply for this client
   next int // the next sequence number to be executed
-  logger *logger.Logger // logger to write paxos log to file
-  manager *db.DBManager // DB manager
+  //logger *logger.Logger // logger to write paxos log to file
+  //manager *db.DBManager // DB manager
 }
 
-func (sp *SQLPaxos) ExecuteSqlHelper(Con barista.Connection, query string, query_params [][]byte) 
-  (*barista.ResultSet, error) {
+/*
+func (sp *SQLPaxos) executeSqlHelper(Con barista.Connection, query string, query_params [][]byte) (*barista.ResultSet, error) {
   rows, columns, err := manager.ExecuteSql(query, query_params)
   if err != nil {
     fmt.Println("Error :", err)
@@ -79,78 +78,76 @@ func (sp *SQLPaxos) ExecuteSqlHelper(Con barista.Connection, query string, query
 
   return result_set, nil
 }
+*/
 
-func (sp *SQLPaxos) execute(args interface {}) interface {} {
+func (sp *SQLPaxos) execute(op Op) ExecReply {
+      
+  args := op.Args
+  reply := ExecReply{}
+  
+  // @TODO remove this
+  if op.NoOp {
+     return reply
+  }
 
-   if args == nil {
-      return nil
-   }
+  // @TODO remove get & put
+  key := args.Key
+  if args.Type == Put {
+     // execute the put
 
-   switch t := args.(type) {
-   default:
-      fmt.Printf("unexpected type %T\n", t)
-   case PutArgs:
-      // execute the put
-      reply := PutReply{}
-      putArgs := args.(PutArgs)
-   
-      prevValue, ok := sp.data[putArgs.Key]
-      if ok {
-         reply.PreviousValue = prevValue
-      } else {
-         reply.PreviousValue = ""
-      }
+     prevValue, ok := sp.data[key]
+     if ok {
+        reply.Value = prevValue
+     } else {
+        reply.Value = ""
+     }
 
-      if putArgs.DoHash {
-         sp.data[putArgs.Key] = strconv.Itoa(int(hash(reply.PreviousValue + putArgs.Value)))
-      } else {
-         sp.data[putArgs.Key] = putArgs.Value
-      }
+     if args.DoHash {
+        sp.data[key] = strconv.Itoa(int(hash(reply.Value + args.Value)))
+     } else {
+        sp.data[key] = args.Value
+     }
 
-      reply.Err = OK
+     reply.Err = OK
 
-      return reply
+  } else if args.Type == Get {
+     // execute the get
 
-   case GetArgs:
-      // execute the get
-      reply := GetReply{}
-      key := args.(GetArgs).Key
+     value, ok := sp.data[key]
+     if ok {
+        reply.Value = value
+        reply.Err = OK          
+     } else {
+        reply.Value = ""
+        reply.Err = ErrNoKey
+     }
+  } else {
 
-      value, ok := sp.data[key]
-      if ok {
-         reply.Value = value
-         reply.Err = OK          
-      } else {
-         reply.Value = ""
-         reply.Err = ErrNoKey
-      }
-
-   case ExecArgs:
-      // stuff goes here
-      // get op that has been decided on, set its seqnum if not already set
-      if op.NoOp {
+     // @TODO this will be the whole function
+     // get op that has been decided on, set its seqnum if not already set
+     if op.NoOp {
         args.Query = ""
-      }
-      query = "BEGIN TRANSACTION;" + args.Query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + i + 
-        "; END TRANSACTION;"
+     }
+//     query := "BEGIN TRANSACTION;" + args.Query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + strconv.Itoa(op.SeqNum) + 
+//       "; END TRANSACTION;"
       
-      // 1. write paxos log to file
-      b, err := json.Marshal(op)
-      check(err)
-      check(logger.writeToLog(b))
+     // 1. write paxos log to file
+//     b, err := json.Marshal(op)
+
+// @TODO Manasi - what was this supposed to be??
+//     check(err) 
+//     check(logger.writeToLog(b))
       
-      // 2. update transactions and execute on the database
-      handler.ExecuteSqlHelper(op.Args.Con, op.Args.Query, op.Args.Query_params)
-      return reply
+     // 2. update transactions and execute on the database
+//     executeSqlHelper(op.Args.Con, op.Args.Query, op.Args.Query_params)
+  }
 
-   }
-
-   return nil
+  return reply
 }
 
-func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
+func (sp *SQLPaxos) fillHoles(next int, seq int) ExecReply {
  
-  var reply interface {} = nil
+  var reply ExecReply
 
   // make sure there are no holes in the log before our operation
   for i := next; i <= seq; i++ {
@@ -182,58 +179,52 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
 
      if i == sp.next {
         // the operation at slot i is next to be executed
-        op_i := sp.ops[i]
-        if !op_i.NoOp {
-           // execute the operation at slot i
-	   r, executed := sp.checkIfExecuted(op_i.ClientId, op_i.RequestId)
-           if executed {
-	      op_i.Reply = r
-	   } else {
-	      r := sp.execute(op_i.Args)
-	      op_i.Reply = r
-	      sp.lastSeen[op_i.ClientId] = op_i
-	   }
-           sp.ops[i] = op_i
-        }
+	r, executed := sp.checkIfExecuted(sp.ops[i].Args)
+        if executed {
+    	   sp.replies[i] = r
+	} else {
+	   r := sp.execute(sp.ops[i])
+	   sp.replies[i] = r
+	   sp.lastSeen[sp.ops[i].Args.ClientId] = LastSeen{ RequestId: sp.ops[i].Args.RequestId, Reply: r }
+	}
         sp.next++
-        if i == seq {
-           reply = op_i.Reply
-        }
-     } else if i == seq {
-        // our operation was already executed
-        reply = sp.ops[seq].Reply
+     }
+
+     if i == seq {
+        reply = sp.replies[i]
      }
   }
 
   return reply
 } 
 
-func (sp *SQLPaxos) checkIfExecuted(clientId int64, requestId int) (interface {}, bool) {
-  op_lastSeen, ok := sp.lastSeen[clientId]
-  if ok && op_lastSeen.ClientId == clientId {
-     if op_lastSeen.RequestId == requestId {
-        return op_lastSeen.Reply, true
-     } else if op_lastSeen.RequestId > requestId {
-        return nil, true // nil reply since this is an old request
+func (sp *SQLPaxos) checkIfExecuted(args ExecArgs) (ExecReply, bool) {
+  lastSeen, ok := sp.lastSeen[args.ClientId]
+  if ok {
+     if lastSeen.RequestId == args.RequestId {
+        return lastSeen.Reply, true
+     } else if lastSeen.RequestId > args.RequestId {
+        return ExecReply{}, true // empty reply since this is an old request
      }
   }
 
-  return nil, false
+  return ExecReply{}, false
 }
 
-func (sp *SQLPaxos) reserveSlot(args interface{}, clientId int64, requestId int) int {
+func (sp *SQLPaxos) reserveSlot(args ExecArgs) int {
 
   // propose this operation for slot seq
   seq := sp.px.Max() + 1
-  v := Op{Args: args, Reply: nil, ClientId: clientId, RequestId: requestId}
+  v := Op{Args: args}
   sp.px.Start(seq, v)
 
   nwaits := 0
   for !sp.dead {
      decided, v_a := sp.px.Status(seq)
-     if decided && v_a != nil && v_a.(Op).ClientId == v.ClientId && v_a.(Op).RequestId == v.RequestId {
+     if decided && v_a != nil && v_a.(Op).Args.ClientId == v.Args.ClientId && v_a.(Op).Args.RequestId == v.Args.RequestId {
         // we successfully claimed this slot for our operation
         if _, ok := sp.ops[seq]; !ok {
+	   v.SeqNum = seq
            sp.ops[seq] = v
         }
         break
@@ -262,15 +253,15 @@ func (sp *SQLPaxos) reserveSlot(args interface{}, clientId int64, requestId int)
 
 func (sp *SQLPaxos) freeMemory(seq int) {
 
-  op_seq := sp.ops[seq]
-  op_seq.Done = true
-  sp.ops[seq] = op_seq
+  sp.done[seq] = true
   minNotDone := seq + 1
   for i := seq; i >= 0; i-- {
      _, ok := sp.ops[i]
      if ok {
-        if sp.ops[i].Done || sp.ops[i].NoOp {
+        if done, ok := sp.done[i]; ok && done || sp.ops[i].NoOp {
            delete(sp.ops, i)
+           delete(sp.replies, i)
+           delete(sp.done, i)
         } else {
            minNotDone = i
         }
@@ -280,24 +271,24 @@ func (sp *SQLPaxos) freeMemory(seq int) {
   sp.px.Done(minNotDone - 1)
 }
 
-func (sp *SQLPaxos) commit(args interface {}, clientId int64, requestId int) interface {} {
+func (sp *SQLPaxos) commit(args ExecArgs) ExecReply {
 
   sp.mu.Lock()
   defer sp.mu.Unlock()
 
   // first check if this request has already been executed
-  reply, ok := sp.checkIfExecuted(clientId, requestId)
+  reply, ok := sp.checkIfExecuted(args)
   if ok {
      return reply
   }
 
   // reserve a slot in the paxos log for this operation
-  seq := sp.reserveSlot(args, clientId, requestId)
+  seq := sp.reserveSlot(args)
 
   next := sp.next
   if next > seq {
      // our operation has already been executed
-     reply = sp.ops[seq].Reply
+     reply = sp.replies[seq]
   } else {
      // fill holes in the log and execute our operation
      reply = sp.fillHoles(next, seq)
@@ -309,44 +300,14 @@ func (sp *SQLPaxos) commit(args interface {}, clientId int64, requestId int) int
   return reply
 }
 
-func (sp *SQLPaxos) Get(args *GetArgs, reply *GetReply) error {
-  // Your code here.
-
-  // execute this operation and store the response in r
-  r := sp.commit(*args, args.ClientId, args.RequestId)
-
-  if r != nil {
-     reply.Value = r.(GetReply).Value
-     reply.Err = r.(GetReply).Err
-  }
-
-  return nil
-}
-
-func (sp *SQLPaxos) Put(args *PutArgs, reply *PutReply) error {
-  // Your code here.
-
-  // execute this operation and store the response in r
-  r := sp.commit(*args, args.ClientId, args.RequestId)
-
-  if r != nil {
-     reply.PreviousValue = r.(PutReply).PreviousValue
-     reply.Err = r.(PutReply).Err
-  }
-
-  return nil
-}
-
 func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   // Your code here.
 
   // execute this operation and store the response in r
-  r := sp.commit(*args, args.ClientId, args.RequestId)
+  r := sp.commit(*args)
 
-  if r != nil {
-     reply.PreviousValue = r.(PutReply).PreviousValue
-     reply.Err = r.(PutReply).Err
-  }
+  reply.Value = r.Value
+  reply.Err = r.Err
 
   return nil
 }
@@ -368,8 +329,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
   // call gob.Register on structures you want
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
-  gob.Register(PutArgs{})
-  gob.Register(GetArgs{})
+  gob.Register(ExecArgs{})
 
   sp := new(SQLPaxos)
   sp.me = me
@@ -377,10 +337,12 @@ func StartServer(servers []string, me int) *SQLPaxos {
   // Your initialization code here.
   sp.ops = make(map[int]Op)
   sp.data = make(map[string]string)
-  sp.lastSeen = make(map[int64]Op)
+  sp.replies = make(map[int]ExecReply)
+  sp.done = make(map[int]bool)
+  sp.lastSeen = make(map[int64]LastSeen)
   sp.next = 0
-  sp.logger = new(logger.Logger{filename:"sqlpaxos_log.txt"})
-  sp.manager = new(db.DBManager)
+  //sp.logger = new(logger.Logger{filename:"sqlpaxos_log.txt"})
+  //sp.manager = new(db.DBManager)
   
   rpcs := rpc.NewServer()
   rpcs.Register(sp)

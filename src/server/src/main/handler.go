@@ -12,7 +12,7 @@ import "logger"
 import "db"
 import "fmt"
 import "reflect"
-import "json"
+import "encoding/json"
 
 type Handler struct {
   sqlPaxos *sqlpaxos.SQLPaxos
