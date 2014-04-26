@@ -63,3 +63,7 @@ func (manager *DBManager) ExecuteSql(
 
   return tuples, columns, err
 }
+
+func (manager *DBManager) CloseConnection() error {
+  return manager.db.Close()
+}

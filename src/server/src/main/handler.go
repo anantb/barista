@@ -70,7 +70,6 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 }
 
 func (handler *Handler) CloseConnection(
-    con *barista.Connection) (bool, error) {
-
-  return true, nil
+    con *barista.Connection) (error) {
+  return handler.manager.CloseConnection()
 }

@@ -75,6 +75,6 @@ service Barista {
   ResultSet execute_sql (1: Connection con, 2: string query,
       3: list <binary> query_params) throws (1: DBException ex)
 
-  bool close_connection (1: Connection con)
+  void close_connection (1: Connection con)
       throws (1: DBException ex)
 }
