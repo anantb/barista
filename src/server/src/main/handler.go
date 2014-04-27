@@ -40,8 +40,8 @@ func (handler *Handler) OpenConnection(
   }
 
   con := new(barista.Connection)
-  con.User = &user
-  con.Database = &database
+  con.User = user
+  con.Database = database
   return con, nil
 }
 
@@ -70,6 +70,6 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 }
 
 func (handler *Handler) CloseConnection(
-    con *barista.Connection) (error) {
+    con *barista.Connection) (*barista.DBException, error) {
   return handler.manager.CloseConnection()
 }
