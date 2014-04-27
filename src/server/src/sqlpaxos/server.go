@@ -95,6 +95,9 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
           reply.Err = ErrNoKey
        }
     } 
+
+    return reply
+
   } else {
     // not testing
 
@@ -381,10 +384,12 @@ func (sp *SQLPaxos) commit(op Op) interface{} {
 func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   // execute this operation and store the response in r
   op := Op{Type:Execute, Args: *args}
-  r := sp.commit(op).(ExecReply)
+  r := sp.commit(op)
 
-  reply.Value = r.Value
-  reply.Err = r.Err
+  if r != nil {
+     reply.Value = r.(ExecReply).Value
+     reply.Err = r.(ExecReply).Err
+  }
 
   return nil
 }
@@ -393,9 +398,12 @@ func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
 func (sp *SQLPaxos) Open(args *OpenArgs, reply *OpenReply) error {
   // execute this operation and store the response in r
   op := Op{Type:Open, Args: *args}
-  r := sp.commit(op).(OpenReply)
+  r := sp.commit(op)
 
-  reply.Err = r.Err
+  if r != nil {
+     reply.Err = r.(OpenReply).Err
+  }
+
   return nil
 }
 
@@ -403,9 +411,12 @@ func (sp *SQLPaxos) Open(args *OpenArgs, reply *OpenReply) error {
 func (sp *SQLPaxos) Close(args *CloseArgs, reply *CloseReply) error {
   // execute this operation and store the response in r
   op := Op{Type:Close, Args: *args}
-  r := sp.commit(op).(CloseReply)
+  r := sp.commit(op)
 
-  reply.Err = r.Err
+  if r != nil {
+     reply.Err = r.(CloseReply).Err
+  }
+
   return nil
 }
 
