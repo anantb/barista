@@ -10,6 +10,22 @@ const (
 )
 type Err string
 
+type OpType int
+
+const (
+  Open = 1
+  Close = 2
+  Execute = 3
+  NoOp = 4
+)
+
+type Op struct {
+  Type OpType // what type of operation is this: see above
+  Args interface{}
+  SeqNum int  
+  NoOp bool
+}
+
 // for testing
 const (
   Put = "Put"
@@ -40,9 +56,10 @@ type ExecReply struct {
 
 type OpenArgs struct {
   ClientId int64
-  Username string
+  User string
   Password string
   Database string
+  RequestId int
 }
 
 type OpenReply struct {
@@ -51,6 +68,7 @@ type OpenReply struct {
 
 type CloseArgs struct {
   ClientId int64
+  RequestId int
 }
 
 type CloseReply struct {

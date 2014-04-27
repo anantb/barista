@@ -7,25 +7,24 @@ package logger
  * @date: 04/25/2014
  */
 
-import "barista"
 import "io/ioutil"
+//import "json"
 
 type Logger struct {
   filename string
 }
 
 func Make(filename string) *Logger {
-  px := &Logger{}
-  px.filename = filename
+  logger := &Logger{}
+  logger.filename = filename
+  return logger
 }
 
-func (lg *Logger) writeToLog(op Op) error {
-  b, err := json.Marshal(op)
-  check(err) 
+func (lg *Logger) WriteToLog(b []byte) error {
   return ioutil.WriteFile(lg.filename, b, 0644)
 }
 
-func (lg *Logger) readFromLog() []byte, error {
-  return ioutil.ReadFile(lg.filename, toWrite, 0644)
+func (lg *Logger) ReadFromLog() ([]byte, error) {
+  return ioutil.ReadFile(lg.filename)
 }
 

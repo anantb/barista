@@ -13,7 +13,7 @@ import "encoding/gob"
 import "math/rand"
 import "strconv"
 import "math"
-import "barista"
+//import "barista"
 import "encoding/json"
 import "logger"
 import "db"
@@ -25,21 +25,6 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
                 log.Printf(format, a...)
         }
         return
-}
-
-type OpType int
-
-const (
-  Open = 1
-  Close = 2
-  Execute = 3
-  NoOp = 4
-)
-
-type Op struct {
-  Type OpType // what type of operation is this: see above
-  Args interface{}
-  SeqNum int  
 }
 
 type LastSeen struct {
@@ -61,7 +46,7 @@ type SQLPaxos struct {
   done map[int]bool // true if we can delete the data for this sequence number
   data map[string]string // the database
   lastSeen map[int64]LastSeen // the last request/reply for this client
-  connections map[int64]db.DBManager // connections per client. Limited to a single connection per client
+  connections map[int64]*db.DBManager // connections per client. Limited to a single connection per client
   next int // the next sequence number to be executed
   logger *logger.Logger // logger to write paxos log to file
 }
@@ -79,8 +64,8 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
     }
 
     // @TODO remove get & put
-    key := args.Key
-    if args.Type == Put {
+    key := args.(ExecArgs).Key
+    if args.(ExecArgs).Type == Put {
        // execute the put
 
        prevValue, ok := sp.data[key]
@@ -90,15 +75,15 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
           reply.Value = ""
        }
 
-       if args.DoHash {
-          sp.data[key] = strconv.Itoa(int(hash(reply.Value + args.Value)))
+       if args.(ExecArgs).DoHash {
+          sp.data[key] = strconv.Itoa(int(hash(reply.Value + args.(ExecArgs).Value)))
        } else {
-          sp.data[key] = args.Value
+          sp.data[key] = args.(ExecArgs).Value
        }
 
        reply.Err = OK
 
-    } else if args.Type == Get {
+    } else if args.(ExecArgs).Type == Get {
        // execute the get
 
        value, ok := sp.data[key]
@@ -114,27 +99,37 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
     // not testing
 
     // write op to file
-    err := logger.writeToLog(op)
+    err := sp.WriteToLog(op)
     if err != nil {
       // log something
     }
 
     switch {
-    case op.OpType == Open:
-      return OpenHelper(op.Args.(OpenArgs))
-    case op.OpType == Close:
-      return CloseHelper(op.Args.(CloseArgs))
-    case op.OpType == Execute:
-      return ExecuteHelper(op.Args.(ExecArgs))
+    case op.Type == Open:
+      return sp.OpenHelper(op.Args.(OpenArgs), op.SeqNum)
+    case op.Type == Close:
+      return sp.CloseHelper(op.Args.(CloseArgs), op.SeqNum)
+    case op.Type == Execute:
+      return sp.ExecuteHelper(op.Args.(ExecArgs), op.SeqNum)
     }
   }
+  return nil
 }
 
-func (sp *SQLPaxos) ExecuteHelper(args ExecArgs) ExecReply {
-  rows, columns, err := sq.UpdateDatabase(args.ClientId, args.Query, args.Query_params)
+func (sp *SQLPaxos) WriteToLog(op Op) error {
+  b, err := json.Marshal(op)
   if err != nil {
+    return err
+  }
+  return sp.logger.WriteToLog(b)
+}
+
+
+func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
+  rows, columns, err := sp.UpdateDatabase(args.ClientId, args.Query, args.QueryParams, seqnum)
+  if err != OK {
     // log something
-    return ExecReply{Result:nil, Err:err}
+    return ExecReply{Value:"", Err:err}
   }
 
   tuples := []*barista.Tuple{}
@@ -144,57 +139,65 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs) ExecReply {
   }
  
   result_set := new(barista.ResultSet)
-  result_set.Con = con
+  //result_set.Con = con. @TODO: this will not be populating this
   result_set.Tuples = &tuples
   result_set.FieldNames = &columns
-  return ExecReply{Result:result_set, Err:nil}
+  return ExecReply{Value:result_set, Err:OK}
 }
 
-func (sp *SQLPaxos) OpenHelper(args OpenArgs) OpenReply {
+func (sp *SQLPaxos) OpenHelper(args OpenArgs, seqnum int) OpenReply {
   reply := OpenReply{}
   _, ok := sp.connections[args.ClientId]
   if ok {
     reply.Err = ConnAlreadyOpen
   } else {
       manager := new(db.DBManager)
-      reply.Err := manager.Connect(args.User, args.Password, args.Database)
+      reply.Err = errorToErr(manager.OpenConnection(args.User, args.Password, args.Database))
       sp.connections[args.ClientId] = manager
   }
-  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil)
-  if err != nil {
+  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  if err != OK {
     // log something
   }
   return reply
 }
 
-func (sp *SQLPaxos) CloseHelper(args OpenArgs) CloseReply {
+func errorToErr(error error) Err {
+  if error != nil {
+    return Err(error.Error())
+  } else {
+    return OK
+  }
+}
+
+func (sp *SQLPaxos) CloseHelper(args CloseArgs, seqnum int) CloseReply {
   reply := CloseReply{}
   _, ok := sp.connections[args.ClientId]
   if !ok {
     reply.Err = ConnAlreadyClosed
   } else {
-    reply.Err = sp.connections[args.ClientId].CloseConnection()
+    reply.Err = errorToErr(sp.connections[args.ClientId].CloseConnection())
     delete(sp.connections, args.ClientId) //only delete on successful close?
   }
-  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil)
-  if err != nil {
+  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  if err != OK {
     // log something
   }
   return reply
 }
 
 // note that NoOps don't update the state table
-func (sp *Paxos) UpdateDatabase(clientId int64, query string, query_params [][]byte) 
-  ([][][]byte, []string, error) {
-  query := "BEGIN TRANSACTION;" + query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + 
-    strconv.Itoa(op.SeqNum) + "; END TRANSACTION;"
-  rows, columns, err := sp.connections[clientId].ExecuteSql(query, query_params)
+func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params [][]byte, seqnum int) ([][][]byte, []string, Err) {
+  query = "BEGIN TRANSACTION;" + query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + 
+    strconv.Itoa(seqnum) + "; END TRANSACTION;"
+  rows, columns, error := sp.connections[clientId].ExecuteSql(query, query_params)
+  err := errorToErr(error)
   return rows, columns, err
 }
 
-func (sp *SQLPaxos) fillHoles(next int, seq int) ExecReply {
+func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
  
-  var reply ExecReply
+  var reply interface{}
 
   // make sure there are no holes in the log before our operation
   for i := next; i <= seq; i++ {
@@ -226,13 +229,13 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) ExecReply {
 
      if i == sp.next {
         // the operation at slot i is next to be executed
-	r, executed := sp.checkIfExecuted(sp.ops[i].Args)
+	r, executed := sp.checkIfExecuted(sp.ops[i])
         if executed {
     	   sp.replies[i] = r
 	} else {
 	   r := sp.execute(sp.ops[i])
 	   sp.replies[i] = r
-	   sp.lastSeen[sp.ops[i].Args.ClientId] = LastSeen{ RequestId: sp.ops[i].Args.RequestId, Reply: r }
+	   sp.lastSeen[getOpClientId(sp.ops[i])] = LastSeen{ RequestId: getOpRequestId(sp.ops[i]), Reply: r }
 	}
         sp.next++
      }
@@ -245,14 +248,38 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) ExecReply {
   return reply
 } 
 
+func getOpClientId(op Op) int64 {
+  switch {
+  case op.Type == Open:
+    return op.Args.(OpenArgs).ClientId;
+  case op.Type == Close:
+    return op.Args.(CloseArgs).ClientId;
+  case op.Type == Execute:
+    return op.Args.(ExecArgs).ClientId;
+  }
+  return -1;
+}
+
+func getOpRequestId(op Op) int {
+  switch {
+  case op.Type == Open:
+    return op.Args.(OpenArgs).RequestId;
+  case op.Type == Close:
+    return op.Args.(CloseArgs).RequestId;
+  case op.Type == Execute:
+    return op.Args.(ExecArgs).RequestId;
+  }
+  return -1;
+}
+
 // @TODO: update to support multiple types of operations
-func (sp *SQLPaxos) checkIfExecuted(args interface{}) (interface{}, bool) {
+func (sp *SQLPaxos) checkIfExecuted(op Op) (interface{}, bool) {
   // need some casting here
-  lastSeen, ok := sp.lastSeen[args.ClientId]
+  lastSeen, ok := sp.lastSeen[getOpClientId(op)]
   if ok {
-     if lastSeen.RequestId == args.RequestId {
+     if lastSeen.RequestId == getOpRequestId(op) {
         return lastSeen.Reply, true
-     } else if lastSeen.RequestId > args.RequestId {
+     } else if lastSeen.RequestId > getOpRequestId(op) {
         return nil, true // empty reply since this is an old request
      }
   }
@@ -260,17 +287,18 @@ func (sp *SQLPaxos) checkIfExecuted(args interface{}) (interface{}, bool) {
   return nil, false
 }
 
-func (sp *SQLPaxos) reserveSlot(args ExecArgs) int {
+func (sp *SQLPaxos) reserveSlot(op Op) int {
 
   // propose this operation for slot seq
   seq := sp.px.Max() + 1
-  v := Op{Args: args}
+  v := op
   sp.px.Start(seq, v)
 
   nwaits := 0
   for !sp.dead {
      decided, v_a := sp.px.Status(seq)
-     if decided && v_a != nil && v_a.(Op).Args.ClientId == v.Args.ClientId && v_a.(Op).Args.RequestId == v.Args.RequestId {
+     if decided && v_a != nil && getOpClientId(v_a.(Op)) == getOpClientId(v) && 
+       getOpRequestId(v_a.(Op)) == getOpRequestId(v) {
         // we successfully claimed this slot for our operation
         if _, ok := sp.ops[seq]; !ok {
 	   v.SeqNum = seq
@@ -296,7 +324,7 @@ func (sp *SQLPaxos) reserveSlot(args ExecArgs) int {
   	sp.mu.Lock()
      }
   }
-  op.SeqNum = seq // update sequence number
+  v.SeqNum = seq // update sequence number
   return seq
 }
 
@@ -321,19 +349,19 @@ func (sp *SQLPaxos) freeMemory(seq int) {
 }
 
 //@Make it work for multiple types of arguments
-func (sp *SQLPaxos) commit(args interface{}) interface{} {
+func (sp *SQLPaxos) commit(op Op) interface{} {
 
   sp.mu.Lock()
   defer sp.mu.Unlock()
 
   // first check if this request has already been executed
-  reply, ok := sp.checkIfExecuted(args)
+  reply, ok := sp.checkIfExecuted(op)
   if ok {
      return reply
   }
 
   // reserve a slot in the paxos log for this operation
-  seq := sp.reserveSlot(args)
+  seq := sp.reserveSlot(op)
 
   next := sp.next
   if next > seq {
@@ -352,7 +380,8 @@ func (sp *SQLPaxos) commit(args interface{}) interface{} {
 
 func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   // execute this operation and store the response in r
-  r := sp.commit(*args).(ExecReply)
+  op := Op{Type:Execute, Args: *args}
+  r := sp.commit(op).(ExecReply)
 
   reply.Value = r.Value
   reply.Err = r.Err
@@ -363,17 +392,18 @@ func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
 // open the connection to the database
 func (sp *SQLPaxos) Open(args *OpenArgs, reply *OpenReply) error {
   // execute this operation and store the response in r
-  r := sp.commit(*args).(OpenReply)
+  op := Op{Type:Open, Args: *args}
+  r := sp.commit(op).(OpenReply)
 
   reply.Err = r.Err
-  reply.Con = r.Con
   return nil
 }
 
 // close the connection to the database
 func (sp *SQLPaxos) Close(args *CloseArgs, reply *CloseReply) error {
   // execute this operation and store the response in r
-  r := sp.commit(*args).(CloseReply)
+  op := Op{Type:Close, Args: *args}
+  r := sp.commit(op).(CloseReply)
 
   reply.Err = r.Err
   return nil
@@ -404,12 +434,12 @@ func StartServer(servers []string, me int) *SQLPaxos {
   // Your initialization code here.
   sp.ops = make(map[int]Op)
   sp.data = make(map[string]string)
-  sp.replies = make(map[int]ExecReply)
+  sp.replies = make(map[int]interface{})
   sp.done = make(map[int]bool)
   sp.lastSeen = make(map[int64]LastSeen)
   sp.next = 0
-  sp.connections = make(map[int64]db.DBManager)
-  sp.logger = new(logger.Logger{filename:"sqlpaxos_log.txt"})
+  sp.connections = make(map[int64]*db.DBManager)
+  sp.logger = logger.Make("sqlpaxos_log.txt")
   
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
