@@ -12,12 +12,12 @@ import "db"
 import "fmt"
 
 type Handler struct {
-  manager *db.DBManager 
+  sqlpaxos *sqlpaxos.SQLPaxos
 }
 
 func NewBaristaHandler() *Handler {
   handler := new(Handler)
-  handler.manager = new(db.DBManager)
+  handler.sqlpaxos = new(sqlpaxos.SQLPaxos)
   return handler
 }
 
@@ -27,12 +27,16 @@ func (handler *Handler) GetVersion() (float64, error) {
 
 func (handler *Handler) OpenConnection(
     con_params *barista.ConnectionParams) (*barista.Connection, error) {
-  
+  clientid := *(con_params.ClientId)
   user := *(con_params.User)
   password := *(con_params.Password)
   database := *(con_params.Database)
 
-  err := handler.manager.OpenConnection(user, password, database)
+  args := OpenArgs{ClientId: clientid, Username: user, Password: password, 
+    Database: database}
+  var reply OpenReply
+
+  err := handler.sqlpaxos.Open(&args, &reply)
 
   if err != nil {
     fmt.Println("Error :", err)
@@ -47,29 +51,23 @@ func (handler *Handler) OpenConnection(
 
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
-  
-  rows, columns, err := handler.manager.ExecuteSql(query, query_params)
+  client_id := *(con.ClientId)
+  request_id := *(con.RequestId)
+  args := ExecArgs{ClientId: client_id, RequestId: request_id, Query: query, 
+    Query_params: query_params}
+  var reply ExecReply
+  err := handler.sqlpaxos.ExecuteSql(&args, &reply)
 
   if err != nil {
     fmt.Println("Error :", err)
     return nil, err
   }
-
-  tuples := []*barista.Tuple{}
-  for _, row := range rows {
-    tuple := barista.Tuple{Cells: &row}
-    tuples = append(tuples, &tuple)
-  }
- 
-  result_set := new(barista.ResultSet)
-  result_set.Con = con
-  result_set.Tuples = &tuples
-  result_set.FieldNames = &columns
-
-  return result_set, nil
+  return reply.Result, nil
 }
 
 func (handler *Handler) CloseConnection(
     con *barista.Connection) (error) {
-  return handler.manager.CloseConnection()
+  args := CloseArgs{ClientId: *(con_params.ClientId)}
+  var reply CloseReply
+  return handler.sqlpaxos.Close(&args, &reply)
 }
