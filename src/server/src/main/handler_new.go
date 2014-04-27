@@ -17,7 +17,7 @@ type Handler struct {
 
 func NewBaristaHandler() *Handler {
   handler := new(Handler)
-  handler.sqlpaxos = new(sqlpaxos.SQLPaxos)
+  handler.sqlpaxos = new(sqlpaxos.SQLPaxos) // need to update to create sql paxos using start server
   return handler
 }
 
@@ -31,9 +31,10 @@ func (handler *Handler) OpenConnection(
   user := *(con_params.User)
   password := *(con_params.Password)
   database := *(con_params.Database)
+  requestid := *(con_params.SeqId)
 
   args := OpenArgs{ClientId: clientid, Username: user, Password: password, 
-    Database: database}
+    Database: database, RequestId: requestid}
   var reply OpenReply
 
   err := handler.sqlpaxos.Open(&args, &reply)
@@ -52,7 +53,7 @@ func (handler *Handler) OpenConnection(
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
   client_id := *(con.ClientId)
-  request_id := *(con.RequestId)
+  request_id := *(con.SeqId)
   args := ExecArgs{ClientId: client_id, RequestId: request_id, Query: query, 
     Query_params: query_params}
   var reply ExecReply
@@ -67,7 +68,7 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 
 func (handler *Handler) CloseConnection(
     con *barista.Connection) (error) {
-  args := CloseArgs{ClientId: *(con_params.ClientId)}
+  args := CloseArgs{ClientId: *(con_params.ClientId), RequestId: *(con_params.SeqId)}
   var reply CloseReply
   return handler.sqlpaxos.Close(&args, &reply)
 }
