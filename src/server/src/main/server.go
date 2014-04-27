@@ -9,7 +9,7 @@ package main
 
 import "fmt"
 import "barista"
-import "thrift"
+import "git.apache.org/thrift.git/lib/go/thrift"
 
 const ADDR = "localhost:9000"
 
