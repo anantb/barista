@@ -28,9 +28,9 @@ func (handler *Handler) GetVersion() (float64, error) {
 func (handler *Handler) OpenConnection(
     con_params *barista.ConnectionParams) (*barista.Connection, error) {
   
-  user := con_params.User
-  password := con_params.Password
-  database := con_params.Database
+  user := *(con_params.User)
+  password := *(con_params.Password)
+  database := *(con_params.Database)
 
   err := handler.manager.OpenConnection(user, password, database)
 
@@ -40,8 +40,8 @@ func (handler *Handler) OpenConnection(
   }
 
   con := new(barista.Connection)
-  con.User = user
-  con.Database = database
+  con.User = &user
+  con.Database = &database
   return con, nil
 }
 
@@ -57,19 +57,19 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    tuple := barista.Tuple{Cells: row}
+    tuple := barista.Tuple{Cells: &row}
     tuples = append(tuples, &tuple)
   }
  
   result_set := new(barista.ResultSet)
   result_set.Con = con
-  result_set.Tuples = tuples
-  result_set.FieldNames = columns
+  result_set.Tuples = &tuples
+  result_set.FieldNames = &columns
 
   return result_set, nil
 }
 
 func (handler *Handler) CloseConnection(
-    con *barista.Connection) (*barista.DBException, error) {
+    con *barista.Connection) (error) {
   return handler.manager.CloseConnection()
 }
