@@ -12,12 +12,12 @@ import "db"
 import "fmt"
 
 type Handler struct {
-  sqlpaxos *sqlpaxos.SQLPaxos
+  manager *db.DBManager 
 }
 
 func NewBaristaHandler() *Handler {
   handler := new(Handler)
-  handler.sqlpaxos = new(sqlpaxos.SQLPaxos) // need to update to create sql paxos using start server
+  handler.manager = new(db.DBManager)
   return handler
 }
 
@@ -27,17 +27,12 @@ func (handler *Handler) GetVersion() (float64, error) {
 
 func (handler *Handler) OpenConnection(
     con_params *barista.ConnectionParams) (*barista.Connection, error) {
-  clientid := *(con_params.ClientId)
+  
   user := *(con_params.User)
   password := *(con_params.Password)
   database := *(con_params.Database)
-  requestid := *(con_params.SeqId)
 
-  args := OpenArgs{ClientId: clientid, Username: user, Password: password, 
-    Database: database, RequestId: requestid}
-  var reply OpenReply
-
-  err := handler.sqlpaxos.Open(&args, &reply)
+  err := handler.manager.OpenConnection(user, password, database)
 
   if err != nil {
     fmt.Println("Error :", err)
@@ -52,23 +47,29 @@ func (handler *Handler) OpenConnection(
 
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
-  client_id := *(con.ClientId)
-  request_id := *(con.SeqId)
-  args := ExecArgs{ClientId: client_id, RequestId: request_id, Query: query, 
-    Query_params: query_params}
-  var reply ExecReply
-  err := handler.sqlpaxos.ExecuteSql(&args, &reply)
+  
+  rows, columns, err := handler.manager.ExecuteSql(query, query_params)
 
   if err != nil {
     fmt.Println("Error :", err)
     return nil, err
   }
-  return reply.Result, nil
+
+  tuples := []*barista.Tuple{}
+  for _, row := range rows {
+    tuple := barista.Tuple{Cells: &row}
+    tuples = append(tuples, &tuple)
+  }
+ 
+  result_set := new(barista.ResultSet)
+  result_set.Con = con
+  result_set.Tuples = &tuples
+  result_set.FieldNames = &columns
+
+  return result_set, nil
 }
 
 func (handler *Handler) CloseConnection(
     con *barista.Connection) (error) {
-  args := CloseArgs{ClientId: *(con_params.ClientId), RequestId: *(con_params.SeqId)}
-  var reply CloseReply
-  return handler.sqlpaxos.Close(&args, &reply)
+  return handler.manager.CloseConnection()
 }
