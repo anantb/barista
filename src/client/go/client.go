@@ -96,8 +96,7 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
      SeqId: ck.curRequest,
      User: &user,
      Password: &password,
-     Database: &database
-  }
+     Database: &database }
 
   // try each server 
   for !done {
@@ -212,7 +211,7 @@ func (ck *Clerk) closeConnection(addr string, con *barista.Connection) error {
 
   client := barista.NewBaristaClientFactory(transport, protocolFactory)
 
-  err := client.CloseConnection(con)
+  err = client.CloseConnection(con)
 
   if err != nil {
      return err
