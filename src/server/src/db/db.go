@@ -45,20 +45,24 @@ func (manager *DBManager) ExecuteSql(
     return nil, nil, err
   }
 
-  columns, err := rows.Columns()
-  n_columns := len(columns)
   tuples := make([][][]byte, 0)
+  columns := make([]string)
 
-  for rows.Next() {
-    cells := make([][]byte, n_columns)
+  if rows != nil {
+     columns, err = rows.Columns()
+     n_columns := len(columns)
 
-    dest := make([]interface{}, n_columns)
-    for i, _ := range cells {
-      dest[i] = &cells[i]
-    }
+     for rows.Next() {
+        cells := make([][]byte, n_columns)
 
-    rows.Scan(dest...)
-    tuples = append(tuples, cells)
+    	dest := make([]interface{}, n_columns)
+    	for i, _ := range cells {
+      	   dest[i] = &cells[i]
+        }
+
+    	rows.Scan(dest...)
+    	tuples = append(tuples, cells)
+     }
   }
 
   return tuples, columns, err
