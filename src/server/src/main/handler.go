@@ -55,7 +55,7 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
   client_id := *(con.ClientId)
   request_id := *(con.SeqId)
-  args := sqlpaxos.ExecArgs{ClientId: strconv.ParseInt(clientid, 10, 64), RequestId: strconv.Atoi(request_id), Query: query, 
+  args := sqlpaxos.ExecArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: strconv.Atoi(request_id), Query: query, 
     QueryParams: query_params}
   var reply sqlpaxos.ExecReply
   err := handler.sqlpaxos.ExecuteSQL(&args, &reply)
@@ -71,7 +71,7 @@ func (handler *Handler) CloseConnection(
     con *barista.Connection) (error) {
   client_id := *(con.ClientId)
   request_id := *(con.SeqId)
-  args := sqlpaxos.CloseArgs{ClientId: strconv.ParseInt(clientid, 10, 64), RequestId: strconv.Atoi(request_id)}
+  args := sqlpaxos.CloseArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: strconv.Atoi(request_id)}
   var reply sqlpaxos.CloseReply
   return handler.sqlpaxos.Close(&args, &reply)
 }
