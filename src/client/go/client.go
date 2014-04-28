@@ -41,7 +41,7 @@ func MakeClerk(servers []string) *Clerk {
 }
 
 //const ADDR = "localhost:9000"
-var addrs = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
+var addrs = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
 
 func main() {  
   clerk := MakeClerk(addrs)
