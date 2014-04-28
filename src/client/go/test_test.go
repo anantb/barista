@@ -1,4 +1,4 @@
-package sqlpaxos
+package main
 
 import "testing"
 import "runtime"
