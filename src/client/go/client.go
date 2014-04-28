@@ -41,7 +41,7 @@ func MakeClerk(servers []string) *Clerk {
 }
 
 //const ADDR = "localhost:9000"
-const addrs []string = {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
+var addrs = [...]string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
 
 func main() {  
   clerk := MakeClerk(addrs)
@@ -92,8 +92,8 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
 
   user, password, database := "postgres", "postgres", "postgres"
   con_params := barista.ConnectionParams {
-     ClientId: ck.me
-     SeqId: ck.curRequest
+     ClientId: ck.me,
+     SeqId: ck.curRequest,
      User: &user,
      Password: &password,
      Database: &database

@@ -23,7 +23,7 @@ func main() {
     return
   }
 
-  handler := NewBaristaHandler()
+  handler := NewBaristaHandler([]string {ADDR}, 0)
   processor := barista.NewBaristaProcessor(handler)
   server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
 
