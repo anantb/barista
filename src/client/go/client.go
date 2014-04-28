@@ -61,13 +61,13 @@ func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params 
   ck.curRequest++
   done := false
 
-  con.ClientId = strconv.Itoa(ck.me)
-  con.SeqId = strconv.Itoa(ck.curRequest)
+  con.ClientId = &strconv.FormatInt(ck.me, 10)
+  con.SeqId = &strconv.Itoa(ck.curRequest)
 
   // try each server 
   for !done {
      for _, addr := range ck.servers {
-        err := ck.executeSQL(addr, query, con)
+        err := ck.executeSQL(addr, query, query_params, con)
 	if err != nil {
 	   fmt.Println("Error: ", err)
 	} else {
@@ -92,8 +92,8 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
 
   user, password, database := "postgres", "postgres", "postgres"
   con_params := barista.ConnectionParams {
-     ClientId: strconv.Itoa(ck.me),
-     SeqId: strconv.Itoa(ck.curRequest),
+     ClientId: &strconv.FormatInt(ck.me, 10),
+     SeqId: &strconv.Itoa(ck.curRequest),
      User: &user,
      Password: &password,
      Database: &database }
@@ -124,8 +124,8 @@ func (ck *Clerk) CloseConnection(con *barista.Connection) {
   ck.curRequest++
   done := false
 
-  con.ClientId = strconv.Itoa(ck.me)
-  con.SeqId = strconv.Itoa(ck.curRequest)
+  con.ClientId = &strconv.FormatInt(ck.me, 10)
+  con.SeqId = &strconv.Itoa(ck.curRequest)
 
   // try each server 
   for !done {
