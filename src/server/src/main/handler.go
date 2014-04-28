@@ -34,8 +34,18 @@ func (handler *Handler) OpenConnection(
   database := *(con_params.Database)
   requestid := *(con_params.SeqId)
 
-  args := sqlpaxos.OpenArgs{ClientId: strconv.ParseInt(clientid, 10, 64), User: user, Password: password, 
-    Database: database, RequestId: strconv.Atoi(requestid)}
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  args := sqlpaxos.OpenArgs{ClientId: client_id, User: user, Password: password, 
+    Database: database, RequestId: request_id}
   var reply sqlpaxos.OpenReply
 
   err := handler.sqlpaxos.Open(&args, &reply)
@@ -53,9 +63,19 @@ func (handler *Handler) OpenConnection(
 
 func (handler *Handler) ExecuteSql(con *barista.Connection,
     query string, query_params [][]byte) (*barista.ResultSet, error) {
-  client_id := *(con.ClientId)
-  request_id := *(con.SeqId)
-  args := sqlpaxos.ExecArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: strconv.Atoi(request_id), Query: query, 
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.ExecArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: request_id, Query: query, 
     QueryParams: query_params}
   var reply sqlpaxos.ExecReply
   err := handler.sqlpaxos.ExecuteSQL(&args, &reply)
@@ -69,9 +89,19 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 
 func (handler *Handler) CloseConnection(
     con *barista.Connection) (error) {
-  client_id := *(con.ClientId)
-  request_id := *(con.SeqId)
-  args := sqlpaxos.CloseArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: strconv.Atoi(request_id)}
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.CloseArgs{ClientId: client_id, RequestId: request_id}
   var reply sqlpaxos.CloseReply
   return handler.sqlpaxos.Close(&args, &reply)
 }
