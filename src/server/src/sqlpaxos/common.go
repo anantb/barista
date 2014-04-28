@@ -1,6 +1,6 @@
 package sqlpaxos
 import "hash/fnv"
-//import "barista"
+import "barista"
 
 const (
   OK = "OK"
@@ -48,7 +48,7 @@ type ExecArgs struct {
 
 type ExecReply struct {
   Err Err
-  //Result barista.ResultSet
+  Result *barista.ResultSet
 
   // some stuff for testing
   Value string
