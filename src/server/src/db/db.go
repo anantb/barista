@@ -46,7 +46,7 @@ func (manager *DBManager) ExecuteSql(
   }
 
   tuples := make([][][]byte, 0)
-  columns := make([]string)
+  columns := make([]string, 0)
 
   if rows != nil {
      columns, err = rows.Columns()
