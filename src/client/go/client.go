@@ -10,7 +10,6 @@ package main
 import "fmt"
 import "barista"
 import "git.apache.org/thrift.git/lib/go/thrift"
-import "net/rpc"
 import "sync"
 import crand "crypto/rand"
 import "math/big"
@@ -41,7 +40,7 @@ func MakeClerk(servers []string) *Clerk {
 }
 
 //const ADDR = "localhost:9000"
-var addrs = [...]string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
+var addrs = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
 
 func main() {  
   clerk := MakeClerk(addrs)
@@ -61,8 +60,8 @@ func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params 
   ck.curRequest++
   done := false
 
-  con.ClientId = ck.me
-  con.SeqId = ck.curRequest
+  con.ClientId = strconv.Itoa(ck.me)
+  con.SeqId = strconv.Itoa(ck.curRequest)
 
   // try each server 
   for !done {
@@ -92,8 +91,8 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
 
   user, password, database := "postgres", "postgres", "postgres"
   con_params := barista.ConnectionParams {
-     ClientId: ck.me,
-     SeqId: ck.curRequest,
+     ClientId: strconv.Itoa(ck.me),
+     SeqId: strconv.Itoa(ck.curRequest),
      User: &user,
      Password: &password,
      Database: &database }
@@ -109,6 +108,8 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
 	}
      }
   }
+
+  return nil
 }
 
 //
@@ -122,8 +123,8 @@ func (ck *Clerk) CloseConnection(con *barista.Connection) {
   ck.curRequest++
   done := false
 
-  con.ClientId = ck.me
-  con.SeqId = ck.curRequest
+  con.ClientId = strconv.Itoa(ck.me)
+  con.SeqId = strconv.Itoa(ck.curRequest)
 
   // try each server 
   for !done {
