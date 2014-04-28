@@ -10,6 +10,7 @@ package main
 import "barista"
 import "fmt"
 import "sqlpaxos"
+import "strconv"
 
 type Handler struct {
   sqlpaxos *sqlpaxos.SQLPaxos
