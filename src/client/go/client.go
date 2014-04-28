@@ -13,6 +13,7 @@ import "git.apache.org/thrift.git/lib/go/thrift"
 import "sync"
 import crand "crypto/rand"
 import "math/big"
+import "strconv"
 
 func nrand() int64 {
   max := big.NewInt(int64(1) << 62)
@@ -66,7 +67,7 @@ func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params 
   // try each server 
   for !done {
      for _, addr := range ck.servers {
-        err := ck.executeSQL(addr, query)
+        err := ck.executeSQL(addr, query, con)
 	if err != nil {
 	   fmt.Println("Error: ", err)
 	} else {
@@ -182,7 +183,7 @@ func (ck *Clerk) openConnection(addr string, con_params *barista.ConnectionParam
   transport, err := thrift.NewTSocket(addr)
 
   if err != nil {
-     return err
+     return nil, err
   }
 
   transport.Open()
