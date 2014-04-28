@@ -48,7 +48,7 @@ func (handler *Handler) OpenConnection(
     Database: database, RequestId: request_id}
   var reply sqlpaxos.OpenReply
 
-  err := handler.sqlpaxos.Open(&args, &reply)
+  err = handler.sqlpaxos.Open(&args, &reply)
 
   if err != nil {
     fmt.Println("Error :", err)
@@ -75,10 +75,10 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
   if err != nil {
     fmt.Println("Error: ", err)
   }
-  args := sqlpaxos.ExecArgs{ClientId: strconv.ParseInt(client_id, 10, 64), RequestId: request_id, Query: query, 
+  args := sqlpaxos.ExecArgs{ClientId: client_id, RequestId: request_id, Query: query, 
     QueryParams: query_params}
   var reply sqlpaxos.ExecReply
-  err := handler.sqlpaxos.ExecuteSQL(&args, &reply)
+  err = handler.sqlpaxos.ExecuteSQL(&args, &reply)
 
   if err != nil {
     fmt.Println("Error :", err)
