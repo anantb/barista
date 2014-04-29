@@ -45,9 +45,9 @@ func (manager *DBManager) EndTxn(tx *sql.Tx) error {
 }
 
 func (manager *DBManager) QueryTxn(
-    query string, args interface{}, tx *sql.Tx) ([][][]byte, []string, error) {
+    tx *sql.Tx, query string, args ...interface{}) ([][][]byte, []string, error) {
 
-  rows, err := tx.Query(query, args)
+  rows, err := tx.Query(query, args...)
 
   if err != nil {
     return nil, nil, err
@@ -56,14 +56,14 @@ func (manager *DBManager) QueryTxn(
   return manager.formatRows(rows)
 }
 
-func (manager *DBManager) ExecTxn(query string, args interface{}, tx *sql.Tx) (sql.Result, error) {
-  return tx.Exec(query, args)
+func (manager *DBManager) ExecTxn(tx *sql.Tx, query string, args ...interface{}) (sql.Result, error) {
+  return tx.Exec(query, args...)
 }
 
 func (manager *DBManager) ExecuteSql(
-    query string, args interface{}) ([][][]byte, []string, error) { 
+    query string, args ...interface{}) ([][][]byte, []string, error) { 
 
-  rows, err := manager.db.Query(query, args)
+  rows, err := manager.db.Query(query, args...)
   
   if err != nil {
     return nil, nil, err

@@ -132,7 +132,7 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
   rows, columns, err := sp.UpdateDatabase(args.ClientId, args.Query, args.QueryParams, seqnum)
   if err != OK {
     // log something
-    return ExecReply{Value:"", Err:err}
+    return ExecReply{Err:err}
   }
 
   tuples := []*barista.Tuple{}
@@ -189,22 +189,37 @@ func (sp *SQLPaxos) CloseHelper(args CloseArgs, seqnum int) CloseReply {
   return reply
 }
 
+func (sp *SQLPaxos) convertQueryParams(query_params [][]byte) []interface{} {
+  params := make([]interface{}, len(query_params))
+  for i, param := range query_params {
+     params[i] = param
+  }
+  return params
+}
+
+
 // note that NoOps don't update the state table
 func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params [][]byte, seqnum int) ([][][]byte, []string, Err) {
   tx, err := sp.connections[clientId].BeginTxn()
   
+  rows := make([][][]byte, 0)
+  columns := make([]string, 0)
+
   if err != nil || tx == nil {
-     return make([][][]byte, 0), make([]string, 0), errorToErr(err)
+     return rows, columns, errorToErr(err)
   }
 
-  rows, columns, error := sp.connections[clientId].QueryTxn(query, query_params, tx)
+  if query != "" {
+     params := sp.convertQueryParams(query_params)
+     rows, columns, err = sp.connections[clientId].QueryTxn(tx, query, params...)
+  }
 
   update := "UPDATE SQLPaxosLog SET lastSeqNum=" + strconv.Itoa(seqnum) + ";"
-  sp.connections[clientId].ExecTxn(update, query_params, tx)
+  sp.connections[clientId].ExecTxn(tx, update, nil)
 
   sp.connections[clientId].EndTxn(tx)
 
-  return rows, columns, errorToErr(error)
+  return rows, columns, errorToErr(err)
 }
 
 func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
@@ -396,6 +411,7 @@ func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   r := sp.commit(op)
 
   if r != nil {
+     reply.Result = r.(ExecReply).Result
      reply.Value = r.(ExecReply).Value
      reply.Err = r.(ExecReply).Err
   }
