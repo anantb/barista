@@ -215,7 +215,7 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
   }
 
   update := "UPDATE SQLPaxosLog SET lastSeqNum=" + strconv.Itoa(seqnum) + ";"
-  result, errUpdate := sp.connections[clientId].ExecTxn(tx, update, nil)
+  _, errUpdate := sp.connections[clientId].ExecTxn(tx, update, nil)
   if errUpdate != nil {
      fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
   }
