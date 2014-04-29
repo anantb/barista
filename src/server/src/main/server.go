@@ -45,8 +45,8 @@ func main() {
   }
 
   if me == -1 {
-     fmt.Println("I am not listed in the servers")
-     exit(1)
+     fmt.Println("Error: I am not listed in the servers")
+     return
   }
 
   handler := NewBaristaHandler(ADDRS, me)
