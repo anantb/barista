@@ -191,9 +191,18 @@ func (sp *SQLPaxos) CloseHelper(args CloseArgs, seqnum int) CloseReply {
 
 // note that NoOps don't update the state table
 func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params [][]byte, seqnum int) ([][][]byte, []string, Err) {
-  query = "BEGIN TRANSACTION;" + query + "; UPDATE SQLPaxosLog SET lastSeqNum=" + 
-    strconv.Itoa(seqnum) + "; END TRANSACTION;"
-  rows, columns, error := sp.connections[clientId].ExecuteSql(query, query_params)
+  query1 := "BEGIN TRANSACTION;" 
+  sp.connections[clientId].ExecuteSql(query1, query_params)
+  
+  query2 := query
+  rows, columns, error := sp.connections[clientId].ExecuteSql(query2, query_params)
+
+  query3 := "UPDATE SQLPaxosLog SET lastSeqNum=" + strconv.Itoa(seqnum) + ";"
+  sp.connections[clientId].ExecuteSql(query3, query_params)
+
+  query4 := "END TRANSACTION;"
+  sp.connections[clientId].ExecuteSql(query4, query_params)
+
   err := errorToErr(error)
   return rows, columns, err
 }
