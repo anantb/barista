@@ -41,7 +41,8 @@ func MakeClerk(servers []string) *Clerk {
 }
 
 //const ADDR = "localhost:9000"
-var addrs = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
+//var addrs = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
+var addrs = []string{"localhost:9000"}
 
 func main() {  
   clerk := MakeClerk(addrs)
@@ -72,7 +73,7 @@ func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params 
      for _, addr := range ck.servers {
         err := ck.executeSQL(addr, query, query_params, con)
 	if err != nil {
-	   fmt.Println("Error: ", err)
+	   fmt.Println("ExecuteSQL Error: ", err)
 	} else {
 	   done = true
 	   break
@@ -109,7 +110,7 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
      for _, addr := range ck.servers {
         con, err := ck.openConnection(addr, &con_params)
 	if err != nil {
-	   fmt.Println("Error: ", err)
+	   fmt.Println("OpenConnection Error: ", err)
 	} else {
 	   return con
 	}
@@ -141,7 +142,7 @@ func (ck *Clerk) CloseConnection(con *barista.Connection) {
      for _, addr := range ck.servers {
         err := ck.closeConnection(addr, con)
 	if err != nil {
-	   fmt.Println("Error: ", err)
+	   fmt.Println("CloseConnection Error: ", err)
 	} else {
 	   done = true
 	   break
@@ -170,15 +171,19 @@ func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, co
      return err
   }
 
-  for _, field_name := range *(res.FieldNames) {
-     fmt.Printf("%s\t", field_name)
+  if res != nil && res.FieldNames != nil {
+     for _, field_name := range *(res.FieldNames) {
+        fmt.Printf("%s\t", field_name)
+     }
   }
 
   fmt.Println()
 
-  for _, tuple := range *(res.Tuples) {
-     for _, cell := range *(tuple.Cells) {
-  	fmt.Printf("%s\t", cell)
+  if res != nil && res.Tuples != nil {
+     for _, tuple := range *(res.Tuples) {
+        for _, cell := range *(tuple.Cells) {
+  	   fmt.Printf("%s\t", cell)
+        }
      }
   }
 
