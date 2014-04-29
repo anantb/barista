@@ -1,4 +1,4 @@
-package paxos
+package dpaxos
 
 //import "time"
 import "sync"

@@ -1,4 +1,4 @@
-package paxos
+package dpaxos
 
 //
 // Paxos library, to be included in an application.

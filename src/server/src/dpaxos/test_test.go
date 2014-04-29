@@ -1,4 +1,4 @@
-package paxos
+package dpaxos
 
 import "testing"
 import "runtime"
