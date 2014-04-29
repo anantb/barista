@@ -10,23 +10,27 @@ package main
 import "fmt"
 import "barista"
 import "git.apache.org/thrift.git/lib/go/thrift"
+import "os"
 
-const ADDR = "localhost:9000"
+const PORT = ":9000"
 
 func main() {  
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transportFactory := thrift.NewTTransportFactory()
-  transport, err := thrift.NewTServerSocket(ADDR)
+
+  addr := os.Hostname() + PORT
+  fmt.Println("addr: ", addr)
+  transport, err := thrift.NewTServerSocket(addr)
  
   if err != nil {
     fmt.Println("Error: ", err)
     return
   }
 
-  handler := NewBaristaHandler([]string {ADDR}, 0)
+  handler := NewBaristaHandler([]string {addr}, 0)
   processor := barista.NewBaristaProcessor(handler)
   server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
 
-  fmt.Println("Starting the Barista server on ", ADDR)
+  fmt.Println("Starting the Barista server on ", addr)
   server.Serve() 
 }
