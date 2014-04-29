@@ -53,7 +53,7 @@ func (manager *DBManager) QueryTxn(
     return nil, nil, err
   }
 
-  return formatRows(rows)
+  return manager.formatRows(rows)
 }
 
 func (manager *DBManager) ExecTxn(query string, args interface{}, tx *sql.Tx) (sql.Result, error) {
@@ -69,7 +69,7 @@ func (manager *DBManager) ExecuteSql(
     return nil, nil, err
   }
 
-  return formatRows(rows)
+  return manager.formatRows(rows)
 }
 
 func (manager *DBManager) formatRows(rows *sql.Rows) ([][][]byte, []string, error) {
