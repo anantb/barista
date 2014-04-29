@@ -12,6 +12,7 @@ type Status string
 
 //represents a Proposal number
 type PaxosProposalNum struct{
+	Epoch int
 	ServerName string
 	ProposalNum int64
 }
@@ -66,18 +67,22 @@ type TeachReply struct{
 }
 
 func compareProposalNums(proposal1 *PaxosProposalNum,proposal2 *PaxosProposalNum) int{
-	if proposal1.ProposalNum > proposal2.ProposalNum {
+	if(proposal1.Epoch > proposal2.Epoch){
 		return 1
-	}else if proposal1.ProposalNum == proposal2.ProposalNum{
-		if proposal1.ServerName > proposal2.ServerName{
+	}else{
+		if proposal1.ProposalNum > proposal2.ProposalNum {
 			return 1
-		}else if proposal1.ServerName == proposal2.ServerName{
-			return 0
+		}else if proposal1.ProposalNum == proposal2.ProposalNum{
+			if proposal1.ServerName > proposal2.ServerName{
+				return 1
+			}else if proposal1.ServerName == proposal2.ServerName{
+				return 0
+			}else{
+				return -1
+			}
 		}else{
 			return -1
 		}
-	}else{
-		return -1
 	}
 }
 func copyMap(data map[string]int) map[string]int{

@@ -11,7 +11,7 @@ import "fmt"
 import "math/rand"
 //import "math"
 //import "strconv"
-//import "time"
+import "time"
 //import "runtime"
 
 type MultiPaxos struct{
@@ -23,6 +23,8 @@ type MultiPaxos struct{
   px *dpaxos.Paxos
   me int
   peers []string
+  leader MultiPaxosLeader
+  executionPointer int
 }
 
 
@@ -57,6 +59,57 @@ func (mpx *MultiPaxos) Kill() {
   if mpx.l != nil {
     mpx.l.Close()
   }
+}
+func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{}){
+  mpx.mu.Lock()
+  defer func(){
+                //represents the commit point for the application of a 
+                //command agreed upon for a particular slot in the Paxos log
+
+                //calls done for instance earlier than the one just processed
+                mpx.Done(mpx.executionPointer)
+
+                //increments execution pointer so that we can start waiting for
+                //the next entry of the Paxos log to be agreed upon and so can process it
+                mpx.executionPointer+=1
+
+
+                mpx.mu.Unlock()
+              }()
+}
+//procedure run in go routine in the background that 
+//checks the status of the Paxos instance pointed to by the
+//executionPointer and then if agreement occured, the agreed upon
+//operation is processed: applied, and the corresponding client request saved, and
+//the executionPointer incremented.
+//Essentially, it applies Paxos log entries in order, one at a time.
+func (mpx *MultiPaxos) refresh(){
+
+  //initial backoff time between status checks
+  to := 10*time.Millisecond
+
+  //while the server is still alive
+  for mpx.dead == false{
+
+    //check the status for the next Paxos instance in the Paxos log
+    done,val := mpx.px.Status(mpx.executionPointer)
+
+    //if agreement occurred
+    if done{
+
+      //commit and log the result of the instance (apply it and saved the result so the client
+      //that made the request can get the result)
+      mpx.commitAndLogInstance(mpx.executionPointer,val)
+
+      to = 10*time.Millisecond
+    }else{
+      to = 2*to
+      time.Sleep(to)
+    }
+  }
+}
+func (mpx *MultiPaxos) ping(){
+
 }
 //
 // the application wants to create a paxos peer.
