@@ -10,7 +10,8 @@ package main
 import "fmt"
 import "barista"
 import "git.apache.org/thrift.git/lib/go/thrift"
-import "os"
+import "net"
+import "strings"
 
 const PORT = ":9000"
 
@@ -18,8 +19,16 @@ func main() {
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transportFactory := thrift.NewTTransportFactory()
 
-  addr := os.Hostname() + PORT
-  fmt.Println("addr: ", addr)
+  addrs, err := net.InterfaceAddrs()
+  addr := ""
+
+  if err != nil || len(addrs) < 2 {
+     fmt.Println("Error getting ip: ", err)
+     addr = "localhost" + PORT
+  } else {
+     addr = strings.Split(addrs[1].String(), "/")[0] + PORT
+  }
+
   transport, err := thrift.NewTServerSocket(addr)
  
   if err != nil {
