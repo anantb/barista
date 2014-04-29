@@ -30,7 +30,7 @@ package paxos
 import "net"
 import "net/rpc"
 import "log"
-import "os"
+//import "os"
 import "syscall"
 import "sync"
 import "fmt"
