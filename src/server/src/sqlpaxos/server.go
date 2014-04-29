@@ -174,6 +174,7 @@ func errorToErr(error error) Err {
 }
 
 func (sp *SQLPaxos) CloseHelper(args CloseArgs, seqnum int) CloseReply {
+  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
   reply := CloseReply{}
   _, ok := sp.connections[args.ClientId]
   if !ok {
@@ -182,7 +183,6 @@ func (sp *SQLPaxos) CloseHelper(args CloseArgs, seqnum int) CloseReply {
     reply.Err = errorToErr(sp.connections[args.ClientId].CloseConnection())
     delete(sp.connections, args.ClientId) //only delete on successful close?
   }
-  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
   if err != OK {
     // log something
   }
