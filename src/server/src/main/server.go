@@ -14,6 +14,7 @@ import "net"
 import "strings"
 
 const PORT = ":9000"
+var ADDRS = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
 
 func main() {  
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
@@ -36,7 +37,19 @@ func main() {
     return
   }
 
-  handler := NewBaristaHandler([]string {addr}, 0)
+  me := -1
+  for i, server := range ADDRS {
+     if addr == server {
+        me = i
+     }
+  }
+
+  if me == -1 {
+     fmt.Println("I am not listed in the servers")
+     exit(1)
+  }
+
+  handler := NewBaristaHandler(ADDRS, me)
   processor := barista.NewBaristaProcessor(handler)
   server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
 
