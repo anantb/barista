@@ -53,7 +53,7 @@ type SQLPaxos struct {
 
 func (sp *SQLPaxos) execute(op Op) interface{} {
   
-  testing := true
+  testing := false
   if testing {
     args := op.Args
     reply := ExecReply{}
