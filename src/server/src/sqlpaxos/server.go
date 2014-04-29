@@ -194,7 +194,7 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
   tx, err := sp.connections[clientId].BeginTxn()
   
   if err != nil || tx == nil {
-     return make([][][]byte), make([]string), errorToErr(err)
+     return make([][][]byte, 0), make([]string, 0), errorToErr(err)
   }
 
   rows, columns, error := sp.connections[clientId].QueryTxn(query, query_params, tx)
