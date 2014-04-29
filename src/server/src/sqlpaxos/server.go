@@ -145,7 +145,7 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
   //result_set.Con = con. @TODO: this will not be populating this
   result_set.Tuples = &tuples
   result_set.FieldNames = &columns
-  return ExecReply{Value:result_set, Err:OK}
+  return ExecReply{Result:result_set, Err:OK}
 }
 
 func (sp *SQLPaxos) OpenHelper(args OpenArgs, seqnum int) OpenReply {
