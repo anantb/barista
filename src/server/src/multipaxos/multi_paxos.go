@@ -69,8 +69,11 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
   }
   if(mpx.isInit()){
     return false,WRONG_SERVER, mpx.peers[mpx.leader.id]
+  }else{
+    for !mpx.isInit(){
+      //loop spin, maybe do something better here
+    }
   }
-  return false,UNKNOWN_LEADER, ""
 }
 
 
@@ -89,8 +92,8 @@ func (mpx *MultiPaxos) Min() int {
 }
 
 func (mpx *MultiPaxos) Status(seq int) (bool, interface{}) {
-  //stat,mop := mpx.px.Status(seq)
-  //return stat,mop 
+  ok,val := mpx.results[seq]
+  return ok,val
 }
 func (mpx *MultiPaxos) SetUnreliable(unreliable bool){
   mpx.unreliable = unreliable
@@ -132,6 +135,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
       newLeader.numPingsMissed = 0
       mpx.leader = newLeader
       mpx.px.updateEpoch(mplc.NewEpoch)
+      mpx.transition = false
   }
   mpx.results[executionPointer] = mop
 }
