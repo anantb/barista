@@ -25,20 +25,57 @@ type MultiPaxos struct{
   peers []string
   leader MultiPaxosLeader
   executionPointer int
+  transition bool
+  results map[int]*MultiPaxosOP
 }
-
-func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
-  mop := MultiPaxosOP{}
-  mop.Type = NORMAL
-  mop.Op = v
-  mpx.px.Start(seq,mop)
-  return false,""
+func (mpx *MultiPaxos) isInit() bool{
+  return mpx.leader.epoch > 0
+}
+func (mpx *MultiPaxos) isLeader() bool{
+  l := mpx.leader
+  if(mpx.isInit()){
+    if(l.id==mpx.me){
+      return true
+    }
+  }
+  return false
+}
+func (mpx *MultiPaxos) generateLeaderOpProposal() PaxosProposalNum{
+    ppn := PaxosProposalNum{}
+    ppn.Epoch = mpx.leader.epoch
+    ppn.ServerName = mpx.peers[mpx.me]
+    ppn.ProposalNum = 1
+    return ppn
+}
+func (mpx *MultiPaxos) LeaderStart(seq int, v interface{}){
+    ppn := mpx.generateLeaderOpProposal()
+    accepted,error := px.ProposerAccept(seq,v,ppn,mpx.peers)
+    px.ProposeNotify(seq, v)
+}
+func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
+  if(seq < 1){
+    return false, INVALID_INSTANCE, ""
+  }
+  if mpx.isLeader(){
+    mop := MultiPaxosOP{}
+    mop.Type = NORMAL
+    mop.EpochNum = mpx.leader.epoch
+    mop.Op = v
+    
+    //Old Start: mpx.px.Start(seq,mop)
+    //New Start:
+    go mpx.LeaderStart(seq,v)
+    return true,OK, ""
+  }
+  if(mpx.isInit()){
+    return false,WRONG_SERVER, mpx.peers[mpx.leader.id]
+  }
+  return false,UNKNOWN_LEADER, ""
 }
 
 
 func (mpx *MultiPaxos) Done(seq int) {
   mpx.px.Done(seq)
-
 }
 
 
@@ -50,7 +87,6 @@ func (mpx *MultiPaxos) Max() int {
 func (mpx *MultiPaxos) Min() int {
   return mpx.px.Min()
 }
-
 
 func (mpx *MultiPaxos) Status(seq int) (bool, interface{}) {
   //stat,mop := mpx.px.Status(seq)
@@ -87,8 +123,31 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
   mop := val.(MultiPaxosOP)
   switch(mop.Type){
     case NORMAL:
+      //do nothing
     case LCHANGE:
+      mplc := mop.Op.(MultiPaxosLeaderChange)
+      newLeader := MultiPaxosLeader{}
+      newLeader.epoch = mplc.NewEpoch
+      newLeader.id = mplc.ID
+      newLeader.numPingsMissed = 0
+      mpx.leader = newLeader
+      mpx.px.updateEpoch(mplc.NewEpoch)
   }
+  mpx.results[executionPointer] = mop
+}
+func (mpx *MultiPaxos) initiateLeaderChange(){
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
+
+  currentEpoch = mpx.leader.epoch
+  mpl := MultiPaxosLeaderChange{currentEpoch+1,mpx.me}
+  mop := MultiPaxosOP{}
+  mop.Type = LCHANGE
+  mop.EpochNum = currentEpoch+1
+  mop.Op = mpl
+  mpx.transition = true
+  mpx.px.Start(kv.executionPointer,mop)
+
 }
 //procedure run in go routine in the background that 
 //checks the status of the Paxos instance pointed to by the
@@ -104,6 +163,9 @@ func (mpx *MultiPaxos) refresh(){
   //while the server is still alive
   for mpx.dead == false{
 
+    if(mpx.transition){
+      time.Sleep(time.Second)
+    }
     //check the status for the next Paxos instance in the Paxos log
     done,val := mpx.px.Status(mpx.executionPointer)
 
@@ -116,18 +178,25 @@ func (mpx *MultiPaxos) refresh(){
 
       to = 10*time.Millisecond
     }else{
-      to = 2*to
+      if(!mpx.isInit() || mpx.leader.numPingsMissed > NPINGS){
+        mpx.initiateLeaderChange()
+      }
+      if(to < 5*time.Second){
+        to = 2*to
+      }
       time.Sleep(to)
     }
   }
 }
 func (mpx *MultiPaxos) ping(){
-
 }
 func (mpx *MultiPaxos) getDumpOfInstance() string{
   return ""
 }
 func (mpx *MultiPaxos) loadFromDump(dump string){
+
+}
+func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply){
 
 }
 //
@@ -139,7 +208,10 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   mpx := &MultiPaxos{}
   mpx.peers = peers
   mpx.me = me
-
+  mpx.executionPointer=1
+  mpx.leader = MultiPaxosLeader{0,me}
+  mpx.transition = false
+  mpx.result = make(map[int]*MultiPaxosOP)
   if rpcs != nil {
     // caller will create socket &c
     rpcs.Register(mpx)

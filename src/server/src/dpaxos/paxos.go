@@ -192,7 +192,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     backOff = 10*time.Millisecond
 
     //ACCEPT phase
-    accepted,error := px.proposerAccept(seq,value,proposal,peers)
+    accepted,error := px.ProposerAccept(seq,value,proposal,peers)
 
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
@@ -207,30 +207,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     }
     backOff = 10*time.Millisecond
     //LEARN phase
-    //notify everyone of agreement
-    //TODO: put this in separate method
-    teachArgs := &TeachArgs{}
-    teachReply := &TeachReply{}
-
-    //map, just in case you want to send multipl results
-    out := make(map[int]interface{})
-    out[seq]=value
-    teachArgs.Log = out
-
-    //tell about max done
-    teachArgs.MaxDone = px.highestDone
-
-    //tell peer who is talking to it
-    teachArgs.ServerName = px.getServerName()
-
-    //notify all of decision
-    for _,server := range px.peers{
-      if px.isMe(server){
-        px.Teach(teachArgs,teachReply)
-      }else{
-        call(server,"Paxos.Teach",teachArgs,teachReply)
-      }
-    }
+    px.proposeNotify(seq, value)
     done=true
     break
   }
@@ -337,7 +314,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
 //proposal - PaxosProposalNum object that represents the proposal number to use in acceptance (the proposal acceptor peers said they would accept)
 //peers - array of peers to use as acceptors
 //returns true if a majority of the peers accepted (ACCEPT Phase succeeded)
-func (px *Paxos) proposerAccept(seq int, v interface{}, proposal PaxosProposalNum, peers []string) (bool,bool){
+func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNum, peers []string) (bool,bool){
   //initializations
 
   //status
@@ -378,7 +355,32 @@ func (px *Paxos) proposerAccept(seq int, v interface{}, proposal PaxosProposalNu
   }
   return accepted,error
 }
+func (px *Paxos) ProposeNotify(seq int, value interface{}){
+   //notify everyone of agreement
+    //TODO: put this in separate method
+    teachArgs := &TeachArgs{}
+    teachReply := &TeachReply{}
 
+    //map, just in case you want to send multipl results
+    out := make(map[int]interface{})
+    out[seq]=value
+    teachArgs.Log = out
+
+    //tell about max done
+    teachArgs.MaxDone = px.highestDone
+
+    //tell peer who is talking to it
+    teachArgs.ServerName = px.getServerName()
+
+    //notify all of decision
+    for _,server := range px.peers{
+      if px.isMe(server){
+        px.Teach(teachArgs,teachReply)
+      }else{
+        call(server,"Paxos.Teach",teachArgs,teachReply)
+      }
+    }
+}
 //***********************************************************************************************************************************//
 //Acceptor Code
 //***********************************************************************************************************************************//
@@ -725,6 +727,10 @@ func (px *Paxos) Kill() {
   if px.l != nil {
     px.l.Close()
   }
+}
+//
+func (px *Paxos) SetUnreliable(unreliable bool) {
+  px.unreliable = unreliable
 }
 //
 // the application wants to create a paxos peer.
