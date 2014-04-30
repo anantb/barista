@@ -43,8 +43,9 @@ func (mpx *MultiPaxos) isLeader() bool{
   }
   return false
 }
-func (mpx *MultiPaxos) LeaderStart(seq int, v interface{}){
+func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
     mpx.Log(1,"LeaderStart: Started proposal as leader "+strconv.Itoa(seq))
+    mpx.Log(1,"LeaderStart: epoch"+strconv.Itoa(v.EpochNum))
     mpx.px.FastPropose(seq,v,mpx.peers)
 }
 func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
@@ -61,7 +62,7 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
     
     //Old Start: mpx.px.Start(seq,mop)
     //New Start:
-    go mpx.LeaderStart(seq,v)
+    go mpx.LeaderStart(seq,mop)
     mpx.Log(1,"Start: agreement started for "+strconv.Itoa(seq))
     return true,OK, ""
   }
@@ -208,7 +209,7 @@ func (mpx *MultiPaxos) refresh(){
         mpx.Log(1,"refresh: initiating failover "+strconv.Itoa(mpx.executionPointer))
         mpx.initiateLeaderChange()
       }
-      if(to < 5*time.Second){
+      if(to < 2*time.Second){
         to = 2*to
       }
       time.Sleep(to)

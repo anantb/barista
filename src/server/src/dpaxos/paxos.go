@@ -164,6 +164,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
+  log.Printf("FastPropose: before accept")
 
   //commence proposal cycle, continue until it succeeds
   done := false
@@ -177,6 +178,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !accepted{
+      log.Printf("FastPropose: accept failed")
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
@@ -188,9 +190,11 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
     backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, v)
+    log.Printf("FastPropose: after notification")
     done=true
     break
   }
+  log.Printf("FastPropose: done")
 }
 //main proposer function that is called upon start, initiates a dedicated proposer cycle
 //seq - instance number
@@ -243,10 +247,11 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
 
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
-
+    //log.Printf("NormalPropose: after prepare")
     //if the prepare phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !prepared{
+      //log.Printf("NormalPropose: prepare failed")
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
@@ -259,10 +264,11 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
 
     //ACCEPT phase
     accepted,error := px.ProposerAccept(seq,value,proposal,peers)
-
+    //log.Printf("NormalPropose: after accept")
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !accepted{
+      //log.Printf("NormalPropose: accept failed")
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
@@ -520,17 +526,17 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   proposalnum := &args.ProposalNum
 
   //get the acceptor object/state for this instance
-  //acceptor,ok := px.acceptinfo[instancenum]
+  acceptor,ok := px.acceptinfo[instancenum]
 
   //the acceptor must already have its state initialized
   //if it wasn't then someone called Accept before Prepare,
   //which is not allowed 
-  /*if !ok{
+  if !ok{
     //reject accept
     reply.Status = REJECT
     return nil
-  }*/
-    _,ok := px.acceptinfo[instancenum]
+  }
+   /* _,ok := px.acceptinfo[instancenum]
   if !ok{
     paxosInstanceInfo := &PaxosInstanceInfo{InstanceNum: instancenum}
     acceptor := &PaxosAcceptorInstance{pi:paxosInstanceInfo}
@@ -540,12 +546,13 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   //update max instance number seen by this paxos machine
   if instancenum > px.maxSeq{
     px.maxSeq = instancenum
-  }
+  }*/
 
   //invalid state, needs to prepare first
   if acceptor.MaxProposal == nil{
     return nil
   }
+
   //if the current proposal >= max proposal number seem
   //then accept the proposal, otherwise we got an old
   //proposal so reject it
