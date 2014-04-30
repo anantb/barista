@@ -469,6 +469,8 @@ func StartServer(servers []string, me int) *SQLPaxos {
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
   gob.Register(ExecArgs{})
+  gob.Register(OpenArgs{})
+  gob.Register(CloseArgs{})
 
   sp := new(SQLPaxos)
   sp.me = me
@@ -488,9 +490,9 @@ func StartServer(servers []string, me int) *SQLPaxos {
 
   sp.px = paxos.Make(servers, me, rpcs)
 
-  os.Remove(servers[me]) // only needed for "unix"
-  l, e := net.Listen("unix", servers[me]);
-  //l, e := net.Listen("tcp", servers[me]);
+  //os.Remove(servers[me]) // only needed for "unix"
+  //l, e := net.Listen("unix", servers[me]);
+  l, e := net.Listen("tcp", servers[me] + paxos.PORT);
   if e != nil {
     log.Fatal("listen error: ", e);
   }
@@ -509,8 +511,8 @@ func StartServer(servers []string, me int) *SQLPaxos {
           conn.Close()
         } else if sp.unreliable && (rand.Int63() % 1000) < 200 {
           // process the request but force discard of reply.
-          c1 := conn.(*net.UnixConn)
-	  //c1 := conn.(*net.TCPConn)
+          //c1 := conn.(*net.UnixConn)
+	  c1 := conn.(*net.TCPConn)
           f, _ := c1.File()
           err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
           if err != nil {

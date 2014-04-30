@@ -14,7 +14,7 @@ import "net"
 import "strings"
 
 const PORT = ":9000"
-var ADDRS = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
+var ADDRS = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
 
 func main() {  
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
@@ -25,12 +25,12 @@ func main() {
 
   if err != nil || len(addrs) < 2 {
      fmt.Println("Error getting ip: ", err)
-     addr = "localhost" + PORT
+     addr = "localhost"
   } else {
-     addr = strings.Split(addrs[1].String(), "/")[0] + PORT
+     addr = strings.Split(addrs[1].String(), "/")[0]
   }
 
-  transport, err := thrift.NewTServerSocket(addr)
+  transport, err := thrift.NewTServerSocket(addr + PORT)
  
   if err != nil {
     fmt.Println("Error: ", err)
@@ -53,6 +53,6 @@ func main() {
   processor := barista.NewBaristaProcessor(handler)
   server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
 
-  fmt.Println("Starting the Barista server on ", addr)
+  fmt.Println("Starting the Barista server on ", addr + PORT)
   server.Serve() 
 }
