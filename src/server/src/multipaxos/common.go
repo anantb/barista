@@ -2,10 +2,16 @@ package multipaxos
 
 //import "time"
 //import "sync"
-
+//import "hash/fnv"
+//import "strconv"
+import "crypto/rand"
+import "math/big"
+import "net/rpc"
+import "fmt"
 
 //constants
 const(
+	DEBUG = 2
 	NPINGS = 5
 	//op types
 	LCHANGE = "LCHANGE"
@@ -86,7 +92,7 @@ func call(srv string, rpcname string,
 
 //debug print statement functions with priorities
 func DPrint(pri int, format string) (n int, err error) {
-  if Debug > pri {
+  if DEBUG > pri {
     fmt.Printf(format)
   }
   return

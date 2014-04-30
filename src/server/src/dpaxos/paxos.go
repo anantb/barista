@@ -86,7 +86,7 @@ type Paxos struct {
 //***********************************************************************************************************************************//
 //Paxos Administrative Functions
 //***********************************************************************************************************************************//
-func(px *Paxos) updateEpoch(newEpoch int){
+func(px *Paxos) UpdateEpoch(newEpoch int){
   px.mu.Lock()
   defer px.mu.Unlock()
   px.epoch = newEpoch
@@ -105,7 +105,7 @@ func (px *Paxos) isMe(server string) bool{
   return false
 }
 //generates a new proposal number 
-func (px *Paxos) getPaxosProposalNum() PaxosProposalNum{
+func (px *Paxos) GetPaxosProposalNum() PaxosProposalNum{
   server := px.peers[px.me]
 
   //generate a hopefully unique proposal number that is larger than all other ones
@@ -125,7 +125,73 @@ func getMajorityNum(peers []string) int{
 //***********************************************************************************************************************************//
 //Proposer Code
 //***********************************************************************************************************************************//
+func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
+  px.mu.Lock()
 
+  //ensure we have at least one peer
+  if len(peers) == 0{
+    px.mu.Unlock()
+    return
+  }
+
+  _,okInstance := px.log[seq]
+
+  if okInstance{
+    px.mu.Unlock()
+    return
+  }
+
+  //check to see if there is already proposer info for this instance (only one dedicated proposer per server)
+  //if not then create the required objects
+  _,ok := px.proposeinfo[seq]
+  if !ok{
+    px.proposeinfo[seq] = &PaxosProposerInstance{&PaxosInstanceInfo{seq}, &PaxosProposalNum{px.epoch, px.peers[px.me],0}, *new(sync.Mutex)}
+  }
+
+  //update max instance number seen
+  if seq > px.maxSeq{
+    px.maxSeq = seq
+  }
+
+  //get the dedicated proposer info and lock
+  proposer := px.proposeinfo[seq] 
+
+  px.mu.Unlock()
+  
+  //instance locking, so that there proposers for different values on the same machine
+  //if you did not do this then there could possibly be corruption of internal state, leading to
+  //inconsistent results
+  proposer.plock.Lock()
+  defer proposer.plock.Unlock()
+
+
+  //commence proposal cycle, continue until it succeeds
+  done := false
+  backOff := 10*time.Millisecond
+  for !done && px.dead == false{
+
+    proposal := px.GetPaxosProposalNum();
+    //ACCEPT phase
+    accepted,error := px.ProposerAccept(seq,v,proposal,peers)
+
+    //if the accept phase failed we cannot proceed, so skip the rest of
+    //the loop and try again
+    if !accepted{
+      if(!error){
+        if(backOff<2*time.Second){
+          backOff = 2*backOff
+        }
+        time.Sleep(backOff)
+      }
+      continue
+    }
+    backOff = 10*time.Millisecond
+    //LEARN phase
+    px.ProposeNotify(seq, v)
+    done=true
+    break
+  }
+}
 //main proposer function that is called upon start, initiates a dedicated proposer cycle
 //seq - instance number
 //v - value to proposed if none has been proposed already
@@ -207,7 +273,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     }
     backOff = 10*time.Millisecond
     //LEARN phase
-    px.proposeNotify(seq, value)
+    px.ProposeNotify(seq, value)
     done=true
     break
   }
@@ -241,7 +307,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
   //get new proposal number
   //ensures that no two threads on same machine can get same timestamp
   px.mu.Lock()
-  proposalNum := px.getPaxosProposalNum()
+  proposalNum := px.GetPaxosProposalNum()
   px.mu.Unlock()
   proposal = proposalNum
 
@@ -454,17 +520,23 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   proposalnum := &args.ProposalNum
 
   //get the acceptor object/state for this instance
-  acceptor,ok := px.acceptinfo[instancenum]
+  //acceptor,ok := px.acceptinfo[instancenum]
 
   //the acceptor must already have its state initialized
   //if it wasn't then someone called Accept before Prepare,
   //which is not allowed 
-  if !ok{
+  /*if !ok{
     //reject accept
     reply.Status = REJECT
     return nil
+  }*/
+    _,ok := px.acceptinfo[instancenum]
+  if !ok{
+    paxosInstanceInfo := &PaxosInstanceInfo{InstanceNum: instancenum}
+    acceptor := &PaxosAcceptorInstance{pi:paxosInstanceInfo}
+    px.acceptinfo[instancenum] = acceptor
   }
-
+  acceptor,_ := px.acceptinfo[instancenum]
   //update max instance number seen by this paxos machine
   if instancenum > px.maxSeq{
     px.maxSeq = instancenum
