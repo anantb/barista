@@ -21,10 +21,11 @@ type MultiPaxosLeader struct{
 	numPingsMissed int
 }
 type MultiPaxosOP struct{
+	EpochNum int 
 	Type OpType
 	Op interface{}
 }
 type MultiPaxosLeaderChange struct{
-	int newEpoch
-	id int
+	NewEpoch int
+	ID int
 }

@@ -27,9 +27,11 @@ type MultiPaxos struct{
   executionPointer int
 }
 
-
 func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
-  mpx.px.Start(seq,v)
+  mop := MultiPaxosOP{}
+  mop.Type = NORMAL
+  mop.Op = v
+  mpx.px.Start(seq,mop)
   return false,""
 }
 
@@ -51,14 +53,19 @@ func (mpx *MultiPaxos) Min() int {
 
 
 func (mpx *MultiPaxos) Status(seq int) (bool, interface{}) {
-  return mpx.px.Status(seq)
+  //stat,mop := mpx.px.Status(seq)
+  //return stat,mop 
 }
-
+func (mpx *MultiPaxos) SetUnreliable(unreliable bool){
+  mpx.unreliable = unreliable
+  mpx.px.SetUnreliable(unreliable)
+}
 func (mpx *MultiPaxos) Kill() {
   mpx.dead = true
   if mpx.l != nil {
     mpx.l.Close()
   }
+  mpx.px.Kill()
 }
 func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{}){
   mpx.mu.Lock()
@@ -76,6 +83,12 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
 
                 mpx.mu.Unlock()
               }()
+  //at most once RPC
+  mop := val.(MultiPaxosOP)
+  switch(mop.Type){
+    case NORMAL:
+    case LCHANGE:
+  }
 }
 //procedure run in go routine in the background that 
 //checks the status of the Paxos instance pointed to by the
@@ -109,6 +122,12 @@ func (mpx *MultiPaxos) refresh(){
   }
 }
 func (mpx *MultiPaxos) ping(){
+
+}
+func (mpx *MultiPaxos) getDumpOfInstance() string{
+  return ""
+}
+func (mpx *MultiPaxos) loadFromDump(dump string){
 
 }
 //

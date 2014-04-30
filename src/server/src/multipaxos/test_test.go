@@ -299,7 +299,7 @@ func TestManyForget(t *testing.T) {
   }
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
-    pxa[i].unreliable = true
+    pxa[i].SetUnreliable(true)
   }
 
   fmt.Printf("Test: Lots of forgetting ...\n")
@@ -335,7 +335,7 @@ func TestManyForget(t *testing.T) {
   time.Sleep(5 * time.Second)
   done = true
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].unreliable = false
+    pxa[i].SetUnreliable(false)
   }
   time.Sleep(2 * time.Second)
 
@@ -594,7 +594,7 @@ func TestManyUnreliable(t *testing.T) {
   }
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
-    pxa[i].unreliable = true
+    pxa[i].SetUnreliable(true)
     pxa[i].Start(0, 0)
   }
 
@@ -743,7 +743,7 @@ func TestPartition(t *testing.T) {
     seq++
 
     for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].unreliable = true
+      pxa[i].SetUnreliable(true)
     }
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
@@ -758,7 +758,7 @@ func TestPartition(t *testing.T) {
     part(t, tag, nMultiPaxos, []int{0,1}, []int{2,3,4}, []int{})
 
     for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].unreliable = false
+      pxa[i].SetUnreliable(false)
     }
 
     waitn(t, pxa, seq, 5)
@@ -788,7 +788,7 @@ func TestLots(t *testing.T) {
       }
     }
     pxa[i] = Make(pxh, i, nil)
-    pxa[i].unreliable = true
+    pxa[i].SetUnreliable(true)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
 
@@ -861,7 +861,7 @@ func TestLots(t *testing.T) {
 
   // repair, then check that all instances decided.
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].unreliable = false
+    pxa[i].SetUnreliable(false)
   }
   part(t, tag, nMultiPaxos, []int{0,1,2,3,4}, []int{}, []int{})
   time.Sleep(5 * time.Second)
