@@ -19,4 +19,4 @@ if [ "$process_line" != "" ]; then
     sudo kill `echo "$process_line" | awk '{print $2}'`
 fi
 
-nohup go run $abspath/main/server.go $abspath/main/handler.go &
+nohup go run $abspath/main/server.go $abspath/main/handler.go 0<&- &> barista.log &
