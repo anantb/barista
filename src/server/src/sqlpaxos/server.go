@@ -137,7 +137,7 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    cells := [][]byte
+    cells := make([][]byte, 0)
     vals := reflect.ValueOf(row)
     for i:=0; i < vals.Len(); i++ {
       val := vals.Index(i).Interface().([]byte)
