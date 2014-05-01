@@ -109,20 +109,6 @@ func main() {
     return
   }
 
-  // insert a record to a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // insert a record to a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_3, con, "INSERT INTO courses values('6.830', 'Database Systems')", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
   // only one record should print even if you run this code multiple times  
