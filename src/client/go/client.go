@@ -23,74 +23,81 @@ func nrand() int64 {
 }
 
 type Clerk struct {
-  servers []string
   mu sync.Mutex
   me int64 // passed as clientId
   curRequest int
 }
 
 
-func MakeClerk(servers []string) *Clerk {
+func MakeClerk() *Clerk {
   ck := new(Clerk)
-  ck.servers = servers
-
   ck.me = nrand()
   ck.curRequest = 0
 
   return ck
 }
 
-var addrs = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
+var addrs_1 = []string {"128.52.161.243:9000", "128.52.160.104:9000"}
+var addrs_2 = []string {"128.52.161.242:9000", "128.52.160.122:9000"}
+var addrs_3 = []string {"128.52.161.24:9000"}
+
 
 func main() {  
-  clerk := MakeClerk(addrs)
-  con := clerk.OpenConnection()
-  clerk.ExecuteSQL(con, "SELECT 6.824 as id, 'Distributed Systems' as name", nil) 
-  clerk.CloseConnection(con)
-}
+  clerk := MakeClerk()
 
-//
-// execute SQL query
-// keeps trying forever in the face of all other errors.
-//
-func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params [][]byte) {
-  ck.mu.Lock()
-  defer ck.mu.Unlock()
+  var con *barista.Connection
+  var err error
 
-  ck.curRequest++
-  done := false
-
-  clientId := strconv.FormatInt(ck.me, 10)
-  seqId := strconv.Itoa(ck.curRequest)
-
-  con.ClientId = &clientId
-  con.SeqId = &seqId
-
-  // try each server 
-  for !done {
-     for _, addr := range ck.servers {
-        err := ck.executeSQL(addr, query, query_params, con)
-        if err != nil {
-           fmt.Println("ExecuteSQL Error: ", err)
-        } else {
-           done = true
-           break
-        }
-     }
+  // clerk should keep retrying to servers in a round-robin function
+  for _, addr := range addrs_2 {
+    con, err = clerk.OpenConnection(addr)
+    if err == nil {
+      break
+    }
   }
 
+  for _, addr := range addrs_2 {
+    err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  for _, addr := range addrs_3 {
+    err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  for _, addr := range addrs_1 {
+    err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  for _, addr := range addrs_1 {
+    err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  for _, addr := range addrs_1 {
+    err := clerk.CloseConnection(addr, con)
+    if err == nil {
+      break
+    }
+  }
 }
 
-//
 // open database connection
-// keeps trying forever in the face of all other errors.
-//
-func (ck *Clerk) OpenConnection() *barista.Connection {
+func (ck *Clerk) OpenConnection(addr string) (*barista.Connection, error) {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
   ck.curRequest++
-  done := false
 
   clientId := strconv.FormatInt(ck.me, 10)
   seqId := strconv.Itoa(ck.curRequest)
@@ -103,31 +110,42 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
      Password: &password,
      Database: &database }
 
-  // try each server 
-  for !done {
-     for _, addr := range ck.servers {
-        con, err := ck.openConnection(addr, &con_params)
-        if err != nil {
-           fmt.Println("OpenConnection Error: ", err)
-        } else {
-           return con
-        }
-     }
+  con, err := ck.openConnection(addr, &con_params)
+  if err != nil {
+     return nil, err
+  }
+
+  return con, nil
+}
+
+
+// execute SQL query
+func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, query_params [][]byte) error {
+  ck.mu.Lock()
+  defer ck.mu.Unlock()
+
+  ck.curRequest++
+
+  clientId := strconv.FormatInt(ck.me, 10)
+  seqId := strconv.Itoa(ck.curRequest)
+
+  con.ClientId = &clientId
+  con.SeqId = &seqId
+  
+  err := ck.executeSQL(addr, query, query_params, con)
+  if err != nil {
+     return err
   }
 
   return nil
 }
 
-//
 // close database connection
-// keeps trying forever in the face of all other errors.
-//
-func (ck *Clerk) CloseConnection(con *barista.Connection) {
+func (ck *Clerk) CloseConnection(addr string, con *barista.Connection) error {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
   ck.curRequest++
-  done := false
 
   clientId := strconv.FormatInt(ck.me, 10)
   seqId := strconv.Itoa(ck.curRequest)
@@ -135,18 +153,13 @@ func (ck *Clerk) CloseConnection(con *barista.Connection) {
   con.ClientId = &clientId
   con.SeqId = &seqId
 
-  // try each server 
-  for !done {
-     for _, addr := range ck.servers {
-        err := ck.closeConnection(addr, con)
-        if err != nil {
-           fmt.Println("CloseConnection Error: ", err)
-        } else {
-           done = true
-           break
-        }
-     }
-  }
+  err := ck.closeConnection(addr, con)
+  if err != nil {
+     return err
+  } 
+
+  return nil
+ 
 }
 
 
