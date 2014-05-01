@@ -124,7 +124,7 @@ func (sp *SQLPaxos) WriteToLog(op Op) error {
   if err != nil {
     return err
   }
-  return sp.logger.WriteToLog(b)
+  return sp.logger.WriteToLog(string(b[:]))
 }
 
 
