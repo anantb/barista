@@ -134,6 +134,21 @@ func main() {
   
   PrintResultSet(res)
 
+  res, err = clerk.ExecuteSQL(group_2, con, "SELECT * FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+  PrintResultSet(res)
+
+  res, err = clerk.ExecuteSQL(group_3, con, "SELECT * FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+  PrintResultSet(res)
   
   // close the connection to a machine in group 3
   // it should close this client's connection from all machines  
