@@ -66,9 +66,9 @@ func MakeClerk() *Clerk {
 // 128.52.161.24:9000
 
 // to demonstrate external consistency we create three groups
-var group_1 = []string {"128.52.161.243:9000"}
+var group_1 = []string {"128.52.161.243:9000", "128.52.160.104:9000"}
 var group_2 = []string {"128.52.161.242:9000", "128.52.160.122:9000"}
-var group_3 = []string {"128.52.161.24:9000", "128.52.160.104:9000"}
+var group_3 = []string {"128.52.161.24:9000"}
 
 
 func main() {  
@@ -102,8 +102,22 @@ func main() {
     return
   }
 
-  // insert a record to a machine in group 2  
+  // insert a record to a machine in group 1  
   _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.831', 'UID')", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  // insert a record to a machine in group 2  
+  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.830', 'Databases')", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  // insert a record to a machine in group 3 
+  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.831', 'Distributed Systems')", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -111,7 +125,7 @@ func main() {
 
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
-  // only one record should print even if you run this code multiple times  
+  // all the three records should print regardless of whichever machine you query 
   res, err := clerk.ExecuteSQL(group_1, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
