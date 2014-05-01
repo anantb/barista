@@ -69,7 +69,7 @@ func main() {
   var err error
 
   // clerk should keep retrying to servers in a round-robin function
-  for _, addr := range addrs_2 {
+  for _, addr := range addrs_1 {
     con, err = clerk.OpenConnection(addr)
     if err == nil {
       break
@@ -90,7 +90,7 @@ func main() {
     }
   }
 
-  for _, addr := range addrs_1 {
+  for _, addr := range addrs_2 {
     _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
     if err == nil {
       break
@@ -105,7 +105,7 @@ func main() {
     }
   }
 
-  for _, addr := range addrs_1 {
+  for _, addr := range addrs_2 {
     err := clerk.CloseConnection(addr, con)
     if err == nil {
       break
