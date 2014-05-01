@@ -8,11 +8,13 @@ import "crypto/rand"
 import "math/big"
 import "net/rpc"
 import "fmt"
+import "time"
 
 //constants
 const(
-	DEBUG = 2
+	DEBUG = 0
 	NPINGS = 5
+	PINGINTERVAL = 500*time.Millisecond
 	//op types
 	LCHANGE = "LCHANGE"
 	NORMAL = "NORMAL"

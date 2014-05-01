@@ -6,7 +6,7 @@ import "strconv"
 import "os"
 import "time"
 import "fmt"
-import "math/rand"
+//import "math/rand"
 
 func port(tag string, host int) string {
   s := "/var/tmp/824-"
@@ -138,9 +138,9 @@ func TestBasic(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  fmt.Printf("Test: Elect Leader Instance 0 ...\n")
+  fmt.Printf("Test: Elect Leader Instance 0...\n")
 
-  waitn(t, pxa, 0, nMultiPaxos)
+  waitn(t, pxa, 0,nMultiPaxos)
 
   l := getandcheckleader(t,pxa)
   
@@ -150,24 +150,24 @@ func TestBasic(t *testing.T) {
 
   pxa[l].Start(1,"hello")
 
-  waitn(t, pxa, 1, nMultiPaxos)
+  waitn(t, pxa, 1,nMultiPaxos)
   
   checkval(t,pxa,1,"hello")
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Many proposers, same value ...\n")
+  fmt.Printf("Test: Many proposers, same value...\n")
 
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Start(2, 77)
   }
-  waitn(t, pxa, 2, nMultiPaxos)
+  waitn(t, pxa, 2,nMultiPaxos)
 
   checkval(t,pxa,2,77)
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Many proposers, different values (only leader's should win) ...\n")
+  fmt.Printf("Test: Many proposers, different values (only leader's should win)...\n")
 
   data := [3]int{100,101,102}
   data[l] = 500
@@ -176,13 +176,13 @@ func TestBasic(t *testing.T) {
   pxa[1].Start(3, data[1])
   pxa[2].Start(3, data[2])
 
-  waitn(t, pxa, 3, nMultiPaxos)
+  waitn(t, pxa, 3,nMultiPaxos)
 
   checkval(t,pxa,3,500)
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Out-of-order instances ...\n")
+  fmt.Printf("Test: Out-of-order instances...\n")
 
   pxa[l].Start(8, 300)
   pxa[l].Start(7, 600)
@@ -191,7 +191,7 @@ func TestBasic(t *testing.T) {
   pxa[l].Start(4, 300)
   //waiting for instance 8 to complete means all the rest before it completed
   //can't respong to client for instance i until the results of all previous instances known
-  waitn(t, pxa, 8, nMultiPaxos)
+  waitn(t, pxa, 8,nMultiPaxos)
   checkval(t,pxa,4,300)
   checkval(t,pxa,5,400)
   checkval(t,pxa,6,500)
@@ -240,7 +240,7 @@ func TestRPCCount(t *testing.T) {
     seq++
   }
 
-  time.Sleep(3 * time.Second)
+  time.Sleep(2 * time.Second)
   
   total1 := 0
   for j := 0; j < nMultiPaxos; j++ {
@@ -258,7 +258,7 @@ func TestRPCCount(t *testing.T) {
       ninst1, total1, expected1)
   }
   fmt.Printf(" Total messages used: "+strconv.Itoa(totalactual)+" ... Passed\n")
-  /*
+  
   ninst2 := 5
   for i := 0; i < ninst2; i++ {
     for j := 0; j < nMultiPaxos; j++ {
@@ -276,18 +276,92 @@ func TestRPCCount(t *testing.T) {
   }
   total2 -= total1
 
-  // worst case per agreement:
+  // normal worst case per agreement (with contention):
   // Proposer 1: 3 prep, 3 acc, 3 decides.
   // Proposer 2: 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
   // Proposer 3: 3 prep, 3 acc, 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
-  expected2 := ninst2 * nMultiPaxos * 15
+  //using multipaxos it should be like normal case with no contention
+  expected2 := ninst2 * (nMultiPaxos + nMultiPaxos)
   if total2 > expected2 {
     t.Fatalf("too many RPCs for concurrent Start()s; %v instances, got %v, expected %v",
       ninst2, total2, expected2)
   }
 
-  fmt.Printf("  ... Passed\n")*/
+  fmt.Printf(" Total messages used: "+strconv.Itoa(total2)+"  ... Passed\n")
 }
+func TestLeaderDeaths(t *testing.T) {
+  runtime.GOMAXPROCS(4)
+
+  const nMultiPaxos = 5
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  var pxh []string = make([]string, nMultiPaxos)
+  defer cleanup(pxa)
+
+  for i := 0; i < nMultiPaxos; i++ {
+    pxh[i] = port("leaderdeaths", i)
+  }
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i] = Make(pxh, i, nil)
+  }
+  fmt.Printf("Test: First leader death, make sure changes ...\n")
+
+  waitmajority(t, pxa, 0)
+
+  l := getandcheckleader(t,pxa)
+    
+  //make a few agreements
+  pxa[l].Start(1,"lol1")
+  pxa[l].Start(2,"lol2")
+  pxa[l].Start(3,"lol3")
+  pxa[l].Start(4,"lol4")
+
+  waitmajority(t, pxa, 4)
+  checkval(t,pxa,1,"lol1")
+  checkval(t,pxa,2,"lol2")
+  checkval(t,pxa,3,"lol3")
+  checkval(t,pxa,4,"lol4")
+
+  pxa[l].Kill()
+
+  //wait for replicas to detect failure
+  time.Sleep(nMultiPaxos*PINGINTERVAL*NPINGS)
+
+  pxanew := append(pxa[:l], pxa[l+1:]...)
+
+  lnew := getandcheckleader(t,pxanew)
+
+  if l == lnew{
+    t.Fatalf("Leader did not change despite having failed!")
+  }
+  maxAfterFail := pxanew[lnew].Max()
+
+  pxanew[lnew].Start(maxAfterFail,"lol5")
+  waitmajority(t, pxanew, maxAfterFail)
+
+  checkval(t,pxanew,1,"lol1")
+  checkval(t,pxanew,2,"lol2")
+  checkval(t,pxanew,3,"lol3")
+  checkval(t,pxanew,4,"lol4")
+  checkval(t,pxanew,maxAfterFail,"lol5")
+
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Second leader death and in flight requests...\n")
+
+  pxa[lnew].Kill()
+  //wait for replicas to detect failure
+  time.Sleep(3*PINGINTERVAL*NPINGS)
+
+  pxanew1 := append(pxanew[:lnew], pxanew[lnew+1:]...)
+
+  lnew1 := getandcheckleader(t,pxanew1)
+  if lnew1 == lnew || lnew1 == l{
+    t.Fatalf("Leader did not change despite having failed!")
+  }
+
+  fmt.Printf("  ... Passed\n")
+}
+/*
 func TestDeaf(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -927,4 +1001,4 @@ func TestLots(t *testing.T) {
   }
 
   fmt.Printf("  ... Passed\n")
-}
+}*/
