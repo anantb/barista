@@ -117,7 +117,7 @@ func main() {
   }
 
   // insert a record to a machine in group 3 
-  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.831', 'Distributed Systems')", nil)
+  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
   if err != nil {
     fmt.Println(err)
     return
