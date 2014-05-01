@@ -26,6 +26,7 @@ func (lg *Logger) WriteToLog(text string) error {
   f, err := os.OpenFile(lg.filename, os.O_APPEND, 0644) 
   n, err := f.WriteString(text) 
   f.Close()
+  return err
 }
 
 func (lg *Logger) ReadFromLog() ([]byte, error) {
