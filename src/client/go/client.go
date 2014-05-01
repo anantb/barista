@@ -36,6 +36,7 @@ func PrintResultSet(res *barista.ResultSet) {
       for _, cell := range *(tuple.Cells) {
         fmt.Printf("%s\t", cell)
       }
+      fmt.Println()
     }
   }
 
@@ -88,9 +89,8 @@ func main() {
     }
   }
 
-  fmt.Println("Connection is: ", con)
   // create the table on a machine in group 2
-  for _, addr := range group_1 {
+  for _, addr := range group_2 {
     _, err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
     if err == nil {
       break
@@ -98,7 +98,7 @@ func main() {
   }
 
   // delete all the data on a machine in group 3
-  for _, addr := range group_1 {
+  for _, addr := range group_3 {
     _, err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
     if err == nil {
       break
@@ -108,6 +108,22 @@ func main() {
   // insert a record to a machine in group 2
   for _, addr := range group_1 {
     _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.831', 'UID')", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  // insert a record to a machine in group 2
+  for _, addr := range group_2 {
+    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+    if err == nil {
+      break
+    }
+  }
+
+  // insert a record to a machine in group 2
+  for _, addr := range group_3 {
+    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.830', 'Database Systems')", nil)
     if err == nil {
       break
     }
