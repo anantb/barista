@@ -70,12 +70,12 @@ func (ck *Clerk) ExecuteSQL(con *barista.Connection, query string, query_params 
   for !done {
      for _, addr := range ck.servers {
         err := ck.executeSQL(addr, query, query_params, con)
-	if err != nil {
-	   fmt.Println("ExecuteSQL Error: ", err)
-	} else {
-	   done = true
-	   break
-	}
+        if err != nil {
+           fmt.Println("ExecuteSQL Error: ", err)
+        } else {
+           done = true
+           break
+        }
      }
   }
 
@@ -107,11 +107,11 @@ func (ck *Clerk) OpenConnection() *barista.Connection {
   for !done {
      for _, addr := range ck.servers {
         con, err := ck.openConnection(addr, &con_params)
-	if err != nil {
-	   fmt.Println("OpenConnection Error: ", err)
-	} else {
-	   return con
-	}
+        if err != nil {
+           fmt.Println("OpenConnection Error: ", err)
+        } else {
+           return con
+        }
      }
   }
 
@@ -139,12 +139,12 @@ func (ck *Clerk) CloseConnection(con *barista.Connection) {
   for !done {
      for _, addr := range ck.servers {
         err := ck.closeConnection(addr, con)
-	if err != nil {
-	   fmt.Println("CloseConnection Error: ", err)
-	} else {
-	   done = true
-	   break
-	}
+        if err != nil {
+           fmt.Println("CloseConnection Error: ", err)
+        } else {
+           done = true
+           break
+        }
      }
   }
 }
@@ -180,7 +180,7 @@ func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, co
   if res != nil && res.Tuples != nil {
      for _, tuple := range *(res.Tuples) {
         for _, cell := range *(tuple.Cells) {
-  	   fmt.Printf("%s\t", cell)
+       fmt.Printf("%s\t", cell)
         }
      }
   }
