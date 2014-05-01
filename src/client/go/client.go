@@ -127,7 +127,7 @@ func main() {
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
   // only one record should print even if you run this code multiple times
-  for _, addr := range group_1 {
+  for _, addr := range group_2 {
     res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
     if err == nil {
       PrintResultSet(res)
@@ -138,7 +138,7 @@ func main() {
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
   // only one record should print even if you run this code multiple times
-  for _, addr := range group_1 {
+  for _, addr := range group_3 {
     res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
     if err == nil {
       PrintResultSet(res)
