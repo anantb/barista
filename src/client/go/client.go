@@ -24,19 +24,19 @@ func nrand() int64 {
 
 func PrintResultSet(res *barista.ResultSet) {
   if res != nil && res.FieldNames != nil {
-     for _, field_name := range *(res.FieldNames) {
-        fmt.Printf("%s\t", field_name)
-     }
+    for _, field_name := range *(res.FieldNames) {
+      fmt.Printf("%s\t", field_name)
+    }
   }
 
   fmt.Println()
 
   if res != nil && res.Tuples != nil {
-     for _, tuple := range *(res.Tuples) {
-        for _, cell := range *(tuple.Cells) {
-       fmt.Printf("%s\t", cell)
-        }
-     }
+    for _, tuple := range *(res.Tuples) {
+      for _, cell := range *(tuple.Cells) {
+        fmt.Printf("%s\t", cell)
+      }
+    }
   }
 
   fmt.Println()
