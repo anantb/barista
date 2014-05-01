@@ -82,98 +82,60 @@ func main() {
   // the external consistency we retry only to two machines in the below code
 
   // open connection to a machine in group 1
-  for _, addr := range group_1 {
-    con, err = clerk.OpenConnection(addr)
-    if err == nil {
-      break
-    }
+  con, err = clerk.OpenConnection(group_1)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+
+  // create the table on a machine in group 2  
+  _, err = clerk.ExecuteSQL(group_2, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+  // delete all the data on a machine in group 3  
+  _, err = clerk.ExecuteSQL(group_3, con, "DELETE FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+   
+
+  // insert a record to a machine in group 2  
+  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.831', 'UID')", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
   }
 
-  // create the table on a machine in group 2
-  for _, addr := range group_2 {
-    _, err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
-    if err == nil {
-      break
-    }
-  }
-
-  // delete all the data on a machine in group 3
-  for _, addr := range group_3 {
-    _, err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
-    if err == nil {
-      break
-    }
-  }
-
-  // insert a record to a machine in group 2
-  for _, addr := range group_1 {
-    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.831', 'UID')", nil)
-    if err == nil {
-      break
-    }
-  }
-
-  // insert a record to a machine in group 2
-  for _, addr := range group_2 {
-    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
-    if err == nil {
-      break
-    }
-  }
-
-  // insert a record to a machine in group 2
-  for _, addr := range group_3 {
-    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.830', 'Database Systems')", nil)
-    if err == nil {
-      break
-    }
-  }
 
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
-  // only one record should print even if you run this code multiple times
-  for _, addr := range group_1 {
-    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
-    if err == nil {
-      PrintResultSet(res)
-      break
-    }
+  // only one record should print even if you run this code multiple times  
+  res, err := clerk.ExecuteSQL(group_1, con, "SELECT * FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
   }
-
-  // print all the records from a machine in group 1
-  // all queries should apply in the same order on all the machines
-  // only one record should print even if you run this code multiple times
-  for _, addr := range group_2 {
-    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
-    if err == nil {
-      PrintResultSet(res)
-      break
-    }
-  }
-
-  // print all the records from a machine in group 1
-  // all queries should apply in the same order on all the machines
-  // only one record should print even if you run this code multiple times
-  for _, addr := range group_3 {
-    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
-    if err == nil {
-      PrintResultSet(res)
-      break
-    }
-  }
+  
+  PrintResultSet(res)
+  
 
   // close the connection to a machine in group 3
-  // it should close this client's connection from all machines
-  for _, addr := range group_1 {
-    err := clerk.CloseConnection(addr, con)
-    if err == nil {
-      break
-    }
+  // it should close this client's connection from all machines  
+  err = clerk.CloseConnection(group_3, con)
+  if err != nil {
+    fmt.Println(err)
+    return
   }
+  
 }
 
 // open database connection
-func (ck *Clerk) OpenConnection(addr string) (*barista.Connection, error) {
+func (ck *Clerk) OpenConnection(addrs []string) (*barista.Connection, error) {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -190,12 +152,22 @@ func (ck *Clerk) OpenConnection(addr string) (*barista.Connection, error) {
      Password: &password,
      Database: &database }
 
-  return ck.openConnection(addr, &con_params)
+  var err error
+
+  for _, addr := range addrs {  
+    con, err := ck.openConnection(addr, &con_params)
+    if err == nil {
+      return con, nil
+    }
+  }
+
+  return nil, err
+
 }
 
 
 // execute SQL query
-func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, query_params [][]byte) (*barista.ResultSet, error) {
+func (ck *Clerk) ExecuteSQL(addrs []string, con *barista.Connection, query string, query_params [][]byte) (*barista.ResultSet, error) {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -206,12 +178,21 @@ func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, 
 
   con.ClientId = &clientId
   con.SeqId = &seqId
-  
-  return  ck.executeSQL(addr, query, query_params, con)
+
+  var err error
+
+  for _, addr := range addrs {
+    res, err :=  ck.executeSQL(addr, query, query_params, con)
+    if err == nil {
+      return res, err
+    }    
+  }
+
+  return nil, err
 }
 
 // close database connection
-func (ck *Clerk) CloseConnection(addr string, con *barista.Connection) error {
+func (ck *Clerk) CloseConnection(addrs []string, con *barista.Connection) error {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -223,7 +204,16 @@ func (ck *Clerk) CloseConnection(addr string, con *barista.Connection) error {
   con.ClientId = &clientId
   con.SeqId = &seqId
 
-  return ck.closeConnection(addr, con) 
+  var err error
+
+  for _, addr := range addrs {
+    err = ck.closeConnection(addr, con)
+    if err == nil {
+      return nil
+    }   
+  }
+
+  return err
 }
 
 
