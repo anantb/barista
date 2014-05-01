@@ -87,7 +87,6 @@ func main() {
     fmt.Println(err)
     return
   }
-  
 
   // create the table on a machine in group 2  
   _, err = clerk.ExecuteSQL(group_2, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
@@ -102,15 +101,27 @@ func main() {
     fmt.Println(err)
     return
   }
-   
 
   // insert a record to a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.831', 'UID')", nil)
+  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.831', 'UID')", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
+  // insert a record to a machine in group 2  
+  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  // insert a record to a machine in group 2  
+  _, err = clerk.ExecuteSQL(group_3, con, "INSERT INTO courses values('6.830', 'Database Systems')", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
 
   // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
@@ -122,8 +133,23 @@ func main() {
   }
   
   PrintResultSet(res)
-  
 
+  res, err = clerk.ExecuteSQL(group_2, con, "SELECT * FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+  PrintResultSet(res)
+
+  res, err = clerk.ExecuteSQL(group_3, con, "SELECT * FROM courses", nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+  
+  PrintResultSet(res)
+  
   // close the connection to a machine in group 3
   // it should close this client's connection from all machines  
   err = clerk.CloseConnection(group_3, con)
