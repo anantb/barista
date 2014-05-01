@@ -7,7 +7,7 @@ import "log"
 import "time"
 import "paxos"
 import "sync"
-//import "os"
+import "reflect"
 import "syscall"
 import "encoding/gob"
 import "math/rand"
@@ -137,12 +137,11 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    cells := []*barista.Cell{}
+    cells := [][]byte
     vals := reflect.ValueOf(row)
     for i:=0; i < vals.Len(); i++ {
       val := vals.Index(i).Interface().([]byte)
-      cell := barista.Cell{Value: &val}
-      cells = append(cells, &cell)
+      cells = append(cells, val)
     }
     tuple := barista.Tuple{Cells: &cells}
     tuples = append(tuples, &tuple)
