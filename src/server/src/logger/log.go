@@ -27,7 +27,7 @@ func (lg *Logger) WriteToLog(text string) error {
       return err
   }
   defer f.Close()
-  _, err = f.WriteString(text) 
+  _, err = f.WriteString(text + "\n") 
   return err
 }
 
