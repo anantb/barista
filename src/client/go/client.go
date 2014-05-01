@@ -22,6 +22,26 @@ func nrand() int64 {
   return x
 }
 
+func PrintResultSet(res *barista.ResultSet) {
+  if res != nil && res.FieldNames != nil {
+     for _, field_name := range *(res.FieldNames) {
+        fmt.Printf("%s\t", field_name)
+     }
+  }
+
+  fmt.Println()
+
+  if res != nil && res.Tuples != nil {
+     for _, tuple := range *(res.Tuples) {
+        for _, cell := range *(tuple.Cells) {
+       fmt.Printf("%s\t", cell)
+        }
+     }
+  }
+
+  fmt.Println()
+}
+
 type Clerk struct {
   mu sync.Mutex
   me int64 // passed as clientId
@@ -57,29 +77,30 @@ func main() {
   }
 
   for _, addr := range addrs_2 {
-    err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+    _, err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
     if err == nil {
       break
     }
   }
 
   for _, addr := range addrs_3 {
-    err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
+    _, err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
     if err == nil {
       break
     }
   }
 
   for _, addr := range addrs_1 {
-    err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
     if err == nil {
       break
     }
   }
 
   for _, addr := range addrs_1 {
-    err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
+    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
     if err == nil {
+      PrintResultSet(res)
       break
     }
   }
@@ -110,17 +131,12 @@ func (ck *Clerk) OpenConnection(addr string) (*barista.Connection, error) {
      Password: &password,
      Database: &database }
 
-  con, err := ck.openConnection(addr, &con_params)
-  if err != nil {
-     return nil, err
-  }
-
-  return con, nil
+  return ck.openConnection(addr, &con_params)
 }
 
 
 // execute SQL query
-func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, query_params [][]byte) error {
+func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, query_params [][]byte) (*barista.ResultSet, error) {
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -132,12 +148,7 @@ func (ck *Clerk) ExecuteSQL(addr string, con *barista.Connection, query string, 
   con.ClientId = &clientId
   con.SeqId = &seqId
   
-  err := ck.executeSQL(addr, query, query_params, con)
-  if err != nil {
-     return err
-  }
-
-  return nil
+  return  ck.executeSQL(addr, query, query_params, con)
 }
 
 // close database connection
@@ -153,22 +164,16 @@ func (ck *Clerk) CloseConnection(addr string, con *barista.Connection) error {
   con.ClientId = &clientId
   con.SeqId = &seqId
 
-  err := ck.closeConnection(addr, con)
-  if err != nil {
-     return err
-  } 
-
-  return nil
- 
+  return ck.closeConnection(addr, con) 
 }
 
 
-func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, con *barista.Connection) error {
+func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, con *barista.Connection) (*barista.ResultSet, error) {
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
   if err != nil {
-     return err
+     return nil, err
   }
 
   transport.Open()
@@ -179,28 +184,10 @@ func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, co
   res, err := client.ExecuteSql(con, query, query_params)
 
   if err != nil {
-     return err
+     return nil, err
   }
 
-  if res != nil && res.FieldNames != nil {
-     for _, field_name := range *(res.FieldNames) {
-        fmt.Printf("%s\t", field_name)
-     }
-  }
-
-  fmt.Println()
-
-  if res != nil && res.Tuples != nil {
-     for _, tuple := range *(res.Tuples) {
-        for _, cell := range *(tuple.Cells) {
-       fmt.Printf("%s\t", cell)
-        }
-     }
-  }
-
-  fmt.Println()
-
-  return nil
+  return res, nil
 }
 
 func (ck *Clerk) openConnection(addr string, con_params *barista.ConnectionParams) (*barista.Connection, error) {
