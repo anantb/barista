@@ -24,7 +24,7 @@ func Make(filename string) *Logger {
 func (lg *Logger) WriteToLog(text string) error {
   //return ioutil.WriteFile(lg.filename, b, 0644)
   f, err := os.OpenFile(lg.filename, os.O_APPEND, 0644) 
-  n, err := f.WriteString(text) 
+  _, err = f.WriteString(text) 
   f.Close()
   return err
 }
