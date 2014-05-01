@@ -21,10 +21,10 @@ import "db"
 const Debug=0
 
 func DPrintf(format string, a ...interface{}) (n int, err error) {
-        if Debug > 0 {
-                log.Printf(format, a...)
-        }
-        return
+  if Debug > 0 {
+    log.Printf(format, a...)
+  }
+  return
 }
 
 type LastSeen struct {
@@ -215,9 +215,10 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
   }
 
   update := "UPDATE sqlpaxoslog SET lastseqnum=" + strconv.Itoa(seqnum) + ";"
-  _, _, errUpdate := sp.connections[clientId].QueryTxn(tx, update, nil)
+  params := make([]interface{}, 0)
+  _, errUpdate := sp.connections[clientId].ExecTxn(tx, update, params...)
   if errUpdate != nil {
-     fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
+    fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
   }
 
   errEnd := sp.connections[clientId].EndTxn(tx)
@@ -512,7 +513,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
         } else if sp.unreliable && (rand.Int63() % 1000) < 200 {
           // process the request but force discard of reply.
           //c1 := conn.(*net.UnixConn)
-	  c1 := conn.(*net.TCPConn)
+	        c1 := conn.(*net.TCPConn)
           f, _ := c1.File()
           err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
           if err != nil {
