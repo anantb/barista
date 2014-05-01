@@ -18,7 +18,29 @@ func port(tag string, host int) string {
   s += strconv.Itoa(host)
   return s
 }
-
+func getandcheckleader(t *testing.T, pxa []*MultiPaxos) int{
+  out:=-1
+  for i:=0; i<len(pxa); i++{
+    current := pxa[i]
+    if current.isLeader(){
+      out = i
+    }
+  }
+  if out == -1{
+    t.Fatalf("No leader has been elected!")
+  }
+  return out
+}
+func checkval(t *testing.T, pxa []*MultiPaxos, seq int, expected interface{}){
+  for i := 0; i < len(pxa); i++ {
+    if pxa[i] != nil {
+      decided, v1 := pxa[i].Status(seq)
+      if decided && v1 != expected{
+        t.Fatalf("Agreed on value incorrect.")
+      }
+    }
+  }
+}
 func ndecided(t *testing.T, pxa []*MultiPaxos, seq int) int {
   count := 0
   var v interface{}
@@ -116,53 +138,156 @@ func TestBasic(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  fmt.Printf("Test: Single proposer ...\n")
+  fmt.Printf("Test: Elect Leader Instance 0 ...\n")
 
-  for i:=0; i<nMultiPaxos; i++{
-    pxa[i].Start(0, "hello")
-  }
   waitn(t, pxa, 0, nMultiPaxos)
+
+  l := getandcheckleader(t,pxa)
+  
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Single Agreement to leader...\n")
+
+  pxa[l].Start(1,"hello")
+
+  waitn(t, pxa, 1, nMultiPaxos)
+  
+  checkval(t,pxa,1,"hello")
 
   fmt.Printf("  ... Passed\n")
 
   fmt.Printf("Test: Many proposers, same value ...\n")
 
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].Start(1, 77)
+    pxa[i].Start(2, 77)
   }
-  waitn(t, pxa, 1, nMultiPaxos)
-
-  fmt.Printf("  ... Passed\n")
-
-  fmt.Printf("Test: Many proposers, different values ...\n")
-
-  pxa[0].Start(2, 100)
-  pxa[1].Start(2, 101)
-  pxa[2].Start(2, 102)
   waitn(t, pxa, 2, nMultiPaxos)
 
+  checkval(t,pxa,2,77)
+
   fmt.Printf("  ... Passed\n")
 
-  /*fmt.Printf("Test: Out-of-order instances ...\n")
+  fmt.Printf("Test: Many proposers, different values (only leader's should win) ...\n")
 
-  pxa[0].Start(7, 700)
-  pxa[0].Start(6, 600)
-  pxa[1].Start(5, 500)
-  waitn(t, pxa, 7, nMultiPaxos)
-  pxa[0].Start(4, 400)
-  pxa[1].Start(3, 300)
-  waitn(t, pxa, 6, nMultiPaxos)
-  waitn(t, pxa, 5, nMultiPaxos)
-  waitn(t, pxa, 4, nMultiPaxos)
+  data := [3]int{100,101,102}
+  data[l] = 500
+
+  pxa[0].Start(3, data[0])
+  pxa[1].Start(3, data[1])
+  pxa[2].Start(3, data[2])
+
   waitn(t, pxa, 3, nMultiPaxos)
 
-  if pxa[0].Max() != 7 {
-    t.Fatalf("wrong Max()")
-  }*/
+  checkval(t,pxa,3,500)
+
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Out-of-order instances ...\n")
+
+  pxa[l].Start(8, 300)
+  pxa[l].Start(7, 600)
+  pxa[l].Start(6, 500)
+  pxa[l].Start(5, 400)
+  pxa[l].Start(4, 300)
+  //waiting for instance 8 to complete means all the rest before it completed
+  //can't respong to client for instance i until the results of all previous instances known
+  waitn(t, pxa, 8, nMultiPaxos)
+  checkval(t,pxa,4,300)
+  checkval(t,pxa,5,400)
+  checkval(t,pxa,6,500)
+  checkval(t,pxa,7,600)
+  checkval(t,pxa,8,300)
+
+  if pxa[0].Max() != 9 {
+    t.Fatalf("wrong Max() got: "+strconv.Itoa(pxa[0].Max()))
+  }
 
   fmt.Printf("  ... Passed\n")
 }
+func TestRPCCount(t *testing.T) {
+  runtime.GOMAXPROCS(4)
 
+  fmt.Printf("Test: RPC counts aren't too high ...\n")
+
+  const nMultiPaxos = 3
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  var pxh []string = make([]string, nMultiPaxos)
+  defer cleanup(pxa)
+
+  for i := 0; i < nMultiPaxos; i++ {
+    pxh[i] = port("count", i)
+  }
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i] = Make(pxh, i, nil)
+  }
+
+  waitmajority(t, pxa, 0)
+
+  l := getandcheckleader(t,pxa)
+
+  //initial total after initial leader election
+  totalbase := 0
+  for j := 0; j < nMultiPaxos; j++ {
+    totalbase += pxa[j].rpcCount
+  }
+
+  ninst1 := 5
+  seq := 1
+  for i := 0; i < ninst1; i++ {
+    pxa[l].Start(seq, "x")
+    waitn(t, pxa, seq, nMultiPaxos)
+    checkval(t,pxa,seq,"x")
+    seq++
+  }
+
+  time.Sleep(3 * time.Second)
+  
+  total1 := 0
+  for j := 0; j < nMultiPaxos; j++ {
+    total1 += pxa[j].rpcCount
+  }
+
+  totalactual := total1 - totalbase
+  // per agreement:
+  // 3 accepts
+  // 3 decides
+  // ninst1 agreements
+  expected1 := ninst1 * (nMultiPaxos + nMultiPaxos)
+  if totalactual > expected1 {
+    t.Fatalf("too many RPCs for serial Start()s; %v instances, got %v, expected %v",
+      ninst1, total1, expected1)
+  }
+  fmt.Printf(" Total messages used: "+strconv.Itoa(totalactual)+" ... Passed\n")
+  /*
+  ninst2 := 5
+  for i := 0; i < ninst2; i++ {
+    for j := 0; j < nMultiPaxos; j++ {
+      go pxa[j].Start(seq, j + (i * 10))
+    }
+    waitn(t, pxa, seq, nMultiPaxos)
+    seq++
+  }
+
+  time.Sleep(2 * time.Second)
+
+  total2 := 0
+  for j := 0; j < nMultiPaxos; j++ {
+    total2 += pxa[j].rpcCount
+  }
+  total2 -= total1
+
+  // worst case per agreement:
+  // Proposer 1: 3 prep, 3 acc, 3 decides.
+  // Proposer 2: 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
+  // Proposer 3: 3 prep, 3 acc, 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
+  expected2 := ninst2 * nMultiPaxos * 15
+  if total2 > expected2 {
+    t.Fatalf("too many RPCs for concurrent Start()s; %v instances, got %v, expected %v",
+      ninst2, total2, expected2)
+  }
+
+  fmt.Printf("  ... Passed\n")*/
+}
 func TestDeaf(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -419,77 +544,6 @@ func TestForgetMem(t *testing.T) {
   fmt.Printf("  ... Passed\n")
 }
 
-func TestRPCCount(t *testing.T) {
-  runtime.GOMAXPROCS(4)
-
-  fmt.Printf("Test: RPC counts aren't too high ...\n")
-
-  const nMultiPaxos = 3
-  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
-  var pxh []string = make([]string, nMultiPaxos)
-  defer cleanup(pxa)
-
-  for i := 0; i < nMultiPaxos; i++ {
-    pxh[i] = port("count", i)
-  }
-  for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
-  }
-
-  ninst1 := 5
-  seq := 0
-  for i := 0; i < ninst1; i++ {
-    pxa[0].Start(seq, "x")
-    waitn(t, pxa, seq, nMultiPaxos)
-    seq++
-  }
-
-  time.Sleep(2 * time.Second)
-
-  total1 := 0
-  for j := 0; j < nMultiPaxos; j++ {
-    total1 += pxa[j].rpcCount
-  }
-
-  // per agreement:
-  // 3 prepares
-  // 3 accepts
-  // 3 decides
-  expected1 := ninst1 * nMultiPaxos * nMultiPaxos
-  if total1 > expected1 {
-    t.Fatalf("too many RPCs for serial Start()s; %v instances, got %v, expected %v",
-      ninst1, total1, expected1)
-  }
-
-  ninst2 := 5
-  for i := 0; i < ninst2; i++ {
-    for j := 0; j < nMultiPaxos; j++ {
-      go pxa[j].Start(seq, j + (i * 10))
-    }
-    waitn(t, pxa, seq, nMultiPaxos)
-    seq++
-  }
-
-  time.Sleep(2 * time.Second)
-
-  total2 := 0
-  for j := 0; j < nMultiPaxos; j++ {
-    total2 += pxa[j].rpcCount
-  }
-  total2 -= total1
-
-  // worst case per agreement:
-  // Proposer 1: 3 prep, 3 acc, 3 decides.
-  // Proposer 2: 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
-  // Proposer 3: 3 prep, 3 acc, 3 prep, 3 acc, 3 prep, 3 acc, 3 decides.
-  expected2 := ninst2 * nMultiPaxos * 15
-  if total2 > expected2 {
-    t.Fatalf("too many RPCs for concurrent Start()s; %v instances, got %v, expected %v",
-      ninst2, total2, expected2)
-  }
-
-  fmt.Printf("  ... Passed\n")
-}
 
 //
 // many agreements (without failures)

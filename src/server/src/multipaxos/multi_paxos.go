@@ -33,8 +33,6 @@ func (mpx *MultiPaxos) isInit() bool{
   return mpx.leader.epoch > 0
 }
 func (mpx *MultiPaxos) isLeader() bool{
-  mpx.mu.Lock()
-  defer mpx.mu.Unlock()
   l := mpx.leader
   if(mpx.isInit()){
     if(l.id==mpx.me){
@@ -55,15 +53,18 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
     return false, INVALID_INSTANCE, ""
   }
   if mpx.isLeader(){
-    mop := MultiPaxosOP{}
-    mop.Type = NORMAL
-    mop.EpochNum = mpx.leader.epoch
-    mop.Op = v
-    
-    //Old Start: mpx.px.Start(seq,mop)
-    //New Start:
-    go mpx.LeaderStart(seq,mop)
-    mpx.Log(1,"Start: agreement started for "+strconv.Itoa(seq))
+    //needed so don't do accept on something that has already been accepted
+    if seq > mpx.executionPointer-1{
+      mop := MultiPaxosOP{}
+      mop.Type = NORMAL
+      mop.EpochNum = mpx.leader.epoch
+      mop.Op = v
+      
+      //Old Start: mpx.px.Start(seq,mop)
+      //New Start:
+      go mpx.LeaderStart(seq,mop)
+      mpx.Log(1,"Start: agreement started for "+strconv.Itoa(seq))
+    }
     return true,OK, ""
   }
   if(mpx.isInit()){
