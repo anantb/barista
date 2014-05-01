@@ -65,9 +65,9 @@ func MakeClerk() *Clerk {
 // 128.52.161.24:9000
 
 // to demonstrate external consistency we create three groups
-var group_1 = []string {"128.52.161.243:9000", "128.52.160.104:9000"}
+var group_1 = []string {"128.52.161.243:9000"}
 var group_2 = []string {"128.52.161.242:9000", "128.52.160.122:9000"}
-var group_3 = []string {"128.52.161.24:9000"}
+var group_3 = []string {"128.52.161.24:9000", "128.52.160.104:9000"}
 
 
 func main() {  
@@ -88,8 +88,9 @@ func main() {
     }
   }
 
+  fmt.Println("Connection is: ", con)
   // create the table on a machine in group 2
-  for _, addr := range group_2 {
+  for _, addr := range group_1 {
     _, err := clerk.ExecuteSQL(addr, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
     if err == nil {
       break
@@ -97,7 +98,7 @@ func main() {
   }
 
   // delete all the data on a machine in group 3
-  for _, addr := range group_3 {
+  for _, addr := range group_1 {
     _, err := clerk.ExecuteSQL(addr, con, "DELETE FROM courses", nil)
     if err == nil {
       break
@@ -105,9 +106,31 @@ func main() {
   }
 
   // insert a record to a machine in group 2
-  for _, addr := range group_2 {
-    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+  for _, addr := range group_1 {
+    _, err := clerk.ExecuteSQL(addr, con, "INSERT INTO courses values('6.831', 'UID')", nil)
     if err == nil {
+      break
+    }
+  }
+
+  // print all the records from a machine in group 1
+  // all queries should apply in the same order on all the machines
+  // only one record should print even if you run this code multiple times
+  for _, addr := range group_1 {
+    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
+    if err == nil {
+      PrintResultSet(res)
+      break
+    }
+  }
+
+  // print all the records from a machine in group 1
+  // all queries should apply in the same order on all the machines
+  // only one record should print even if you run this code multiple times
+  for _, addr := range group_1 {
+    res, err := clerk.ExecuteSQL(addr, con, "SELECT * FROM courses", nil)
+    if err == nil {
+      PrintResultSet(res)
       break
     }
   }
@@ -125,7 +148,7 @@ func main() {
 
   // close the connection to a machine in group 3
   // it should close this client's connection from all machines
-  for _, addr := range group_3 {
+  for _, addr := range group_1 {
     err := clerk.CloseConnection(addr, con)
     if err == nil {
       break

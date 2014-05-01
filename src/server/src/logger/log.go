@@ -22,10 +22,12 @@ func Make(filename string) *Logger {
 }
 
 func (lg *Logger) WriteToLog(text string) error {
-  //return ioutil.WriteFile(lg.filename, b, 0644)
-  f, err := os.OpenFile(lg.filename, os.O_APPEND, 0644) 
+  f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|O_CREATE, 0644)
+  if err != nil {
+      return err
+  }
+  defer f.Close()
   _, err = f.WriteString(text) 
-  f.Close()
   return err
 }
 
