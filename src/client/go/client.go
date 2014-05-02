@@ -11,13 +11,13 @@ import "fmt"
 import "barista"
 import "git.apache.org/thrift.git/lib/go/thrift"
 import "sync"
-import crand "crypto/rand"
+import "crypto/rand"
 import "math/big"
 import "strconv"
 
 func nrand() int64 {
   max := big.NewInt(int64(1) << 62)
-  bigx, _ := crand.Int(crand.Reader, max)
+  bigx, _ := rand.Int(crand.Reader, max)
   x := bigx.Int64()
   return x
 }
@@ -145,7 +145,9 @@ func main() {
 }
 
 // open database connection
-func (ck *Clerk) OpenConnection(addrs []string) (*barista.Connection, error) {
+func (ck *Clerk) OpenConnection(
+  addrs []string) (*barista.Connection, error) {
+
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -206,7 +208,7 @@ func (ck *Clerk) ExecuteSQL(
 
 // close database connection
 func (ck *Clerk) CloseConnection(
-    addrs []string, con *barista.Connection) error {
+  addrs []string, con *barista.Connection) error {
 
   ck.mu.Lock()
   defer ck.mu.Unlock()
@@ -232,9 +234,10 @@ func (ck *Clerk) CloseConnection(
 }
 
 
-func execute_sql (
+func execute_sql(
     addr string, query string, query_params [][]byte,
     con *barista.Connection) (*barista.ResultSet, error) {
+
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -258,6 +261,7 @@ func execute_sql (
 
 func open_connection(addr string,
     con_params *barista.ConnectionParams) (*barista.Connection, error) {
+
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -280,6 +284,7 @@ func open_connection(addr string,
 }
 
 func close_connection(addr string, con *barista.Connection) error {
+
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -302,6 +307,7 @@ func close_connection(addr string, con *barista.Connection) error {
 }
 
 func print_result_set(res *barista.ResultSet) {
+
   if res != nil && res.FieldNames != nil {
     for _, field_name := range *(res.FieldNames) {
       fmt.Printf("%s\t", field_name)
