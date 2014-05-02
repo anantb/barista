@@ -107,9 +107,11 @@ func main() {
     return
   }
 
-  // print all the records from a machine in group 1
   // all queries should apply in the same order on all the machines
-  // all the three records should print regardless of whichever machine you query 
+  // all the three records should print regardless of whichever 
+  // machine/group you query 
+
+  // print all the records from a machine in group 1
   res, err := clerk.ExecuteSQL(group_1, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
@@ -118,6 +120,7 @@ func main() {
   
   print_result_set(res)
 
+  // print all the records from a machine in group 2
   res, err = clerk.ExecuteSQL(group_2, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
@@ -126,6 +129,7 @@ func main() {
   
   print_result_set(res)
 
+  // print all the records from a machine in group 3
   res, err = clerk.ExecuteSQL(group_3, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
