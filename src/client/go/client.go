@@ -22,26 +22,6 @@ func nrand() int64 {
   return x
 }
 
-func PrintResultSet(res *barista.ResultSet) {
-  if res != nil && res.FieldNames != nil {
-    for _, field_name := range *(res.FieldNames) {
-      fmt.Printf("%s\t", field_name)
-    }
-  }
-
-  fmt.Println()
-
-  if res != nil && res.Tuples != nil {
-    for _, tuple := range *(res.Tuples) {
-      for _, cell := range *(tuple.Cells) {
-        fmt.Printf("%s\t", cell)
-      }
-      fmt.Println()
-    }
-  }
-
-  fmt.Println()
-}
 
 type Clerk struct {
   mu sync.Mutex
@@ -89,7 +69,8 @@ func main() {
   }
 
   // create the table on a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con, "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+  _, err = clerk.ExecuteSQL(group_2, con,
+      "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -103,21 +84,24 @@ func main() {
   }
 
   // insert a record to a machine in group 1  
-  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.831', 'UID')", nil)
+  _, err = clerk.ExecuteSQL(group_1, con,
+      "INSERT INTO courses values('6.831', 'UID')", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
   // insert a record to a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con, "INSERT INTO courses values('6.830', 'Databases')", nil)
+  _, err = clerk.ExecuteSQL(group_2, con,
+      "INSERT INTO courses values('6.830', 'Databases')", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
   // insert a record to a machine in group 3 
-  _, err = clerk.ExecuteSQL(group_1, con, "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+  _, err = clerk.ExecuteSQL(group_1, con,
+      "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -132,7 +116,7 @@ func main() {
     return
   }
   
-  PrintResultSet(res)
+  print_result_set(res)
 
   res, err = clerk.ExecuteSQL(group_2, con, "SELECT * FROM courses", nil)
   if err != nil {
@@ -140,7 +124,7 @@ func main() {
     return
   }
   
-  PrintResultSet(res)
+  print_result_set(res)
 
   res, err = clerk.ExecuteSQL(group_3, con, "SELECT * FROM courses", nil)
   if err != nil {
@@ -148,7 +132,7 @@ func main() {
     return
   }
   
-  PrintResultSet(res)
+  print_result_set(res)
   
   // close the connection to a machine in group 3
   // it should close this client's connection from all machines  
@@ -181,7 +165,7 @@ func (ck *Clerk) OpenConnection(addrs []string) (*barista.Connection, error) {
   var err error
 
   for _, addr := range addrs {  
-    con, err := ck.openConnection(addr, &con_params)
+    con, err := open_connection(addr, &con_params)
     if err == nil {
       return con, nil
     }
@@ -193,7 +177,10 @@ func (ck *Clerk) OpenConnection(addrs []string) (*barista.Connection, error) {
 
 
 // execute SQL query
-func (ck *Clerk) ExecuteSQL(addrs []string, con *barista.Connection, query string, query_params [][]byte) (*barista.ResultSet, error) {
+func (ck *Clerk) ExecuteSQL(
+    addrs []string, con *barista.Connection, query string,
+    query_params [][]byte) (*barista.ResultSet, error) {
+
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -208,7 +195,7 @@ func (ck *Clerk) ExecuteSQL(addrs []string, con *barista.Connection, query strin
   var err error
 
   for _, addr := range addrs {
-    res, err :=  ck.executeSQL(addr, query, query_params, con)
+    res, err :=  execute_sql(addr, query, query_params, con)
     if err == nil {
       return res, err
     }    
@@ -218,7 +205,9 @@ func (ck *Clerk) ExecuteSQL(addrs []string, con *barista.Connection, query strin
 }
 
 // close database connection
-func (ck *Clerk) CloseConnection(addrs []string, con *barista.Connection) error {
+func (ck *Clerk) CloseConnection(
+    addrs []string, con *barista.Connection) error {
+
   ck.mu.Lock()
   defer ck.mu.Unlock()
 
@@ -233,7 +222,7 @@ func (ck *Clerk) CloseConnection(addrs []string, con *barista.Connection) error 
   var err error
 
   for _, addr := range addrs {
-    err = ck.closeConnection(addr, con)
+    err = close_connection(addr, con)
     if err == nil {
       return nil
     }   
@@ -243,7 +232,9 @@ func (ck *Clerk) CloseConnection(addrs []string, con *barista.Connection) error 
 }
 
 
-func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, con *barista.Connection) (*barista.ResultSet, error) {
+func execute_sql (
+    addr string, query string, query_params [][]byte,
+    con *barista.Connection) (*barista.ResultSet, error) {
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -265,7 +256,8 @@ func (ck *Clerk) executeSQL(addr string, query string, query_params [][]byte, co
   return res, nil
 }
 
-func (ck *Clerk) openConnection(addr string, con_params *barista.ConnectionParams) (*barista.Connection, error) {
+func open_connection(addr string,
+    con_params *barista.ConnectionParams) (*barista.Connection, error) {
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -287,7 +279,7 @@ func (ck *Clerk) openConnection(addr string, con_params *barista.ConnectionParam
   return con, nil
 }
 
-func (ck *Clerk) closeConnection(addr string, con *barista.Connection) error {
+func close_connection(addr string, con *barista.Connection) error {
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
 
@@ -307,5 +299,26 @@ func (ck *Clerk) closeConnection(addr string, con *barista.Connection) error {
   }
 
   return nil
+}
+
+func print_result_set(res *barista.ResultSet) {
+  if res != nil && res.FieldNames != nil {
+    for _, field_name := range *(res.FieldNames) {
+      fmt.Printf("%s\t", field_name)
+    }
+  }
+
+  fmt.Println()
+
+  if res != nil && res.Tuples != nil {
+    for _, tuple := range *(res.Tuples) {
+      for _, cell := range *(tuple.Cells) {
+        fmt.Printf("%s\t", cell)
+      }
+      fmt.Println()
+    }
+  }
+
+  fmt.Println()
 }
 
