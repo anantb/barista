@@ -13,6 +13,7 @@ import "math/rand"
 import "strconv"
 import "time"
 import "encoding/gob"
+import "sort"
 //import "runtime"
 
 type MultiPaxos struct{
@@ -73,7 +74,9 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
   if(mpx.isInit()){
     mpx.Log(1,"Start: not leader "+strconv.Itoa(seq))
     return false,WRONG_SERVER, mpx.peers[mpx.leader.id]
-  }else{
+  }
+  return false, UNKNOWN_LEADER, ""
+  /*else{
     mpx.Log(1,"Start: waiting for init "+strconv.Itoa(seq))
     for !mpx.isInit(){
       //loop spin, maybe do something better here
@@ -81,7 +84,7 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
     }
     mpx.Log(1,"Start: actually starting "+strconv.Itoa(seq))
     return mpx.Start(seq,v)
-  }
+  }*/
 }
 
 
@@ -290,6 +293,37 @@ func (mpx *MultiPaxos) ping(){
   }
   mpx.mu.Unlock()
 }
+func (mpx *MultiPaxos) getInstancesFromLeader(){
+  //make rpc to leader
+  mpx.mu.Lock()
+  l := mpx.leader
+  mpx.mu.Unlock()
+
+  leaderAddr := mpx.peers[l.id]
+  args := &GetInstanceDataArgs{}
+  reply :=  &GetInstanceDataReply{}
+  ok := call(leaderAddr, "MultiPaxos.HandleGetInstancesData", args, reply)
+
+  //if rpc succeeded then update records
+
+  if ok{
+
+      //sort instance data
+      instanceNums := make([]int,len(reply.InstancesData),len(reply.InstancesData))
+      index := 0
+      for instanceNum,_ := range reply.InstancesData{
+        instanceNums[index] = instanceNum
+        index++
+      }
+
+      //now apply instance data in order
+      sort.Sort(instanceNums)
+      for _,instanceNum := range instanceNums{
+        data,_:= reply.InstancesData[instanceNum]
+        mpx.commitAndLogInstance(instanceNum,data)
+      }
+  }
+}
 //procedure run in go routine in the background that 
 //checks the status of the Paxos instance pointed to by the
 //executionPointer and then if agreement occured, the agreed upon
@@ -324,10 +358,11 @@ func (mpx *MultiPaxos) refresh(){
 
       to = 10*time.Millisecond
     }else{
-      mpx.ping()
       if(!mpx.isInit() || mpx.leader.numPingsMissed > NPINGS){
         mpx.Log(1,"refresh: initiating failover "+strconv.Itoa(executionPointer))
         mpx.initiateLeaderChange()
+      }else{
+        mpx.getInstancesFromLeader()
       }
       if(to < 3*time.Second){
         to = 2*to
@@ -364,6 +399,9 @@ func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
   reply.Status = OK
   return nil
 }
+func (mpx *MultiPaxos) HandleGetInstancesData(args *GetInstanceDataArgs, reply *GetInstanceDataReply) error{
+  return nil
+}
 //
 // the application wants to create a paxos peer.
 // the ports of all the paxos peers (including this one)
@@ -377,7 +415,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   mpx := &MultiPaxos{}
   mpx.peers = peers
   mpx.me = me
-  mpx.executionPointer=0
+  mpx.executionPointer=-1
   mpx.instanceNum = 0
   mpx.leader = &MultiPaxosLeader{0,me,0}
   mpx.transition = false

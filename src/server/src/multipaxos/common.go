@@ -49,6 +49,12 @@ type PingArgs struct{
 type PingReply struct{
 	Status Status
 }
+type GetInstanceDataArgs struct{
+
+}
+type GetInstanceDataReply struct{
+	Status Status
+}
 //***********************************************************************************************************************************//
 //Helper Functions
 //***********************************************************************************************************************************//
