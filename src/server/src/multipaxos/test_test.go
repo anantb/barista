@@ -6,6 +6,7 @@ import "strconv"
 import "os"
 import "time"
 import "fmt"
+//import "log"
 //import "math/rand"
 
 func port(tag string, host int) string {
@@ -23,6 +24,9 @@ func getandcheckleader(t *testing.T, pxa []*MultiPaxos) int{
   for i:=0; i<len(pxa); i++{
     current := pxa[i]
     if current.isLeader(){
+      if(out!=-1){
+        t.Fatalf("Found too many leaders!")
+      }
       out = i
     }
   }
@@ -36,7 +40,8 @@ func checkval(t *testing.T, pxa []*MultiPaxos, seq int, expected interface{}){
     if pxa[i] != nil {
       decided, v1 := pxa[i].Status(seq)
       if decided && v1 != expected{
-        t.Fatalf("Agreed on value incorrect.")
+            t.Fatalf("decided values do not match; seq=%v i=%v me=%v expected=%v actual=%v",
+            seq, i, pxa[i].me, expected, v1)
       }
     }
   }
@@ -49,8 +54,8 @@ func ndecided(t *testing.T, pxa []*MultiPaxos, seq int) int {
       decided, v1 := pxa[i].Status(seq)
       if decided {
         if count > 0 && v != v1 {
-          t.Fatalf("decided values do not match; seq=%v i=%v v=%v v1=%v",
-            seq, i, v, v1)
+          t.Fatalf("decided values do not match; seq=%v i=%v me=%v v=%v v1=%v",
+            seq, i, pxa[i].me, v, v1)
         }
         count++
         v = v1
@@ -306,6 +311,7 @@ func TestLeaderDeaths(t *testing.T) {
   fmt.Printf("Test: First leader death, make sure changes ...\n")
 
   waitmajority(t, pxa, 0)
+  //t.Fatalf("original=%v",pxa)
 
   l := getandcheckleader(t,pxa)
     
@@ -324,13 +330,18 @@ func TestLeaderDeaths(t *testing.T) {
   pxa[l].Kill()
 
   //wait for replicas to detect failure
-  time.Sleep(nMultiPaxos*PINGINTERVAL*NPINGS)
+  time.Sleep(2*PINGINTERVAL*NPINGS)
 
-  pxanew := append(pxa[:l], pxa[l+1:]...)
+  //fmt.Printf("old=%v >>>>>>>>>>>>>>>>>>>>>>>>",pxa)
+  pxaNewSize := len(pxa)-1
+  pxanew := make([]*MultiPaxos,0,pxaNewSize)
+  pxanew =append(pxanew, pxa[:l]...)
+  pxanew =append(pxanew, pxa[l+1:]...)
+  //fmt.Printf("new=%v >>>>>>>>>>>>>>>>>>>>>>>>>>",pxanew)
 
   lnew := getandcheckleader(t,pxanew)
-
-  if l == lnew{
+  //t.Fatalf("lnew=%v l=%v old=%v new=%v",lnew,l,pxa,pxanew)
+  if pxa[l].me == pxanew[lnew].me{
     t.Fatalf("Leader did not change despite having failed!")
   }
   maxAfterFail := pxanew[lnew].Max()
@@ -348,17 +359,55 @@ func TestLeaderDeaths(t *testing.T) {
 
   fmt.Printf("Test: Second leader death and in flight requests...\n")
 
-  pxa[lnew].Kill()
+  nRequests := 20
+  cutoff := nRequests/2 + 1
+
+  for j:=1; j<nRequests+1; j++{
+    pxanew[lnew].Start(maxAfterFail+j,"before"+strconv.Itoa(j))
+    if(j==cutoff){
+      //give some propagation time 
+      time.Sleep(time.Millisecond)
+
+      pxanew[lnew].Kill()
+    }
+  }
+
   //wait for replicas to detect failure
   time.Sleep(3*PINGINTERVAL*NPINGS)
 
-  pxanew1 := append(pxanew[:lnew], pxanew[lnew+1:]...)
-
+  pxaNew1Size := len(pxanew)-1
+  pxanew1 := make([]*MultiPaxos,0,pxaNew1Size)
+  pxanew1 =append(pxanew1, pxanew[:lnew]...)
+  pxanew1 =append(pxanew1, pxanew[lnew+1:]...)
   lnew1 := getandcheckleader(t,pxanew1)
-  if lnew1 == lnew || lnew1 == l{
-    t.Fatalf("Leader did not change despite having failed!")
-  }
+  //t.Fatalf("lnew=%v lnew1=%v old=%v new=%v",lnew,lnew1,pxanew,pxanew1)
 
+  if pxanew1[lnew1].me == pxanew[lnew].me || pxanew1[lnew1].me == pxa[l].me{
+      t.Fatalf("Leader did not change despite having failed!; olderleader=%v oldleader=%v newleader=%v",
+            pxa[l].me, pxanew[lnew].me , pxanew1[lnew1].me)
+  }
+  fmt.Printf("Second Leader Death Failover Passed...\n")
+  missed := false
+  for j:=1; j<nRequests+1; j++{
+    //see if old leader finished
+    ok,_ := pxanew1[lnew1].Status(maxAfterFail+j)
+    if !ok{
+      //if didn't finish then have new leader submit new value, should win
+      pxanew1[lnew1].Start(maxAfterFail+j,"after"+strconv.Itoa(j))
+      waitmajority(t, pxanew1, maxAfterFail+j)
+      checkval(t,pxanew1,maxAfterFail+j,"after"+strconv.Itoa(j))
+    }
+    okOld,_ := pxanew[lnew].Status(maxAfterFail+j)
+    if !okOld{
+      missed = true
+    }else{
+      checkval(t,pxanew1,maxAfterFail+j,"before"+strconv.Itoa(j))
+      if missed == true{
+        t.Fatalf("Old leader returned a value when it should not have! There was a hole in the paxos log before the return.")
+      }
+    }
+  } 
+  fmt.Printf("Second Leader Death In Flight Request Override/Recovery Passed...\n")
   fmt.Printf("  ... Passed\n")
 }
 /*

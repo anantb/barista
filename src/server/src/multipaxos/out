@@ -1,1117 +1,1176 @@
-Test: Elect Leader Instance 0 ...
-  ... Passed
-Test: Single Agreement to leader ...
-  ... Passed
-Test: Many proposers, same value ...
-  ... Passed
-Test: Many proposers, different values (only leader's should win) ...
-  ... Passed
-Test: Out-of-order instances ...
-  ... Passed
-Test: RPC counts aren't too high ...
- Total messages used: 20 ... Passed
- Total messages used: 20  ... Passed
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: initiating failover 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: initiating failover 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: initiating failover 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderChange: starting leader change
 Test: First leader death, make sure changes ...
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: initiating failover 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: initiating failover 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 0  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 0  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 0  new leader/var/tmp/824-1000/px-15534-leaderdeaths-2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 0  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 0  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 0  new leader/var/tmp/824-1000/px-15534-leaderdeaths-2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 0  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 0  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 0  new leader/var/tmp/824-1000/px-15534-leaderdeaths-2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 0  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 0  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 0  new leader/var/tmp/824-1000/px-15534-leaderdeaths-2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 0  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 0  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 0  new leader/var/tmp/824-1000/px-15534-leaderdeaths-2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Start: Start called on instance 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Start: agreement started for 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderStart: Started proposal as leader 1
+xos /var/tmp/824-1000/px-15534-leaderdeaths-2} Start: agreement started for 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Start: Start called on instance 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderStart: Started proposal as leader 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderStart: epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Start: agreement started for 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} LeaderStart: epoch1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 2  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 2  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 3  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 3  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 4  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 4  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: before commitAndLog 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 2  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 2  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: before commitAndLog 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 3  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 3  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: before commitAndLog 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 4  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: 4  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 2  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 2  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 3  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 3  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 4  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 4  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 5
+{{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-2} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 2  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 2  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 3  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 3  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 4  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 4  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: initiating failover 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 5  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 5  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 5  new epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 5  new leader/var/tmp/824-1000/px-15534-leaderdeaths-0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 5  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 5  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 5  new epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 5  new leader/var/tmp/824-1000/px-15534-leaderdeaths-0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 5  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 5  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 5  new epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 5  new leader/var/tmp/824-1000/px-15534-leaderdeaths-0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 5
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 5  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 5  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 5  new epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 5  new leader/var/tmp/824-1000/px-15534-leaderdeaths-0
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 6  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 6  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 6  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 6  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 6  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 6  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
   ... Passed
 Test: Second leader death and in flight requests...
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: Start called on instance 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Start: agreement started for 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: Started proposal as leader 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} LeaderStart: epoch2
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 7  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 7  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 8  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 8  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 9  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 9  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 7  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 7  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 8  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 8  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 9  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 9  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: initiating failover 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 7
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 7  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 7  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 8
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 8  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 8  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 9
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 9  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 9  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 10  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 10  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 10  new epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 10  new leader/var/tmp/824-1000/px-15534-leaderdeaths-4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: after checking 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} refresh: before commitAndLog 6
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 6  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: 6  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 10  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 10  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 10  new epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 10  new leader/var/tmp/824-1000/px-15534-leaderdeaths-4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 10
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 10  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 10  found leader change
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 10  new epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 10  new leader/var/tmp/824-1000/px-15534-leaderdeaths-4
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+Second Leader Death Failover Passed...
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 11  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 11  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 11  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 11  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 11
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 11  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 11  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 12  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 12  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 12  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 12  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 13  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 13  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 13  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 13  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 14  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 14  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 14  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 14  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 15  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 15  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 15  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 15  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 16  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 16  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 16  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 16  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 12
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 12  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 12  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 13
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 13  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 13  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 14
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 14  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 14  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 15
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 15  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 15  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 16
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 16  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 16  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 17  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 17  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 17  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 17  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 17
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 17  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 17  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 18  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 18  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 18  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 18  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 18
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 18  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 18  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 19  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 19  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 19  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 19  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 19
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 19  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 19  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 20  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 20  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 20  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 20  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 20
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 20  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 20  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 21  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 21  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 21  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 21  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 21
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 21  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 21  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 22  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 22  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 22  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 22  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 22
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 22  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 22  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 23  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 23  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 23  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 23  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 23
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 23  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 23  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 24  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 24  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 24  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 24  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 24
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 24  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 24  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 25  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 25  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 25  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 25  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: Start called on instance 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Start: agreement started for 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: Started proposal as leader 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} LeaderStart: epoch3
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: before commitAndLog 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 26  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: 26  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: checking 27
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-1} refresh: after checking 27
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: before commitAndLog 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 26  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: 26  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: checking 27
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-4} refresh: after checking 27
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 25
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 25  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 25  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: before commitAndLog 26
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 26  before anything
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: 26  found normal op
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: checking 27
+{MultiPaxos /var/tmp/824-1000/px-15534-leaderdeaths-3} refresh: after checking 27
+Second Leader Death In Flight Request Override/Recovery Passed...
   ... Passed
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-Test: Elect Leader Instance 0 unreliable...
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-  ... Passed
-Test: Single Agreement to leader unreliable...
-unexpected EOF
-unexpected EOF
-unexpected EOF
-  ... Passed
-Test: Many proposers, same value unreliable...
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
---- FAIL: TestBasicUnreliable (3.02 seconds)
-	test_test.go:53: decided values do not match; seq=2 i=1 v=77 v1={2 2}
-FAIL
-exit status 1
-FAIL	multipaxos	41.669s
+PASS
+ok  	multipaxos	21.796s
