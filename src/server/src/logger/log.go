@@ -8,6 +8,7 @@ package logger
  */
 
 import "io/ioutil"
+ import "os"
 //import "json"
 
 type Logger struct {
@@ -20,8 +21,14 @@ func Make(filename string) *Logger {
   return logger
 }
 
-func (lg *Logger) WriteToLog(b []byte) error {
-  return ioutil.WriteFile(lg.filename, b, 0644)
+func (lg *Logger) WriteToLog(text string) error {
+  f, err := os.OpenFile(lg.filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+  if err != nil {
+      return err
+  }
+  defer f.Close()
+  _, err = f.WriteString(text + "\n") 
+  return err
 }
 
 func (lg *Logger) ReadFromLog() ([]byte, error) {

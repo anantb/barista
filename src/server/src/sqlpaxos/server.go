@@ -7,7 +7,7 @@ import "log"
 import "time"
 import "paxos"
 import "sync"
-//import "os"
+import "reflect"
 import "syscall"
 import "encoding/gob"
 import "math/rand"
@@ -21,10 +21,10 @@ import "db"
 const Debug=0
 
 func DPrintf(format string, a ...interface{}) (n int, err error) {
-        if Debug > 0 {
-                log.Printf(format, a...)
-        }
-        return
+  if Debug > 0 {
+    log.Printf(format, a...)
+  }
+  return
 }
 
 type LastSeen struct {
@@ -104,7 +104,7 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
     // write op to file
     err := sp.WriteToLog(op)
     if err != nil {
-      // log something
+      fmt.Printf("Error writing operation to log\n")
     }
 
     switch {
@@ -124,7 +124,7 @@ func (sp *SQLPaxos) WriteToLog(op Op) error {
   if err != nil {
     return err
   }
-  return sp.logger.WriteToLog(b)
+  return sp.logger.WriteToLog(string(b[:]))
 }
 
 
@@ -137,7 +137,13 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
 
   tuples := []*barista.Tuple{}
   for _, row := range rows {
-    tuple := barista.Tuple{Cells: &row}
+    cells := make([][]byte, 0)
+    vals := reflect.ValueOf(row)
+    for i:=0; i < vals.Len(); i++ {
+      val := vals.Index(i).Interface().([]byte)
+      cells = append(cells, val)
+    }
+    tuple := barista.Tuple{Cells: &cells}
     tuples = append(tuples, &tuple)
   }
  
@@ -214,10 +220,11 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
      rows, columns, err = sp.connections[clientId].QueryTxn(tx, query, params...)
   }
 
-  update := "UPDATE SQLPaxosLog SET lastSeqNum=" + strconv.Itoa(seqnum) + ";"
-  _, errUpdate := sp.connections[clientId].ExecTxn(tx, update, nil)
+  update := "UPDATE sqlpaxoslog SET lastseqnum=" + strconv.Itoa(seqnum) + ";"
+  params := make([]interface{}, 0)
+  _, errUpdate := sp.connections[clientId].ExecTxn(tx, update, params...)
   if errUpdate != nil {
-     fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
+    fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
   }
 
   errEnd := sp.connections[clientId].EndTxn(tx)
@@ -236,14 +243,16 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
   for i := next; i <= seq; i++ {
      nwaits := 0
      for !sp.dead {
-	if _, ok := sp.ops[i]; ok || sp.next > i {
-      	   break
+  if _, ok := sp.ops[i]; ok || sp.next > i {
+           break
         }
 
         decided, v_i := sp.px.Status(i)
         if decided {
            // the operation in slot i has been decided
-           sp.ops[i] = v_i.(Op)
+           v := v_i.(Op)
+           v.SeqNum = i
+           sp.ops[i] = v
            break
         } else {
            nwaits++
@@ -262,14 +271,14 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
 
      if i == sp.next {
         // the operation at slot i is next to be executed
-	r, executed := sp.checkIfExecuted(sp.ops[i])
-        if executed {
-    	   sp.replies[i] = r
-	} else {
-	   r := sp.execute(sp.ops[i])
-	   sp.replies[i] = r
-	   sp.lastSeen[getOpClientId(sp.ops[i])] = LastSeen{ RequestId: getOpRequestId(sp.ops[i]), Reply: r }
-	}
+      r, executed := sp.checkIfExecuted(sp.ops[i])
+            if executed {
+             sp.replies[i] = r
+      } else {
+         r := sp.execute(sp.ops[i])
+         sp.replies[i] = r
+         sp.lastSeen[getOpClientId(sp.ops[i])] = LastSeen{ RequestId: getOpRequestId(sp.ops[i]), Reply: r }
+      }
         sp.next++
      }
 
@@ -330,11 +339,14 @@ func (sp *SQLPaxos) reserveSlot(op Op) int {
   nwaits := 0
   for !sp.dead {
      decided, v_a := sp.px.Status(seq)
-     if decided && v_a != nil && getOpClientId(v_a.(Op)) == getOpClientId(v) && 
-       getOpRequestId(v_a.(Op)) == getOpRequestId(v) {
+     // @TODO: need special case for NoOp
+     if decided && ((v.NoOp && v_a != nil && v_a.(Op).NoOp) || 
+      (v_a != nil && getOpClientId(v_a.(Op)) == getOpClientId(v) && 
+       getOpRequestId(v_a.(Op)) == getOpRequestId(v))) {
         // we successfully claimed this slot for our operation
         if _, ok := sp.ops[seq]; !ok {
-	   v.SeqNum = seq
+           fmt.Printf("achieved consensus for seqnum: %d\n", seq)
+           v.SeqNum = seq
            sp.ops[seq] = v
         }
         break
@@ -345,19 +357,18 @@ func (sp *SQLPaxos) reserveSlot(op Op) int {
         nwaits = 0
      } else {
         nwaits++
-  	sp.mu.Unlock()
+        sp.mu.Unlock()
         if nwaits == 5 || nwaits == 10 {
            // re-propose our operation
            sp.px.Start(seq, v)
-     	} else if nwaits > 10 {
+      } else if nwaits > 10 {
            time.Sleep(100 * time.Millisecond)
         } else {
            time.Sleep(10 * time.Millisecond)
-     	}
-  	sp.mu.Lock()
+      }
+    sp.mu.Lock()
      }
   }
-  v.SeqNum = seq // update sequence number
   return seq
 }
 
@@ -512,7 +523,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
         } else if sp.unreliable && (rand.Int63() % 1000) < 200 {
           // process the request but force discard of reply.
           //c1 := conn.(*net.UnixConn)
-	  c1 := conn.(*net.TCPConn)
+          c1 := conn.(*net.TCPConn)
           f, _ := c1.File()
           err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
           if err != nil {
@@ -527,7 +538,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
       }
       if err != nil && sp.dead == false {
         fmt.Printf("SQLPaxos(%v) accept: %v\n", me, err.Error())
-	sp.kill()
+  sp.kill()
       }
     }
   }()
