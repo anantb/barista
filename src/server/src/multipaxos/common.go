@@ -12,7 +12,7 @@ import "time"
 
 //constants
 const(
-	DEBUG = 2
+	DEBUG = 1
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	//op types
@@ -20,12 +20,19 @@ const(
 	NORMAL = "NORMAL"
 	//status codes
 	OK = "OK"
+	NOT_LEADER = "NOT_LEADER"
 	REJECT = "REJECT"
 	//Leader status
 	UNKNOWN_LEADER = "UNKNOWN LEADER"
 	WRONG_SERVER = "WRONG SERVER"
 	INVALID_INSTANCE= "INVALID INSTANCE"
 	) 
+//new array type needed for sorting an array of int64
+type intarr []int
+func (a intarr) Len() int { return len(a) }
+func (a intarr) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a intarr) Less(i, j int) bool { return a[i] < a[j] }
+
 type Status string
 type OpType string
 
@@ -33,6 +40,7 @@ type MultiPaxosLeader struct{
 	epoch int
 	id int
 	numPingsMissed int
+	valid bool
 }
 type MultiPaxosOP struct{
 	EpochNum int 
@@ -50,14 +58,23 @@ type PingReply struct{
 	Status Status
 }
 type GetInstanceDataArgs struct{
-
+	LowestInstance int
 }
 type GetInstanceDataReply struct{
 	Status Status
+	InstancesData map[int]MultiPaxosOP
+}
+type FindLeaderArgs struct{
+
+}
+type FindLeaderReply struct{
+	EpochNum int
+	Leader string
 }
 //***********************************************************************************************************************************//
 //Helper Functions
 //***********************************************************************************************************************************//
+
 //generates random int
 func nrand() int64 {
   max := big.NewInt(int64(1) << 62)
