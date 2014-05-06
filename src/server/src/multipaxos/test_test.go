@@ -6,7 +6,8 @@ import "strconv"
 import "os"
 import "time"
 import "fmt"
-//import "math/rand"
+//import "log"
+import "math/rand"
 
 func port(tag string, host int) string {
   s := "/var/tmp/824-"
@@ -22,7 +23,10 @@ func getandcheckleader(t *testing.T, pxa []*MultiPaxos) int{
   out:=-1
   for i:=0; i<len(pxa); i++{
     current := pxa[i]
-    if current.isLeader(){
+    if current!=nil && current.isLeader(){
+      if(out!=-1){
+        t.Fatalf("Found too many leaders!")
+      }
       out = i
     }
   }
@@ -36,7 +40,8 @@ func checkval(t *testing.T, pxa []*MultiPaxos, seq int, expected interface{}){
     if pxa[i] != nil {
       decided, v1 := pxa[i].Status(seq)
       if decided && v1 != expected{
-        t.Fatalf("Agreed on value incorrect.")
+            t.Fatalf("decided values do not match; seq=%v i=%v me=%v expected=%v actual=%v",
+            seq, i, pxa[i].me, expected, v1)
       }
     }
   }
@@ -49,8 +54,8 @@ func ndecided(t *testing.T, pxa []*MultiPaxos, seq int) int {
       decided, v1 := pxa[i].Status(seq)
       if decided {
         if count > 0 && v != v1 {
-          t.Fatalf("decided values do not match; seq=%v i=%v v=%v v1=%v",
-            seq, i, v, v1)
+          t.Fatalf("decided values do not match; seq=%v i=%v me=%v v=%v v1=%v",
+            seq, i, pxa[i].me, v, v1)
         }
         count++
         v = v1
@@ -138,20 +143,23 @@ func TestBasic(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  fmt.Printf("Test: Elect Leader Instance 0...\n")
+  fmt.Printf("Test: Elect Leader Instance -1...\n")
 
-  waitn(t, pxa, 0,nMultiPaxos)
+  waitn(t, pxa, -1,nMultiPaxos)
 
   l := getandcheckleader(t,pxa)
   
   fmt.Printf("  ... Passed\n")
 
   fmt.Printf("Test: Single Agreement to leader...\n")
+  pxa[l].Start(0,"hello1")
+
+  waitn(t, pxa, 0,nMultiPaxos)
+  checkval(t,pxa,0,"hello1")
 
   pxa[l].Start(1,"hello")
 
   waitn(t, pxa, 1,nMultiPaxos)
-  
   checkval(t,pxa,1,"hello")
 
   fmt.Printf("  ... Passed\n")
@@ -221,7 +229,7 @@ func TestRPCCount(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  waitmajority(t, pxa, 0)
+  waitmajority(t, pxa, -1)
 
   l := getandcheckleader(t,pxa)
 
@@ -232,7 +240,7 @@ func TestRPCCount(t *testing.T) {
   }
 
   ninst1 := 5
-  seq := 1
+  seq := 0
   for i := 0; i < ninst1; i++ {
     pxa[l].Start(seq, "x")
     waitn(t, pxa, seq, nMultiPaxos)
@@ -305,11 +313,13 @@ func TestLeaderDeaths(t *testing.T) {
   }
   fmt.Printf("Test: First leader death, make sure changes ...\n")
 
-  waitmajority(t, pxa, 0)
+  waitmajority(t, pxa, -1)
+  //t.Fatalf("original=%v",pxa)
 
   l := getandcheckleader(t,pxa)
     
   //make a few agreements
+  pxa[l].Start(0,"lol1")
   pxa[l].Start(1,"lol1")
   pxa[l].Start(2,"lol2")
   pxa[l].Start(3,"lol3")
@@ -324,13 +334,18 @@ func TestLeaderDeaths(t *testing.T) {
   pxa[l].Kill()
 
   //wait for replicas to detect failure
-  time.Sleep(nMultiPaxos*PINGINTERVAL*NPINGS)
+  time.Sleep(2*PINGINTERVAL*NPINGS)
 
-  pxanew := append(pxa[:l], pxa[l+1:]...)
+  //fmt.Printf("old=%v >>>>>>>>>>>>>>>>>>>>>>>>",pxa)
+  pxaNewSize := len(pxa)-1
+  pxanew := make([]*MultiPaxos,0,pxaNewSize)
+  pxanew =append(pxanew, pxa[:l]...)
+  pxanew =append(pxanew, pxa[l+1:]...)
+  //fmt.Printf("new=%v >>>>>>>>>>>>>>>>>>>>>>>>>>",pxanew)
 
   lnew := getandcheckleader(t,pxanew)
-
-  if l == lnew{
+  //t.Fatalf("lnew=%v l=%v old=%v new=%v",lnew,l,pxa,pxanew)
+  if pxa[l].me == pxanew[lnew].me{
     t.Fatalf("Leader did not change despite having failed!")
   }
   maxAfterFail := pxanew[lnew].Max()
@@ -348,21 +363,66 @@ func TestLeaderDeaths(t *testing.T) {
 
   fmt.Printf("Test: Second leader death and in flight requests...\n")
 
-  pxa[lnew].Kill()
+  nRequests := 20
+  cutoff := nRequests/2 + 1
+
+  for j:=1; j<nRequests+1; j++{
+    pxanew[lnew].Start(maxAfterFail+j,"before"+strconv.Itoa(j))
+    if(j==cutoff){
+      //give some propagation time 
+      time.Sleep(10*time.Millisecond)
+
+      pxanew[lnew].Kill()
+    }
+  }
+
   //wait for replicas to detect failure
   time.Sleep(3*PINGINTERVAL*NPINGS)
 
-  pxanew1 := append(pxanew[:lnew], pxanew[lnew+1:]...)
-
+  pxaNew1Size := len(pxanew)-1
+  pxanew1 := make([]*MultiPaxos,0,pxaNew1Size)
+  pxanew1 =append(pxanew1, pxanew[:lnew]...)
+  pxanew1 =append(pxanew1, pxanew[lnew+1:]...)
   lnew1 := getandcheckleader(t,pxanew1)
-  if lnew1 == lnew || lnew1 == l{
-    t.Fatalf("Leader did not change despite having failed!")
-  }
+  //t.Fatalf("lnew=%v lnew1=%v old=%v new=%v",lnew,lnew1,pxanew,pxanew1)
 
+  if pxanew1[lnew1].me == pxanew[lnew].me || pxanew1[lnew1].me == pxa[l].me{
+      t.Fatalf("Leader did not change despite having failed!; olderleader=%v oldleader=%v newleader=%v",
+            pxa[l].me, pxanew[lnew].me , pxanew1[lnew1].me)
+  }
+  fmt.Printf("Second Leader Death Failover Passed...\n")
+  missed := false
+  for j:=1; j<nRequests+1; j++{
+    //see if old leader finished
+    ok,_ := pxanew1[lnew1].Status(maxAfterFail+j)
+    if !ok{
+      for _,pi := range pxanew1{
+        okpi,_ := pi.Status(maxAfterFail+j)
+        if okpi != false{
+          t.Fatalf("Paxos replica returned a value it shouldn't have! It returned a value that has become invalid due to the failover!")
+        }
+      }
+      //if didn't finish then have new leader submit new value, should win
+      pxanew1[lnew1].Start(maxAfterFail+j,"after"+strconv.Itoa(j))
+      waitmajority(t, pxanew1, maxAfterFail+j)
+      checkval(t,pxanew1,maxAfterFail+j,"after"+strconv.Itoa(j))
+    }
+    //check to see that everything old leader said happened actually stayed the same
+    okOld,_ := pxanew[lnew].Status(maxAfterFail+j)
+    if !okOld{
+      missed = true
+    }else{
+      checkval(t,pxanew1,maxAfterFail+j,"before"+strconv.Itoa(j))
+      if missed == true{
+        t.Fatalf("Old leader returned a value when it should not have! There was a hole in the paxos log before the return.")
+      }
+    }
+  } 
+  fmt.Printf("Second Leader Death In Flight Request Override/Recovery Passed...\n")
   fmt.Printf("  ... Passed\n")
 }
-/*
-func TestDeaf(t *testing.T) {
+
+/*func TestDeaf(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
   const nMultiPaxos = 5
@@ -617,7 +677,7 @@ func TestForgetMem(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 }
-
+*/
 
 //
 // many agreements (without failures)
@@ -637,16 +697,13 @@ func TestMany(t *testing.T) {
   }
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
-    pxa[i].Start(0, 0)
   }
+  waitn(t, pxa, -1,nMultiPaxos)
+
+  l := getandcheckleader(t,pxa)
 
   const ninst = 50
-  for seq := 1; seq < ninst; seq++ {
-    // only 5 active instances, to limit the
-    // number of file descriptors.
-    for seq >= 5 && ndecided(t, pxa, seq - 5) < nMultiPaxos {
-      time.Sleep(20 * time.Millisecond)
-    }
+  for seq := 0; seq < ninst; seq++ {
     for i := 0; i < nMultiPaxos; i++ {
       pxa[i].Start(seq, (seq * 10) + i)
     }
@@ -654,9 +711,11 @@ func TestMany(t *testing.T) {
 
   for {
     done := true
-    for seq := 1; seq < ninst; seq++ {
+    for seq := 0; seq < ninst; seq++ {
       if ndecided(t, pxa, seq) < nMultiPaxos {
         done = false
+      }else{
+        checkval(t,pxa,seq,(seq * 10) + l)
       }
     }
     if done {
@@ -675,7 +734,7 @@ func TestMany(t *testing.T) {
 func TestOld(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
-  fmt.Printf("Test: Minority proposal ignored ...\n")
+  fmt.Printf("Test: Minority proposal ignored and slow instance catches up by talking to leader...\n")
 
   const nMultiPaxos = 5
   var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
@@ -689,7 +748,13 @@ func TestOld(t *testing.T) {
   pxa[1] = Make(pxh, 1, nil)
   pxa[2] = Make(pxh, 2, nil)
   pxa[3] = Make(pxh, 3, nil)
-  pxa[1].Start(1, 111)
+
+  waitmajority(t, pxa, -1)
+
+  l := getandcheckleader(t,pxa)
+
+  pxa[l].Start(0, 111)
+  pxa[l].Start(1, 111)
 
   waitmajority(t, pxa, 1)
 
@@ -709,7 +774,7 @@ func TestOld(t *testing.T) {
 //
 // many agreements, with unreliable RPC
 //
-func TestManyUnreliable(t *testing.T) {
+/*func TestManyUnreliable(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
   fmt.Printf("Test: Many instances, unreliable RPC ...\n")
@@ -754,7 +819,7 @@ func TestManyUnreliable(t *testing.T) {
   }
   
   fmt.Printf("  ... Passed\n")
-}
+}*/
 
 func pp(tag string, src int, dst int) string {
   s := "/var/tmp/824-"
@@ -1001,4 +1066,4 @@ func TestLots(t *testing.T) {
   }
 
   fmt.Printf("  ... Passed\n")
-}*/
+}

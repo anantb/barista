@@ -1,1117 +1,237 @@
-Test: Elect Leader Instance 0 ...
-  ... Passed
-Test: Single Agreement to leader ...
-  ... Passed
-Test: Many proposers, same value ...
-  ... Passed
-Test: Many proposers, different values (only leader's should win) ...
-  ... Passed
-Test: Out-of-order instances ...
-  ... Passed
-Test: RPC counts aren't too high ...
- Total messages used: 20 ... Passed
- Total messages used: 20  ... Passed
-Test: First leader death, make sure changes ...
-  ... Passed
-Test: Second leader death and in flight requests...
-  ... Passed
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-Test: Elect Leader Instance 0 unreliable...
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-2: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-write unix /var/tmp/824-1000/px-9464-basic_unreliable-1: broken pipe
-connection is shut down
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-connection is shut down
-unexpected EOF
-  ... Passed
-Test: Single Agreement to leader unreliable...
-unexpected EOF
-unexpected EOF
-unexpected EOF
-  ... Passed
-Test: Many proposers, same value unreliable...
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-9464-basic_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
---- FAIL: TestBasicUnreliable (3.02 seconds)
-	test_test.go:53: decided values do not match; seq=2 i=1 v=77 v1={2 2}
+Test: Minority proposal ignored ...
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: initiating failover -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: initiating failover -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: initiating failover -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: before commitAndLog -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: -1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: -1  new leader/var/tmp/824-1000/px-17494-old-2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: before commitAndLog -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: -1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: -1  new leader/var/tmp/824-1000/px-17494-old-2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: before commitAndLog -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: -1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: -1  new leader/var/tmp/824-1000/px-17494-old-2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Start: Start called on instance 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Start: agreement started for 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Start: Start called on instance 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Start: agreement started for 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderStart: Started proposal as leader 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderStart: epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderStart: Started proposal as leader 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} LeaderStart: epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: 0  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: 0  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: 0  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: 0  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: 1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: 1  found normal op
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Start: Start called on instance 1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: initiating failover -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: before commitAndLog -1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Commit and Log: -1  before anything
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Commit and Log: -1  new leader/var/tmp/824-1000/px-17494-old-2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-0} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-2} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-17494-old-3} refresh: after checking 2
+--- FAIL: TestOld (32.17 seconds)
+	test_test.go:81: too few decided; seq=1 ndecided=3 wanted=4
 FAIL
 exit status 1
-FAIL	multipaxos	41.669s
+FAIL	multipaxos	32.202s

@@ -12,7 +12,7 @@ import "time"
 
 //constants
 const(
-	DEBUG = 0
+	DEBUG = 2
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	//op types
@@ -47,6 +47,12 @@ type PingArgs struct{
 
 }
 type PingReply struct{
+	Status Status
+}
+type GetInstanceDataArgs struct{
+
+}
+type GetInstanceDataReply struct{
 	Status Status
 }
 //***********************************************************************************************************************************//
