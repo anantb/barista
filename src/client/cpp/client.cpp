@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <cassert>
+#include <boost/utility/binary.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "gen-cpp/Barista.h"
@@ -33,6 +34,22 @@ int main () {
     double version = client.get_version();
     cout << version << endl;
 
+    ConnectionParams con_params = ConnectionParams();
+    con_params.__set_user("postgres");
+    con_params.__set_password("postgres");
+    con_params.__set_database("postgres");
+
+    Connection con;
+    client.open_connection(con, con_params);
+    ResultSet res;
+    client.execute_sql(res, con, "SELECT 6.824 as id, 'Distributed Systems' as name", vector<string>());
+    for(vector<Tuples>::iterator tuple_it = res.tuples.begin(); row_it != res.tuples.end(); ++tuple_it) {
+      for(vector<BOOST_BINARY>::iterator cell_it = (*tuple_it).cells.begin(); cell_it != (*tuple_it).cells.end(); ++cell_it) {
+        cout << *cell_it << "\t";
+      }
+      cout << "\n";
+    }
+    client.close_connection(con);
     transport->close();
   } catch (TException &tx) {
     cout << "ERROR: " << tx.what();
