@@ -41,9 +41,9 @@ int main () {
     con_params.__set_client_id("client_cpp");
     con_params.__set_seq_id("1");
 
-    Connection con = Connection();
+    Connection con;
     client.open_connection(con, con_params);
-    ResultSet res = ResultSet();
+    ResultSet res;
     client.execute_sql(res, con, "SELECT 6.824 as id, 'Distributed Systems' as name", vector<string>());
     for(vector<Tuple>::iterator tuple_it = res.tuples.begin(); tuple_it != res.tuples.end(); ++tuple_it) {
       for(vector<string>::iterator cell_it = (*tuple_it).cells.begin(); cell_it != (*tuple_it).cells.end(); ++cell_it) {
