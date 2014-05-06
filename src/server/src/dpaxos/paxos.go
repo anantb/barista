@@ -107,6 +107,9 @@ func (px *Paxos) isMe(server string) bool{
   }
   return false
 }
+func (px *Paxos) GetRPCCount() int{
+  return px.rpcCount
+}
 //generates a new proposal number 
 func (px *Paxos) GetPaxosProposalNum() PaxosProposalNum{
   server := px.peers[px.me]
@@ -240,7 +243,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
-
+  log.Printf("NormalPropose: before prepare")
   //commence proposal cycle, continue until it succeeds
   done := false
   backOff := 10*time.Millisecond
@@ -252,12 +255,12 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     //if the prepare phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !prepared{
-      //log.Printf("NormalPropose: prepare failed")
+      log.Printf("NormalPropose: prepare failed")
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
         }
-        time.Sleep(backOff)
+        //time.Sleep(backOff)
       }
       continue
     }
@@ -269,12 +272,12 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !accepted{
-      //log.Printf("NormalPropose: accept failed")
+      log.Printf("NormalPropose: accept failed")
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
         }
-        time.Sleep(backOff)
+        //time.Sleep(backOff)
       }
       continue
     }
@@ -284,6 +287,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     done=true
     break
   }
+  log.Printf("NormalPropose: prepare succeeded")
 }
 
 //function that handles the PREPARE phase of the proposer
@@ -619,7 +623,7 @@ func (px *Paxos) handleTeach(serverName string, maxDone int, log map[int]interfa
 
   //update minSeq and clean up
   px.setMin()
-  px.cleanUp()
+  //px.cleanUp()
 
 }
 //***********************************************************************************************************************************//

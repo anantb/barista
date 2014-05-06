@@ -229,14 +229,14 @@ func TestRPCCount(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  waitmajority(t, pxa, -1)
+  waitn(t, pxa, -1,nMultiPaxos)
 
   l := getandcheckleader(t,pxa)
 
   //initial total after initial leader election
   totalbase := 0
   for j := 0; j < nMultiPaxos; j++ {
-    totalbase += pxa[j].rpcCount
+    totalbase += pxa[j].GetRPCCount()
   }
 
   ninst1 := 5
@@ -252,7 +252,7 @@ func TestRPCCount(t *testing.T) {
   
   total1 := 0
   for j := 0; j < nMultiPaxos; j++ {
-    total1 += pxa[j].rpcCount
+    total1 += pxa[j].GetRPCCount()
   }
 
   totalactual := total1 - totalbase
@@ -280,7 +280,7 @@ func TestRPCCount(t *testing.T) {
 
   total2 := 0
   for j := 0; j < nMultiPaxos; j++ {
-    total2 += pxa[j].rpcCount
+    total2 += pxa[j].GetRPCCount()
   }
   total2 -= total1
 
@@ -342,7 +342,7 @@ func TestLeaderDeaths(t *testing.T) {
   pxanew =append(pxanew, pxa[:l]...)
   pxanew =append(pxanew, pxa[l+1:]...)
   //fmt.Printf("new=%v >>>>>>>>>>>>>>>>>>>>>>>>>>",pxanew)
-
+  waitmajority(t, pxa, 5)
   lnew := getandcheckleader(t,pxanew)
   //t.Fatalf("lnew=%v l=%v old=%v new=%v",lnew,l,pxa,pxanew)
   if pxa[l].me == pxanew[lnew].me{

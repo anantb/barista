@@ -12,7 +12,7 @@ import "time"
 
 //constants
 const(
-	DEBUG = 1
+	DEBUG = -1
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	//op types
@@ -65,6 +65,7 @@ type GetInstanceDataArgs struct{
 type GetInstanceDataReply struct{
 	Status Status
 	InstancesData map[int]MultiPaxosOP
+	Leader string
 }
 type FindLeaderArgs struct{
 
@@ -79,7 +80,7 @@ type RemoteStartArgs struct{
 }
 type RemoteStartReply struct{
 	Status Status
-	Leader String
+	Leader string
 }
 //***********************************************************************************************************************************//
 //Helper Functions

@@ -1,140 +1,22 @@
-Test: No decision if partitioned (no leader)...
-[0 2][1 3]  ... Passed
-Test: Decision in majority partition with leader...
-[0][1 2 3]{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: epoch1 Resulting epoch 1
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
+Test: Elect Leader Instance -1...
   ... Passed
-Test: All agree after full heal ...
-[0 1 2 3 4][]{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
+Test: Single Agreement to leader...
   ... Passed
-Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...
-[0 2 3][1 4]{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: Started proposal as leader 2
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} LeaderStart: Started proposal as leader 2
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-0} LeaderStart: epoch2 Resulting epoch 2
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-before heal[0 1 2 3 4][]{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} Explicit fail detected!
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-after heal{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-4} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-1} getInstancesFromLeader: found new leader/var/tmp/824-1000/px-partition-23078-3-0
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-23078-partition-3} getInstancesFromLeader: got data
-[][]--- FAIL: TestPartition (58.31 seconds)
-	test_test.go:81: too few decided; seq=2 ndecided=3 wanted=5
-FAIL
-exit status 1
-FAIL	multipaxos	58.325s
+Test: Many proposers, same value...
+  ... Passed
+Test: Many proposers, different values (only leader's should win)...
+  ... Passed
+Test: Out-of-order instances...
+  ... Passed
+Test: RPC counts aren't too high ...
+read unix /var/tmp/824-1000/px-24880-basic-2: connection reset by peer
+ Total messages used: 30 ... Passed
+ Total messages used: 20  ... Passed
+Test: First leader death, make sure changes ...
+  ... Passed
+Test: Second leader death and in flight requests...
+--- FAIL: TestLeaderDeaths (19.27 seconds)
+	test_test.go:34: No leader has been elected!
+Test: Paxos Replica Falls Behind and then Catches Up With Data From Leader...
+exit status 2
+FAIL	multipaxos	28.944s
