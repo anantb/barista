@@ -44,7 +44,7 @@ int main () {
     ResultSet res;
     client.execute_sql(res, con, "SELECT 6.824 as id, 'Distributed Systems' as name", vector<string>());
     for(vector<Tuple>::iterator tuple_it = res.tuples.begin(); tuple_it != res.tuples.end(); ++tuple_it) {
-      for(vector<BOOST_BINARY>::iterator cell_it = (*tuple_it).cells.begin(); cell_it != (*tuple_it).cells.end(); ++cell_it) {
+      for(vector<string>::iterator cell_it = (*tuple_it).cells.begin(); cell_it != (*tuple_it).cells.end(); ++cell_it) {
         cout << *cell_it << "\t";
       }
       cout << "\n";
