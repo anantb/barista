@@ -33,8 +33,8 @@ public class Client {
       ResultSet res = client.execute_sql(
           con, "SELECT 6.824 as id, 'Distributed Systems' as name", null);
 
-      for (String fielf_name : res.getField_names()) {
-        System.out.print(fielf_name + "\t");
+      for (String field_name : res.getField_names()) {
+        System.out.print(field_name + "\t");
       }
 
       System.out.println();
