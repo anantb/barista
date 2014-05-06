@@ -51,6 +51,7 @@ func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
       mpx.mu.Lock()
       mpx.leader.valid = false
       mpx.mu.Unlock()
+
     }
     mpx.px.FastPropose(seq,v,mpx.peers,failCallback)
     mpx.Log(0,"LeaderStart: epoch"+strconv.Itoa(v.EpochNum)+" Fast propose done")
@@ -59,18 +60,18 @@ func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
        mpx.Log(0,"LeaderStart: epoch"+strconv.Itoa(v.EpochNum)+" Resulting epoch "+strconv.Itoa(data.(MultiPaxosOP).EpochNum))
     }
 }
-func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
+func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
   mpx.Log(1,"Start: Start called on instance "+strconv.Itoa(seq))
   if(seq < 0){
     mpx.Log(1,"Start: Start returned invalid isntance for "+strconv.Itoa(seq))
-    return false, INVALID_INSTANCE, ""
+    return false, INVALID_INSTANCE
   }
   if mpx.isLeader(){
     //needed so don't do accept on something that has already been accepted
     if seq > mpx.executionPointer-1{
-      mop := MultiPaxosOP{}
+      mop := MultiP}
       mop.Type = NORMAL
       mop.EpochNum = mpx.leader.epoch
       mop.Op = v
@@ -80,23 +81,15 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string,string){
       go mpx.LeaderStart(seq,mop)
       mpx.Log(1,"Start: agreement started for "+strconv.Itoa(seq))
     }
-    return true,OK, ""
+    return true,OK
   }else{
     if(mpx.isInit()){
       mpx.Log(1,"Start: not leader "+strconv.Itoa(seq))
-      return false,WRONG_SERVER, mpx.peers[mpx.leader.id]
+      //TODO: add forwarding code here
+      return true, OK
     }
   }
-  return false, UNKNOWN_LEADER, ""
-  /*else{
-    mpx.Log(1,"Start: waiting for init "+strconv.Itoa(seq))
-    for !mpx.isInit(){
-      //loop spin, maybe do something better here
-      time.Sleep(100)
-    }
-    mpx.Log(1,"Start: actually starting "+strconv.Itoa(seq))
-    return mpx.Start(seq,v)
-  }*/
+  return false, UNKNOWN_LEADER
 }
 
 
@@ -154,24 +147,10 @@ func (mpx *MultiPaxos) Kill() {
 //generates a new instance number for the incoming client request
 //this instance number is the instance used for paxos agreement
 func (mpx *MultiPaxos) getInstanceNum() int{
-  mpx.instanceNum +=1
   executionPointerSample := mpx.executionPointer
-
-  //the new instance number generated must be larger than the execution pointer
-  //otherwise the operation will fail to be agreed upon since you are trying to propose
-  //a new op fzr a instance (slot in the log) that was already agreed upon
-  if executionPointerSample > mpx.instanceNum{
-      mpx.instanceNum += (executionPointerSample - mpx.instanceNum)
-  }
-  return mpx.instanceNum
+  return executionPointerSample
 }
-//called by Shard Master RPC handlers with the appropriate Op object
-//(that the RPC Handlers create) and then Paxos agreement is initated on
-//that Op object until it is agreed upon and applied to the shard master server.
-//This method blocks until agreement for the proposed op succeeds and the 
-//corresponding response is generated. This method also handles retrying Paxos
-//agreement with a new Instance number if the Op lost agreement on its old instance
-//number
+
 func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
@@ -223,11 +202,16 @@ func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
       mpx.mu.Lock()
     }
     //figure out termination condition
+    agreedOp := mpx.px.Status(instanceNum).(MultiPaxosOP)
+    switch agreedOp.Type{
+      case LCHANGE:
+        return agreedOp
+    }
     return nil
   }
   return nil
 }
-func (mpx *MultiPaxos) commitAndLogInstance(val interface{}){
+func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{}){
   mpx.mu.Lock()
   defer func(){
                 //represents the commit point for the application of a 
@@ -243,7 +227,10 @@ func (mpx *MultiPaxos) commitAndLogInstance(val interface{}){
 
                 mpx.mu.Unlock()
               }()
-  executionPointer := mpx.executionPointer
+  if executionPointer < mpx.executionPointer{
+    mpx.executionPointer--
+    return
+  }
   mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  before anything")
   currentLeader := mpx.leader
   //at most once RPC
@@ -278,17 +265,18 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
   defer mpx.mu.Unlock()
   //double check
   mpx.Log(1,"LeaderChange: before leader change")
-  if mpx.leader.epoch<=0 || mpx.leader.numPingsMissed > NPINGS{
+  if !mpx.leader.isValid(){
     mpx.Log(1,"LeaderChange: starting leader change")
     currentEpoch := mpx.leader.epoch
     mpl := MultiPaxosLeaderChange{currentEpoch+1,mpx.me}
     mop := MultiPaxosOP{}
     mop.Type = LCHANGE
-    mop.EpochNum = currentEpoch
     mop.Op = mpl
     mpx.transition = true
+
+    //tell underlying paxos to not accept messages from old leader
     mpx.px.UpdateEpoch(currentEpoch+1)
-    mpx.px.Start(mpx.executionPointer,mop)
+    go mpx.startPaxosAgreementAndWait(mop)
   }
 }
 func (mpx *MultiPaxos) ping(){
@@ -316,6 +304,7 @@ func (mpx *MultiPaxos) ping(){
       //nothing
     case NOT_LEADER:
       //do something
+      //mpx.getInstancesFromLeader()
     }
   }
   mpx.mu.Unlock()
@@ -366,6 +355,7 @@ func (mpx *MultiPaxos) getInstancesFromLeader(){
   if ok{
       switch reply.Status{
       case OK:
+        mpx.Log(0,"getInstancesFromLeader: got data")
         //sort instance data
         instanceNums := make(intarr,len(reply.InstancesData),len(reply.InstancesData))
         index := 0
@@ -380,12 +370,14 @@ func (mpx *MultiPaxos) getInstancesFromLeader(){
           //make sure no gaps and truly in order
           if instanceNum == mpx.executionPointer{
             data,_:= reply.InstancesData[instanceNum]
-            mpx.commitAndLogInstance(data)
+            mpx.commitAndLogInstance(instanceNum,data)
           }
         }
       case NOT_LEADER:
         //do something
+        mpx.Log(0,"getInstancesFromLeader: got no leader")
         leaderAddr = mpx.findLeader()
+        mpx.Log(0,"getInstancesFromLeader: found new leader"+leaderAddr)
       }
   }
 }
@@ -419,7 +411,7 @@ func (mpx *MultiPaxos) refresh(){
       mpx.Log(1,"refresh: before commitAndLog "+strconv.Itoa(executionPointer))
       //commit and log the result of the instance (apply it and saved the result so the client
       //that made the request can get the result)
-      mpx.commitAndLogInstance(val)
+      mpx.commitAndLogInstance(executionPointer,val)
 
       to = 10*time.Millisecond
     }else{
@@ -476,6 +468,7 @@ func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
     reply.Status = OK
   }else{
     reply.Status = NOT_LEADER
+    reply.Leader = mpx.peers[mpx.leader.id]
   }
   return nil
 }
@@ -497,6 +490,9 @@ func (mpx *MultiPaxos) HandleGetInstancesData(args *GetInstanceDataArgs, reply *
     reply.Status = NOT_LEADER
   }
   return nil
+}
+func (mpx *MultiPaxos) remoteStart(args *RemoteStartArgs, reply *RemoteStartReply){
+
 }
 //
 // the application wants to create a paxos peer.

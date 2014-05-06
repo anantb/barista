@@ -89,9 +89,12 @@ type Paxos struct {
 func(px *Paxos) UpdateEpoch(newEpoch int){
   px.mu.Lock()
   defer px.mu.Unlock()
-  px.epoch = newEpoch
-}
 
+  //strictly increasing
+  if newEpoch > px.epoch{
+     px.epoch = newEpoch
+  }
+}
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
   return px.peers[px.me]
@@ -125,7 +128,7 @@ func getMajorityNum(peers []string) int{
 //***********************************************************************************************************************************//
 //Proposer Code
 //***********************************************************************************************************************************//
-func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
+func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallback func()){
   px.mu.Lock()
 
   //ensure we have at least one peer
@@ -134,12 +137,12 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
     return
   }
 
-  _,okInstance := px.log[seq]
+  /*_,okInstance := px.log[seq]
 
   if okInstance{
     px.mu.Unlock()
     return
-  }
+  }*/
 
   //check to see if there is already proposer info for this instance (only one dedicated proposer per server)
   //if not then create the required objects
@@ -164,8 +167,6 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
-  log.Printf("FastPropose: before accept")
-
   //commence proposal cycle, continue until it succeeds
   done := false
   backOff := 10*time.Millisecond
@@ -173,12 +174,14 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
 
     proposal := px.GetPaxosProposalNum();
     //ACCEPT phase
-    accepted,error := px.ProposerAccept(seq,v,proposal,peers)
+    accepted, explicit_reject, error := px.ProposerAccept(seq,v,proposal,peers)
 
-    //if the accept phase failed we cannot proceed, so skip the rest of
-    //the loop and try again
-    if !accepted{
-      log.Printf("FastPropose: accept failed")
+    //if the accept phase failed here, this replica may have lost leader status
+    if !accepted{ 
+      if explicit_reject{
+        failCallback()
+        return
+      }
       if(!error){
         if(backOff<2*time.Second){
           backOff = 2*backOff
@@ -190,11 +193,9 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string){
     backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, v)
-    log.Printf("FastPropose: after notification")
     done=true
     break
   }
-  log.Printf("FastPropose: done")
 }
 //main proposer function that is called upon start, initiates a dedicated proposer cycle
 //seq - instance number
@@ -209,12 +210,12 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     return
   }
 
-  _,okInstance := px.log[seq]
+  /*_,okInstance := px.log[seq]
 
   if okInstance{
     px.mu.Unlock()
     return
-  }
+  }*/
 
   //check to see if there is already proposer info for this instance (only one dedicated proposer per server)
   //if not then create the required objects
@@ -244,7 +245,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
-
+    time.Sleep(time.Duration((rand.Int63() % 150))*time.Millisecond)
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
     //log.Printf("NormalPropose: after prepare")
@@ -263,7 +264,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     backOff = 10*time.Millisecond
 
     //ACCEPT phase
-    accepted,error := px.ProposerAccept(seq,value,proposal,peers)
+    accepted,_,error := px.ProposerAccept(seq,value,proposal,peers)
     //log.Printf("NormalPropose: after accept")
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
@@ -386,12 +387,13 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
 //proposal - PaxosProposalNum object that represents the proposal number to use in acceptance (the proposal acceptor peers said they would accept)
 //peers - array of peers to use as acceptors
 //returns true if a majority of the peers accepted (ACCEPT Phase succeeded)
-func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNum, peers []string) (bool,bool){
+func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNum, peers []string) (bool,bool,bool){
   //initializations
 
   //status
   accepted := false
   error := false
+  explicit_reject := false
 
   //list of servers that send ACCEPT_OK along with their replies
   acceptedServers := make(map[string]*AcceptReply)
@@ -419,13 +421,14 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
         acceptedServers[server]=acceptReply
       case REJECT:
         //was rejected, don't count as ACCEPT_OK
+        explicit_reject = true
     }
   }
   //if we got a majority of ACCEPT_OKs, the ACCEPT phase succeded
   if len(acceptedServers) >= majority{
     accepted = true
   }
-  return accepted,error
+  return accepted,explicit_reject,error
 }
 func (px *Paxos) ProposeNotify(seq int, value interface{}){
    //notify everyone of agreement
@@ -483,6 +486,15 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   //get the acceptor object (state) for this instance
   acceptor,_ := px.acceptinfo[instancenum]
 
+  if proposalnum.Epoch < px.epoch{
+    reply.Status = REJECT
+    //TODO: maybe do something here
+    return nil
+  }else{
+    //will no longer accept anything of previous epoch
+    px.epoch = proposalnum.Epoch
+  }
+
   //if the acceptor has not received a proposal yet then accept the first proposal
   //otherwise respond to proposal based on if current proposal num > max proposal num seen
   if acceptor.MaxProposal != nil{
@@ -526,17 +538,21 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   proposalnum := &args.ProposalNum
 
   //get the acceptor object/state for this instance
-  acceptor,ok := px.acceptinfo[instancenum]
+  //acceptor,ok := px.acceptinfo[instancenum]
 
   //the acceptor must already have its state initialized
   //if it wasn't then someone called Accept before Prepare,
   //which is not allowed 
-  if !ok{
+  /*if !ok{
     //reject accept
     reply.Status = REJECT
     return nil
   }
-   /* _,ok := px.acceptinfo[instancenum]
+  //invalid state, needs to prepare first
+  if acceptor.MaxProposal == nil{
+    return nil
+  }*/
+  _,ok := px.acceptinfo[instancenum]
   if !ok{
     paxosInstanceInfo := &PaxosInstanceInfo{InstanceNum: instancenum}
     acceptor := &PaxosAcceptorInstance{pi:paxosInstanceInfo}
@@ -546,18 +562,20 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   //update max instance number seen by this paxos machine
   if instancenum > px.maxSeq{
     px.maxSeq = instancenum
-  }*/
-
-  //invalid state, needs to prepare first
-  if acceptor.MaxProposal == nil{
+  }
+  if proposalnum.Epoch < px.epoch{
+    reply.Status = REJECT
+    //TODO: maybe do something here
     return nil
   }
-
+  //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
   //then accept the proposal, otherwise we got an old
   //proposal so reject it
   if compareProposalNums(proposalnum, acceptor.MaxProposal) >= 0{
-
+    if(acceptor.MaxProposal != nil){
+      //fmt.Printf(px.peers[px.me]+" seq = %v current proposal epoch = %v, current max epoch = %v \n",instancenum, proposalnum.Epoch, acceptor.MaxProposal.Epoch)
+    }
     //update acceptor state
     acceptor.MaxProposal = proposalnum
     acceptor.MaxAcceptedProposalNum = proposalnum
@@ -703,8 +721,8 @@ func call(srv string, name string, args interface{}, reply interface{}) bool {
 // is reached.
 //
 func (px *Paxos) Start(seq int, v interface{}) {
-  //px.mu.Lock()
-  //defer px.mu.Unlock()
+  px.mu.Lock()
+  defer px.mu.Unlock()
   if seq >= px.minSeq{
     go px.propose(seq,v,px.peers)
   }

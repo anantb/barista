@@ -42,8 +42,10 @@ type MultiPaxosLeader struct{
 	numPingsMissed int
 	valid bool
 }
+func (mpl *MultiPaxosLeader) isValid() bool{
+	return !(mpl.epoch<=0 || mpl.numPingsMissed > NPINGS || !mpl.valid)
+}
 type MultiPaxosOP struct{
-	EpochNum int 
 	Type OpType
 	Op interface{}
 }
@@ -70,6 +72,14 @@ type FindLeaderArgs struct{
 type FindLeaderReply struct{
 	EpochNum int
 	Leader string
+}
+type RemoteStartArgs struct{
+	InstanceNumber int
+	Op interface{}
+}
+type RemoteStartReply struct{
+	Status Status
+	Leader String
 }
 //***********************************************************************************************************************************//
 //Helper Functions

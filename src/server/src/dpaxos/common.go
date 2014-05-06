@@ -67,7 +67,10 @@ type TeachReply struct{
 }
 
 func compareProposalNums(proposal1 *PaxosProposalNum,proposal2 *PaxosProposalNum) int{
-	if(proposal1.Epoch > proposal2.Epoch){
+	if proposal2 == nil{
+		return 1
+	}
+	if proposal1.Epoch > proposal2.Epoch{
 		return 1
 	}else{
 		if proposal1.ProposalNum > proposal2.ProposalNum {
