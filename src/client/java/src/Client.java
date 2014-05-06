@@ -16,7 +16,7 @@ import barista.*;
 public class Client {
   public static void main(String [] args) {
     try {
-      TTransport transport = new TSocket("localhost", 9000);
+      TTransport transport = new TSocket("128.52.161.243", 9000);
       TProtocol protocol = new  TBinaryProtocol(transport);
       Barista.Client client = new Barista.Client(protocol);
 
@@ -26,6 +26,8 @@ public class Client {
       con_params.setUser("postgres");
       con_params.setPassword("postgres");
       con_params.setDatabase("postgres");
+      con_params.setClientId("client_java");
+      con_params.setSeqId("1");
 
       Connection con = client.open_connection(con_params);	     
       ResultSet res = client.execute_sql(

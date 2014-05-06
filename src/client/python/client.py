@@ -15,7 +15,7 @@ Sample Python client for Barista
 '''
 
 try:
-  transport = TSocket.TSocket('localhost', 9000)
+  transport = TSocket.TSocket('128.52.161.243', 9000)
   transport = TTransport.TBufferedTransport(transport)
   protocol = TBinaryProtocol.TBinaryProtocol(transport)
   client = Barista.Client(protocol)
@@ -23,7 +23,7 @@ try:
   transport.open()
 
   con_params = ConnectionParams(
-    user="postgres", password="postgres", database="postgres")
+    user="postgres", password="postgres", database="postgres", client_id="client_python", seq_id="1")
 
   con = client.open_connection(con_params)
   res = client.execute_sql(con=con,

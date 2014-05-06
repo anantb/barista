@@ -38,6 +38,8 @@ int main () {
     con_params.__set_user("postgres");
     con_params.__set_password("postgres");
     con_params.__set_database("postgres");
+    con_params.__set_client_id("client_cpp");
+    con_params.__set_seq_id("1");
 
     Connection con = Connection();
     client.open_connection(con, con_params);
