@@ -26,8 +26,8 @@ public class Client {
       con_params.setUser("postgres");
       con_params.setPassword("postgres");
       con_params.setDatabase("postgres");
-      con_params.setClientid("client_java");
-      con_params.setSeqid("1");
+      con_params.setClient_id("client_java");
+      con_params.setSeq_id("1");
 
       Connection con = client.open_connection(con_params);	     
       ResultSet res = client.execute_sql(
