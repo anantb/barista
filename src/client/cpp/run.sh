@@ -10,3 +10,4 @@ rm -rf $abspath/gen-cpp
 thrift --gen cpp -o $abspath $basepath/src/barista.thrift
 
 make
+./client
