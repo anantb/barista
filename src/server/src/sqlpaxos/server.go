@@ -175,36 +175,36 @@ func (sp *SQLPaxos) ExecuteTxnHelper(args ExecTxnArgs, seqnum int) ExecTxnReply 
 
   if args.Query != "" {
      params := sp.convertQueryParams(args.QueryParams)
-     rows, columns, err = sp.connections[clientId].QueryTxn(args.Txn, args.Query, params...)
+     rows, columns, err = sp.connections[args.ClientId].QueryTxn(args.Txn, args.Query, params...)
 
      if err != nil {
         return ExecTxnReply{Err: errorToErr(err)}
      }
   }
 
-  sp.updateDatabaseSeqNum(args.Txn, seqnum)
+  sp.updateDatabaseSeqNum(args.Txn, args.ClientId, seqnum)
   
-  result_set := getResultSet(rows, columns)
+  result_set := sp.getResultSet(rows, columns)
   return ExecTxnReply{Result:result_set, Err:OK}
 }
 
 func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply {
-  tx, err := sp.connections[clientId].BeginTxn()
+  tx, err := sp.connections[args.ClientId].BeginTxn()
 
   if err != OK {
     // log something
     return BeginTxnReply{Err:err}
   }
 
-  sp.updateDatabaseSeqNum(tx, seqnum)
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
   return BeginTxnReply{Txn: tx, Err:OK}
 }
 
 func (sp *SQLPaxos) CommitTxnHelper(args CommitTxnArgs, seqnum int) CommitTxnReply {
 
-  sp.updateDatabaseSeqNum(args.Txn, seqnum)
+  sp.updateDatabaseSeqNum(args.Txn, args.ClientId, seqnum)
 
-  err := sp.connections[clientId].CommitTxn(args.Txn)
+  err := sp.connections[args.ClientId].CommitTxn(args.Txn)
   if err != nil {
      return CommitTxnReply{Err: errorToErr(err)}
   }
@@ -214,7 +214,7 @@ func (sp *SQLPaxos) CommitTxnHelper(args CommitTxnArgs, seqnum int) CommitTxnRep
 
 func (sp *SQLPaxos) RollbackTxnHelper(args RollbackTxnArgs, seqnum int) RollbackTxnReply {
 
-  err := sp.connections[clientId].RollbackTxn(args.Txn)
+  err := sp.connections[args.ClientId].RollbackTxn(args.Txn)
   if err != nil {
      return RollbackTxnReply{Err: errorToErr(err)}
   }
@@ -293,7 +293,7 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
      rows, columns, err = sp.connections[clientId].QueryTxn(tx, query, params...)
   }
 
-  sp.updateDatabaseSeqNum(tx, seqnum)
+  sp.updateDatabaseSeqNum(tx, clientId, seqnum)
 
   errCommit := sp.connections[clientId].CommitTxn(tx)
   if errCommit != nil {
@@ -303,7 +303,7 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
   return rows, columns, errorToErr(err)
 }
 
-func (sp *SQLPaxos) updateDatabaseSeqNum(tx *sql.Tx, seqnum int) {
+func (sp *SQLPaxos) updateDatabaseSeqNum(tx *sql.Tx, clientId int64, seqnum int) {
   update := "UPDATE sqlpaxoslog SET lastseqnum=" + strconv.Itoa(seqnum) + ";"
   params := make([]interface{}, 0)
   _, err := sp.connections[clientId].ExecTxn(tx, update, params...)
