@@ -82,6 +82,29 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
       mpx.Log(1,"Start: not leader "+strconv.Itoa(seq))
       go func(){
           done := false
+          mpx.mu.Lock()
+          leader := mpx.leader
+          mpx.mu.Unlock()
+          leaderAddr := mpx.peers[leader.id]
+          for !done{
+            args := &RemoteStartArgs{}
+            args.InstanceNumber = seq
+            args.Op = v
+            reply := &RemoteStartReply{}
+
+            ok:=call(leaderAddr, "MultiPaxos.RemoteStart", args, reply)
+            if ok{
+              switch reply.Status{
+              case OK:
+                done = true
+              case NOT_LEADER:
+                if reply.Leader != "" && reply.Epoch >= leader.epoch{
+                  mpx.getInstancesFromLeader(reply.Leader)
+                }
+                //keep waiting, need to make sure leader gets this
+              }
+            }
+          }
         }()
       return true, OK
     }
@@ -515,8 +538,25 @@ func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
   }
   return nil
 }
-func (mpx *MultiPaxos) RemoteStart(args *RemoteStartArgs, reply *RemoteStartReply){
-
+func (mpx *MultiPaxos) RemoteStart(args *RemoteStartArgs, reply *RemoteStartReply) error{
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
+  reply.Epoch = mpx.leader.epoch
+  if mpx.leader.isValid(){
+    reply.Leader = mpx.peers[mpx.leader.id]
+    if mpx.isLeader(){
+      reply.Status = OK
+      go func(){
+          mpx.Start(args.InstanceNumber,args.Op)
+        }()
+    }else{
+      reply.Status = NOT_LEADER
+    }
+  }else{
+    reply.Status = NOT_LEADER
+    reply.Leader = ""
+  }
+  return nil
 }
 func (mpx *MultiPaxos) GetRPCCount() int{
   return mpx.rpcCount + mpx.px.GetRPCCount()
@@ -531,6 +571,8 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   gob.Register(PingArgs{})
   gob.Register(PingReply{})
   gob.Register(MultiPaxosLeaderChange{})
+  gob.Register(RemoteStartArgs{})
+  gob.Register(RemoteStartReply{})
   mpx := &MultiPaxos{}
   mpx.peers = peers
   mpx.me = me

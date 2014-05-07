@@ -69,6 +69,7 @@ type RemoteStartArgs struct{
 }
 type RemoteStartReply struct{
 	Status Status
+	Epoch int
 	Leader string
 }
 //***********************************************************************************************************************************//
