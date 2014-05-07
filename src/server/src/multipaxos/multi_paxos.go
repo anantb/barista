@@ -45,8 +45,6 @@ func (mpx *MultiPaxos) isLeader() bool{
   return false
 }
 func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
-    mpx.mu.Lock()
-    defer mpx.mu.Unlock()
     mpx.Log(0,"LeaderStart: Started proposal as leader "+strconv.Itoa(seq))
     mpx.Log(0,"LeaderStart: epoch"+strconv.Itoa(mpx.leader.epoch))
     failCallback := func(){
