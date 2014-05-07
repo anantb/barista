@@ -1,3 +1,5 @@
+#include "client.h"
+
 #include <unistd.h>
 #include <cassert>
 #include <boost/utility/binary.hpp>
@@ -31,10 +33,14 @@ using namespace barista;
 const int PORT = 9000;
 const std::string ADDRS[] = {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"};
 
+struct clerk {
+  Clerk c;
+};
+
 class Clerk {
 public:
   // constructor
-  Clerk() {
+  Clerk(const std::string& user = "postgres", const std::string& password = "postgres", const std::string& database = "postgres") {
 
     const long long max_value = LLONG_MAX;
 
@@ -46,14 +52,14 @@ public:
     // http://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
     std::uniform_int_distribution<long long> distr( -max_value, max_value ) ;
 
-    d_me = distr(rng);
+    const long long me = distr(rng);
     d_curRequest = 0;
-    d_user = "postgres";
-    d_pword = "postgres";
-    d_database = "postgres";
+    d_user = user;
+    d_pword = password;
+    d_database = database;
 
     std::ostringstream clientStream;
-    clientStream << d_me;
+    clientStream << me;
     d_clientId = clientStream.str();
 
     d_con_params = ConnectionParams();
@@ -61,6 +67,8 @@ public:
     d_con_params.__set_password(d_pword);
     d_con_params.__set_database(d_database);
     d_con_params.__set_client_id(d_clientId);
+
+    d_addrs.assign (ADDRS, ADDRS + 5);
   }
 
   void setUser(const std::string& user) {
@@ -100,9 +108,9 @@ public:
   }
 
   // open database connection
-  void openConnection(const std::vector<std::string> &addrs, Connection &con) {
+  void openConnection() {
     while(true) {
-      for(std::vector<std::string>::const_iterator it = addrs.begin(); it != addrs.end(); ++it) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
 	try {
 	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
 	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
@@ -119,7 +127,7 @@ public:
 
 	  d_con_params.__set_seq_id(seqId);
 
-	  client.open_connection(con, d_con_params);
+	  client.open_connection(d_connection, d_con_params);
 	  transport->close();
 	  return;
 	}
@@ -131,11 +139,9 @@ public:
   }
 
   // execute SQL
-  void execSql(const std::vector<std::string> &addrs, Connection &con, 
-	       const std::string &query, const std::vector<std::string> &query_params,
-	       ResultSet &res) {
+  void execSql(const std::string &query, const std::vector<std::string> &query_params, ResultSet &res) {
     while(true) {
-      for(std::vector<std::string>::const_iterator it = addrs.begin(); it != addrs.end(); ++it) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
 	try {
 	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
 	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
@@ -150,9 +156,9 @@ public:
 	  seqStream << d_curRequest;
 	  std::string seqId = seqStream.str();
 
-	  con.__set_seq_id(seqId);
+	  d_connection.__set_seq_id(seqId);
 
-	  client.execute_sql(res, con, query, query_params);    
+	  client.execute_sql(res, d_connection, query, query_params);    
 	  transport->close();
 	  return;
 	}
@@ -164,9 +170,9 @@ public:
   }
 
   // close database connection
-  void closeConnection(const std::vector<std::string> &addrs, Connection &con) {
+  void closeConnection() {
     while(true) {
-      for(std::vector<std::string>::const_iterator it = addrs.begin(); it != addrs.end(); ++it) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
 	try {
 	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
 	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
@@ -181,9 +187,9 @@ public:
 	  seqStream << d_curRequest;
 	  std::string seqId = seqStream.str();
 
-	  con.__set_seq_id(seqId);
+	  d_connection.__set_seq_id(seqId);
 
-	  client.close_connection(con);
+	  client.close_connection(d_connection);
 	  transport->close();
 	  return;
 	}
@@ -205,7 +211,6 @@ public:
   }
 
 private:
-  long long d_me; // passed as clientId
   int d_curRequest;
 
   std::string d_user;
@@ -213,6 +218,8 @@ private:
   std::string d_database;
   std::string d_clientId;
 
+  std::vector<std::string> d_addrs;
+  Connection d_connection;
   ConnectionParams d_con_params;
   std::mutex d_mu;
 };
@@ -226,17 +233,57 @@ private:
 
 int main () {
   Clerk clerk;
-
-  std::vector<std::string> addrs;
-  addrs.assign (ADDRS, ADDRS + 5);
-
-  Connection con;
-  clerk.openConnection(addrs, con);
+  clerk.openConnection();
 
   ResultSet res;
-  clerk.execSql(addrs, con, "SELECT 6.824 as id, 'Distributed Systems' as name", std::vector<std::string>(), res);
+  clerk.execSql("SELECT 6.824 as id, 'Distributed Systems' as name", std::vector<std::string>(), res);
   clerk.printResultSet(res);
 
-  clerk.closeConnection(addrs, con);
+  clerk.closeConnection();
   return 0;
+}
+
+
+// functions to be called from C
+
+clerk_t* new_clerk(char* user, char* password, char* database) {
+  clerk_t* clerk = malloc(sizeof(*clerk));
+  (clerk->c).setUser(user);
+  (clerk->c).setPassword(password);
+  (clerk->c).setDatabase(database);
+  return clerk;
+}
+
+void clear_clerk(clerk_t* clerk) {
+  free(clerk);
+  clerk = NULL;
+}
+
+void open_connection(clerk_t* clerk) {
+  (clerk->c).openConnection();
+}
+
+result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int nparams) {
+  result_t* result = new_result();
+  std::vector<std::string> params;
+  params.assign(query_params, query_params + nparams);
+  (clerk->c).execSql(query, params, result->r);
+
+  return result;
+}
+
+void close_connection(clerk_t* clerk) {
+  (clerk->c).closeConnection();
+}
+
+void begin_txn(clerk_t* clerk) {
+
+}
+
+void commit_txn(clerk_t* clerk) {
+
+}
+
+void rollback_txn(clerk_t* clerk) {
+
 }
