@@ -76,6 +76,8 @@ type Paxos struct {
   acceptinfo map[int]*PaxosAcceptorInstance
 
   epoch int
+
+  leader string
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -87,13 +89,13 @@ type Paxos struct {
 //Paxos Administrative Functions
 //***********************************************************************************************************************************//
 func(px *Paxos) UpdateEpoch(newEpoch int){
-  px.mu.Lock()
-  defer px.mu.Unlock()
-
   //strictly increasing
   if newEpoch > px.epoch{
      px.epoch = newEpoch
   }
+}
+func (px *Paxos) SetLeader(leader string){
+  px.leader = leader
 }
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
@@ -342,6 +344,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
         preparedServers[server]=prepareReply
       case REJECT:
         //was rejected, don't count as PREPARE_OK
+        px.UpdateEpoch(prepareReply.MaxProposal.Epoch)
     }
   }
 
@@ -492,11 +495,17 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
+    if acceptor.MaxProposal != nil{
+      reply.MaxProposalAccept = *acceptor.MaxAcceptedProposalNum
+    }else{
+      reply.MaxProposalAccept = PaxosProposalNum{}
+      reply.MaxProposalAccept.Epoch = px.epoch
+    }
     //TODO: maybe do something here
     return nil
   }else{
     //will no longer accept anything of previous epoch
-    px.epoch = proposalnum.Epoch
+    px.UpdateEpoch(proposalnum.Epoch)
   }
 
   //if the acceptor has not received a proposal yet then accept the first proposal
@@ -569,8 +578,11 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   }
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
+
     //TODO: maybe do something here
     return nil
+  }else{
+    px.epoch = proposalnum.Epoch
   }
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
@@ -852,6 +864,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px.acceptinfo = make(map[int]*PaxosAcceptorInstance)
   px.peersMap = make(map[string]int)
   px.epoch = 0
+  px.leader = ""
 
   //init peers map with maxDone values,
   //-1 represents we haven't heard from that peer

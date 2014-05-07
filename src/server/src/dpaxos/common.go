@@ -56,6 +56,7 @@ type AcceptArgs struct{
 type AcceptReply struct{
 	Status Status
 	MaxProposal PaxosProposalNum
+	Leader string
 }
 type TeachArgs struct{
 	Log map[int]interface{}
