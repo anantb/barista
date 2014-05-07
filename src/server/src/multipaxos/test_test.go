@@ -1099,7 +1099,7 @@ func TestLots(t *testing.T) {
       }
     }
     pxa[i] = Make(pxh, i, nil)
-    pxa[i].SetUnreliable(true)
+    //pxa[i].SetUnreliable(true)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
 

@@ -12,7 +12,7 @@ import "time"
 
 //constants
 const(
-	DEBUG = -100
+	DEBUG = 3
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	PINGWAIT = 3*NPINGS*PINGINTERVAL
