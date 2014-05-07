@@ -175,10 +175,9 @@ func TestBasic(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Many proposers, different values (only leader's should win)...\n")
+  fmt.Printf("Test: Many proposers, different values...\n")
 
   data := [3]int{100,101,102}
-  data[l] = 500
 
   pxa[0].Start(3, data[0])
   pxa[1].Start(3, data[1])
@@ -205,11 +204,7 @@ func TestBasic(t *testing.T) {
   checkval(t,pxa,6,500)
   checkval(t,pxa,7,600)
   checkval(t,pxa,8,300)
-
-  if pxa[0].Max() != 9 {
-    t.Fatalf("wrong Max() got: "+strconv.Itoa(pxa[0].Max()))
-  }
-
+  
   fmt.Printf("  ... Passed\n")
 }
 func TestRPCCount(t *testing.T) {
@@ -750,7 +745,7 @@ func TestMany(t *testing.T) {
   }
   waitn(t, pxa, -1,nMultiPaxos)
 
-  l := getandcheckleader(t,pxa)
+  getandcheckleader(t,pxa)
 
   const ninst = 50
   for seq := 0; seq < ninst; seq++ {
@@ -764,8 +759,6 @@ func TestMany(t *testing.T) {
     for seq := 0; seq < ninst; seq++ {
       if ndecided(t, pxa, seq) < nMultiPaxos {
         done = false
-      }else{
-        checkval(t,pxa,seq,(seq * 10) + l)
       }
     }
     if done {

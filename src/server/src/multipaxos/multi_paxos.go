@@ -45,6 +45,8 @@ func (mpx *MultiPaxos) isLeader() bool{
   return false
 }
 func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
+    mpx.mu.Lock()
+    defer mpx.mu.Unlock()
     mpx.Log(0,"LeaderStart: Started proposal as leader "+strconv.Itoa(seq))
     mpx.Log(0,"LeaderStart: epoch"+strconv.Itoa(mpx.leader.epoch))
     failCallback := func(){
@@ -64,10 +66,14 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
     mpx.Log(1,"Start: Start returned invalid isntance for "+strconv.Itoa(seq))
     return false, INVALID_INSTANCE
   }
+  _,ok:=mpx.results[seq]
+  if ok{
+    return true, OK
+  }
   if mpx.leader.isValid(){
     if mpx.isLeader(){
       //needed so don't do accept on something that has already been accepted
-      if seq > mpx.executionPointer-1{
+      if seq >= mpx.executionPointer{
         mop := MultiPaxosOP{}
         mop.Type = NORMAL
         mop.Op = v
