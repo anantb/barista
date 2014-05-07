@@ -165,6 +165,130 @@ public:
     }
   }
 
+  // execute SQL as part of a transaction
+  void execSqlTxn(const std::string &query, const std::vector<std::string> &query_params, ResultSet &res) {
+    while(true) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
+	try {
+	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
+	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+	  BaristaClient client(protocol);
+
+	  transport->open();
+	  std::lock_guard<std::mutex> lock(d_mu);
+
+	  d_curRequest++;
+
+	  std::ostringstream seqStream;
+	  seqStream << d_curRequest;
+	  std::string seqId = seqStream.str();
+
+	  d_connection.__set_seq_id(seqId);
+
+	  client.execute_sql_txn(res, d_connection, query, query_params);    
+	  transport->close();
+	  return;
+	}
+	catch(TException &tx) {
+	  std::cout << "ERROR: " << tx.what() << std::endl;
+	}
+      }
+    }
+  }
+
+  // begin a transaction
+  void beginTxn() {
+    while(true) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
+	try {
+	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
+	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+	  BaristaClient client(protocol);
+
+	  transport->open();
+	  std::lock_guard<std::mutex> lock(d_mu);
+
+	  d_curRequest++;
+
+	  std::ostringstream seqStream;
+	  seqStream << d_curRequest;
+	  std::string seqId = seqStream.str();
+
+	  d_connection.__set_seq_id(seqId);
+
+	  client.begin_txn(d_connection);
+	  transport->close();
+	  return;
+	}
+	catch(TException &tx) {
+	  std::cout << "ERROR: " << tx.what() << std::endl;
+	}
+      }
+    }
+  }
+
+  // commit a transaction
+  void commitTxn() {
+    while(true) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
+	try {
+	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
+	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+	  BaristaClient client(protocol);
+
+	  transport->open();
+	  std::lock_guard<std::mutex> lock(d_mu);
+
+	  d_curRequest++;
+
+	  std::ostringstream seqStream;
+	  seqStream << d_curRequest;
+	  std::string seqId = seqStream.str();
+
+	  d_connection.__set_seq_id(seqId);
+
+	  client.commit_txn(d_connection);
+	  transport->close();
+	  return;
+	}
+	catch(TException &tx) {
+	  std::cout << "ERROR: " << tx.what() << std::endl;
+	}
+      }
+    }
+  }
+
+  // rollback a transaction
+  void rollbackTxn() {
+    while(true) {
+      for(std::vector<std::string>::const_iterator it = d_addrs.begin(); it != d_addrs.end(); ++it) {
+	try {
+	  boost::shared_ptr<TSocket> transport(new TSocket(*it, PORT));
+	  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+	  BaristaClient client(protocol);
+
+	  transport->open();
+	  std::lock_guard<std::mutex> lock(d_mu);
+
+	  d_curRequest++;
+
+	  std::ostringstream seqStream;
+	  seqStream << d_curRequest;
+	  std::string seqId = seqStream.str();
+
+	  d_connection.__set_seq_id(seqId);
+
+	  client.rollback_txn(d_connection);
+	  transport->close();
+	  return;
+	}
+	catch(TException &tx) {
+	  std::cout << "ERROR: " << tx.what() << std::endl;
+	}
+      }
+    }
+  }
+
   // close database connection
   void closeConnection() {
     while(true) {
@@ -299,7 +423,7 @@ result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int npar
   if(query_params != NULL) {
     params.assign(query_params, query_params + nparams);
   }
-  (clerk->c).execSql(query, params, result->r);
+  (clerk->c).execSqlTxn(query, params, result->r);
 
   return result;
 }
@@ -309,13 +433,13 @@ void close_connection(clerk_t* clerk) {
 }
 
 void begin_txn(clerk_t* clerk) {
-
+  (clerk->c).beginTxn();
 }
 
 void commit_txn(clerk_t* clerk) {
-
+  (clerk->c).commitTxn();
 }
 
 void rollback_txn(clerk_t* clerk) {
-
+  (clerk->c).rollbackTxn();
 }
