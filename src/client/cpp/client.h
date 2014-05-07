@@ -12,13 +12,13 @@ extern "C" {
 
   void clear_result(result_t* result);
 
-  int nTuples(result_t* result);
+  int num_tuples(result_t* result);
 
-  int nFields(result_t* result);
+  int num_fields(result_t* result);
 
-  const char* getValue(result_t* result, int row, int column);
+  const char* get_value(result_t* result, int row, int column);
 
-  const char* getFieldName(result_t* result, int column);
+  const char* get_field_name(result_t* result, int column);
 
 
   /* clerk */
