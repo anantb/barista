@@ -1,12 +1,27 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include "result.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+  /* result */
+  typedef struct result result_t;
+
+  result_t* new_result();
+
+  void clear_result(result_t* result);
+
+  int nTuples(result_t* result);
+
+  int nFields(result_t* result);
+
+  const char* getValue(result_t* result, int row, int column);
+
+  const char* getFieldName(result_t* result, int column);
+
+
+  /* clerk */
   typedef struct clerk clerk_t;
 
   clerk_t* new_clerk(char* user, char* password, char* database);

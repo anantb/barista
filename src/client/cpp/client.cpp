@@ -33,10 +33,6 @@ using namespace barista;
 const int PORT = 9000;
 const std::string ADDRS[] = {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"};
 
-struct clerk {
-  Clerk c;
-};
-
 class Clerk {
 public:
   // constructor
@@ -245,9 +241,43 @@ int main () {
 
 
 // functions to be called from C
+struct result {
+  ResultSet r;
+};
+
+result_t* new_result() {
+  result_t* res = (result_t*) malloc(sizeof(*res));
+  return res;
+}
+
+void clear_result(result_t* result) {
+  free(result);
+  result = NULL;
+}
+
+int nTuples(result_t* result) {
+  return (result->r).row_count;
+}
+
+int nFields(result_t* result) {
+  return (result->r).field_names.size();
+}
+
+
+const char* getValue(result_t* result, int row, int column) {
+  return (result->r).tuples[row].cells[column].c_str();
+}
+
+const char* getFieldName(result_t* result, int column) {
+  return (result->r).field_names[column].c_str();
+}
+
+struct clerk {
+  Clerk c;
+};
 
 clerk_t* new_clerk(char* user, char* password, char* database) {
-  clerk_t* clerk = malloc(sizeof(*clerk));
+  clerk_t* clerk = (clerk_t*) malloc(sizeof(*clerk));
   (clerk->c).setUser(user);
   (clerk->c).setPassword(password);
   (clerk->c).setDatabase(database);
