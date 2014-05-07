@@ -76,6 +76,8 @@ type Paxos struct {
   acceptinfo map[int]*PaxosAcceptorInstance
 
   epoch int
+
+  leader string
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -87,13 +89,13 @@ type Paxos struct {
 //Paxos Administrative Functions
 //***********************************************************************************************************************************//
 func(px *Paxos) UpdateEpoch(newEpoch int){
-  px.mu.Lock()
-  defer px.mu.Unlock()
-
   //strictly increasing
   if newEpoch > px.epoch{
      px.epoch = newEpoch
   }
+}
+func (px *Paxos) SetLeader(leader string){
+  px.leader = leader
 }
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
@@ -140,13 +142,6 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     return
   }
 
-  /*_,okInstance := px.log[seq]
-
-  if okInstance{
-    px.mu.Unlock()
-    return
-  }*/
-
   //check to see if there is already proposer info for this instance (only one dedicated proposer per server)
   //if not then create the required objects
   _,ok := px.proposeinfo[seq]
@@ -170,6 +165,11 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
+  _,okInstance := px.log[seq]
+
+  if okInstance{
+    return
+  }
   //commence proposal cycle, continue until it succeeds
   done := false
   backOff := 10*time.Millisecond
@@ -189,7 +189,6 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         if(backOff<2*time.Second){
           backOff = 2*backOff
         }
-        time.Sleep(backOff)
       }
       continue
     }
@@ -213,12 +212,12 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     return
   }
 
-  /*_,okInstance := px.log[seq]
+  _,okInstance := px.log[seq]
 
   if okInstance{
     px.mu.Unlock()
     return
-  }*/
+  }
 
   //check to see if there is already proposer info for this instance (only one dedicated proposer per server)
   //if not then create the required objects
@@ -260,11 +259,10 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
         if(backOff<2*time.Second){
           backOff = 2*backOff
         }
-        //time.Sleep(backOff)
+        time.Sleep(backOff)
       }
       continue
     }
-    backOff = 10*time.Millisecond
 
     //ACCEPT phase
     accepted,_,error := px.ProposerAccept(seq,value,proposal,peers)
@@ -277,7 +275,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
         if(backOff<2*time.Second){
           backOff = 2*backOff
         }
-        //time.Sleep(backOff)
+        time.Sleep(backOff)
       }
       continue
     }
@@ -301,7 +299,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
 
   //status
   prepared := false
-  error := true
+  error := false
   
   //list of servers that send PREPARE_OK along with their replies
   preparedServers := make(map[string]*PrepareReply)
@@ -322,6 +320,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
   px.mu.Unlock()
   proposal = proposalNum
 
+  failCount :=  0
   //contact each peer and send do Prepare RPC
   for _,server := range px.peers{
 
@@ -329,19 +328,29 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
     prepareArgs := &PrepareArgs{seq,proposalNum}
     prepareReply := &PrepareReply{}
 
+    ok := true
+
     //don't issue RPCs to self
     if px.isMe(server){
       px.Prepare(prepareArgs,prepareReply)
     }else{
-      call(server,"Paxos.Prepare",prepareArgs,prepareReply)
+      ok = call(server,"Paxos.Prepare",prepareArgs,prepareReply)
     }
-    //check status
-    switch prepareReply.Status{
-      case OK:
-        //got PREPARE_OK
-        preparedServers[server]=prepareReply
-      case REJECT:
-        //was rejected, don't count as PREPARE_OK
+    if ok{
+      //check status
+      switch prepareReply.Status{
+        case OK:
+          //got PREPARE_OK
+          preparedServers[server]=prepareReply
+        case REJECT:
+          //was rejected, don't count as PREPARE_OK
+          px.UpdateEpoch(prepareReply.MaxProposal.Epoch)
+      }
+    }else{
+      failCount++
+    }
+    if len(preparedServers) >= majority{
+      break
     }
   }
 
@@ -383,6 +392,9 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
     //update status, prepare succeeded
     prepared = true
   }
+  if failCount > 0{
+    error = true
+  }
   return proposal,value,prepared, error
 }
 //function that handles the ACCEPT phase of the proposer
@@ -405,6 +417,8 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
   //number of peers required for a majority
   majority := getMajorityNum(peers)
 
+  failCount := 0
+
   //contact each peer and send do Accept RPC
   for _,server := range px.peers{
 
@@ -412,25 +426,35 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
     acceptArgs := &AcceptArgs{seq,proposal,v}
     acceptReply := &AcceptReply{}
 
+    ok := true
+
     //don't issue Accept RPC to self, just call the function
     if px.isMe(server){
       px.Accept(acceptArgs,acceptReply)
     }else{
-      call(server,"Paxos.Accept",acceptArgs,acceptReply)
+      ok = call(server,"Paxos.Accept",acceptArgs,acceptReply)
     }
-    //check status
-    switch acceptReply.Status{
-      case OK:
-        //got ACCEPT_OK
-        acceptedServers[server]=acceptReply
-      case REJECT:
-        //was rejected, don't count as ACCEPT_OK
-        explicit_reject = true
+    if ok{
+      //check status
+      switch acceptReply.Status{
+        case OK:
+          //got ACCEPT_OK
+          acceptedServers[server]=acceptReply
+        case REJECT:
+          //was rejected, don't count as ACCEPT_OK
+          explicit_reject = true
+      }
+    }else{
+      failCount++
+    }
+    if len(acceptedServers) >= majority{
+      accepted = true
+      break
     }
   }
   //if we got a majority of ACCEPT_OKs, the ACCEPT phase succeded
-  if len(acceptedServers) >= majority{
-    accepted = true
+  if failCount > 0{
+    error = true
   }
   return accepted,explicit_reject,error
 }
@@ -492,11 +516,17 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
+    if acceptor.MaxProposal != nil{
+      reply.MaxProposalAccept = *acceptor.MaxAcceptedProposalNum
+    }else{
+      reply.MaxProposalAccept = PaxosProposalNum{}
+      reply.MaxProposalAccept.Epoch = px.epoch
+    }
     //TODO: maybe do something here
     return nil
   }else{
     //will no longer accept anything of previous epoch
-    px.epoch = proposalnum.Epoch
+    px.UpdateEpoch(proposalnum.Epoch)
   }
 
   //if the acceptor has not received a proposal yet then accept the first proposal
@@ -569,8 +599,11 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   }
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
+
     //TODO: maybe do something here
     return nil
+  }else{
+    px.epoch = proposalnum.Epoch
   }
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
@@ -845,13 +878,14 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
 
 
   // Your initialization code here.
-  px.maxSeq = -1
+  px.maxSeq = 0
   px.minSeq = -1
   px.log = make(map[int]interface{})
   px.proposeinfo = make(map[int]*PaxosProposerInstance)
   px.acceptinfo = make(map[int]*PaxosAcceptorInstance)
   px.peersMap = make(map[string]int)
   px.epoch = 0
+  px.leader = ""
 
   //init peers map with maxDone values,
   //-1 represents we haven't heard from that peer

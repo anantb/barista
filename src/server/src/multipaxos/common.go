@@ -12,9 +12,10 @@ import "time"
 
 //constants
 const(
-	DEBUG = -1
+	DEBUG = -100
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
+	PINGWAIT = 3*NPINGS*PINGINTERVAL
 	//op types
 	LCHANGE = "LCHANGE"
 	NORMAL = "NORMAL"
@@ -54,24 +55,12 @@ type MultiPaxosLeaderChange struct{
 	ID int
 }
 type PingArgs struct{
-
+	LowestInstance int
 }
 type PingReply struct{
 	Status Status
-}
-type GetInstanceDataArgs struct{
-	LowestInstance int
-}
-type GetInstanceDataReply struct{
-	Status Status
+	Epoch int
 	InstancesData map[int]MultiPaxosOP
-	Leader string
-}
-type FindLeaderArgs struct{
-
-}
-type FindLeaderReply struct{
-	EpochNum int
 	Leader string
 }
 type RemoteStartArgs struct{
@@ -80,6 +69,7 @@ type RemoteStartArgs struct{
 }
 type RemoteStartReply struct{
 	Status Status
+	Epoch int
 	Leader string
 }
 //***********************************************************************************************************************************//
