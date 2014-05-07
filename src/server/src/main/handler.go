@@ -58,6 +58,7 @@ func (handler *Handler) OpenConnection(
   con := new(barista.Connection)
   con.User = &user
   con.Database = &database
+  con.ClientId = &clientid
   return con, nil
 }
 
