@@ -210,7 +210,7 @@ func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply 
   sp.transactions[args.ClientId] = tx
 
   sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
-  return BeginTxnReply{Txn: tx, Err:OK}
+  return BeginTxnReply{Err:OK}
 }
 
 func (sp *SQLPaxos) CommitTxnHelper(args CommitTxnArgs, seqnum int) CommitTxnReply {
