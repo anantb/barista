@@ -7,6 +7,8 @@ const (
   ErrNoKey = "ErrNoKey"
   ConnAlreadyOpen = "ConnectionAlreadyOpen"
   ConnAlreadyClosed = "ConnectionAlreadyClosed"
+  TxnAlreadyStarted = "TxnAlreadyStarted"
+  TxnAlreadyEnded = "TxnAlreadyEnded"
 )
 type Err string
 
@@ -17,6 +19,10 @@ const (
   Close = 2
   Execute = 3
   NoOp = 4
+  ExecuteTxn = 5
+  BeginTxn = 6
+  CommitTxn = 7
+  RollbackTxn = 8
 )
 
 type Op struct {
@@ -52,6 +58,45 @@ type ExecReply struct {
 
   // some stuff for testing
   Value string
+}
+
+type ExecTxnArgs struct {
+  Query string
+  QueryParams [][]byte
+  ClientId int64
+  RequestId int
+}
+
+type ExecTxnReply struct {
+  Err Err
+  Result *barista.ResultSet
+}
+
+type BeginTxnArgs struct {
+  ClientId int64
+  RequestId int
+}
+
+type BeginTxnReply struct {
+  Err Err
+}
+
+type CommitTxnArgs struct {
+  ClientId int64
+  RequestId int
+}
+
+type CommitTxnReply struct {
+  Err Err
+}
+
+type RollbackTxnArgs struct {
+  ClientId int64
+  RequestId int
+}
+
+type RollbackTxnReply struct {
+  Err Err
 }
 
 type OpenArgs struct {

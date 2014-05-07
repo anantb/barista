@@ -17,6 +17,7 @@ import "barista"
 import "encoding/json"
 import "logger"
 import "db"
+import "database/sql"
 
 const Debug=0
 
@@ -47,6 +48,7 @@ type SQLPaxos struct {
   data map[string]string // the database
   lastSeen map[int64]LastSeen // the last request/reply for this client
   connections map[int64]*db.DBManager // connections per client. Limited to a single connection per client
+  transactions map[int64]*sql.Tx // transactions per client. Limited to a single transaction per client
   next int // the next sequence number to be executed
   logger *logger.Logger // logger to write paxos log to file
 }
@@ -114,6 +116,14 @@ func (sp *SQLPaxos) execute(op Op) interface{} {
       return sp.CloseHelper(op.Args.(CloseArgs), op.SeqNum)
     case op.Type == Execute:
       return sp.ExecuteHelper(op.Args.(ExecArgs), op.SeqNum)
+    case op.Type == ExecuteTxn:
+      return sp.ExecuteTxnHelper(op.Args.(ExecTxnArgs), op.SeqNum)
+    case op.Type == BeginTxn:
+      return sp.BeginTxnHelper(op.Args.(BeginTxnArgs), op.SeqNum)
+    case op.Type == CommitTxn:
+      return sp.CommitTxnHelper(op.Args.(CommitTxnArgs), op.SeqNum)
+    case op.Type == RollbackTxn:
+      return sp.RollbackTxnHelper(op.Args.(RollbackTxnArgs), op.SeqNum)
     }
   }
   return nil
@@ -127,14 +137,7 @@ func (sp *SQLPaxos) WriteToLog(op Op) error {
   return sp.logger.WriteToLog(string(b[:]))
 }
 
-
-func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
-  rows, columns, err := sp.UpdateDatabase(args.ClientId, args.Query, args.QueryParams, seqnum)
-  if err != OK {
-    // log something
-    return ExecReply{Err:err}
-  }
-
+func (sp *SQLPaxos) getResultSet(rows [][][]byte, columns []string) *barista.ResultSet {
   tuples := []*barista.Tuple{}
   for _, row := range rows {
     cells := make([][]byte, 0)
@@ -151,7 +154,104 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
   //result_set.Con = con. @TODO: this will not be populating this
   result_set.Tuples = &tuples
   result_set.FieldNames = &columns
+  return result_set
+}
+
+func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
+  rows, columns, err := sp.UpdateDatabase(args.ClientId, args.Query, args.QueryParams, seqnum)
+  if err != OK {
+    // log something
+    return ExecReply{Err:err}
+  }
+
+  result_set := sp.getResultSet(rows, columns)
   return ExecReply{Result:result_set, Err:OK}
+}
+
+func (sp *SQLPaxos) ExecuteTxnHelper(args ExecTxnArgs, seqnum int) ExecTxnReply {
+
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return ExecTxnReply{Err: TxnAlreadyEnded}
+  }
+
+  rows := make([][][]byte, 0)
+  columns := make([]string, 0)
+  var err error
+
+  if args.Query != "" {
+     params := sp.convertQueryParams(args.QueryParams)
+     rows, columns, err = sp.connections[args.ClientId].QueryTxn(tx, args.Query, params...)
+
+     if err != nil {
+        return ExecTxnReply{Err: errorToErr(err)}
+     }
+  }
+
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
+  
+  result_set := sp.getResultSet(rows, columns)
+  return ExecTxnReply{Result:result_set, Err:OK}
+}
+
+func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply {
+
+  _, ok := sp.transactions[args.ClientId]
+  if ok {
+     return BeginTxnReply{Err: TxnAlreadyStarted}
+  } 
+
+  tx, err := sp.connections[args.ClientId].BeginTxn()
+
+  if err != nil {
+    return BeginTxnReply{Err: errorToErr(err)}
+  }
+
+  sp.transactions[args.ClientId] = tx
+
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
+  return BeginTxnReply{Err:OK}
+}
+
+func (sp *SQLPaxos) CommitTxnHelper(args CommitTxnArgs, seqnum int) CommitTxnReply {
+
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return CommitTxnReply{Err: TxnAlreadyEnded}
+  }
+
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
+
+  err := sp.connections[args.ClientId].CommitTxn(tx)
+  if err != nil {
+     return CommitTxnReply{Err: errorToErr(err)}
+  }
+
+  delete(sp.transactions, args.ClientId)
+
+  return CommitTxnReply{Err:OK}
+}
+
+func (sp *SQLPaxos) RollbackTxnHelper(args RollbackTxnArgs, seqnum int) RollbackTxnReply {
+
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return RollbackTxnReply{Err: TxnAlreadyEnded}
+  } 
+
+  err := sp.connections[args.ClientId].RollbackTxn(tx)
+  if err != nil {
+     return RollbackTxnReply{Err: errorToErr(err)}
+  }
+
+  delete(sp.transactions, args.ClientId)
+
+  _, _, updateErr := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  if updateErr != OK {
+    // log something
+  }
+
+  return RollbackTxnReply{Err:OK}
 }
 
 func (sp *SQLPaxos) OpenHelper(args OpenArgs, seqnum int) OpenReply {
@@ -220,19 +320,23 @@ func (sp *SQLPaxos) UpdateDatabase(clientId int64, query string, query_params []
      rows, columns, err = sp.connections[clientId].QueryTxn(tx, query, params...)
   }
 
-  update := "UPDATE sqlpaxoslog SET lastseqnum=" + strconv.Itoa(seqnum) + ";"
-  params := make([]interface{}, 0)
-  _, errUpdate := sp.connections[clientId].ExecTxn(tx, update, params...)
-  if errUpdate != nil {
-    fmt.Println("Error updating SQLPaxosLog: ", errUpdate)
-  }
+  sp.updateDatabaseSeqNum(tx, clientId, seqnum)
 
-  errEnd := sp.connections[clientId].EndTxn(tx)
-  if errEnd != nil {
-     fmt.Println("Error committing txn: ", errEnd)
+  errCommit := sp.connections[clientId].CommitTxn(tx)
+  if errCommit != nil {
+     fmt.Println("Error committing txn: ", errCommit)
   }
 
   return rows, columns, errorToErr(err)
+}
+
+func (sp *SQLPaxos) updateDatabaseSeqNum(tx *sql.Tx, clientId int64, seqnum int) {
+  update := "UPDATE sqlpaxoslog SET lastseqnum=" + strconv.Itoa(seqnum) + ";"
+  params := make([]interface{}, 0)
+  _, err := sp.connections[clientId].ExecTxn(tx, update, params...)
+  if err != nil {
+    fmt.Println("Error updating SQLPaxosLog: ", err)
+  }
 }
 
 func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
@@ -298,6 +402,14 @@ func getOpClientId(op Op) int64 {
     return op.Args.(CloseArgs).ClientId;
   case op.Type == Execute:
     return op.Args.(ExecArgs).ClientId;
+  case op.Type == ExecuteTxn:
+    return op.Args.(ExecTxnArgs).ClientId;
+  case op.Type == BeginTxn:
+    return op.Args.(BeginTxnArgs).ClientId;
+  case op.Type == CommitTxn:
+    return op.Args.(CommitTxnArgs).ClientId;
+  case op.Type == RollbackTxn:
+    return op.Args.(RollbackTxnArgs).ClientId;
   }
   return -1;
 }
@@ -310,6 +422,14 @@ func getOpRequestId(op Op) int {
     return op.Args.(CloseArgs).RequestId;
   case op.Type == Execute:
     return op.Args.(ExecArgs).RequestId;
+  case op.Type == ExecuteTxn:
+    return op.Args.(ExecTxnArgs).RequestId;
+  case op.Type == BeginTxn:
+    return op.Args.(BeginTxnArgs).RequestId;
+  case op.Type == CommitTxn:
+    return op.Args.(CommitTxnArgs).RequestId;
+  case op.Type == RollbackTxn:
+    return op.Args.(RollbackTxnArgs).RequestId;
   }
   return -1;
 }
@@ -436,6 +556,55 @@ func (sp *SQLPaxos) ExecuteSQL(args *ExecArgs, reply *ExecReply) error {
   return nil
 }
 
+func (sp *SQLPaxos) ExecuteSQLTxn(args *ExecTxnArgs, reply *ExecTxnReply) error {
+  // execute this operation and store the response in r
+  op := Op{Type:ExecuteTxn, Args: *args}
+  r := sp.commit(op)
+
+  if r != nil {
+     reply.Result = r.(ExecTxnReply).Result
+     reply.Err = r.(ExecTxnReply).Err
+  }
+
+  return nil
+}
+
+func (sp *SQLPaxos) BeginTxn(args *BeginTxnArgs, reply *BeginTxnReply) error {
+  // execute this operation and store the response in r
+  op := Op{Type:BeginTxn, Args: *args}
+  r := sp.commit(op)
+
+  if r != nil {
+     reply.Err = r.(BeginTxnReply).Err
+  }
+
+  return nil
+}
+
+func (sp *SQLPaxos) CommitTxn(args *CommitTxnArgs, reply *CommitTxnReply) error {
+  // execute this operation and store the response in r
+  op := Op{Type:CommitTxn, Args: *args}
+  r := sp.commit(op)
+
+  if r != nil {
+     reply.Err = r.(CommitTxnReply).Err
+  }
+
+  return nil
+}
+
+func (sp *SQLPaxos) RollbackTxn(args *RollbackTxnArgs, reply *RollbackTxnReply) error {
+  // execute this operation and store the response in r
+  op := Op{Type:RollbackTxn, Args: *args}
+  r := sp.commit(op)
+
+  if r != nil {
+     reply.Err = r.(RollbackTxnReply).Err
+  }
+
+  return nil
+}
+
 // open the connection to the database
 func (sp *SQLPaxos) Open(args *OpenArgs, reply *OpenReply) error {
   // execute this operation and store the response in r
@@ -480,6 +649,10 @@ func StartServer(servers []string, me int) *SQLPaxos {
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
   gob.Register(ExecArgs{})
+  gob.Register(ExecTxnArgs{})
+  gob.Register(BeginTxnArgs{})
+  gob.Register(CommitTxnArgs{})
+  gob.Register(RollbackTxnArgs{})
   gob.Register(OpenArgs{})
   gob.Register(CloseArgs{})
 
@@ -494,6 +667,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
   sp.lastSeen = make(map[int64]LastSeen)
   sp.next = 0
   sp.connections = make(map[int64]*db.DBManager)
+  sp.transactions = make(map[int64]*sql.Tx)
   sp.logger = logger.Make("sqlpaxos_log.txt")
   
   rpcs := rpc.NewServer()

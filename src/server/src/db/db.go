@@ -40,8 +40,12 @@ func (manager *DBManager) BeginTxn() (*sql.Tx, error) {
   return manager.db.Begin()
 }
 
-func (manager *DBManager) EndTxn(tx *sql.Tx) error {
+func (manager *DBManager) CommitTxn(tx *sql.Tx) error {
   return tx.Commit()
+}
+
+func (manager *DBManager) RollbackTxn(tx *sql.Tx) error {
+  return tx.Rollback()
 }
 
 func (manager *DBManager) QueryTxn(
