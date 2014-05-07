@@ -191,9 +191,8 @@ func (sp *SQLPaxos) ExecuteTxnHelper(args ExecTxnArgs, seqnum int) ExecTxnReply 
 func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply {
   tx, err := sp.connections[args.ClientId].BeginTxn()
 
-  if err != OK {
-    // log something
-    return BeginTxnReply{Err:err}
+  if err != nil {
+    return BeginTxnReply{Err: errorToErr(err)}
   }
 
   sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
@@ -219,8 +218,8 @@ func (sp *SQLPaxos) RollbackTxnHelper(args RollbackTxnArgs, seqnum int) Rollback
      return RollbackTxnReply{Err: errorToErr(err)}
   }
 
-  _, _, err = sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
-  if err != OK {
+  _, _, updateErr := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  if updateErr != OK {
     // log something
   }
 
