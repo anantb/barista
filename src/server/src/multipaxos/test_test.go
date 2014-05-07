@@ -1007,7 +1007,7 @@ func TestPartition(t *testing.T) {
     l = majority[leaderIndexInGroup1]
 
     //avoid instance used for leader agreement
-    seq++
+    seq=pxa[l].Max()
 
     //old leader
     pxa[minority[0]].Start(seq, seq * 10)
@@ -1040,6 +1040,9 @@ func TestPartition(t *testing.T) {
       t.Fatalf("Leader changed when it wasn't supposed to!")
     }
 
+    //wait for replicas to catch up from leader
+    time.Sleep(PINGWAIT)
+    
     //should catch up
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,(seq * 10) + 1)
@@ -1047,7 +1050,7 @@ func TestPartition(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  /*fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
+  fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
 
 
   for iters := 0; iters < 20; iters++ {
@@ -1059,7 +1062,12 @@ func TestPartition(t *testing.T) {
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
     for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].Start(seq, (seq * 10) + i)
+      go func(seq int, ind int){
+        for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
+          pxa[ind].Start(seq, (seq * 10) + ind)
+          time.Sleep(PINGWAIT)
+        }
+      }(seq,i)
     }
     waitn(t, pxa, seq, 3)
     if ndecided(t, pxa, seq) > 3 {
@@ -1075,7 +1083,7 @@ func TestPartition(t *testing.T) {
     waitn(t, pxa, seq, 5)
   }
 
-  fmt.Printf("  ... Passed\n")*/
+  fmt.Printf("  ... Passed\n")
 }
 
 func TestLots(t *testing.T) {
@@ -1147,7 +1155,7 @@ func TestLots(t *testing.T) {
 
           //need to retry for this seq just in case the leader died
           go func(seq int, ind int){
-            for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1){
+            for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
               pxa[ind].Start(seq, rand.Int() % 10)
               time.Sleep(PINGWAIT)
             }
@@ -1171,7 +1179,7 @@ func TestLots(t *testing.T) {
     }
   }()
 
-  time.Sleep(20 * time.Second)
+  time.Sleep(30 * time.Second)
   done = true
   <- ch1
   <- ch2

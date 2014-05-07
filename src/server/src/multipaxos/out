@@ -1,1985 +1,385 @@
-Test: Many requests, changing partitions ...
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 0
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Max was 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: Before Start on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After Start on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: Before Start on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: After Start on instance -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 3
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 9
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-write unix /var/tmp/824-1000/px-510-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-510-lots-3: broken pipe
-write unix /var/tmp/824-1000/px-510-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-510-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-510-lots-3: broken pipe
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-write unix /var/tmp/824-1000/px-510-lots-1: broken pipe
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover -1
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover -1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-510-lots-3: broken pipe
-unexpected EOF
-write unix /var/tmp/824-1000/px-510-lots-1: broken pipe
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: -1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: -1  new leader/var/tmp/824-1000/px-lots-510-0-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: -1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: -1  new leader/var/tmp/824-1000/px-lots-510-1-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: -1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: -1  new leader/var/tmp/824-1000/px-510-lots-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: -1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: -1  new leader/var/tmp/824-1000/px-lots-510-2-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: After agree on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: -1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: -1  new leader/var/tmp/824-1000/px-lots-510-4-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: After agree on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After agree on instance -1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:2
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:3
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:4
-write unix /var/tmp/824-1000/px-510-lots-0: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: not leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: not leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 1
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by p{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 1
-unexpected EOF
-r/tmp/824-1000/px-510-lots-3} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 2
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 2
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 2
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: not leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 3
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: not leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 2
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: not leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: not leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: not leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:2
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:3
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:5
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal a{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 0  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 0  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 1  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 2  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 2  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 3  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 3  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 4  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 4  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 5  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 5  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 6  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 6  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 7  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 7  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 0  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 0  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 1  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 2  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 2  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 3  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 3  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 4  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 4  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 5  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 5  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 6  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 6  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 7  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: 7  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 0  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 0  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: Before Start on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: After Start on instance 8
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: initiating failover 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: agreement started for 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: Started proposal as leader 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Explicit fail detected!
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} refresh: found leader: /var/tmp/824-1000/px-lots-510-4-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover 8
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: Before Start on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: After Start on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} getInstancesFromLeader: found new leader
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 8  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: 8  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: initiating failover 9
-write unix /var/tmp/824-1000/px-510-lots-2: broken pipe
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} refresh: found leader: /var/tmp/824-1000/px-lots-510-4-3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: After agree on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: Before Start on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: After Start on instance 9
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} getInstancesFromLeader: got no leader
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} getInstancesFromLeader: found new leader
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Explicit fail detected!
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:2
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:10
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Pings missed:10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:3
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} LeaderStart: epoch1 Fast propose done
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Pings missed:11
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:4
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:5
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 1
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Max was 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 2
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 2
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 3
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 2
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 0  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 0  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 1  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 2  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 2  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 9
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 8
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 9
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 9
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-4: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Max was 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Max was me
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: Before Start on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After Start on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-read unix /var/tmp/824-1000/px-510-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover 0
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-510-lots-0: connection reset by peer
-unexpected EOF
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 3  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 3  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 4  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 4  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 5  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 5  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 1  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 6  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 6  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} Start: Start called on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After agree on instance 1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: Before Start on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After Start on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 7  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 7  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 8  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 8  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 9  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 9  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: Before Start on instance 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After Start on instance 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: initiating failover 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 2  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 2  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 3  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 3  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 4  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 4  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 5  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 5  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 6  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 6  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 7  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 7  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 8  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 8  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After agree on instance 2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: Before Start on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After Start on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 10  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 10  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 10  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 10  new leader/var/tmp/824-1000/px-510-lots-1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} PAAW: After agree on instance 10
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: initiating failover 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: found leader: /var/tmp/824-1000/px-510-lots-1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 9  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 9  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 10  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 10  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 10  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 10  new leader/var/tmp/824-1000/px-lots-510-4-1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After agree on instance 9
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: Before Start on instance 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After Start on instance 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: initiating failover 0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: before commitAndLog 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 11  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 11  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 11  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: 11  new leader/var/tmp/824-1000/px-510-lots-4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} PAAW: After agree on instance 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: before commitAndLog 11
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 11  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 11  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 11  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: 11  new leader/var/tmp/824-1000/px-lots-510-1-4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} refresh: found leader: /var/tmp/824-1000/px-510-lots-4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-1} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-4} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} getInstancesFromLeader: got data
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 0  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 0  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 1  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 1  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 2  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 2  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 3  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 3  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 4  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 4  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 5  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 5  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 6  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 6  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 7  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 7  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 8  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 8  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 9  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 9  found normal op
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 10  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 10  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 10  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 10  new leader/var/tmp/824-1000/px-lots-510-0-1
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 11  before anything
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 11  found leader change
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 11  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: 11  new leader/var/tmp/824-1000/px-lots-510-0-4
-{MultiPaxos /var/tmp/824-1000/px-510-lots-0} Commit and Log: done
+Test: Elect Leader Instance -1...
   ... Passed
-{MultiPaxos /var/tmp/824-1000/px-510-lots-2} PAAW: After agree on instance 8
-{MultiPaxos /var/tmp/824-1000/px-510-lots-3} PAAW: After agree on instance 9
-PASS
-ok  	multipaxos	27.283s
+Test: Single Agreement to leader...
+  ... Passed
+Test: Many proposers, same value...
+  ... Passed
+Test: Many proposers, different values...
+  ... Passed
+Test: Out-of-order instances...
+  ... Passed
+Test: RPC counts aren't too high ...
+ Total messages used: 20 ... Passed
+ Total messages used Actual: 56
+ Total messages used: 30  ... Passed
+Test: First leader death, make sure changes ...
+  ... Passed
+Test: Second leader death and in flight requests...
+--- FAIL: TestLeaderDeaths (5.16 seconds)
+	test_test.go:34: No leader has been elected!
+Test: Paxos Replica Falls Behind and then Catches Up With Data From Leader...
+  ... Passed
+Test: Many instances ...
+  ... Passed
+Test: Minority proposal ignored and slow instance catches up by talking to leader...
+  ... Passed
+Test: No decision if partitioned (no leader)...
+  ... Passed
+Test: Decision in majority partition with leader...
+--- FAIL: TestPartition (7.52 seconds)
+	test_test.go:34: No leader has been elected!
+Test: Many requests, changing partitions ...
+connection is shut down
+connection is shut down
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-3560-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+connection is shut down
+connection is shut down
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-3560-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-3560-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-3560-lots-1: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-3560-lots-0: broken pipe
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-3560-lots-3: connection reset by peer
+exit status 2
+FAIL	multipaxos	37.711s
