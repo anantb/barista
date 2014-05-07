@@ -296,7 +296,9 @@ void open_connection(clerk_t* clerk) {
 result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int nparams) {
   result_t* result = new_result();
   std::vector<std::string> params;
-  params.assign(query_params, query_params + nparams);
+  if(query_params != NULL) {
+    params.assign(query_params, query_params + nparams);
+  }
   (clerk->c).execSql(query, params, result->r);
 
   return result;
