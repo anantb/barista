@@ -1099,7 +1099,7 @@ func TestLots(t *testing.T) {
       }
     }
     pxa[i] = Make(pxh, i, nil)
-    //pxa[i].SetUnreliable(true)
+    pxa[i].SetUnreliable(true)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
 
@@ -1144,7 +1144,14 @@ func TestLots(t *testing.T) {
       }
       if seq - nd < 10 {
         for i := 0; i < nMultiPaxos; i++ {
-          pxa[i].Start(seq, rand.Int() % 10)
+
+          //need to retry for this seq just in case the leader died
+          go func(seq int, ind int){
+            for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1){
+              pxa[ind].Start(seq, rand.Int() % 10)
+              time.Sleep(PINGWAIT)
+            }
+          }(seq,i)
         }
         seq++
       }
