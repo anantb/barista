@@ -80,7 +80,9 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
       return true,OK
     }else{
       mpx.Log(1,"Start: not leader "+strconv.Itoa(seq))
-      //TODO: add forwarding code here
+      go func(){
+          done := false
+        }()
       return true, OK
     }
   }
@@ -337,7 +339,7 @@ func (mpx *MultiPaxos) ping(){
   mpx.mu.Unlock()
 
   //no need to ping yourself
-  if mpx.isLeader() || !mpx.leader.isValid(){
+  if mpx.isLeader(){
     return
   }
 
@@ -364,8 +366,14 @@ func (mpx *MultiPaxos) ping(){
   }
 }
 func (mpx *MultiPaxos) findLeader() string{
+  
   highestEpoch := 0
   highestLeader := ""
+
+  if mpx.isLeader() && mpx.leader.isValid(){
+    return mpx.peers[mpx.leader.id]
+  }
+
   for _,serverAddr := range mpx.peers{
     args := &PingArgs{}
     reply :=  &PingReply{}

@@ -892,10 +892,10 @@ func cleanpp(tag string, n int) {
 
 func part(t *testing.T, tag string, nMultiPaxos int, p1 []int, p2 []int, p3 []int) {
   cleanpp(tag, nMultiPaxos)
-  fmt.Printf("new partition\n")
+  /*fmt.Printf("new partition\n")
   fmt.Printf("%v \n",p1)
   fmt.Printf("%v \n",p2)
-  fmt.Printf("new partition end\n")
+  fmt.Printf("new partition end\n")*/
   pa := [][]int{p1, p2, p3}
   for pi := 0; pi < len(pa); pi++ {
     p := pa[pi]
@@ -1004,7 +1004,7 @@ func TestPartition(t *testing.T) {
       }
     }
 
-    fmt.Printf("new partition \n")
+    //fmt.Printf("new partition \n")
     part(t, tag, nMultiPaxos, majority, minority, []int{})
 
     //wait for leader
@@ -1028,7 +1028,7 @@ func TestPartition(t *testing.T) {
     }
     checkval(t,pxa,seq,(seq * 10) + 1)
     
-    fmt.Printf("before heal \n")
+    //fmt.Printf("before heal \n")
 
     //if other paxos replicas are not in the same partition as the leader they will never get the results
     //so need to join partition and see if they agree
