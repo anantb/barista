@@ -163,7 +163,7 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
     return ExecReply{Err:err}
   }
 
-  result_set := getResultSet(rows, columns)
+  result_set := sp.getResultSet(rows, columns)
   return ExecReply{Result:result_set, Err:OK}
 }
 
@@ -171,10 +171,11 @@ func (sp *SQLPaxos) ExecuteTxnHelper(args ExecTxnArgs, seqnum int) ExecTxnReply 
 
   rows := make([][][]byte, 0)
   columns := make([]string, 0)
+  var err error
 
-  if query != "" {
-     params := sp.convertQueryParams(query_params)
-     rows, columns, err = sp.connections[clientId].QueryTxn(args.Txn, query, params...)
+  if args.Query != "" {
+     params := sp.convertQueryParams(args.QueryParams)
+     rows, columns, err = sp.connections[clientId].QueryTxn(args.Txn, args.Query, params...)
 
      if err != nil {
         return ExecTxnReply{Err: errorToErr(err)}
@@ -218,7 +219,10 @@ func (sp *SQLPaxos) RollbackTxnHelper(args RollbackTxnArgs, seqnum int) Rollback
      return RollbackTxnReply{Err: errorToErr(err)}
   }
 
-  _, _, err := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  _, _, err = sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
+  if err != OK {
+    // log something
+  }
 
   return RollbackTxnReply{Err:OK}
 }
