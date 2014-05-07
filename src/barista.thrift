@@ -77,6 +77,18 @@ service Barista {
   ResultSet execute_sql (1: Connection con, 2: string query,
       3: list <binary> query_params) throws (1: DBException ex)
 
+  ResultSet execute_sql_txn (1: Connection con, 2: string query,
+      3: list <binary> query_params) throws (1: DBException ex)
+
+  void begin_txn (1: Connection con)
+      throws (1: DBException ex)
+
+  void commit_txn (1: Connection con)
+      throws (1: DBException ex)
+
+  void rollback_txn (1: Connection con)
+      throws (1: DBException ex)
+
   void close_connection (1: Connection con)
       throws (1: DBException ex)
 }
