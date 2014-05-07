@@ -1,6 +1,7 @@
 package sqlpaxos
 import "hash/fnv"
 import "barista"
+import "database/sql"
 
 const (
   OK = "OK"
@@ -17,6 +18,10 @@ const (
   Close = 2
   Execute = 3
   NoOp = 4
+  ExecuteTxn = 5
+  BeginTxn = 6
+  CommitTxn = 7
+  RollbackTxn = 8
 )
 
 type Op struct {
@@ -52,6 +57,49 @@ type ExecReply struct {
 
   // some stuff for testing
   Value string
+}
+
+type ExecTxnArgs struct {
+  Query string
+  QueryParams [][]byte
+  ClientId int64
+  RequestId int
+  Txn *sql.Tx
+}
+
+type ExecTxnReply struct {
+  Err Err
+  Result *barista.ResultSet
+}
+
+type BeginTxnArgs struct {
+  ClientId int64
+  RequestId int
+}
+
+type BeginTxnReply struct {
+  Err Err
+  Txn *sql.Tx
+}
+
+type CommitTxnArgs struct {
+  ClientId int64
+  RequestId int
+  Txn *sql.Tx
+}
+
+type CommitTxnReply struct {
+  Err Err
+}
+
+type RollbackTxnArgs struct {
+  ClientId int64
+  RequestId int
+  Txn *sql.Tx
+}
+
+type RollbackTxnReply struct {
+  Err Err
 }
 
 type OpenArgs struct {

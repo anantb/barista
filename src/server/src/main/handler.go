@@ -11,6 +11,7 @@ import "barista"
 import "fmt"
 import "sqlpaxos"
 import "strconv"
+import "database/sql"
 
 type Handler struct {
   sqlpaxos *sqlpaxos.SQLPaxos
@@ -86,6 +87,104 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
     return nil, err
   }
   return reply.Result, nil
+}
+
+func (handler *Handler) ExecuteSqlTxn(con *barista.Connection,
+    query string, query_params [][]byte, txn *sql.Tx) (*barista.ResultSet, error) {
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.ExecTxnArgs{ClientId: client_id, RequestId: request_id, Query: query, 
+    QueryParams: query_params, Txn: txn}
+  var reply sqlpaxos.ExecTxnReply
+  err = handler.sqlpaxos.ExecuteSQLTxn(&args, &reply)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+  return reply.Result, nil
+}
+
+func (handler *Handler) BeginTxn(con *barista.Connection) (*sql.Tx, error) {
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.BeginTxnArgs{ClientId: client_id, RequestId: request_id}
+  var reply sqlpaxos.BeginTxnReply
+  err = handler.sqlpaxos.BeginTxn(&args, &reply)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return nil, err
+  }
+  return reply.Txn, nil
+}
+
+func (handler *Handler) CommitTxn(con *barista.Connection, txn *sql.Tx) error {
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.CommitTxnArgs{ClientId: client_id, RequestId: request_id, Txn: txn}
+  var reply sqlpaxos.CommitTxnReply
+  err = handler.sqlpaxos.CommitTxn(&args, &reply)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return err
+  }
+  return nil
+}
+
+func (handler *Handler) RollbackTxn(con *barista.Connection, txn *sql.Tx) error {
+  clientid := *(con.ClientId)
+  requestid := *(con.SeqId)
+
+  client_id, err := strconv.ParseInt(clientid, 10, 64)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+
+  request_id, err := strconv.Atoi(requestid)
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+  args := sqlpaxos.RollbackTxnArgs{ClientId: client_id, RequestId: request_id, Txn: txn}
+  var reply sqlpaxos.RollbackTxnReply
+  err = handler.sqlpaxos.RollbackTxn(&args, &reply)
+
+  if err != nil {
+    fmt.Println("Error :", err)
+    return err
+  }
+  return nil
 }
 
 func (handler *Handler) CloseConnection(
