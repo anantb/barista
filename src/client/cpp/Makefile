@@ -5,7 +5,7 @@ GEN_OBJ := $(patsubst %.cpp,%.o, $(GEN_SRC))
 MY_SRC := client.cpp
 MY_OBJ := $(patsubst %.cpp,%.o, $(MY_SRC))
 
-CXXFLAGS := -I$(THRIFT_HOME)/thrift-bin/include -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H
+CXXFLAGS := -I$(THRIFT_HOME)/thrift-bin/include -DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H -std=c++0x
 LDFLAGS := -L$(THRIFT_HOME)/thrift-bin/lib -Wl,-rpath=$(THRIFT_HOME)/thrift-bin/lib
 
 all: client
