@@ -1,13 +1,14 @@
 package sqlpaxos
 import "hash/fnv"
 import "barista"
-import "database/sql"
 
 const (
   OK = "OK"
   ErrNoKey = "ErrNoKey"
   ConnAlreadyOpen = "ConnectionAlreadyOpen"
   ConnAlreadyClosed = "ConnectionAlreadyClosed"
+  TxnAlreadyStarted = "TxnAlreadyStarted"
+  TxnAlreadyEnded = "TxnAlreadyEnded"
 )
 type Err string
 
@@ -64,7 +65,6 @@ type ExecTxnArgs struct {
   QueryParams [][]byte
   ClientId int64
   RequestId int
-  Txn *sql.Tx
 }
 
 type ExecTxnReply struct {
@@ -79,13 +79,11 @@ type BeginTxnArgs struct {
 
 type BeginTxnReply struct {
   Err Err
-  Txn *sql.Tx
 }
 
 type CommitTxnArgs struct {
   ClientId int64
   RequestId int
-  Txn *sql.Tx
 }
 
 type CommitTxnReply struct {
@@ -95,7 +93,6 @@ type CommitTxnReply struct {
 type RollbackTxnArgs struct {
   ClientId int64
   RequestId int
-  Txn *sql.Tx
 }
 
 type RollbackTxnReply struct {

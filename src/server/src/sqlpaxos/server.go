@@ -48,6 +48,7 @@ type SQLPaxos struct {
   data map[string]string // the database
   lastSeen map[int64]LastSeen // the last request/reply for this client
   connections map[int64]*db.DBManager // connections per client. Limited to a single connection per client
+  transactions map[int64]*sql.Tx // transactions per client. Limited to a single transaction per client
   next int // the next sequence number to be executed
   logger *logger.Logger // logger to write paxos log to file
 }
@@ -169,31 +170,44 @@ func (sp *SQLPaxos) ExecuteHelper(args ExecArgs, seqnum int) ExecReply {
 
 func (sp *SQLPaxos) ExecuteTxnHelper(args ExecTxnArgs, seqnum int) ExecTxnReply {
 
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return ExecTxnReply{Err: TxnAlreadyEnded}
+  }
+
   rows := make([][][]byte, 0)
   columns := make([]string, 0)
   var err error
 
   if args.Query != "" {
      params := sp.convertQueryParams(args.QueryParams)
-     rows, columns, err = sp.connections[args.ClientId].QueryTxn(args.Txn, args.Query, params...)
+     rows, columns, err = sp.connections[args.ClientId].QueryTxn(tx, args.Query, params...)
 
      if err != nil {
         return ExecTxnReply{Err: errorToErr(err)}
      }
   }
 
-  sp.updateDatabaseSeqNum(args.Txn, args.ClientId, seqnum)
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
   
   result_set := sp.getResultSet(rows, columns)
   return ExecTxnReply{Result:result_set, Err:OK}
 }
 
 func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply {
+
+  _, ok := sp.transactions[args.ClientId]
+  if ok {
+     return BeginTxnReply{Err: TxnAlreadyStarted}
+  } 
+
   tx, err := sp.connections[args.ClientId].BeginTxn()
 
   if err != nil {
     return BeginTxnReply{Err: errorToErr(err)}
   }
+
+  sp.transactions[args.ClientId] = tx
 
   sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
   return BeginTxnReply{Txn: tx, Err:OK}
@@ -201,22 +215,36 @@ func (sp *SQLPaxos) BeginTxnHelper(args BeginTxnArgs, seqnum int) BeginTxnReply 
 
 func (sp *SQLPaxos) CommitTxnHelper(args CommitTxnArgs, seqnum int) CommitTxnReply {
 
-  sp.updateDatabaseSeqNum(args.Txn, args.ClientId, seqnum)
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return CommitTxnReply{Err: TxnAlreadyEnded}
+  }
 
-  err := sp.connections[args.ClientId].CommitTxn(args.Txn)
+  sp.updateDatabaseSeqNum(tx, args.ClientId, seqnum)
+
+  err := sp.connections[args.ClientId].CommitTxn(tx)
   if err != nil {
      return CommitTxnReply{Err: errorToErr(err)}
   }
+
+  delete(sp.transactions, args.ClientId)
 
   return CommitTxnReply{Err:OK}
 }
 
 func (sp *SQLPaxos) RollbackTxnHelper(args RollbackTxnArgs, seqnum int) RollbackTxnReply {
 
-  err := sp.connections[args.ClientId].RollbackTxn(args.Txn)
+  tx, ok := sp.transactions[args.ClientId]
+  if !ok {
+     return RollbackTxnReply{Err: TxnAlreadyEnded}
+  } 
+
+  err := sp.connections[args.ClientId].RollbackTxn(tx)
   if err != nil {
      return RollbackTxnReply{Err: errorToErr(err)}
   }
+
+  delete(sp.transactions, args.ClientId)
 
   _, _, updateErr := sp.UpdateDatabase(args.ClientId, "", nil, seqnum)
   if updateErr != OK {
@@ -548,7 +576,6 @@ func (sp *SQLPaxos) BeginTxn(args *BeginTxnArgs, reply *BeginTxnReply) error {
 
   if r != nil {
      reply.Err = r.(BeginTxnReply).Err
-     reply.Txn = r.(BeginTxnReply).Txn
   }
 
   return nil
@@ -640,6 +667,7 @@ func StartServer(servers []string, me int) *SQLPaxos {
   sp.lastSeen = make(map[int64]LastSeen)
   sp.next = 0
   sp.connections = make(map[int64]*db.DBManager)
+  sp.transactions = make(map[int64]*sql.Tx)
   sp.logger = logger.Make("sqlpaxos_log.txt")
   
   rpcs := rpc.NewServer()

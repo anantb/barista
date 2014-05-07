@@ -11,7 +11,6 @@ import "barista"
 import "fmt"
 import "sqlpaxos"
 import "strconv"
-import "database/sql"
 
 type Handler struct {
   sqlpaxos *sqlpaxos.SQLPaxos
@@ -90,7 +89,7 @@ func (handler *Handler) ExecuteSql(con *barista.Connection,
 }
 
 func (handler *Handler) ExecuteSqlTxn(con *barista.Connection,
-    query string, query_params [][]byte, txn *sql.Tx) (*barista.ResultSet, error) {
+    query string, query_params [][]byte) (*barista.ResultSet, error) {
   clientid := *(con.ClientId)
   requestid := *(con.SeqId)
 
@@ -104,7 +103,7 @@ func (handler *Handler) ExecuteSqlTxn(con *barista.Connection,
     fmt.Println("Error: ", err)
   }
   args := sqlpaxos.ExecTxnArgs{ClientId: client_id, RequestId: request_id, Query: query, 
-    QueryParams: query_params, Txn: txn}
+    QueryParams: query_params}
   var reply sqlpaxos.ExecTxnReply
   err = handler.sqlpaxos.ExecuteSQLTxn(&args, &reply)
 
@@ -115,7 +114,7 @@ func (handler *Handler) ExecuteSqlTxn(con *barista.Connection,
   return reply.Result, nil
 }
 
-func (handler *Handler) BeginTxn(con *barista.Connection) (*sql.Tx, error) {
+func (handler *Handler) BeginTxn(con *barista.Connection) error {
   clientid := *(con.ClientId)
   requestid := *(con.SeqId)
 
@@ -134,12 +133,12 @@ func (handler *Handler) BeginTxn(con *barista.Connection) (*sql.Tx, error) {
 
   if err != nil {
     fmt.Println("Error :", err)
-    return nil, err
+    return err
   }
-  return reply.Txn, nil
+  return nil
 }
 
-func (handler *Handler) CommitTxn(con *barista.Connection, txn *sql.Tx) error {
+func (handler *Handler) CommitTxn(con *barista.Connection) error {
   clientid := *(con.ClientId)
   requestid := *(con.SeqId)
 
@@ -152,7 +151,7 @@ func (handler *Handler) CommitTxn(con *barista.Connection, txn *sql.Tx) error {
   if err != nil {
     fmt.Println("Error: ", err)
   }
-  args := sqlpaxos.CommitTxnArgs{ClientId: client_id, RequestId: request_id, Txn: txn}
+  args := sqlpaxos.CommitTxnArgs{ClientId: client_id, RequestId: request_id}
   var reply sqlpaxos.CommitTxnReply
   err = handler.sqlpaxos.CommitTxn(&args, &reply)
 
@@ -163,7 +162,7 @@ func (handler *Handler) CommitTxn(con *barista.Connection, txn *sql.Tx) error {
   return nil
 }
 
-func (handler *Handler) RollbackTxn(con *barista.Connection, txn *sql.Tx) error {
+func (handler *Handler) RollbackTxn(con *barista.Connection) error {
   clientid := *(con.ClientId)
   requestid := *(con.SeqId)
 
@@ -176,7 +175,7 @@ func (handler *Handler) RollbackTxn(con *barista.Connection, txn *sql.Tx) error 
   if err != nil {
     fmt.Println("Error: ", err)
   }
-  args := sqlpaxos.RollbackTxnArgs{ClientId: client_id, RequestId: request_id, Txn: txn}
+  args := sqlpaxos.RollbackTxnArgs{ClientId: client_id, RequestId: request_id}
   var reply sqlpaxos.RollbackTxnReply
   err = handler.sqlpaxos.RollbackTxn(&args, &reply)
 
