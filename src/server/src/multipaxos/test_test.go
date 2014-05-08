@@ -21,13 +21,23 @@ func port(tag string, host int) string {
 }
 func getandcheckleader(t *testing.T, pxa []*MultiPaxos) int{
   out:=-1
-  for i:=0; i<len(pxa); i++{
-    current := pxa[i]
-    if current!=nil && current.isLeaderAndValid(){
-      if(out!=-1){
-        t.Fatalf("Found too many leaders!")
+  to := 10 * time.Millisecond
+  for iters := 0; iters < 30; iters++ {
+    for i:=0; i<len(pxa); i++{
+      current := pxa[i]
+      if current!=nil && current.isLeaderAndValid(){
+        if(out!=-1){
+          t.Fatalf("Found too many leaders!")
+        }
+        out = i
       }
-      out = i
+    }
+    if(out!=-1){
+      break
+    }
+    time.Sleep(to)
+    if to < time.Second {
+      to *= 2
     }
   }
   if out == -1{
@@ -438,12 +448,14 @@ func TestLeaderDeaths(t *testing.T) {
   pxa[l].Start(3,"lol3")
   pxa[l].Start(4,"lol4")
 
-  waitmajority(t, pxa, 4)
+  waitn(t, pxa, 4,nMultiPaxos)
   checkval(t,pxa,1,"lol1")
   checkval(t,pxa,2,"lol2")
   checkval(t,pxa,3,"lol3")
   checkval(t,pxa,4,"lol4")
 
+  startTime := time.Now()
+  
   pxa[l].Kill()
 
   //wait for replicas to detect failure
@@ -455,9 +467,11 @@ func TestLeaderDeaths(t *testing.T) {
   pxanew =append(pxanew, pxa[:l]...)
   pxanew =append(pxanew, pxa[l+1:]...)
   //fmt.Printf("new=%v >>>>>>>>>>>>>>>>>>>>>>>>>>",pxanew)
-  waitmajority(t, pxa, 5)
-
   lnew := getandcheckleader(t,pxanew)
+
+  endTime := time.Now()
+  fmt.Printf("Leader 1 failover took: "+strconv.Itoa(int((endTime.Sub(startTime)).Seconds()))+" seconds \n")
+
   //t.Fatalf("lnew=%v l=%v old=%v new=%v",lnew,l,pxa,pxanew)
   if pxa[l].me == pxanew[lnew].me{
     t.Fatalf("Leader did not change despite having failed!")
@@ -465,7 +479,7 @@ func TestLeaderDeaths(t *testing.T) {
   maxAfterFail := pxanew[lnew].Max()
 
   pxanew[lnew].Start(maxAfterFail,"lol5")
-  waitmajority(t, pxanew, maxAfterFail)
+  waitn(t, pxanew, maxAfterFail, nMultiPaxos-1)
 
   checkval(t,pxanew,1,"lol1")
   checkval(t,pxanew,2,"lol2")
@@ -485,11 +499,10 @@ func TestLeaderDeaths(t *testing.T) {
     if(j==cutoff){
       //give some propagation time 
       time.Sleep(10*time.Millisecond)
-
       pxanew[lnew].Kill()
     }
   }
-
+  startTime2:=time.Now()
   //wait for replicas to detect failure
   time.Sleep(PINGWAIT)
 
@@ -498,8 +511,9 @@ func TestLeaderDeaths(t *testing.T) {
   pxanew1 =append(pxanew1, pxanew[:lnew]...)
   pxanew1 =append(pxanew1, pxanew[lnew+1:]...)
 
-
   lnew1 := getandcheckleader(t,pxanew1)
+  endTime2:=time.Now()
+  fmt.Printf("Leader 2 failover took: "+strconv.Itoa(int((endTime2.Sub(startTime2)).Seconds()))+" seconds \n")
   //t.Fatalf("lnew=%v lnew1=%v old=%v new=%v",lnew,lnew1,pxanew,pxanew1)
 
   if pxanew1[lnew1].me == pxanew[lnew].me || pxanew1[lnew1].me == pxa[l].me{

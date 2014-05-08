@@ -352,20 +352,18 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
           continue
         }
         ok := call(peerAddr, "MultiPaxos.HandlePing", args, reply)
-        mpx.commitAndLogMany(reply.InstancesData)
-        mpx.Log(-10,"got data from"+peerAddr)
+        //mpx.commitAndLogMany(reply.InstancesData)
+        //mpx.Log(-10,"got data from"+peerAddr)
         if ok{
           if i > maxInd{
             maxInd = i
           }
         }
-        mpx.Log(-1,"Max was "+strconv.Itoa(maxInd))
       }
       mpx.Log(-1,"Max was "+strconv.Itoa(maxInd))
       if mpx.me == maxInd{
-        mpx.Log(-1,"Max was me")
         mpx.startPaxosAgreementAndWait(mop)
-        log.Println("Max was me "+mpx.peers[mpx.me])
+        mpx.Log(-1,"Max was me "+mpx.peers[mpx.me])
       }
     }()
   }
