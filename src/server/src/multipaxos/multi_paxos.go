@@ -147,15 +147,16 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
   done := false
   mpx.mu.Lock()
   leader := mpx.leader
-  mpx.mu.Unlock()
   leaderAddr := mpx.peers[leader.id]
+  me := mpx.peers[mpx.me]
+  mpx.mu.Unlock()
   for !done{
     args := &RemoteStartArgs{}
     args.InstanceNumber = seq
     args.Op = v
     reply := &RemoteStartReply{}
     ok := false
-    if leaderAddr == mpx.peers[mpx.me]{
+    if leaderAddr == me{
       mpx.RemoteStart(args,reply)
     }else{
       ok=call(leaderAddr, "MultiPaxos.RemoteStart", args, reply)
@@ -373,16 +374,17 @@ func (mpx *MultiPaxos) ping(){
   mpx.mu.Lock()
   l := mpx.leader
   executionPointer := mpx.executionPointer
+  me := mpx.peers[mpx.me]
+  leaderAddr := mpx.peers[l.id]
   mpx.mu.Unlock()
 
 
   //no need to ping yourself
-  if mpx.peers[l.id] == mpx.peers[mpx.me]{
+  if leaderAddr == me{
     return
   }
 
   //otherwise ping actual leader
-  leaderAddr := mpx.peers[l.id]
   args := &PingArgs{}
   args.LowestInstance = executionPointer
   reply :=  &PingReply{}
@@ -409,13 +411,13 @@ func (mpx *MultiPaxos) ping(){
 }
 func (mpx *MultiPaxos) findLeader() string{
   
-  highestEpoch := 0
-  highestLeader := ""
   mpx.mu.Lock() 
   peers :=  mpx.peers
+  highestEpoch := 0
+  highestLeader := peers[mpx.leader.id]
   if mpx.isLeader() && mpx.leader.isValid(){
     mpx.mu.Unlock()
-    return mpx.peers[mpx.leader.id]
+    return highestLeader
   }
   mpx.mu.Unlock()
 
@@ -449,17 +451,13 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
   for !mpx.dead && !done{
     args := &PingArgs{}
     mpx.mu.Lock()
-    if mpx.isLeader() && mpx.leader.isValid(){
-      mpx.mu.Unlock()
-      return
-    }
-    args.LowestInstance = mpx.executionPointer
     me := mpx.peers[mpx.me]
+    args.LowestInstance = mpx.executionPointer
     mpx.mu.Unlock()
-    reply :=  &PingReply{}
-    if leader == "" || leader == me{
+    if leaderAddr == "" || leaderAddr == me{
       return
     }
+    reply :=  &PingReply{}
     ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply)
     //if rpc succeeded then update records
     if ok{
@@ -560,12 +558,12 @@ func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
   reply.InstancesData = mpx.getInstanceData(args.LowestInstance)
   reply.Epoch = mpx.leader.epoch
   if mpx.leader.isValid(){
-    reply.Leader = mpx.peers[mpx.leader.id]
     if mpx.isLeader(){
       reply.Status = OK
     }else{
       reply.Status = NOT_LEADER
     }
+    reply.Leader = mpx.peers[mpx.leader.id]
   }else{
     reply.Status = NOT_LEADER
     reply.Leader = ""
