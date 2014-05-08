@@ -347,10 +347,8 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
           preparedServers[server]=prepareReply
         case REJECT:
           //was rejected, don't count as PREPARE_OK
-          px.mu.Lock()
-          px.UpdateEpoch(prepareReply.MaxProposal.Epoch)
-          px.mu.Unlock()
       }
+      px.UpdateEpoch(prepareReply.Epoch)
     }else{
       failCount++
     }
@@ -519,22 +517,8 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   //get the acceptor object (state) for this instance
   acceptor,_ := px.acceptinfo[instancenum]
 
-  if proposalnum.Epoch < px.epoch{
-    reply.Status = REJECT
-    if acceptor.MaxAcceptedProposalNum != nil{
-      reply.MaxProposalAccept = *acceptor.MaxAcceptedProposalNum
-    }else{
-      reply.MaxProposalAccept = PaxosProposalNum{}
-      reply.MaxProposalAccept.Epoch = px.epoch
-    }
-    //log.Println("proposal rejected epoch was:"+strconv.Itoa(proposalnum.Epoch)+"wanted: "+strconv.Itoa(px.epoch)+"!")
-    //TODO: maybe do something here
-    return nil
-  }else{
-    //will no longer accept anything of previous epoch
-    px.UpdateEpoch(proposalnum.Epoch)
-  }
-
+  px.UpdateEpoch(proposalnum.Epoch)
+  reply.Epoch = px.epoch
   //if the acceptor has not received a proposal yet then accept the first proposal
   //otherwise respond to proposal based on if current proposal num > max proposal num seen
   if acceptor.MaxProposal != nil{
@@ -547,7 +531,7 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
       //if this acceptor previous accepted a value then inform the 
       //proposer in the PREPARE phase so that the proposer can change 
-      //its mind and proposer the right (this) value
+      //its mind and proposer the right (this) value  
       if acceptor.MaxAcceptedProposalNum != nil{
         reply.MaxProposalAccept = *acceptor.MaxAcceptedProposalNum
         reply.MaxProposalAcceptVal = acceptor.MaxAcceptedProposalVal

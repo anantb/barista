@@ -19,7 +19,7 @@ const(
 	//op types
 	LCHANGE = "LCHANGE"
 	NORMAL = "NORMAL"
-	//status codes
+	//status code
 	OK = "OK"
 	NOT_LEADER = "NOT_LEADER"
 	REJECT = "REJECT"
@@ -105,6 +105,9 @@ func nrand() int64 {
 //
 func call(srv string, rpcname string,
           args interface{}, reply interface{}) bool {
+  if srv == ""{
+  	return false
+  }
   c, errx := rpc.Dial("unix", srv)
   if errx != nil {
     return false

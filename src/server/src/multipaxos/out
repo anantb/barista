@@ -1,1349 +1,1015 @@
-Test: First leader death, make sure changes ...
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader/var/tmp/824-1000/px-9528-leaderdeaths-0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader/var/tmp/824-1000/px-9528-leaderdeaths-1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader/var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Max was 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Started leader change on-1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} PAAW: Before Start on instance -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} PAAW: After Start on instance -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Max was 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Max was 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader/var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader/var/tmp/824-1000/px-9528-leaderdeaths-1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: -1  new leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: -1  before anything epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: -1  new leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader/var/tmp/824-1000/px-9528-leaderdeaths-0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: -1  before anything epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: -1  new leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: initiating failover -1leader epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader pings missed0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: -1  before anything epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: -1  new leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: -1  before anything epoch 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: -1  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: -1  new epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: -1  new leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: Start called on instance 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: agreement started for 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: Start called on instance 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: agreement started for 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: Start called on instance 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: agreement started for 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: Start called on instance 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: agreement started for 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: Start called on instance 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderStart: Started proposal as leader 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderStart: epoch1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Start: agreement started for 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} LeaderStart: epoch1 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 0  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 0  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 1  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 1  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 2  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 2  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 3  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 3  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 4  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 4  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 0  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 0  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 1  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 1  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 2  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 2  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 3  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 3  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 4  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: 4  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 0  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 0  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 1  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 1  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 2  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 2  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 3  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 3  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 4  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 4  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} PAAW: After agree on instance -1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} Max was me /var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 0  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 0  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 1  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 1  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 0  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 0  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 1  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 1  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 2  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 2  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 3  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 3  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 4  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 4  found normal op epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-4} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: initiating failover 5leader epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: initiating failover 5leader epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader pings missed8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Started leader change on5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} PAAW: Before Start on instance 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} PAAW: After Start on instance 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 5  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 5  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 5  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 5  new leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Max was 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: initiating failover 5leader epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader pings missed8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: initiating failover 5leader epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader pings missed8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 5  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 5  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 5  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 5  new leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 5  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 5  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 5  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 5  new leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: initiating failover 5leader epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader/var/tmp/824-1000/px-9528-leaderdeaths-4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} leader pings missed17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 5  before anything epoch 1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 5  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 5  new epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 5  new leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} PAAW: After agree on instance 5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Max was me /var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-Leader 1 failover took: 5 seconds 
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 6  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: 6  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 6  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 6  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 6  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 6  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 6  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 6  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
+Test: No decision if partitioned (no leader)...
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Max was 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Max was 3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Max was 3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Started leader change on-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} PAAW: Before Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} PAAW: After Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Max was 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Started leader change on-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} PAAW: Before Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} PAAW: After Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Max was 4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Started leader change on-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} PAAW: Before Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} PAAW: After Start on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
   ... Passed
-Test: Second leader death and in flight requests...
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: agreement started for 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: Started proposal as leader 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start called on instance 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} Start: Start returned invalid isntance for 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-3} LeaderStart: epoch2 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 7  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 7  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 8  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 8  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 9  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 9  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 10  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 10  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 11  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 11  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 12  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 12  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 13  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 13  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 14  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 14  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 15  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 15  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 16  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 16  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 17  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 17  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 7  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 7  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 8  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 8  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 9  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 9  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 10  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 10  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 11  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 11  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 12  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 12  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 13  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 13  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 14  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 14  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 15  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 15  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 16  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 16  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: before commitAndLog 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 17  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 17  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:1
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 7  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 7  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 8  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 8  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 9  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 9  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 10  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 10  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 11  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 11  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 12  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 12  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 13  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 13  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 14  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 14  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 15  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 15  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 16  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 16  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 17  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 17  found normal op epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:4
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:5
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: initiating failover 18leader epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader pings missed6
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:7
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:8
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: initiating failover 18leader epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} leader pings missed9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: initiating failover 18leader epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader pings missed9
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Started leader change on18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} PAAW: Before Start on instance 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} PAAW: After Start on instance 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: starting leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Max was 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 18  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 18  new epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: 18  new leader/var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:10
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: initiating failover 18leader epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} leader pings missed11
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 18  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 18  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 18  new epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 18  new leader/var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:12
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:13
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:14
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:15
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:16
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: initiating failover 18leader epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader/var/tmp/824-1000/px-9528-leaderdeaths-3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} leader pings missed17
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} no leader found, starting selection
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: before leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderChange: leader change started
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 18  before anything epoch 2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 18  found leader change
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 18  new epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 18  new leader/var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} PAAW: After agree on instance 18
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Max was me /var/tmp/824-1000/px-9528-leaderdeaths-2
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-Leader 2 failover took: 5 seconds 
-Second Leader Death Failover Passed...
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 19  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 19  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 19  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 19  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 20  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 20  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 20  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 20  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 21  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 21  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 20
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 19
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 21  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 21  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 22  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 22  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 22  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 22  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 23  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 23  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 21
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 23  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 23  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 24  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 24  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 24  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 24  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 25  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 25  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 22
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-1} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Pings missed:0
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 25  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 25  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: agreement started for 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: Started proposal as leader 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} LeaderStart: epoch3 Fast propose done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: before commitAndLog 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 26  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: 26  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 24
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 25
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Start: Start called on instance 23
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: before commitAndLog 26
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 26  before anything epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: 26  found normal op epoch 3
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} Commit and Log: done
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-2} refresh: after checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: checking 27
-{MultiPaxos /var/tmp/824-1000/px-9528-leaderdeaths-0} refresh: after checking 27
-Second Leader Death In Flight Request Override/Recovery Passed...
+Test: Decision in majority partition with leader...
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} reply from /var/tmp/824-1000/px-partition-11559-2-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: before commitAndLog -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: -1  before anything epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: -1  new leader/var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: -1  before anything epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader/var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: -1  new leader/var/tmp/824-1000/px-partition-11559-3-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: -1  before anything epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: -1  new leader/var/tmp/824-1000/px-partition-11559-1-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} PAAW: After agree on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Max was me /var/tmp/824-1000/px-11559-partition-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} PAAW: After agree on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Max was me /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Start: Start called on instance 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Start: agreement started for 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderStart: Started proposal as leader 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderStart: epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} LeaderStart: epoch1 Fast propose done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: 0  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: 0  found normal op epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: 0  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: 0  found normal op epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: before commitAndLog 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 0  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 0  found normal op epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
   ... Passed
-PASS
-ok  	multipaxos	15.286s
+Test: All agree after full heal ...
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Start: Start called on instance 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Start: Start called on instance 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: -1  before anything epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: -1  new leader/var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: 0  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: 0  found normal op epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: initiating failover -1leader epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader/var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} leader pings missed0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-partition-11559-4-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-partition-11559-4-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-partition-11559-4-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-partition-11559-4-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} reply from /var/tmp/824-1000/px-11559-partition-4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: -1  before anything epoch 0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: -1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: -1  new epoch1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: -1  new leader/var/tmp/824-1000/px-partition-11559-4-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: 0  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: 0  found normal op epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} PAAW: After agree on instance -1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Max was me /var/tmp/824-1000/px-11559-partition-4
+  ... Passed
+Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:4
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:5
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:5
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:5
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:6
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:6
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:6
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:7
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:7
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:7
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:8
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:8
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:8
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover 1leader epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed8
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Max was 3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover 1leader epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-partition-11559-3-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed8
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Max was 3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Started leader change on1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} PAAW: Before Start on instance 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} PAAW: After Start on instance 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-11559-partition-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} reply from /var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} no leader found, starting selection
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: before leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: starting leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Max was 3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} LeaderChange: leader change started
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: before commitAndLog 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 1  before anything epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 1  found leader change
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 1  new epoch2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: 1  new leader/var/tmp/824-1000/px-partition-11559-1-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Commit and Log: done
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:9
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:9
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:10
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:10
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:11
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:11
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:12
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:12
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:13
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:13
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:14
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:14
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:15
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:15
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:16
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:16
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} refresh: initiating failover 1leader epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader/var/tmp/824-1000/px-partition-11559-0-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} leader pings missed16
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-11559-partition-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} reply from /var/tmp/824-1000/px-partition-11559-0-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} getInstancesFromLeader: got no leader
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} getInstancesFromLeader: found new leader
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} refresh: after checking 2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:17
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} refresh: initiating failover 1leader epoch 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader/var/tmp/824-1000/px-partition-11559-3-2
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} leader pings missed16
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-partition-11559-3-1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} reply from /var/tmp/824-1000/px-11559-partition-3
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: got no leader
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} getInstancesFromLeader: found new leader
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:17
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} refresh: after checking 1
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:18
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:18
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:19
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:19
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:20
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:20
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:21
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:21
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:22
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:22
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:23
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:23
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-2} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-0} Pings missed:24
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-3} Pings missed:24
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-1} Pings missed:0
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} getInstancesFromLeader: got data
+{MultiPaxos /var/tmp/824-1000/px-11559-partition-4} Pings missed:0
