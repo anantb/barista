@@ -12,10 +12,10 @@ import "time"
 
 //constants
 const(
-	DEBUG = -100
+	DEBUG = -1000
 	NPINGS = 5
-	PINGINTERVAL = 200*time.Millisecond
-	PINGWAIT = 3*NPINGS*PINGINTERVAL
+	PINGINTERVAL = time.Second
+	PINGWAIT = 2*NPINGS*PINGINTERVAL
 	//op types
 	LCHANGE = "LCHANGE"
 	NORMAL = "NORMAL"
@@ -47,6 +47,7 @@ func (mpl *MultiPaxosLeader) isValid() bool{
 	return !(mpl.epoch<=0 || mpl.numPingsMissed > NPINGS || !mpl.valid)
 }
 type MultiPaxosOP struct{
+	Epoch int
 	Type OpType
 	Op interface{}
 }

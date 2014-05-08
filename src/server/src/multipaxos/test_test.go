@@ -127,7 +127,14 @@ func noTestSpeed(t *testing.T) {
   d := time.Since(t0)
   fmt.Printf("20 agreements %v seconds\n", d.Seconds())
 }
-
+func execute(pxa []*MultiPaxos,i int,seq int, v interface{}){
+  ok := false
+  for !ok{
+    ok,_ = pxa[i].Status(seq)
+    pxa[i].Start(seq, v)
+    time.Sleep(time.Duration(100 + rand.Int63() % 300) * time.Millisecond)
+  }
+}
 func TestBasic(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -143,7 +150,68 @@ func TestBasic(t *testing.T) {
     pxa[i] = Make(pxh, i, nil)
   }
 
-  fmt.Printf("Test: Elect Leader Instance -1...\n")
+  fmt.Printf("Test: Single proposer ...\n")
+
+  go execute(pxa,0,0,"hello")
+
+  waitn(t, pxa, 0, nMultiPaxos)
+
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Many proposers, same value ...\n")
+
+  for i := 0; i < nMultiPaxos; i++ {
+    go execute(pxa,i,1,77)
+  }
+  waitn(t, pxa, 1, nMultiPaxos)
+
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Many proposers, different values ...\n")
+
+  go execute(pxa,0,2,100)
+  go execute(pxa,1,2,101)
+  go execute(pxa,2,2,102)
+  waitn(t, pxa, 2, nMultiPaxos)
+
+  fmt.Printf("  ... Passed\n")
+
+  fmt.Printf("Test: Out-of-order instances ...\n")
+
+  go execute(pxa,0,7,700)
+  go execute(pxa,0,6,600)
+  go execute(pxa,1,5,500)
+  go execute(pxa,0,4,400)
+  go execute(pxa,1,3,300)
+  waitn(t, pxa, 7, nMultiPaxos)
+  waitn(t, pxa, 6, nMultiPaxos)
+  waitn(t, pxa, 5, nMultiPaxos)
+  waitn(t, pxa, 4, nMultiPaxos)
+  waitn(t, pxa, 3, nMultiPaxos)
+
+  if pxa[0].Max() != 8 {
+    t.Fatalf("wrong Max()")
+  }
+
+  fmt.Printf("  ... Passed\n")
+}
+
+func TestBasicLeaderModified(t *testing.T) {
+  runtime.GOMAXPROCS(4)
+
+  const nMultiPaxos = 3
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  var pxh []string = make([]string, nMultiPaxos)
+  defer cleanup(pxa)
+
+  for i := 0; i < nMultiPaxos; i++ {
+    pxh[i] = port("basicLeaderModified", i)
+  }
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i] = Make(pxh, i, nil)
+  }
+
+  fmt.Printf("Test: Basic LeaderModified Elect Leader Instance -1...\n")
 
   waitn(t, pxa, -1,nMultiPaxos)
 
@@ -151,7 +219,7 @@ func TestBasic(t *testing.T) {
   
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Single Agreement to leader...\n")
+  fmt.Printf("Test: Basic LeaderModified  Single Agreement to leader...\n")
   pxa[l].Start(0,"hello1")
 
   waitn(t, pxa, 0,nMultiPaxos)
@@ -164,7 +232,7 @@ func TestBasic(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Many proposers, same value...\n")
+  fmt.Printf("Test: Basic LeaderModified Many proposers, same value...\n")
 
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Start(2, 77)
@@ -175,7 +243,7 @@ func TestBasic(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Many proposers, different values...\n")
+  fmt.Printf("Test: Basic LeaderModified Many proposers, different values...\n")
 
   data := [3]int{100,101,102}
 
@@ -189,7 +257,7 @@ func TestBasic(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Out-of-order instances...\n")
+  fmt.Printf("Test: Basic LeaderModified Out-of-order instances...\n")
 
   pxa[l].Start(8, 300)
   pxa[l].Start(7, 600)
@@ -295,6 +363,52 @@ func TestRPCCount(t *testing.T) {
   }
 
   fmt.Printf(" Total messages used: "+strconv.Itoa(total2)+"  ... Passed\n")
+}
+
+//
+// many agreements (without failures)
+//
+func TestMany(t *testing.T) {
+  runtime.GOMAXPROCS(4)
+
+  fmt.Printf("Test: Many instances ...\n")
+
+  const nMultiPaxos = 3
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  var pxh []string = make([]string, nMultiPaxos)
+  defer cleanup(pxa)
+
+  for i := 0; i < nMultiPaxos; i++ {
+    pxh[i] = port("many", i)
+  }
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i] = Make(pxh, i, nil)
+  }
+  waitn(t, pxa, -1,nMultiPaxos)
+
+  getandcheckleader(t,pxa)
+
+  const ninst = 50
+  for seq := 0; seq < ninst; seq++ {
+    for i := 0; i < nMultiPaxos; i++ {
+      pxa[i].Start(seq, (seq * 10) + i)
+    }
+  }
+
+  for {
+    done := true
+    for seq := 0; seq < ninst; seq++ {
+      if ndecided(t, pxa, seq) < nMultiPaxos {
+        done = false
+      }
+    }
+    if done {
+      break
+    }
+    time.Sleep(100 * time.Millisecond)
+  }
+
+  fmt.Printf("  ... Passed\n")
 }
 func TestLeaderDeaths(t *testing.T) {
   runtime.GOMAXPROCS(4)
@@ -725,52 +839,6 @@ func TestForgetMem(t *testing.T) {
 */
 
 //
-// many agreements (without failures)
-//
-func TestMany(t *testing.T) {
-  runtime.GOMAXPROCS(4)
-
-  fmt.Printf("Test: Many instances ...\n")
-
-  const nMultiPaxos = 3
-  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
-  var pxh []string = make([]string, nMultiPaxos)
-  defer cleanup(pxa)
-
-  for i := 0; i < nMultiPaxos; i++ {
-    pxh[i] = port("many", i)
-  }
-  for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
-  }
-  waitn(t, pxa, -1,nMultiPaxos)
-
-  getandcheckleader(t,pxa)
-
-  const ninst = 50
-  for seq := 0; seq < ninst; seq++ {
-    for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].Start(seq, (seq * 10) + i)
-    }
-  }
-
-  for {
-    done := true
-    for seq := 0; seq < ninst; seq++ {
-      if ndecided(t, pxa, seq) < nMultiPaxos {
-        done = false
-      }
-    }
-    if done {
-      break
-    }
-    time.Sleep(100 * time.Millisecond)
-  }
-
-  fmt.Printf("  ... Passed\n")
-}
-
-//
 // a peer starts up, with proposal, after others decide.
 // then another peer starts, without a proposal.
 // 
@@ -1065,7 +1133,7 @@ func TestPartition(t *testing.T) {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(PINGWAIT)
+          time.Sleep(2*PINGINTERVAL*NPINGS)
         }
       }(seq,i)
     }
@@ -1157,7 +1225,7 @@ func TestLots(t *testing.T) {
           go func(seq int, ind int){
             for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
               pxa[ind].Start(seq, rand.Int() % 10)
-              time.Sleep(PINGWAIT)
+              time.Sleep(2*PINGINTERVAL*NPINGS)
             }
           }(seq,i)
         }
