@@ -921,7 +921,7 @@ func TestOld(t *testing.T) {
 //
 // many agreements, with unreliable RPC
 //
-/*func TestManyUnreliable(t *testing.T) {
+func TestManyUnreliable(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
   fmt.Printf("Test: Many instances, unreliable RPC ...\n")
@@ -937,7 +937,7 @@ func TestOld(t *testing.T) {
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
     pxa[i].SetUnreliable(true)
-    pxa[i].Start(0, 0)
+    go execute(pxa,i,0,0)
   }
 
   const ninst = 50
@@ -948,7 +948,7 @@ func TestOld(t *testing.T) {
       time.Sleep(20 * time.Millisecond)
     }
     for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].Start(seq, (seq * 10) + i)
+      go execute(pxa,i,seq,(seq * 10) + i)
     }
   }
 
@@ -966,7 +966,7 @@ func TestOld(t *testing.T) {
   }
   
   fmt.Printf("  ... Passed\n")
-}*/
+}
 
 func pp(tag string, src int, dst int) string {
   s := "/var/tmp/824-"
@@ -1057,7 +1057,6 @@ func TestPartition(t *testing.T) {
 
   //give old leader time to detect self as dead if happened to agree earlier
   time.Sleep(PINGWAIT)
-  l := getandcheckleader(t,pxa)
 
   waitmajority(t, pxa, seq)
 
@@ -1074,8 +1073,10 @@ func TestPartition(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  fmt.Printf("Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...\n")
-
+  /*fmt.Printf("Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...\n")
+  
+  l := getandcheckleader(t,pxa)
+  
   for iters := 0; iters < 5; iters++ {
     seq++
     majority := make([]int,3)
@@ -1156,7 +1157,7 @@ func TestPartition(t *testing.T) {
     l = newl
   }
 
-  fmt.Printf("  ... Passed\n")
+  fmt.Printf("  ... Passed\n")*/
   
   fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
 
