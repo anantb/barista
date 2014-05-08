@@ -12,7 +12,7 @@ import "time"
 
 //constants
 const(
-	DEBUG = -1000
+	DEBUG = 3
 	NPINGS = 5
 	PINGINTERVAL = 300*time.Millisecond
 	PINGWAIT = 2*NPINGS*PINGINTERVAL
@@ -43,8 +43,11 @@ type MultiPaxosLeader struct{
 	numPingsMissed int
 	valid bool
 }
-func (mpl *MultiPaxosLeader) isValid() bool{
+/*func (mpl *MultiPaxosLeader) isValid() bool{
 	return !(mpl.epoch<=0 || mpl.numPingsMissed > NPINGS || !mpl.valid)
+}*/
+func (mpl *MultiPaxosLeader) isValid() bool{
+	return !(mpl.epoch<=0 || mpl.numPingsMissed > NPINGS)
 }
 type MultiPaxosOP struct{
 	Epoch int

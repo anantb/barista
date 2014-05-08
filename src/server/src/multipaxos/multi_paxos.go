@@ -300,11 +300,11 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
     mpx.executionPointer--
     return
   }
-  mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  before anything")
+  mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  before anything epoch "+strconv.Itoa(mpx.leader.epoch))
   //currentLeader := mpx.leader
   switch(mop.Type){
     case NORMAL:
-      mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found normal op")
+      mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found normal op epoch "+strconv.Itoa(mop.Epoch))
       //do nothing
     case LCHANGE:
       mplc := mop.Op.(MultiPaxosLeaderChange)
@@ -315,7 +315,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
       newLeader.valid = true
       mpx.transition = false
       mpx.leader = newLeader
-      mpx.px.SetLeaderAndEpoch(mpx.peers[newLeader.id], newLeader.epoch)
+      mpx.px.SetLeaderAndEpoch(executionPointer, mpx.peers[newLeader.id], newLeader.epoch)
       mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found leader change")
       mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new epoch"+strconv.Itoa(mplc.NewEpoch))
       mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new leader"+mpx.peers[mplc.ID])
@@ -412,10 +412,12 @@ func (mpx *MultiPaxos) findLeader() string{
   
   highestEpoch := 0
   highestLeader := ""
-
+  mpx.mu.Lock()
   if mpx.isLeader() && mpx.leader.isValid(){
+    mpx.mu.Unlock()
     return mpx.peers[mpx.leader.id]
   }
+  mpx.mu.Unlock()
 
   for _,serverAddr := range mpx.peers{
     args := &PingArgs{}
@@ -504,20 +506,25 @@ func (mpx *MultiPaxos) refresh(){
       mpx.commitAndLogInstance(executionPointer,val)
       to = 10*time.Millisecond
     }else{
-      if !mpx.leader.isValid(){
-          mpx.Log(-10,"refresh: initiating failover "+strconv.Itoa(executionPointer))
-          leader := mpx.findLeader()
-          if leader == "" || leader == mpx.peers[mpx.me]{
-            mpx.Log(-10,"no leader found, starting selection")
-            mpx.initiateLeaderChange()
-          }else{
-            //mpx.getInstancesFromReplica(leader,true)
-          }
-      }
       if(to < 2*time.Second){
         to = 2*to
       }
       time.Sleep(to)
+    }
+    mpx.mu.Lock()
+    leaderT := mpx.leader
+    mpx.mu.Unlock()
+    if !leaderT.isValid(){
+      mpx.Log(-10,"refresh: initiating failover "+strconv.Itoa(executionPointer)+"leader epoch "+strconv.Itoa(leaderT.epoch))
+      mpx.Log(-10,"leader"+mpx.peers[leaderT.id])
+      mpx.Log(-10,"leader pings missed"+strconv.Itoa(leaderT.numPingsMissed))
+      leader := mpx.findLeader()
+      if leader == "" || leader == mpx.peers[mpx.me]{
+        mpx.Log(-10,"no leader found, starting selection")
+        mpx.initiateLeaderChange()
+      }else{
+        //mpx.getInstancesFromReplica(leader,true)
+      }
     }
   }
 }

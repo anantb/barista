@@ -523,15 +523,30 @@ func TestLeaderDeaths(t *testing.T) {
             pxa[l].me, pxanew[lnew].me , pxanew1[lnew1].me)
   }
   fmt.Printf("Second Leader Death Failover Passed...\n")
+
+  //find leader failover location
+  failOverLocation := -1
+  for j:=1; j<nRequests+1; j++{
+    ok,val := pxanew1[lnew1].Status(maxAfterFail+j)
+    if ok{
+      if val == nil{
+        failOverLocation = maxAfterFail+j
+        break
+      }
+    }
+  }
+  if failOverLocation == -1{
+    t.Fatalf("Leader failover op not detected!")
+  }
   missed := false
   for j:=1; j<nRequests+1; j++{
-    //see if old leader finished
-    ok,_ := pxanew1[lnew1].Status(maxAfterFail+j)
-    if !ok{
+    //even if old leader sent agreement data and it was agreed on after the leader change,
+    //none of that data should be displayed to the user of the MP API
+    if maxAfterFail+j > failOverLocation{
       for _,pi := range pxanew1{
-        okpi,_ := pi.Status(maxAfterFail+j)
+        okpi,val := pi.Status(maxAfterFail+j)
         if okpi != false{
-          t.Fatalf("Paxos replica returned a value it shouldn't have! It returned a value that has become invalid due to the failover!")
+          t.Fatalf("Paxos replica returned a value it shouldn't have %v at %v when failover occurred at:%v! It returned a value that has become invalid due to the failover!",val,maxAfterFail+j,failOverLocation)
         }
       }
       //if didn't finish then have new leader submit new value, should win

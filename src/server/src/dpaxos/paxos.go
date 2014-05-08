@@ -96,12 +96,13 @@ func(px *Paxos) UpdateEpoch(newEpoch int){
      px.epoch = newEpoch
   }
 }
-func (px *Paxos) SetLeaderAndEpoch(leader string,newEpoch int){
+func (px *Paxos) SetLeaderAndEpoch(seq int, leader string,newEpoch int){
   px.mu.Lock()
   defer px.mu.Unlock()
   px.leader = leader
   px.leaderproposalnum = px.GetPaxosProposalNum()
   px.leaderproposalnum.Epoch = newEpoch
+  px.cleanAfter(seq)
 }
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
@@ -177,13 +178,13 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   if okInstance{
     return
   }
+
   //commence proposal cycle, continue until it succeeds
   done := false
-  backOff := 10*time.Millisecond
   for !done && px.dead == false{
 
     //ACCEPT phase
-    accepted, explicit_reject, error := px.ProposerAccept(seq,v,proposal,peers)
+    accepted, explicit_reject, _ := px.ProposerAccept(seq,v,proposal,peers)
 
     //if the accept phase failed here, this replica may have lost leader status
     if !accepted{ 
@@ -191,14 +192,8 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         failCallback()
         return
       }
-      if(!error){
-        if(backOff<2*time.Second){
-          backOff = 2*backOff
-        }
-      }
       continue
     }
-    backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, v)
     done=true
@@ -253,7 +248,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
-    time.Sleep(time.Duration((rand.Int63() % 150))*time.Millisecond)
+    //time.Sleep(time.Duration((rand.Int63() % 300))*time.Millisecond)
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
     //log.Printf("NormalPropose: after prepare")
@@ -598,6 +593,8 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   if acceptor.MaxProposal == nil{
     return nil
   }*/
+
+
   _,ok := px.acceptinfo[instancenum]
   if !ok{
     paxosInstanceInfo := &PaxosInstanceInfo{InstanceNum: instancenum}
@@ -615,7 +612,7 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
     //TODO: maybe do something here
     return nil
   }else{
-    px.epoch = proposalnum.Epoch
+    px.UpdateEpoch(proposalnum.Epoch)
   }
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
@@ -626,6 +623,7 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
       fmt.Printf(px.peers[px.me]+" seq = %v current proposal epoch = %v, current max epoch = %v \n",instancenum, proposalnum.Epoch, acceptor.MaxProposal.Epoch)
     }*/
     //update acceptor state
+
     acceptor.MaxProposal = proposalnum
     acceptor.MaxAcceptedProposalNum = proposalnum
     acceptor.MaxAcceptedProposalVal = args.ProposalVal
@@ -719,6 +717,30 @@ func (px *Paxos) cleanUp(){
   //free acceptor info
   for akey,_ := range px.acceptinfo{
     if akey < seq{
+      delete(px.acceptinfo,akey)
+    }
+  }
+
+  runtime.GC()
+}
+func (px *Paxos) cleanAfter(seq int){
+  //free log entries
+  for lkey,_ := range px.log{
+    if lkey > seq{
+      delete(px.log,lkey)
+    }
+  }
+
+  //free proposer info
+  for pkey,_ := range px.proposeinfo{
+    if pkey > seq{
+      delete(px.proposeinfo,pkey)
+    }
+  }
+
+  //free acceptor info
+  for akey,_ := range px.acceptinfo{
+    if akey > seq{
       delete(px.acceptinfo,akey)
     }
   }
