@@ -192,6 +192,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         failCallback()
         return
       }
+      time.Sleep(time.Duration(rand.Int63() % 100) * time.Millisecond)
       continue
     }
     //LEARN phase

@@ -31,8 +31,12 @@ type MultiPaxos struct{
   results map[int]*MultiPaxosOP
 }
 func (mpx *MultiPaxos) isLeaderAndValid() bool{
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
   l := mpx.leader
+  mpx.Log(-10,"Checking leader")
   if l.id==mpx.me && l.isValid(){
+    mpx.Log(-10,"Checking leader ok")
     return true
   }
   return false
@@ -168,6 +172,9 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
       case NOT_LEADER:
         if reply.Leader != "" && reply.Epoch >= leader.epoch{
           //mpx.getInstancesFromReplica(reply.Leader,true)
+          mpx.mu.Lock()
+          mpx.leader.valid = false
+          mpx.mu.Unlock()
         }
         //keep waiting, need to make sure leader gets this
       }
@@ -341,15 +348,20 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
     //tell underlying paxos to not accept messages from old leader
     mpx.px.UpdateEpoch(currentEpoch+1)
   
-    go func(){
+    go func(){ 
+      mpx.mu.Lock()
+      me  := mpx.me
       maxInd := mpx.me
-      for i:=mpx.me ; i<len(mpx.peers);i++{
-        peerAddr := mpx.peers[i]
+      peers := mpx.peers
+      executionPointer := mpx.executionPointer
+      mpx.mu.Unlock()
+      for i:=me ; i<len(peers);i++{
+        peerAddr := peers[i]
         args := &PingArgs{}
-        args.LowestInstance = mpx.executionPointer
+        args.LowestInstance = executionPointer
         reply :=  &PingReply{}
 
-        if i == mpx.me{
+        if i == me{
           continue
         }
         ok := call(peerAddr, "MultiPaxos.HandlePing", args, reply)
@@ -362,7 +374,7 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
         }
       }
       mpx.Log(-1,"Max was "+strconv.Itoa(maxInd))
-      if mpx.me == maxInd{
+      if me == maxInd{
         mpx.startPaxosAgreementAndWait(mop)
         mpx.Log(-1,"Max was me "+mpx.peers[mpx.me])
       }
@@ -413,20 +425,22 @@ func (mpx *MultiPaxos) findLeader() string{
   
   mpx.mu.Lock() 
   peers :=  mpx.peers
+  me := mpx.me
   highestEpoch := 0
   highestLeader := peers[mpx.leader.id]
+  mpx.mu.Unlock()
   if mpx.isLeader() && mpx.leader.isValid(){
-    mpx.mu.Unlock()
     return highestLeader
   }
-  mpx.mu.Unlock()
 
   for _,serverAddr := range peers{
     args := &PingArgs{}
     reply :=  &PingReply{}
     ok := false
     count := 0
-
+    if serverAddr == peers[me] {
+      continue
+    }
     //fix magic number
     for !ok && count <5{
       ok = call(serverAddr, "MultiPaxos.HandlePing", args, reply)
@@ -476,7 +490,7 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
           mpx.Log(0,"getInstancesFromLeader: found new leader"+leaderAddr)
         }
     }
-    time.Sleep(40*time.Millisecond)
+    time.Sleep(100*time.Millisecond)
   }
 }
 //procedure run in go routine in the background that 
@@ -488,10 +502,11 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
 func (mpx *MultiPaxos) refresh(){
 
   //initial backoff time between status checks
-  to := 40*time.Millisecond
+  to := 100*time.Millisecond
   //while the server is still alive
   dead := false
   for dead== false{
+    time.Sleep(to)
     mpx.mu.Lock()
     dead = mpx.dead
     executionPointer := mpx.executionPointer
@@ -506,18 +521,14 @@ func (mpx *MultiPaxos) refresh(){
       //commit and log the result of the instance (apply it and saved the result so the client
       //that made the request can get the result)
       mpx.commitAndLogInstance(executionPointer,val)
-      to = 10*time.Millisecond
-    }else{
-      if(to < 2*time.Second){
-        to = 2*to
-      }
-      time.Sleep(to)
+      //to = 10*time.Millisecond
     }
     mpx.mu.Lock()
     leaderT := mpx.leader
     me := mpx.peers[mpx.me]
+    valid := leaderT.isValid()
     mpx.mu.Unlock()
-    if !leaderT.isValid(){
+    if !valid{
       mpx.Log(-10,"refresh: initiating failover "+strconv.Itoa(executionPointer)+"leader epoch "+strconv.Itoa(leaderT.epoch))
       mpx.Log(-10,"leader"+mpx.peers[leaderT.id])
       mpx.Log(-10,"leader pings missed"+strconv.Itoa(leaderT.numPingsMissed))
