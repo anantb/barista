@@ -49,7 +49,9 @@ func checkval(t *testing.T, pxa []*MultiPaxos, seq int, expected interface{}){
   for i := 0; i < len(pxa); i++ {
     if pxa[i] != nil {
       decided, v1 := pxa[i].Status(seq)
-      if decided && v1 != expected{
+      //need to ignore the nils here because that indicates the client op didn't succeed
+      //and that slot was filled by the leader failover op
+      if decided && v1 != expected && v1!=nil{
             t.Fatalf("decided values do not match; seq=%v i=%v me=%v expected=%v actual=%v",
             seq, i, pxa[i].me, expected, v1)
       }
@@ -455,7 +457,7 @@ func TestLeaderDeaths(t *testing.T) {
   checkval(t,pxa,4,"lol4")
 
   startTime := time.Now()
-  
+
   pxa[l].Kill()
 
   //wait for replicas to detect failure
@@ -533,7 +535,7 @@ func TestLeaderDeaths(t *testing.T) {
         }
       }
       //if didn't finish then have new leader submit new value, should win
-      pxanew1[lnew1].Start(maxAfterFail+j,"after"+strconv.Itoa(j))
+      go execute(pxanew1,lnew1,maxAfterFail+j,"after"+strconv.Itoa(j))
       waitmajority(t, pxanew1, maxAfterFail+j)
       checkval(t,pxanew1,maxAfterFail+j,"after"+strconv.Itoa(j))
     }
