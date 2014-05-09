@@ -13,12 +13,14 @@ import "git.apache.org/thrift.git/lib/go/thrift"
 import "net"
 import "strings"
 
-const PORT = ":9000"
+const PORT_BINARY = ":9000"
+const PORT_JSON = ":9090"
 var ADDRS = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
 
 func main() {  
-  protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
-  transportFactory := thrift.NewTTransportFactory()
+  binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
+  json_protocol_factory := thrift.NewTJSONProtocolFactoryDefault()
+  transport_factory := thrift.NewTTransportFactory()
 
   addrs, err := net.InterfaceAddrs()
   addr := ""
@@ -30,7 +32,8 @@ func main() {
      addr = strings.Split(addrs[1].String(), "/")[0]
   }
 
-  transport, err := thrift.NewTServerSocket(addr + PORT)
+  binary_transport, err := thrift.NewTServerSocket(addr + PORT_BINARY)
+  json_transport, err := thrift.NewTServerSocket(addr + PORT_JSON)
  
   if err != nil {
     fmt.Println("Error: ", err)
@@ -51,8 +54,12 @@ func main() {
 
   handler := NewBaristaHandler(ADDRS, me)
   processor := barista.NewBaristaProcessor(handler)
-  server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
+  binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
+  json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
 
-  fmt.Println("Starting the Barista server on ", addr + PORT)
-  server.Serve() 
+  fmt.Println("Starting the Barista server (Binary Mode) on ", addr + PORT_BINARY)
+  binary_server.Serve() 
+
+  fmt.Println("Starting the Barista server (JSON Mode) on ", addr + PORT_JSON)
+  json_server.Serve() 
 }
