@@ -67,13 +67,13 @@ func TestBasic(t *testing.T) {
   }
 
   _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
-      "DROP TABLE IF NOT EXISTS sqlpaxos_test", nil)
+      "DROP TABLE IF EXISTS sqlpaxos_test", nil)
   if err != nil {
     t.Fatalf("Error dropping table:", err)
     return
   }
 
-  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
+  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS[2:4], con,
       "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
     t.Fatalf("Error creating table:", err)
@@ -81,7 +81,7 @@ func TestBasic(t *testing.T) {
   }
 
   // count number of rows in the table
-  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS[5], con, 
   	"select count(*) from sqlpaxos_test", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
@@ -98,7 +98,7 @@ func TestBasic(t *testing.T) {
   // insert item into table
   key := "a"
   val := "100"
-  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS[1:3], con, 
   	"INSERT INTO sqlpaxos_test VALUES ('"+ key +"', '" + 
   		val +"')", nil)
   if err != nil || res == nil {
@@ -106,7 +106,7 @@ func TestBasic(t *testing.T) {
   } 
 
   // retrieve old item from table
-  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS[4], con, 
   	"select value from sqlpaxos_test where key='" + key +
   	"'", nil)
   if err != nil || res == nil {
