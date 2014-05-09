@@ -144,7 +144,7 @@ func TestBasic(t *testing.T) {
         defer func() { ca[me] <- true }()
         ci := (rand.Int() % nservers)
         myck := MakeClerk()
-        con, err := ck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
+        con, err := myck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
     		if err != nil {
     		  t.Fatalf("Error opening connection:", err)
     		} else if con == nil {
@@ -152,22 +152,22 @@ func TestBasic(t *testing.T) {
     		}
         if (rand.Int() % 1000) < 500 {
           // insert
-          res, err := ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
-  			  "insert into sqlpaxos_test values ('"+ b + "', '" + 
+          res, err := myck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
+  			  "insert into sqlpaxos_test values ('b', '" + 
   		    strconv.Itoa(rand.Int()) +"')", nil)
     		  if err != nil || res == nil {
     		  	t.Fatalf("Error querying table:", err)
     		  } 
   		  } else {
           // retrieve old item from table
-    		  res, err = ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
+    		  res, err = myck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
     		  	"select value from sqlpaxos_test where key='" + key +
     		  	  "'", nil)
     		  if err != nil || res == nil {
     		  	t.Fatalf("Error querying table:", err)
     		  } 
         }
-        err = ck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
+        err = myck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
     		if err != nil {
     		  t.Fatalf("Error closing connection:", err)
     		}
