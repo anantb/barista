@@ -700,7 +700,7 @@ func (px *Paxos) cleanAfter(seq int){
       delete(px.log,lkey)
     }
   }
-  //free proposer info
+  /*//free proposer info
   for pkey,_ := range px.proposeinfo{
     if pkey > seq{
       delete(px.proposeinfo,pkey)
@@ -712,7 +712,7 @@ func (px *Paxos) cleanAfter(seq int){
     if akey > seq{
       delete(px.acceptinfo,akey)
     }
-  }
+  }*/
   runtime.GC()
 }
 //
