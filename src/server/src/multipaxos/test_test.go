@@ -1162,6 +1162,8 @@ func TestPartition(t *testing.T) {
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,(seq * 10) + 1)
     l = newl
+    
+    fmt.Printf("Phase %v out of 9 passed... \n",iters)
   }
 
   fmt.Printf("  ... Passed\n")
@@ -1196,7 +1198,6 @@ func TestPartition(t *testing.T) {
     }
 
     waitn(t, pxa, seq, 5)
-    fmt.Printf("Phase %v out of 9 passed... \n",iters)
   }
 
   fmt.Printf("  ... Passed\n")
