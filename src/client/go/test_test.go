@@ -180,7 +180,7 @@ func TestBasic(t *testing.T) {
 
     var va [nservers]string
     for i := 0; i < nservers; i++ {
-      con, err := myck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
+      con, err := ck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
       if err != nil {
         t.Fatalf("Error opening connection:", err)
       } else if con == nil {
@@ -192,7 +192,7 @@ func TestBasic(t *testing.T) {
   	  if err != nil || res == nil {
   	  	t.Fatalf("Error querying table:", err)
   	  } 
-      err = myck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
+      err = ck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
         if err != nil {
           t.Fatalf("Error closing connection:", err)
       }
