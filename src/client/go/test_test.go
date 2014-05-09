@@ -180,12 +180,22 @@ func TestBasic(t *testing.T) {
 
     var va [nservers]string
     for i := 0; i < nservers; i++ {
+      con, err := myck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
+      if err != nil {
+        t.Fatalf("Error opening connection:", err)
+      } else if con == nil {
+        t.Fatalf("Error nil connection returned by open:", err)
+      }
   	  res, err := ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[i]}, con, 
   	  	"select value from sqlpaxos_test where key='" + key +
   	  	  "'", nil)
   	  if err != nil || res == nil {
   	  	t.Fatalf("Error querying table:", err)
   	  } 
+      err = myck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
+        if err != nil {
+          t.Fatalf("Error closing connection:", err)
+      }
 
       if res != nil && res.Tuples != nil {
         for _, tuple := range *(res.Tuples) {
