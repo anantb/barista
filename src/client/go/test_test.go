@@ -81,7 +81,7 @@ func TestBasic(t *testing.T) {
   }
 
   // count number of rows in the table
-  res, err := ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[5]}, con, 
+  res, err := ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[4]}, con, 
   	"select count(*) from sqlpaxos_test", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
@@ -106,7 +106,7 @@ func TestBasic(t *testing.T) {
   } 
 
   // retrieve old item from table
-  res, err = ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[4]}, con, 
+  res, err = ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[2]}, con, 
   	"select value from sqlpaxos_test where key='" + key +
   	"'", nil)
   if err != nil || res == nil {
