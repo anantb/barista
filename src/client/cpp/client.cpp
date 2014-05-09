@@ -424,7 +424,7 @@ result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int npar
   if(query_params != NULL) {
     params.assign(query_params, query_params + nparams);
   }
-  (clerk->c)->execSqlTxn(query, params, result->r);
+  (clerk->c)->execSqlTxn(query, params, *(result->r));
 
   return result;
 }
