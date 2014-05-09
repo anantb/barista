@@ -43,6 +43,7 @@ type PrepareArgs struct{
 	ProposalNum PaxosProposalNum
 }
 type PrepareReply struct{
+	Epoch int
 	Status Status
 	MaxProposal PaxosProposalNum
 	MaxProposalAccept PaxosProposalNum

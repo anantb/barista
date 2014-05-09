@@ -12,14 +12,14 @@ import "time"
 
 //constants
 const(
-	DEBUG = -100
+	DEBUG = -1000
 	NPINGS = 5
-	PINGINTERVAL = 500*time.Millisecond
-	PINGWAIT = 3*NPINGS*PINGINTERVAL
+	PINGINTERVAL = 300*time.Millisecond
+	PINGWAIT = 2*NPINGS*PINGINTERVAL
 	//op types
 	LCHANGE = "LCHANGE"
 	NORMAL = "NORMAL"
-	//status codes
+	//status code
 	OK = "OK"
 	NOT_LEADER = "NOT_LEADER"
 	REJECT = "REJECT"
@@ -47,6 +47,7 @@ func (mpl *MultiPaxosLeader) isValid() bool{
 	return !(mpl.epoch<=0 || mpl.numPingsMissed > NPINGS || !mpl.valid)
 }
 type MultiPaxosOP struct{
+	Epoch int
 	Type OpType
 	Op interface{}
 }
@@ -101,6 +102,9 @@ func nrand() int64 {
 //
 func call(srv string, rpcname string,
           args interface{}, reply interface{}) bool {
+  if srv == ""{
+  	return false
+  }
   c, errx := rpc.Dial("unix", srv)
   if errx != nil {
     return false
