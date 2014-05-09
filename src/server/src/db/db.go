@@ -33,7 +33,7 @@ func (manager *DBManager) OpenConnection(
     "postgres",
     fmt.Sprintf(
         "host=%s port=%v user=%s dbname=%s password=%s sslmode=disable",
-        HOST, manager.db.Port, user, dbname, password))
+        HOST, manager.Port, user, dbname, password))
 
   return err
 }
