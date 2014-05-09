@@ -114,7 +114,17 @@ func call(srv string, rpcname string,
     return false
   }
   defer c.Close()
-    
+  /*resp := make(chan error, 1)
+  go func() { resp <- c.Call(rpcname, args, reply) } ()
+
+  var err error
+
+  select {
+	case err = <-resp:
+	// use err and reply
+	case <-time.After(5*time.Second):
+	// call timed out
+  }*/
   err := c.Call(rpcname, args, reply)
   if err == nil {
     return true

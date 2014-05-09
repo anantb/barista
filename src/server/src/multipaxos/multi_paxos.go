@@ -157,7 +157,7 @@ func (mpx *MultiPaxos) cleanup(){
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
 
-  min := mpx.px.Min()
+  min := mpx.px.GetMin()-1
   for seq,_ := range mpx.results{
     if seq < min{
       delete(mpx.results,seq)
@@ -172,6 +172,7 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
     leaderAddr := mpx.peers[leader.id]
     me := mpx.peers[mpx.me]
     mpx.mu.Unlock()
+
     args := &RemoteStartArgs{}
     args.InstanceNumber = seq
     args.Op = v
@@ -193,10 +194,11 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
           mpx.leader.valid = false
         }
         mpx.mu.Unlock()
+        return
         //keep waiting, need to make sure leader gets this
       }
     }
-    time.Sleep(50*time.Millisecond)
+    time.Sleep(100*time.Millisecond)
   }
 }
 //generates a new instance number for the incoming client request
@@ -335,6 +337,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
     case LCHANGE:
       mplc := mop.Op.(MultiPaxosLeaderChange)
       if mplc.NewEpoch == mpx.leader.epoch+1{
+        //fmt.Printf("changed leader, new leader is %v for epoch %v \n",mpx.peers[mplc.ID],mplc.NewEpoch)
         newLeader := &MultiPaxosLeader{}
         newLeader.epoch = mplc.NewEpoch
         newLeader.id = mplc.ID
@@ -466,7 +469,7 @@ func (mpx *MultiPaxos) findLeader() string{
       continue
     }
     //fix magic number
-    for !ok && count <MAX_RETRY{
+    for !ok && count <MAX_RETRY && !mpx.dead{
       ok = call(serverAddr, "MultiPaxos.HandlePing", args, reply)
       count++
     }
@@ -528,11 +531,10 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
 func (mpx *MultiPaxos) refresh(){
 
   //initial backoff time between status checks
-  to := 50*time.Millisecond
+  main := 50*time.Millisecond
   //while the server is still alive
   dead := false
   for dead== false{
-    mpx.cleanup()
     mpx.mu.Lock()
     dead = mpx.dead
     executionPointer := mpx.executionPointer
@@ -549,10 +551,22 @@ func (mpx *MultiPaxos) refresh(){
       mpx.commitAndLogInstance(executionPointer,val)
       //to = 10*time.Millisecond
     }
+    mpx.cleanup()
+    time.Sleep(main)
+  }
+}
+func (mpx *MultiPaxos) refreshLeader(){
+  //initial backoff time between status checks
+  main := 50*time.Millisecond
+  to := main
+  //while the server is still alive
+  dead := false
+  for dead== false{
     mpx.mu.Lock()
     leaderT := mpx.leader
     me := mpx.peers[mpx.me]
     valid := leaderT.isValid()
+    executionPointer := mpx.executionPointer
     mpx.mu.Unlock()
     if !valid{
       go func(){
@@ -567,6 +581,11 @@ func (mpx *MultiPaxos) refresh(){
             mpx.getInstancesFromReplica(leader,true)
           }
         }()
+        if to < time.Second{
+          to *=2
+        }
+    }else{
+      to = main
     }
     time.Sleep(to)
   }
@@ -716,6 +735,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   rpcs.Register(mpx)
   go mpx.refreshPing()
   go mpx.refresh()
+  go mpx.refreshLeader()
 
   return mpx
 }

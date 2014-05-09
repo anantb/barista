@@ -220,6 +220,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   done := false
   for !done && px.dead == false{
 
+    //fmt.Printf("starting leader agreement on seq %v \n",seq)
     //ACCEPT phase
     accepted, explicit_reject, _ := px.ProposerAccept(seq,v,proposal,peers)
 
@@ -229,7 +230,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         failCallback(proposal.Epoch)
         return
       }
-      time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
+      time.Sleep(50*time.Millisecond)
       continue
     }
     //LEARN phase
