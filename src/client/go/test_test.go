@@ -1,14 +1,15 @@
 package main
 
 import "testing"
-import "runtime"
+//import "runtime"
 import "strconv"
-import "os"
+//import "os"
 import "time"
 import "fmt"
 import "math/rand"
+import "git.apache.org/thrift.git/lib/go/thrift"
 
-const BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
+var BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
 var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
 var ADDRS_WITH_PORTS = []string {"128.52.161.243:9021", "128.52.161.243:9022", "128.52.161.243:9023", 
   "128.52.161.243:9024", "128.52.161.243:9025"}
@@ -90,7 +91,7 @@ func TestBasic(t *testing.T) {
   // insert item into table
   key := "a"
   val := "100"
-  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
   	"INSERT INTO sqlpaxos_test VALUES ('"+ key +"', '" + 
   		value +"')", nil)
   if err != nil || res == nil {
@@ -98,7 +99,7 @@ func TestBasic(t *testing.T) {
   } 
 
   // retrieve old item from table
-  res, err := ck.ExecuteSQL(con, 
+  res, err = ck.ExecuteSQL(con, 
   	"select value from sqlpaxos_test where key='" + key +
   	"'", nil)
   if err != nil || res == nil {
@@ -117,7 +118,7 @@ func TestBasic(t *testing.T) {
     }
   }
 
-  err := ck.CloseConnection(ADDRS_WITH_PORTS)
+  err = ck.CloseConnection(ADDRS_WITH_PORTS)
 	if err != nil {
   	t.Fatalf("Error closing connection:", err)
   }
