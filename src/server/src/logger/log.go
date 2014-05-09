@@ -20,19 +20,19 @@ type Logger struct {
 
 func Make(filename string, port string) *Logger {
   logger := &Logger{}
-  logger.filename = filename
   err := os.MkdirAll(log_path + port, 0777)
   if err != nil {
     fmt.Println("Error creating log dir: " + "/tmp/sqlpaxos/" + port)
     fmt.Println(err)
   }
-  filename = log_path + port + "/" + filename
+  logger.filename = log_path + port + "/" + filename
   return logger
 }
 
 func (lg *Logger) WriteToLog(text string) error {
   f, err := os.OpenFile(lg.filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
   if err != nil {
+      fmt.Println("Error creating or writing to file")
       return err
   }
   defer f.Close()
