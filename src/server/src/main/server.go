@@ -58,8 +58,8 @@ func main() {
   json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
 
   fmt.Println("Starting the Barista server (Binary Mode) on ", addr + PORT_BINARY)
-  binary_server.Serve() 
+  go binary_server.Serve() 
 
   fmt.Println("Starting the Barista server (JSON Mode) on ", addr + PORT_JSON)
-  json_server.Serve() 
+  go json_server.Serve() 
 }
