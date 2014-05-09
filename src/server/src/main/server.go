@@ -19,7 +19,7 @@ var ADDRS = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128
 
 func main() {  
   binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
-  json_protocol_factory := thrift.NewTJSONProtocolFactoryDefault()
+  json_protocol_factory := thrift.NewTJSONProtocolFactory()
   transport_factory := thrift.NewTTransportFactory()
 
   addrs, err := net.InterfaceAddrs()
