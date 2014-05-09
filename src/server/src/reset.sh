@@ -1,4 +1,4 @@
 #!/bin/sh
 abspath=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
-rm -rf $abspath/sqlpaxos_log.txt
+rm -rf /tmp/sqlpaxos
 python reset.py
