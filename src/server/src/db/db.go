@@ -20,7 +20,8 @@ type DBManager struct {
 }
 
 func NewDBManager() *DBManager {
-  manager := new(DBManager{Port: PORT})
+  manager := new(DBManager)
+  manager.Port = PORT
   return manager
 }
 
