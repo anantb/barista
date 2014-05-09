@@ -175,16 +175,15 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
+  px.mu.Lock()
   _,okInstance := px.log[seq]
-
-  if okInstance{
-    return
-  }
   _,okTentative := px.tentative[seq]
+  px.mu.Unlock()
 
-  if okTentative{
+  if okInstance || okTentative{
     return
   }
+
   //commence proposal cycle, continue until it succeeds
   done := false
   for !done && px.dead == false{
@@ -204,7 +203,10 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     //LEARN phase
     px.ProposeNotify(seq, v)
     done=true
+    
+    px.mu.Lock()
     px.tentative[seq] = v
+    px.mu.Unlock()
     break
   }
 }
