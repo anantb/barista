@@ -65,7 +65,7 @@ def main():
   backend = PGBackend(user="postgres", password="postgres", host=host, port=port)
   backend.execute_sql("DROP TABLE IF EXISTS sqlpaxoslog;")
   backend.execute_sql("CREATE TABLE IF NOT EXISTS sqlpaxoslog (lastseqnum INT);")
-  backend.execute_sql("UPDATE sqlpaxoslog SET lastseqnum=-1;")
+  backend.execute_sql("INSERT INTO sqlpaxoslog VALUES (-1);")
 
 if __name__ == '__main__':
   main()
