@@ -67,13 +67,13 @@ func TestBasic(t *testing.T) {
   }
 
   _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
-      "DROP TABLE IF NOT EXISTS sqlpaxos_test", nil)
+      "DROP TABLE IF EXISTS sqlpaxos_test", nil)
   if err != nil {
     t.Fatalf("Error dropping table:", err)
     return
   }
 
-  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
+  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS[2:4], con,
       "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
     t.Fatalf("Error creating table:", err)
@@ -81,7 +81,7 @@ func TestBasic(t *testing.T) {
   }
 
   // count number of rows in the table
-  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err := ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[4]}, con, 
   	"select count(*) from sqlpaxos_test", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
@@ -98,7 +98,7 @@ func TestBasic(t *testing.T) {
   // insert item into table
   key := "a"
   val := "100"
-  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS[1:3], con, 
   	"INSERT INTO sqlpaxos_test VALUES ('"+ key +"', '" + 
   		val +"')", nil)
   if err != nil || res == nil {
@@ -106,7 +106,7 @@ func TestBasic(t *testing.T) {
   } 
 
   // retrieve old item from table
-  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  res, err = ck.ExecuteSQL([]string{ADDRS_WITH_PORTS[2]}, con, 
   	"select value from sqlpaxos_test where key='" + key +
   	"'", nil)
   if err != nil || res == nil {
@@ -131,7 +131,6 @@ func TestBasic(t *testing.T) {
   }
 
   fmt.Printf("  ... Passed\n")
-  return
 
   fmt.Printf("Test: Concurrent clients ...\n")
 
@@ -142,9 +141,9 @@ func TestBasic(t *testing.T) {
       ca[nth] = make(chan bool)
       go func(me int) {
         defer func() { ca[me] <- true }()
-        //ci := (rand.Int() % nservers)
-        //myck := MakeClerk()
-        con, err := ck.OpenConnection(ADDRS_WITH_PORTS)
+        ci := (rand.Int() % nservers)
+        myck := MakeClerk()
+        con, err := myck.OpenConnection([]string{ADDRS_WITH_PORTS[ci]})
     		if err != nil {
     		  t.Fatalf("Error opening connection:", err)
     		} else if con == nil {
@@ -152,22 +151,22 @@ func TestBasic(t *testing.T) {
     		}
         if (rand.Int() % 1000) < 500 {
           // insert
-          res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
-  			  "insert into sqlpaxos_test values ('"+ key + "', '" + 
+          res, err := myck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
+  			  "insert into sqlpaxos_test values ('b', '" + 
   		    strconv.Itoa(rand.Int()) +"')", nil)
     		  if err != nil || res == nil {
     		  	t.Fatalf("Error querying table:", err)
     		  } 
   		  } else {
           // retrieve old item from table
-    		  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+    		  res, err = myck.ExecuteSQL([]string{ADDRS_WITH_PORTS[ci]}, con, 
     		  	"select value from sqlpaxos_test where key='" + key +
     		  	  "'", nil)
     		  if err != nil || res == nil {
     		  	t.Fatalf("Error querying table:", err)
     		  } 
         }
-        err = ck.CloseConnection(ADDRS_WITH_PORTS, con)
+        err = myck.CloseConnection([]string{ADDRS_WITH_PORTS[ci]}, con)
     		if err != nil {
     		  t.Fatalf("Error closing connection:", err)
     		}
@@ -180,22 +179,34 @@ func TestBasic(t *testing.T) {
 
     var va [nservers]string
     for i := 0; i < nservers; i++ {
-	  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
-	  	"select value from sqlpaxos_test where key='" + key +
-	  	  "'", nil)
-	  if err != nil || res == nil {
-	  	t.Fatalf("Error querying table:", err)
-	  } 
-	  for _, tuple := range *(res.Tuples) {
-        for _, cell := range *(tuple.Cells) {
-          va[i] = string(cell[:])
-    	}
+      con, err := ck.OpenConnection(ADDRS_WITH_PORTS)
+      if err != nil {
+        t.Fatalf("Error opening connection:", err)
+      } else if con == nil {
+        t.Fatalf("Error nil connection returned by open:", err)
       }
-      
-      if va[i] != va[0] {
-        t.Fatalf("mismatch")
+  	  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  	  	"select value from sqlpaxos_test where key='" + key +
+  	  	  "'", nil)
+  	  if err != nil || res == nil {
+  	  	t.Fatalf("Error querying table:", err)
+  	  } 
+      err = ck.CloseConnection(ADDRS_WITH_PORTS, con)
+        if err != nil {
+          t.Fatalf("Error closing connection:", err)
       }
-    }
+
+      if res != nil && res.Tuples != nil {
+        for _, tuple := range *(res.Tuples) {
+          for _, cell := range *(tuple.Cells) {
+            va[i] = string(cell[:])
+          }
+        }
+        if va[i] != va[0] {
+          t.Fatalf("mismatch")
+        }
+      }
+    } 
   }
 
   fmt.Printf("  ... Passed\n")
