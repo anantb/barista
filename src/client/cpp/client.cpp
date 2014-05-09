@@ -366,34 +366,36 @@ int main () {
 
 // functions to be called from C
 struct result {
-  ResultSet r;
+  ResultSet* r;
 };
 
 result_t* new_result() {
   result_t* res = (result_t*) malloc(sizeof(*res));
+  res->r = new ResultSet();
   return res;
 }
 
 void clear_result(result_t* result) {
+  delete res->r;
   free(result);
   result = NULL;
 }
 
 int num_tuples(result_t* result) {
-  return (result->r).row_count;
+  return (result->r)->row_count;
 }
 
 int num_fields(result_t* result) {
-  return (result->r).field_names.size();
+  return (result->r)->field_names.size();
 }
 
 
 const char* get_value(result_t* result, int row, int column) {
-  return (result->r).tuples[row].cells[column].c_str();
+  return (result->r)->tuples[row].cells[column].c_str();
 }
 
 const char* get_field_name(result_t* result, int column) {
-  return (result->r).field_names[column].c_str();
+  return (result->r)->field_names[column].c_str();
 }
 
 struct clerk {
