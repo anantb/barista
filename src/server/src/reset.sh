@@ -1,3 +1,3 @@
 #!/bin/sh
 rm -rf /tmp/sqlpaxos
-python reset.py
+python reset.py $1
