@@ -51,10 +51,12 @@ func (mpx *MultiPaxos) isLeader() bool{
 func (mpx *MultiPaxos) LeaderStart(seq int, v MultiPaxosOP){
     mpx.Log(0,"LeaderStart: Started proposal as leader "+strconv.Itoa(seq))
     mpx.Log(0,"LeaderStart: epoch"+strconv.Itoa(mpx.leader.epoch))
-    failCallback := func(){
+    failCallback := func(epoch int){
       mpx.Log(-10,"Explicit fail detected!")
       mpx.mu.Lock()
-      mpx.leader.valid = false
+      if epoch >= mpx.leader.epoch{
+        mpx.leader.valid = false
+      }
       mpx.mu.Unlock()
     }
     mpx.px.FastPropose(seq,v,mpx.peers,failCallback)
@@ -149,12 +151,12 @@ func (mpx *MultiPaxos) Kill() {
 }
 func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
   done := false
-  mpx.mu.Lock()
-  leader := mpx.leader
-  leaderAddr := mpx.peers[leader.id]
-  me := mpx.peers[mpx.me]
-  mpx.mu.Unlock()
-  for !done{
+  for !done && !mpx.dead{
+    mpx.mu.Lock()
+    leader := mpx.leader
+    leaderAddr := mpx.peers[leader.id]
+    me := mpx.peers[mpx.me]
+    mpx.mu.Unlock()
     args := &RemoteStartArgs{}
     args.InstanceNumber = seq
     args.Op = v
@@ -170,15 +172,16 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
       case OK:
         done = true
       case NOT_LEADER:
+        mpx.mu.Lock()
         if reply.Epoch >= leader.epoch{
           //mpx.getInstancesFromReplica(reply.Leader,true)
-          mpx.mu.Lock()
           mpx.leader.valid = false
-          mpx.mu.Unlock()
         }
+        mpx.mu.Unlock()
         //keep waiting, need to make sure leader gets this
       }
     }
+    time.Sleep(50*time.Millisecond)
   }
 }
 //generates a new instance number for the incoming client request
@@ -234,7 +237,7 @@ func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
 
       //allow thread to sleep before checking again so that other 
       //threads can run
-      time.Sleep(40*time.Millisecond)
+      time.Sleep(50*time.Millisecond)
 
       //reacquire lock so that checks and updates
       //to internal data structures are done under mutex
@@ -248,12 +251,13 @@ func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
       mAgreedOp := agreedOp.(MultiPaxosOP)
       switch mAgreedOp.Type{
         case LCHANGE:
-          return mAgreedOp
+          ilc := mop.Op.(MultiPaxosLeaderChange)
+          lc := mAgreedOp.Op.(MultiPaxosLeaderChange)
+          if lc.NewEpoch >= ilc.NewEpoch{
+            return mAgreedOp
+          }
       }
     }
-    /*if !mpx.transition{
-      return nil
-    }*/
   }
   return nil
 }
@@ -305,7 +309,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
   mop := val.(MultiPaxosOP)
   if executionPointer != mpx.executionPointer || mop.Epoch < mpx.leader.epoch{
     mpx.Log(-10,"Commit and Log: "+strconv.Itoa(executionPointer)+"  bad execution pointer or epoch")
-    mpx.executionPointer--
+    mpx.executionPointer-=1
     return
   }
   mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  before anything epoch "+strconv.Itoa(mpx.leader.epoch))
@@ -314,21 +318,23 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
     case NORMAL:
       mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found normal op epoch "+strconv.Itoa(mop.Epoch))
       //do nothing
+      mpx.results[executionPointer] = &mop
     case LCHANGE:
       mplc := mop.Op.(MultiPaxosLeaderChange)
-      newLeader := &MultiPaxosLeader{}
-      newLeader.epoch = mplc.NewEpoch
-      newLeader.id = mplc.ID
-      newLeader.numPingsMissed = 0
-      newLeader.valid = true
-      mpx.transition = false
-      mpx.leader = newLeader
-      mpx.px.SetLeaderAndEpoch(executionPointer, mpx.peers[newLeader.id], newLeader.epoch)
-      mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found leader change")
-      mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new epoch"+strconv.Itoa(mplc.NewEpoch))
-      mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new leader"+mpx.peers[mplc.ID])
+      if mplc.NewEpoch > mpx.leader.epoch{
+        newLeader := &MultiPaxosLeader{}
+        newLeader.epoch = mplc.NewEpoch
+        newLeader.id = mplc.ID
+        newLeader.numPingsMissed = 0
+        newLeader.valid = true
+        mpx.leader = newLeader
+        mpx.px.SetLeaderAndEpoch(executionPointer, mpx.peers[newLeader.id], newLeader.epoch)
+        mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found leader change")
+        mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new epoch"+strconv.Itoa(mplc.NewEpoch))
+        mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new leader"+mpx.peers[mplc.ID])
+        mpx.results[executionPointer] = &mop
+      }
   }
-  mpx.results[executionPointer] = &mop
   mpx.Log(1,"Commit and Log: done")
 }
 func (mpx *MultiPaxos) initiateLeaderChange(){
@@ -411,12 +417,12 @@ func (mpx *MultiPaxos) ping(){
       //nothing
       mpx.commitAndLogMany(reply.InstancesData)
     case NOT_LEADER:
+      mpx.mu.Lock()
       if reply.Epoch >= l.epoch{
         //mpx.getInstancesFromReplica(reply.Leader,true)
-        mpx.mu.Lock()
-        mpx.leader.valid = false
-        mpx.mu.Unlock()
+        l.valid = false
       }
+      mpx.mu.Unlock()
     }
   }
 
@@ -463,13 +469,13 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
   leaderAddr := leader
   done := false
   count :=0
-  for !mpx.dead && !done{
+  for !mpx.dead && !done && count < 10{
     args := &PingArgs{}
     mpx.mu.Lock()
     me := mpx.peers[mpx.me]
     args.LowestInstance = mpx.executionPointer
     mpx.mu.Unlock()
-    if leaderAddr == "" || leaderAddr == me || count > 5{
+    if leaderAddr == "" || leaderAddr == me{
       return
     }
     reply :=  &PingReply{}
@@ -504,7 +510,7 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
 func (mpx *MultiPaxos) refresh(){
 
   //initial backoff time between status checks
-  to := 100*time.Millisecond
+  to := 50*time.Millisecond
   //while the server is still alive
   dead := false
   for dead== false{
