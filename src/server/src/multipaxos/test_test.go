@@ -212,7 +212,55 @@ func TestBasic(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 }
+func TestDeaf(t *testing.T) {
+  runtime.GOMAXPROCS(4)
 
+  const nMultiPaxos = 5
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  var pxh []string = make([]string, nMultiPaxos)
+  defer cleanup(pxa)
+
+  for i := 0; i < nMultiPaxos; i++ {
+    pxh[i] = port("deaf", i)
+  }
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i] = Make(pxh, i, nil)
+  }
+
+  fmt.Printf("Test: Deaf proposer should still get data ...\n")
+
+  //deaf proposer should still get data as a result of the ping pggy back where instance data is sent in the 
+  //reply to the proposer
+
+  go execute(pxa,0,0,"hello")
+  waitn(t, pxa, 0, nMultiPaxos)
+
+  l := getandcheckleader(t,pxa)
+
+  firstDeaf := (l-1)%len(pxa)
+  secondDeaf := (l+1)%len(pxa)
+  os.Remove(pxh[firstDeaf])
+  os.Remove(pxh[secondDeaf])
+
+  go execute(pxa,l,1,"goodbye")
+  waitmajority(t, pxa, 1)
+  time.Sleep(1 * time.Second)
+  if ndecided(t, pxa, 1) != nMultiPaxos{
+    t.Fatalf("a deaf peer should have heard about a decision")
+  }
+
+  go execute(pxa,firstDeaf,1,"xxx")
+  waitn(t, pxa, 1, nMultiPaxos-1)
+  time.Sleep(1 * time.Second)
+  if ndecided(t, pxa, 1) != nMultiPaxos {
+    t.Fatalf("a deaf peer should heard about a decision")
+  }
+
+  go execute(pxa,secondDeaf,1,"yyy")
+  waitn(t, pxa, 1, nMultiPaxos)
+
+  fmt.Printf("  ... Passed\n")
+}
 func TestBasicLeaderModified(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -617,49 +665,8 @@ func TestFallBehind(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 }
-/*func TestDeaf(t *testing.T) {
-  runtime.GOMAXPROCS(4)
 
-  const nMultiPaxos = 5
-  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
-  var pxh []string = make([]string, nMultiPaxos)
-  defer cleanup(pxa)
-
-  for i := 0; i < nMultiPaxos; i++ {
-    pxh[i] = port("deaf", i)
-  }
-  for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
-  }
-
-  fmt.Printf("Test: Deaf proposer ...\n")
-
-  pxa[0].Start(0, "hello")
-  waitn(t, pxa, 0, nMultiPaxos)
-
-  os.Remove(pxh[0])
-  os.Remove(pxh[nMultiPaxos-1])
-
-  pxa[1].Start(1, "goodbye")
-  waitmajority(t, pxa, 1)
-  time.Sleep(1 * time.Second)
-  if ndecided(t, pxa, 1) != nMultiPaxos - 2 {
-    t.Fatalf("a deaf peer heard about a decision")
-  }
-
-  pxa[0].Start(1, "xxx")
-  waitn(t, pxa, 1, nMultiPaxos-1)
-  time.Sleep(1 * time.Second)
-  if ndecided(t, pxa, 1) != nMultiPaxos - 1 {
-    t.Fatalf("a deaf peer heard about a decision")
-  }
-
-  pxa[nMultiPaxos-1].Start(1, "yyy")
-  waitn(t, pxa, 1, nMultiPaxos)
-
-  fmt.Printf("  ... Passed\n")
-}
-
+/*
 func TestForget(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -1073,7 +1080,7 @@ func TestPartition(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 
-  /*fmt.Printf("Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...\n")
+  fmt.Printf("Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...\n")
   
   l := getandcheckleader(t,pxa)
   
@@ -1101,7 +1108,9 @@ func TestPartition(t *testing.T) {
         }
       }
     }
-
+    if len(majority) != 3 || len(minority)!=2{
+      t.Fatalf("something went wrong in partition construction")
+    }
     //sort.Sort(majority)
     //sort.Sort(minority)
     fmt.Printf("new partition \n")
@@ -1118,7 +1127,7 @@ func TestPartition(t *testing.T) {
 
     //old leader
     go execute(pxa,minority[0],seq,seq*10)
-
+    
     //new leader
     go execute(pxa,l,seq,(seq * 10) + 1)
 
@@ -1157,7 +1166,7 @@ func TestPartition(t *testing.T) {
     l = newl
   }
 
-  fmt.Printf("  ... Passed\n")*/
+  fmt.Printf("  ... Passed\n")
   
   fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
 
@@ -1266,7 +1275,7 @@ func TestLots(t *testing.T) {
           go func(seq int, ind int){
             for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
               pxa[ind].Start(seq, rand.Int() % 10)
-              time.Sleep(time.Duration(100 + rand.Int63() % 300) * time.Millisecond)
+              time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
             }
           }(seq,i)
         }
