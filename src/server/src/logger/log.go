@@ -9,6 +9,7 @@ package logger
 
 import "io/ioutil"
 import "os"
+import "fmt"
 //import "json"
 
 const log_path = "/tmp/sqlpaxos/"
