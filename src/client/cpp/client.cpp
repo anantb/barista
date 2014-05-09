@@ -397,24 +397,23 @@ const char* get_field_name(result_t* result, int column) {
 }
 
 struct clerk {
-  Clerk c;
+  Clerk* c;
 };
 
 clerk_t* new_clerk(char* user, char* password, char* database) {
   clerk_t* clerk = (clerk_t*) malloc(sizeof(*clerk));
-  (clerk->c).setUser(user);
-  (clerk->c).setPassword(password);
-  (clerk->c).setDatabase(database);
+  clerk->c = new Clerk(user, password, database);
   return clerk;
 }
 
 void clear_clerk(clerk_t* clerk) {
+  delete clerk->c;
   free(clerk);
   clerk = NULL;
 }
 
 void open_connection(clerk_t* clerk) {
-  (clerk->c).openConnection();
+  (clerk->c)->openConnection();
 }
 
 result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int nparams) {
@@ -423,23 +422,23 @@ result_t* execute_sql(clerk_t* clerk, char* query, char** query_params, int npar
   if(query_params != NULL) {
     params.assign(query_params, query_params + nparams);
   }
-  (clerk->c).execSqlTxn(query, params, result->r);
+  (clerk->c)->execSqlTxn(query, params, result->r);
 
   return result;
 }
 
 void close_connection(clerk_t* clerk) {
-  (clerk->c).closeConnection();
+  (clerk->c)->closeConnection();
 }
 
 void begin_txn(clerk_t* clerk) {
-  (clerk->c).beginTxn();
+  (clerk->c)->beginTxn();
 }
 
 void commit_txn(clerk_t* clerk) {
-  (clerk->c).commitTxn();
+  (clerk->c)->commitTxn();
 }
 
 void rollback_txn(clerk_t* clerk) {
-  (clerk->c).rollbackTxn();
+  (clerk->c)->rollbackTxn();
 }

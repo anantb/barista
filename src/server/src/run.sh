@@ -10,7 +10,7 @@ GOPATH=$basepath/src/server:$abspath/gen-go
 export GOPATH
 
 rm -rf $abspath/nohup.out
-rm -rf $abspath/sqlpaxos_logs.txt
+rm -rf $abspath/sqlpaxos_log.txt
 
 process_line=`sudo lsof -i :9000 | tail -1`
 if [ "$process_line" != "" ]; then
