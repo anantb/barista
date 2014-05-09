@@ -9,6 +9,7 @@ import "time"
 import "fmt"
 import "math/rand"
 import "git.apache.org/thrift.git/lib/go/thrift"
+import "handler"
 
 var BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
 var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
@@ -81,7 +82,7 @@ func TestBasic(t *testing.T) {
 
   for _, tuple := range *(res.Tuples) {
     for _, cell := range *(tuple.Cells) {
-      if "0" != cell {
+      if "0" != string(cell[:]) {
       	t.Fatalf("Table should be empty: %s", cell)
       }
     }
@@ -105,7 +106,7 @@ func TestBasic(t *testing.T) {
   	t.Fatalf("Error querying table:", err)
   } 
 
-  ck.Print_result_set(res)
+  Print_result_set(res)
 
   if res != nil && res.Tuples != nil {
     for _, tuple := range *(res.Tuples) {
@@ -117,7 +118,7 @@ func TestBasic(t *testing.T) {
     }
   }
 
-  err = ck.CloseConnection(ADDRS_WITH_PORTS)
+  err = ck.CloseConnection(ADDRS_WITH_PORTS, con)
 	if err != nil {
   	t.Fatalf("Error closing connection:", err)
   }
@@ -135,8 +136,8 @@ func TestBasic(t *testing.T) {
       go func(me int) {
         defer func() { ca[me] <- true }()
         ci := (rand.Int() % nservers)
-        myck := MakeClerk([]string{kvh[ci]})
-        con, err := ck.OpenConnection()
+        myck := MakeClerk()
+        con, err := ck.OpenConnection(ADDRS_WITH_PORTS)
     		if err != nil {
     		  t.Fatalf("Error opening connection:", err)
     		} else if con == nil {
@@ -144,7 +145,7 @@ func TestBasic(t *testing.T) {
     		}
         if (rand.Int() % 1000) < 500 {
           // insert
-          res, err := ck.ExecuteSQL(con, 
+          res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
   			  "insert into sqlpaxos_test values ('"+ key + "', '" + 
   		    strconv.Itoa(rand.Int()) +"')", nil)
     		  if err != nil || res == nil {
@@ -152,14 +153,14 @@ func TestBasic(t *testing.T) {
     		  } 
   		  } else {
           // retrieve old item from table
-    		  res, err = ck.ExecuteSQL(con, 
+    		  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
     		  	"select value from sqlpaxos_test where key='" + key +
     		  	  "'", nil)
     		  if err != nil || res == nil {
     		  	t.Fatalf("Error querying table:", err)
     		  } 
         }
-        err = ck.CloseConnection()
+        err = ck.CloseConnection(ADDRS_WITH_PORTS, con)
     		if err != nil {
     		  t.Fatalf("Error closing connection:", err)
     		}
@@ -172,7 +173,7 @@ func TestBasic(t *testing.T) {
 
     var va [nservers]string
     for i := 0; i < nservers; i++ {
-	  res, err := ck.ExecuteSQL(con, 
+	  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
 	  	"select value from sqlpaxos_test where key='" + key +
 	  	  "'", nil)
 	  if err != nil || res == nil {
@@ -180,7 +181,7 @@ func TestBasic(t *testing.T) {
 	  } 
 	  for _, tuple := range *(res.Tuples) {
         for _, cell := range *(tuple.Cells) {
-          va[i] = cell
+          va[i] = string(cell[:])
     	}
       }
       
