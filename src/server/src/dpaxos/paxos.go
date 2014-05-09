@@ -140,7 +140,7 @@ func getMajorityNum(peers []string) int{
 //***********************************************************************************************************************************//
 //Proposer Code
 //***********************************************************************************************************************************//
-func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallback func()){
+func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallback func(int)){
   px.mu.Lock()
 
   //ensure we have at least one peer
@@ -189,7 +189,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     //if the accept phase failed here, this replica may have lost leader status
     if !accepted{ 
       if explicit_reject{
-        failCallback()
+        failCallback(proposal.Epoch)
         return
       }
       time.Sleep(time.Duration(rand.Int63() % 100) * time.Millisecond)
@@ -564,21 +564,6 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   proposalnum := &args.ProposalNum
 
   //get the acceptor object/state for this instance
-  //acceptor,ok := px.acceptinfo[instancenum]
-
-  //the acceptor must already have its state initialized
-  //if it wasn't then someone called Accept before Prepare,
-  //which is not allowed 
-  /*if !ok{
-    //reject accept
-    reply.Status = REJECT
-    return nil
-  }
-  //invalid state, needs to prepare first
-  if acceptor.MaxProposal == nil{
-    return nil
-  }*/
-
 
   _,ok := px.acceptinfo[instancenum]
   if !ok{
@@ -715,7 +700,6 @@ func (px *Paxos) cleanAfter(seq int){
       delete(px.log,lkey)
     }
   }
-
   //free proposer info
   for pkey,_ := range px.proposeinfo{
     if pkey > seq{
@@ -729,7 +713,6 @@ func (px *Paxos) cleanAfter(seq int){
       delete(px.acceptinfo,akey)
     }
   }
-
   runtime.GC()
 }
 //

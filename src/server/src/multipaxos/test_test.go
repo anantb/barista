@@ -149,7 +149,7 @@ func execute(pxa []*MultiPaxos,i int,seq int, v interface{}){
   for !ok{
     ok,_ = pxa[i].Status(seq)
     pxa[i].Start(seq, v)
-    time.Sleep(time.Duration(100 + rand.Int63() % 300) * time.Millisecond)
+    time.Sleep(time.Duration(100 + rand.Int63() % 200) * time.Millisecond)
   }
 }
 func TestBasic(t *testing.T) {
@@ -996,10 +996,10 @@ func cleanpp(tag string, n int) {
 
 func part(t *testing.T, tag string, nMultiPaxos int, p1 []int, p2 []int, p3 []int) {
   cleanpp(tag, nMultiPaxos)
-  fmt.Printf("new partition\n")
+  /*fmt.Printf("new partition\n")
   fmt.Printf("%v \n",p1)
   fmt.Printf("%v \n",p2)
-  fmt.Printf("new partition end\n")
+  fmt.Printf("new partition end\n")*/
   pa := [][]int{p1, p2, p3}
   for pi := 0; pi < len(pa); pi++ {
     p := pa[pi]
@@ -1084,7 +1084,7 @@ func TestPartition(t *testing.T) {
   
   l := getandcheckleader(t,pxa)
   
-  for iters := 0; iters < 5; iters++ {
+  for iters := 0; iters < 10; iters++ {
     seq++
     majority := make([]int,3)
     minority := make([]int,2)
@@ -1111,14 +1111,12 @@ func TestPartition(t *testing.T) {
     if len(majority) != 3 || len(minority)!=2{
       t.Fatalf("something went wrong in partition construction")
     }
-    //sort.Sort(majority)
-    //sort.Sort(minority)
-    fmt.Printf("new partition \n")
+    //fmt.Printf("new partition \n")
     part(t, tag, nMultiPaxos, majority, minority, []int{})
 
-    //wait for leader
-    waitmajority(t, pxa, seq)
+    time.Sleep(PINGWAIT)
 
+    //wait for leader
     leaderIndexInGroup1 := getandcheckleader(t,majoritypxa)
     l = majority[leaderIndexInGroup1]
 
@@ -1127,9 +1125,11 @@ func TestPartition(t *testing.T) {
 
     //old leader
     go execute(pxa,minority[0],seq,seq*10)
-    
+
     //new leader
     go execute(pxa,l,seq,(seq * 10) + 1)
+
+    time.Sleep(PINGWAIT)
 
     waitmajority(t, pxa, seq)
     if ndecided(t, pxa, seq) > 3 {
@@ -1137,7 +1137,7 @@ func TestPartition(t *testing.T) {
     }
     checkval(t,pxa,seq,(seq * 10) + 1)
     
-    fmt.Printf("before heal \n")
+    //fmt.Printf("before heal \n")
 
     //if other paxos replicas are not in the same partition as the leader they will never get the results
     //so need to join partition and see if they agree
@@ -1148,8 +1148,6 @@ func TestPartition(t *testing.T) {
     //old issue here was that replicas in minority partition still believe the old leader is the leader
     //because they got no notification RPCs and don't ping other servers to find out differently
     part(t, tag, nMultiPaxos,  join, []int{}, []int{})
-    
-    time.Sleep(PINGWAIT)
     
     newl := getandcheckleader(t,pxa)
 
@@ -1164,6 +1162,8 @@ func TestPartition(t *testing.T) {
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,(seq * 10) + 1)
     l = newl
+    
+    fmt.Printf("Phase %v out of 9 passed... \n",iters)
   }
 
   fmt.Printf("  ... Passed\n")
@@ -1186,7 +1186,6 @@ func TestPartition(t *testing.T) {
         }
       }(seq,i)
     }
-    getandcheckleader(t,pxa)
     waitn(t, pxa, seq, 3)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided")
