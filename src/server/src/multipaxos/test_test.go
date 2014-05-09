@@ -95,6 +95,7 @@ func waitn(t *testing.T, pxa[]*MultiPaxos, seq int, wanted int) {
   }
   nd := ndecided(t, pxa, seq)
   if nd < wanted {
+    getandcheckleader(t,pxa)
     t.Fatalf("too few decided; seq=%v ndecided=%v wanted=%v", seq, nd, wanted)
   }
 }
@@ -237,8 +238,8 @@ func TestDeaf(t *testing.T) {
 
   l := getandcheckleader(t,pxa)
 
-  firstDeaf := (l-1)%len(pxa)
-  secondDeaf := (l+1)%len(pxa)
+  firstDeaf := (l-1)%len(pxh)
+  secondDeaf := (l+1)%len(pxh)
   os.Remove(pxh[firstDeaf])
   os.Remove(pxh[secondDeaf])
 
@@ -503,6 +504,8 @@ func TestLeaderDeaths(t *testing.T) {
   pxa[l].Start(3,"lol3")
   pxa[l].Start(4,"lol4")
 
+  getandcheckleader(t,pxa)
+
   waitn(t, pxa, 4,nMultiPaxos)
   checkval(t,pxa,1,"lol1")
   checkval(t,pxa,2,"lol2")
@@ -666,7 +669,7 @@ func TestFallBehind(t *testing.T) {
   fmt.Printf("  ... Passed\n")
 }
 
-/*
+
 func TestForget(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -681,13 +684,15 @@ func TestForget(t *testing.T) {
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
   }
+  waitn(t, pxa, -1, nMultiPaxos)
 
   fmt.Printf("Test: Forgetting ...\n")
 
   // initial Min() correct?
   for i := 0; i < nMultiPaxos; i++ {
     m := pxa[i].Min()
-    if m > 0 {
+    //because -1 is used for initial leader agreement
+    if m > 1 {
       t.Fatalf("wrong initial Min() %v", m)
     }
   }
@@ -695,25 +700,31 @@ func TestForget(t *testing.T) {
   pxa[0].Start(0, "00")
   pxa[1].Start(1, "11")
   pxa[2].Start(2, "22")
+  pxa[0].Start(3, "00")
+  pxa[1].Start(4, "11")
+  pxa[2].Start(5, "22")
   pxa[0].Start(6, "66")
   pxa[1].Start(7, "77")
 
   waitn(t, pxa, 0, nMultiPaxos)
 
+  time.Sleep(nMultiPaxos*PINGINTERVAL)
+
   // Min() correct?
   for i := 0; i < nMultiPaxos; i++ {
     m := pxa[i].Min()
-    if m != 0 {
-      t.Fatalf("wrong Min() %v; expected 0", m)
+    if m != 1 {
+      t.Fatalf("wrong Min() %v; expected 1", m)
     }
   }
 
   waitn(t, pxa, 1, nMultiPaxos)
 
+  time.Sleep(nMultiPaxos*PINGINTERVAL)
   // Min() correct?
   for i := 0; i < nMultiPaxos; i++ {
     m := pxa[i].Min()
-    if m != 0 {
+    if m != 1 {
       t.Fatalf("wrong Min() %v; expected 0", m)
     }
   }
@@ -722,25 +733,26 @@ func TestForget(t *testing.T) {
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Done(0)
   }
-  for i := 1; i < nMultiPaxos; i++ {
+  for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Done(1)
   }
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Start(8 + i, "xx")
   }
+
   allok := false
   for iters := 0; iters < 12; iters++ {
     allok = true
     for i := 0; i < nMultiPaxos; i++ {
       s := pxa[i].Min()
-      if s != 1 {
+      if s != 2 {
         allok = false
       }
     }
     if allok {
       break
     }
-    time.Sleep(1 * time.Second)
+    time.Sleep(nMultiPaxos*PINGINTERVAL)
   }
   if allok != true {
     t.Fatalf("Min() did not advance after Done()")
@@ -776,7 +788,8 @@ func TestManyForget(t *testing.T) {
       seq := na[i]
       j := (rand.Int() % nMultiPaxos)
       v := rand.Int() 
-      pxa[j].Start(seq, v)
+      go execute(pxa,j,seq,v)
+      //pxa[j].Start(seq, v)
       runtime.Gosched()
     }
   }()
@@ -846,7 +859,8 @@ func TestForgetMem(t *testing.T) {
     for j := 0; j < len(big); j++ {
       big[j] = byte('a' + rand.Int() % 26)
     }
-    pxa[0].Start(i, string(big))
+    go execute(pxa,0,i,string(big))
+    //pxa[0].Start(i, string(big))
     waitn(t, pxa, i, nMultiPaxos)
   }
 
@@ -879,7 +893,7 @@ func TestForgetMem(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
 }
-*/
+
 
 //
 // a peer starts up, with proposal, after others decide.
@@ -1168,8 +1182,34 @@ func TestPartition(t *testing.T) {
 
   fmt.Printf("  ... Passed\n")
   
-  fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
+}
+func TestPartitionUnreliable(t *testing.T){
+  runtime.GOMAXPROCS(4)
+  tag := "partition_unreliable"
+  const nMultiPaxos = 5
+  var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
+  defer cleanup(pxa)
+  defer cleanpp(tag, nMultiPaxos)
 
+  for i := 0; i < nMultiPaxos; i++ {
+    var pxh []string = make([]string, nMultiPaxos)
+    for j := 0; j < nMultiPaxos; j++ {
+      if j == i {
+        pxh[j] = port(tag, i)
+      } else {
+        pxh[j] = pp(tag, i, j)
+      }
+    }
+    pxa[i] = Make(pxh, i, nil)
+  }
+  defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
+
+  part(t, tag, nMultiPaxos, []int{0,1,2,3,4}, []int{}, []int{})
+
+  waitn(t,pxa,-1,nMultiPaxos)
+
+  fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
+  seq := 0
   for iters := 0; iters < 20; iters++ {
     seq++
 
@@ -1184,11 +1224,11 @@ func TestPartition(t *testing.T) {
           pxa[ind].Start(seq, (seq * 10) + ind)
           time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
         }
+        fmt.Printf("Detected agreement on %v \n",seq)
       }(seq,i)
     }
 
-    getandcheckleader(t,pxa)
-
+    fmt.Printf("Detected majority agreement on %v \n",seq)
     waitn(t, pxa, seq, 3)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided")
@@ -1204,12 +1244,12 @@ func TestPartition(t *testing.T) {
       pxa[i].SetUnreliable(false)
     }
 
+    fmt.Printf("Detected all agreement on %v \n",seq)
     waitn(t, pxa, seq, 5)
   }
 
   fmt.Printf("  ... Passed\n")
 }
-
 func TestLots(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -1256,7 +1296,7 @@ func TestLots(t *testing.T) {
         }
       }
       part(t, tag, nMultiPaxos, pa[0], pa[1], pa[2])
-      time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
+      time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
     }
   }()
 

@@ -99,7 +99,16 @@ func (mpx *MultiPaxos) Start(seq int, v interface{}) (bool,string){
 
 
 func (mpx *MultiPaxos) Done(seq int) {
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
   mpx.px.Done(seq)
+  min := mpx.px.Min()
+  for seq,_ := range mpx.results{
+    if seq < min{
+      delete(mpx.results,seq)
+    }
+  }
+
 }
 
 
@@ -298,13 +307,9 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
                 //represents the commit point for the application of a 
                 //command agreed upon for a particular slot in the Paxos log
 
-                //calls done for instance earlier than the one just processed
-                mpx.Done(mpx.executionPointer)
-
                 //increments execution pointer so that we can start waiting for
                 //the next entry of the Paxos log to be agreed upon and so can process it
                 mpx.executionPointer++
-
 
                 mpx.mu.Unlock()
               }()
@@ -406,7 +411,9 @@ func (mpx *MultiPaxos) ping(){
 
   //otherwise ping actual leader
   args := &PingArgs{}
+  args.ServerID = mpx.me
   args.LowestInstance = executionPointer
+  args.MaxDone = mpx.px.GetDone()
   reply :=  &PingReply{}
   ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply)
 
@@ -420,6 +427,7 @@ func (mpx *MultiPaxos) ping(){
       l.numPingsMissed = 0
       //nothing
       mpx.commitAndLogMany(reply.InstancesData)
+      mpx.px.SetMin(reply.Min)
     case NOT_LEADER:
       mpx.mu.Lock()
       if reply.Epoch >= l.epoch{
@@ -583,8 +591,12 @@ func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
   //to be removed
   mpx.rpcCount--
   //to be removed
+  mpx.px.UpdateMinAndCleanUp(mpx.peers[args.ServerID],args.MaxDone)
+  //log.Println("got "+mpx.peers[args.ServerID]+" max done "+strconv.Itoa(args.MaxDone))
+  //log.Println("leader is "+mpx.peers[mpx.leader.id])
   reply.InstancesData = mpx.getInstanceData(args.LowestInstance)
   reply.Epoch = mpx.leader.epoch
+  reply.Min = mpx.px.GetMin()
   if mpx.leader.isValid(){
     if mpx.isLeader(){
       reply.Status = OK
@@ -642,10 +654,8 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   mpx.results = make(map[int]*MultiPaxosOP)
   if rpcs != nil {
     // caller will create socket &c
-    rpcs.Register(mpx)
   } else {
     rpcs = rpc.NewServer()
-    rpcs.Register(mpx)
 
     // prepare to receive connections from clients.
     // change "unix" to "tcp" to use over a network.
@@ -696,6 +706,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
     }()
   }
   mpx.px = dpaxos.Make(peers,me,rpcs)
+  rpcs.Register(mpx)
   go mpx.refreshPing()
   go mpx.refresh()
 

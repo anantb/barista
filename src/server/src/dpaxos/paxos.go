@@ -107,6 +107,37 @@ func (px *Paxos) SetLeaderAndEpoch(seq int, leader string,newEpoch int){
   px.UpdateEpoch(newEpoch)
   px.cleanAfter(seq)
 }
+func (px *Paxos) GetDone() int{
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  return px.highestDone
+}
+func (px *Paxos) GetMin() int{
+  px.mu.Lock()
+  defer px.mu.Unlock()
+
+  px.setMin()
+  return px.minSeq
+}
+func (px *Paxos) SetMin(min int) {
+  px.mu.Lock()
+  defer px.mu.Unlock()
+    if min > px.minSeq{
+     px.minSeq = min
+  }
+  for _,peer := range px.peers{
+    px.peersMap[peer] = px.minSeq
+  }
+  px.cleanUp()
+}
+func (px *Paxos) UpdateMinAndCleanUp(serverName string, maxDone int){
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  px.peersMap[serverName] = maxDone
+  //update minSeq and clean up
+  px.setMin()
+  px.cleanUp()
+}
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
   return px.peers[px.me]
@@ -198,7 +229,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         failCallback(proposal.Epoch)
         return
       }
-      time.Sleep(time.Duration(rand.Int63() % 100) * time.Millisecond)
+      time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
       continue
     }
     //LEARN phase
@@ -646,7 +677,7 @@ func (px *Paxos) handleTeach(serverName string, maxDone int, log map[int]interfa
 
   //update minSeq and clean up
   px.setMin()
-  //px.cleanUp()
+  px.cleanUp()
 
 }
 //***********************************************************************************************************************************//
@@ -787,8 +818,10 @@ func (px *Paxos) Done(seq int) {
   px.mu.Lock()
   defer px.mu.Unlock()
   // Your code here.
-  if seq >= px.highestDone{
+  if seq > px.highestDone{
     px.highestDone = seq
+    px.peersMap[px.peers[px.me]] = px.highestDone 
+    //update minSeq and clean up
   }
 }
 
@@ -887,7 +920,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
-
+  px.mu = sync.Mutex{}
 
   // Your initialization code here.
   px.maxSeq = 0

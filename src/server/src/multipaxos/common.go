@@ -57,13 +57,16 @@ type MultiPaxosLeaderChange struct{
 	ID int
 }
 type PingArgs struct{
+	ServerID int
 	LowestInstance int
+	MaxDone int
 }
 type PingReply struct{
 	Status Status
 	Epoch int
 	InstancesData map[int]MultiPaxosOP
 	Leader string
+	Min int
 }
 type RemoteStartArgs struct{
 	InstanceNumber int
