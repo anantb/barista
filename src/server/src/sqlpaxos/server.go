@@ -262,7 +262,8 @@ func (sp *SQLPaxos) OpenHelper(args OpenArgs, seqnum int) OpenReply {
   if ok {
     reply.Err = ConnAlreadyOpen
   } else {
-      manager := new(db.DBManager{Port:sp.pg_port})
+      manager := new(db.DBManager)
+      manager.Port = sp.pg_port
       reply.Err = errorToErr(manager.OpenConnection(args.User, args.Password, args.Database))
       sp.connections[args.ClientId] = manager
   }
@@ -678,7 +679,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string) *S
   rpcs.Register(sp)
 
   paxos_servers := make([]string, len(servers), cap(servers))
-  for idx, val := servers {
+  for idx, val := range servers {
     paxos_servers[idx] = val + ports[idx]
   }
 
