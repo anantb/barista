@@ -55,8 +55,8 @@ func main() {
      return
   }
 
-  handler := handler.NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
-  processor := barista.NewBaristaProcessor(handler)
+  handler1 := handler.NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
+  processor := barista.NewBaristaProcessor(handler1)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
   json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
 

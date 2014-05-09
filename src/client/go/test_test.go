@@ -29,7 +29,7 @@ func StartServer(me int) {
     return
   }
 
-  handler := NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
+  handler := handler.NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
   processor := barista.NewBaristaProcessor(handler)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
 
