@@ -131,7 +131,6 @@ func TestBasic(t *testing.T) {
   }
 
   fmt.Printf("  ... Passed\n")
-  return
 
   fmt.Printf("Test: Concurrent clients ...\n")
 
