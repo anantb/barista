@@ -41,7 +41,7 @@ func TestBasic(t *testing.T) {
   const nservers = 5
 
   // store the addresses of the servers
-  var kvh []string = make([]string, nservers)
+  //var kvh []string = make([]string, nservers)
   // initialize the addresses
 
   //var kva []*TSimpleServer = make([]*TSimpleServer, nservers)
@@ -135,8 +135,8 @@ func TestBasic(t *testing.T) {
       ca[nth] = make(chan bool)
       go func(me int) {
         defer func() { ca[me] <- true }()
-        ci := (rand.Int() % nservers)
-        myck := MakeClerk()
+        //ci := (rand.Int() % nservers)
+        //myck := MakeClerk()
         con, err := ck.OpenConnection(ADDRS_WITH_PORTS)
     		if err != nil {
     		  t.Fatalf("Error opening connection:", err)
