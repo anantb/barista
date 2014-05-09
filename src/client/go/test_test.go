@@ -3,11 +3,13 @@ package main
 import "testing"
 //import "runtime"
 import "strconv"
+import "barista"
 //import "os"
 import "time"
 import "fmt"
 import "math/rand"
 import "git.apache.org/thrift.git/lib/go/thrift"
+import "net"
 
 var BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
 var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
@@ -16,12 +18,11 @@ var ADDRS_WITH_PORTS = []string {"128.52.161.243:9021", "128.52.161.243:9022", "
 var PG_PORTS = []string {"5434", "5435", "5436", "5437", "5438"}
 var SP_PORTS = []string {":9011", ":9012", ":9013", ":9014", ":9015"}
 
-func StartServer(servers []string, me int) {
-  pbinary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
-  json_protocol_factory := thrift.NewTJSONProtocolFactory()
+func StartServer(me int) {
+  binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
   transport_factory := thrift.NewTTransportFactory()
 
-  binary_transport, err := thrift.NewTServerSocket(ADDRS[me] + PORT_BINARY[me])
+  binary_transport, err := thrift.NewTServerSocket(ADDRS[me] + BINARY_PORTS[me])
   
   if err != nil {
     fmt.Println("Error opening socket: ", err)
@@ -44,14 +45,14 @@ func TestBasic(t *testing.T) {
   var kvh []string = make([]string, nservers)
   // initialize the addresses
 
-  var kva []*TSimpleServer = make([]*TSimpleServer, nservers)
+  //var kva []*TSimpleServer = make([]*TSimpleServer, nservers)
   
   for i := 0; i < nservers; i++ {
   	// start servers on the various machines
-    kva[i] = StartServer(kvh, i)
+    StartServer(i)
   }
 
-  ck := MakeClerk(kvh)
+  ck := MakeClerk()
   var cka [nservers]*Clerk
   for i := 0; i < nservers; i++ {
     cka[i] = MakeClerk() // this no longer stores all the servers
@@ -138,32 +139,32 @@ func TestBasic(t *testing.T) {
         ci := (rand.Int() % nservers)
         myck := MakeClerk([]string{kvh[ci]})
         con, err := ck.OpenConnection()
-		if err != nil {
-		  t.Fatalf("Error opening connection:", err)
-		} else if con == nil {
-		  t.Fatalf("Error nil connection returned by open:", err)
-		}
+    		if err != nil {
+    		  t.Fatalf("Error opening connection:", err)
+    		} else if con == nil {
+    		  t.Fatalf("Error nil connection returned by open:", err)
+    		}
         if (rand.Int() % 1000) < 500 {
           // insert
           res, err := ck.ExecuteSQL(con, 
-  			"insert into sqlpaxos_test values ('"+ key + "', '" + 
+  			  "insert into sqlpaxos_test values ('"+ key + "', '" + 
   		    strconv.Itoa(rand.Int()) +"')", nil)
-		  if err != nil || res == nil {
-		  	t.Fatalf("Error querying table:", err)
-		  } 
-  		} else {
+    		  if err != nil || res == nil {
+    		  	t.Fatalf("Error querying table:", err)
+    		  } 
+  		  } else {
           // retrieve old item from table
-		  res, err := ck.ExecuteSQL(con, 
-		  	"select value from sqlpaxos_test where key='" + key +
-		  	  "'", nil)
-		  if err != nil || res == nil {
-		  	t.Fatalf("Error querying table:", err)
-		  } 
+    		  res, err = ck.ExecuteSQL(con, 
+    		  	"select value from sqlpaxos_test where key='" + key +
+    		  	  "'", nil)
+    		  if err != nil || res == nil {
+    		  	t.Fatalf("Error querying table:", err)
+    		  } 
         }
-        err := ck.CloseConnection()
-		if err != nil {
-  		  t.Fatalf("Error closing connection:", err)
-  		}
+        err = ck.CloseConnection()
+    		if err != nil {
+    		  t.Fatalf("Error closing connection:", err)
+    		}
       }(nth)
     }
 
