@@ -61,5 +61,5 @@ func main() {
   go binary_server.Serve() 
 
   fmt.Println("Starting the Barista server (JSON Mode) on ", addr + PORT_JSON)
-  go json_server.Serve() 
+  json_server.Serve() 
 }
