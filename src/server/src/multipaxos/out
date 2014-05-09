@@ -20,7 +20,6 @@ Test: Basic LeaderModified Out-of-order instances...
   ... Passed
 Test: RPC counts aren't too high ...
  Total messages used: 20 ... Passed
- Total messages used Actual: 56
  Total messages used: 30  ... Passed
 Test: Many instances ...
   ... Passed
@@ -37,155 +36,139 @@ Test: Paxos Replica Falls Behind and then Catches Up With Data From Leader...
 Test: Minority proposal ignored and slow instance catches up by talking to leader...
   ... Passed
 Test: Many instances, unreliable RPC ...
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/unexpected EOF
-unexpected EOF
-unexpected EOF
-rpc: can't find service Paxos.Prepare
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-write unix /var/tmp/824-1000/px-21853-manyun-0: broken pipe
 unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-write unix /var/tmp/824-1000/px-21853-manyun-0: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-write unix /var/tmp/824-1000/px-21853-manyun-0: broken pipe
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-22400-manyun-2: broken pipe
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+write unix /var/tmp/824-1000/px-22400-manyun-2: broken pipe
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-22400-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-22400-manyun-2: broken pipe
 connection is shut down
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-0: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
-unexpected EOF
-write unix /var/tmp/824-1000/px-21853-manyun-2: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-21853-manyun-2: connection reset by peer
   ... Passed
 Test: No decision if partitioned (no leader)...
   ... Passed
@@ -194,5 +177,3 @@ Test: Decision in majority partition with leader...
 Test: All agree after full heal ...
   ... Passed
 Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...
-exit status 2
-FAIL	multipaxos	47.108s

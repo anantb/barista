@@ -80,6 +80,8 @@ type Paxos struct {
   leader string
 
   leaderproposalnum PaxosProposalNum
+
+  tentative map[int]interface{}
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -178,7 +180,11 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   if okInstance{
     return
   }
+  _,okTentative := px.tentative[seq]
 
+  if okTentative{
+    return
+  }
   //commence proposal cycle, continue until it succeeds
   done := false
   for !done && px.dead == false{
@@ -198,6 +204,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     //LEARN phase
     px.ProposeNotify(seq, v)
     done=true
+    px.tentative[seq] = v
     break
   }
 }
@@ -883,6 +890,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px.maxSeq = 0
   px.minSeq = -1
   px.log = make(map[int]interface{})
+  px.tentative = make(map[int]interface{})
   px.proposeinfo = make(map[int]*PaxosProposerInstance)
   px.acceptinfo = make(map[int]*PaxosAcceptorInstance)
   px.peersMap = make(map[string]int)

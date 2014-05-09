@@ -377,7 +377,7 @@ func TestRPCCount(t *testing.T) {
     seq++
   }
 
-  time.Sleep(PINGWAIT)
+  time.Sleep(4 * time.Second)
   
   total1 := 0
   for j := 0; j < nMultiPaxos; j++ {
@@ -405,14 +405,14 @@ func TestRPCCount(t *testing.T) {
     seq++
   }
 
-  time.Sleep(2 * time.Second)
+  time.Sleep(4 * time.Second)
 
   total2 := 0
   for j := 0; j < nMultiPaxos; j++ {
     total2 += pxa[j].GetRPCCount()
   }
 
-  fmt.Printf(" Total messages used Actual: "+strconv.Itoa(total2)+"\n")
+  //fmt.Printf(" Total messages used Actual: "+strconv.Itoa(total2)+"\n")
 
   total2 -= total1
 
@@ -1162,7 +1162,7 @@ func TestPartition(t *testing.T) {
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,(seq * 10) + 1)
     l = newl
-    
+
     fmt.Printf("Phase %v out of 9 passed... \n",iters)
   }
 
@@ -1308,6 +1308,7 @@ func TestLots(t *testing.T) {
   }
   part(t, tag, nMultiPaxos, []int{0,1,2,3,4}, []int{}, []int{})
   time.Sleep(5 * time.Second)
+  getandcheckleader(t,pxa)
 
   for i := 0; i < seq; i++ {
     waitmajority(t, pxa, i)
