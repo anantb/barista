@@ -9,7 +9,6 @@ import "time"
 import "fmt"
 import "math/rand"
 import "git.apache.org/thrift.git/lib/go/thrift"
-import "net"
 
 var BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
 var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
@@ -32,7 +31,6 @@ func StartServer(me int) {
   handler := NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
   processor := barista.NewBaristaProcessor(handler)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
-  json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
 
   fmt.Println("Starting the Barista server (Binary Mode) on ", ADDRS[me] + BINARY_PORTS[me])
   go binary_server.Serve()
@@ -67,7 +65,7 @@ func TestBasic(t *testing.T) {
   	t.Fatalf("Error nil connection returned by open:", err)
   }
 
-  _, err = clerk.ExecuteSQL(ADDRS_WITH_PORTS, con,
+  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
       "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
     t.Fatalf("Error creating table:", err)
@@ -94,13 +92,13 @@ func TestBasic(t *testing.T) {
   val := "100"
   res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
   	"INSERT INTO sqlpaxos_test VALUES ('"+ key +"', '" + 
-  		value +"')", nil)
+  		val +"')", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
   } 
 
   // retrieve old item from table
-  res, err = ck.ExecuteSQL(con, 
+  res, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
   	"select value from sqlpaxos_test where key='" + key +
   	"'", nil)
   if err != nil || res == nil {
@@ -112,7 +110,7 @@ func TestBasic(t *testing.T) {
   if res != nil && res.Tuples != nil {
     for _, tuple := range *(res.Tuples) {
       for _, cell := range *(tuple.Cells) {
-        if val != cell {
+        if val != string(cell[:]) {
           t.Fatalf("Table should be empty: %s", cell)
         }
       }
