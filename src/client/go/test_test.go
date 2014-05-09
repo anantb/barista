@@ -8,31 +8,32 @@ import "time"
 import "fmt"
 import "math/rand"
 
-func cleanup(kva []*TSimpleServer) {
-  for i := 0; i < len(kva); i++ {
-    if kva[i] != nil {
-      //kva[i].kill()
-      // kill the SQLPaxos server
-    }
-  }
-}
+const BINARY_PORTS = {":9021", ":9022", ":9023", ":9024", ":9025"}
+var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
+var ADDRS_WITH_PORTS = []string {"128.52.161.243:9021", "128.52.161.243:9022", "128.52.161.243:9023", 
+  "128.52.161.243:9024", "128.52.161.243:9025"}
+var PG_PORTS = []string {"5434", "5435", "5436", "5437", "5438"}
+var SP_PORTS = []string {":9011", ":9012", ":9013", ":9014", ":9015"}
 
 func StartServer(servers []string, me int) {
-  protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
-  transportFactory := thrift.NewTTransportFactory()
-  transport, err := thrift.NewTServerSocket(servers[me])
- 
+  pbinary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
+  json_protocol_factory := thrift.NewTJSONProtocolFactory()
+  transport_factory := thrift.NewTTransportFactory()
+
+  binary_transport, err := thrift.NewTServerSocket(ADDRS[me] + PORT_BINARY[me])
+  
   if err != nil {
-    fmt.Println("Error: ", err)
+    fmt.Println("Error opening socket: ", err)
     return
   }
 
-  handler := NewBaristaHandler()
+  handler := NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
   processor := barista.NewBaristaProcessor(handler)
-  server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
+  binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
+  json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
 
-  fmt.Println("Starting the Barista server on ", servers[me])
-  server.Serve() 
+  fmt.Println("Starting the Barista server (Binary Mode) on ", ADDRS[me] + BINARY_PORTS[me])
+  go binary_server.Serve()
 }
 
 func TestBasic(t *testing.T) {
@@ -44,8 +45,6 @@ func TestBasic(t *testing.T) {
 
   var kva []*TSimpleServer = make([]*TSimpleServer, nservers)
   
-  defer cleanup(kva)
-
   for i := 0; i < nservers; i++ {
   	// start servers on the various machines
     kva[i] = StartServer(kvh, i)
@@ -54,27 +53,27 @@ func TestBasic(t *testing.T) {
   ck := MakeClerk(kvh)
   var cka [nservers]*Clerk
   for i := 0; i < nservers; i++ {
-    cka[i] = MakeClerk([]string{kvh[i]})
+    cka[i] = MakeClerk() // this no longer stores all the servers
   }
 
   fmt.Printf("Test: Basic open/execute/close ...\n")
 
-  con, err := ck.OpenConnection()
+  con, err := ck.OpenConnection(ADDRS_WITH_PORTS)
   if err != nil {
   	t.Fatalf("Error opening connection:", err)
   } else if con == nil {
   	t.Fatalf("Error nil connection returned by open:", err)
   }
 
-  // create a table
-  rs, err := ck.ExecuteSQL(con, 
-  	"create table sqlpaxos_test (key varchar(40), value varchar(40))", nil)
+  _, err = clerk.ExecuteSQL(ADDRS_WITH_PORTS con,
+      "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
-  	t.Fatalf("Error creatint table:", err)
+    t.Fatalf("Error creating table:", err)
+    return
   }
 
   // count number of rows in the table
-  res, err := ck.ExecuteSQL(con, 
+  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
   	"select count(*) from sqlpaxos_test", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
@@ -91,8 +90,8 @@ func TestBasic(t *testing.T) {
   // insert item into table
   key := "a"
   val := "100"
-  res, err := ck.ExecuteSQL(con, 
-  	"insert into sqlpaxos_test values (\'"+ key +"\', \'" + 
+  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS,con, 
+  	"INSERT INTO sqlpaxos_test VALUES (\'"+ key +"\', \'" + 
   		value +"\')", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
@@ -106,15 +105,19 @@ func TestBasic(t *testing.T) {
   	t.Fatalf("Error querying table:", err)
   } 
 
-  for _, tuple := range *(res.Tuples) {
-    for _, cell := range *(tuple.Cells) {
-      if val != cell {
-      	t.Fatalf("Table should be empty: %s", cell)
+  ck.Print_result_set(res)
+
+  if res != nil && res.Tuples != nil {
+    for _, tuple := range *(res.Tuples) {
+      for _, cell := range *(tuple.Cells) {
+        if val != cell {
+          t.Fatalf("Table should be empty: %s", cell)
+        }
       }
     }
   }
 
-  err := ck.CloseConnection()
+  err := ck.CloseConnection(ADDRS_WITH_PORTS)
 	if err != nil {
   	t.Fatalf("Error closing connection:", err)
   }

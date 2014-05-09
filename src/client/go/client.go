@@ -310,7 +310,7 @@ func close_connection(addr string, con *barista.Connection) error {
   return nil
 }
 
-func print_result_set(res *barista.ResultSet) {
+func Print_result_set(res *barista.ResultSet) {
 
   if res != nil && res.FieldNames != nil {
     for _, field_name := range *(res.FieldNames) {
