@@ -67,6 +67,13 @@ func TestBasic(t *testing.T) {
   }
 
   _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
+      "DROP TABLE IF NOT EXISTS sqlpaxos_test", nil)
+  if err != nil {
+    t.Fatalf("Error dropping table:", err)
+    return
+  }
+
+  _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
       "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
     t.Fatalf("Error creating table:", err)
