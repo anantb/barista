@@ -376,7 +376,7 @@ result_t* new_result() {
 }
 
 void clear_result(result_t* result) {
-  delete res->r;
+  delete result->r;
   free(result);
   result = NULL;
 }
