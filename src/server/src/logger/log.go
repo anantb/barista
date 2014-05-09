@@ -8,16 +8,24 @@ package logger
  */
 
 import "io/ioutil"
- import "os"
+import "os"
 //import "json"
+
+CONST log_path = "/tmp/sqlpaxos/"
 
 type Logger struct {
   filename string
 }
 
-func Make(filename string) *Logger {
+func Make(filename string, port string) *Logger {
   logger := &Logger{}
   logger.filename = filename
+  err := os.MkdirAll(log_path + port, 0777)
+  if err != nil {
+    fmt.Println("Error creating log dir: " + "/tmp/sqlpaxos/" + port)
+    fmt.Println(err)
+  }
+  filename = log_path + port + "/" + filename
   return logger
 }
 

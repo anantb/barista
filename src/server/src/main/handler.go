@@ -16,9 +16,9 @@ type Handler struct {
   sqlpaxos *sqlpaxos.SQLPaxos
 }
 
-func NewBaristaHandler(servers []string, me int) *Handler {
+func NewBaristaHandler(servers []string, me int, pg_ports []string, sp_ports []string) *Handler {
   handler := new(Handler)
-  handler.sqlpaxos = sqlpaxos.StartServer(servers, me)
+  handler.sqlpaxos = sqlpaxos.StartServer(servers, me, pg_ports, sp_ports)
   return handler
 }
 

@@ -8,13 +8,6 @@ import "time"
 import "fmt"
 import "math/rand"
 
-func check(t *testing.T, ck *Clerk, key string, value string) {
-  v := ck.Get(key)
-  if v != value {
-    t.Fatalf("Get(%v) -> %v, expected %v", key, v, value)
-  }
-}
-
 func cleanup(kva []*TSimpleServer) {
   for i := 0; i < len(kva); i++ {
     if kva[i] != nil {

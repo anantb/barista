@@ -51,6 +51,8 @@ type SQLPaxos struct {
   transactions map[int64]*sql.Tx // transactions per client. Limited to a single transaction per client
   next int // the next sequence number to be executed
   logger *logger.Logger // logger to write paxos log to file
+  port string // what port should this run on
+  pg_port string // what port is postgres running on
 }
 
 func (sp *SQLPaxos) execute(op Op) interface{} {
@@ -260,7 +262,7 @@ func (sp *SQLPaxos) OpenHelper(args OpenArgs, seqnum int) OpenReply {
   if ok {
     reply.Err = ConnAlreadyOpen
   } else {
-      manager := new(db.DBManager)
+      manager := new(db.DBManager{Port:sp.pg_port})
       reply.Err = errorToErr(manager.OpenConnection(args.User, args.Password, args.Database))
       sp.connections[args.ClientId] = manager
   }
@@ -644,7 +646,7 @@ func (sp *SQLPaxos) kill() {
 // form the fault-tolerant key/value service.
 // me is the index of the current server in servers[].
 //
-func StartServer(servers []string, me int) *SQLPaxos {
+func StartServer(servers []string, me int, pg_ports []string, ports []string) *SQLPaxos {
   // call gob.Register on structures you want
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
@@ -668,21 +670,27 @@ func StartServer(servers []string, me int) *SQLPaxos {
   sp.next = 0
   sp.connections = make(map[int64]*db.DBManager)
   sp.transactions = make(map[int64]*sql.Tx)
-  sp.logger = logger.Make("sqlpaxos_log.txt")
+  sp.port = ports[me]
+  sp.pg_port = pg_ports[me]
+  sp.logger = logger.Make("sqlpaxos_log.txt", sp.pg_port)
   
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
 
-  sp.px = paxos.Make(servers, me, rpcs)
+  paxos_servers: = make([]string, len(servers), cap(servers))
+  for idx, val := servers {
+    paxos_servers[idx] = val + ports[idx]
+  }
+
+  sp.px = paxos.Make(paxos_servers, me, rpcs)
 
   //os.Remove(servers[me]) // only needed for "unix"
   //l, e := net.Listen("unix", servers[me]);
-  l, e := net.Listen("tcp", servers[me] + paxos.PORT);
+  l, e := net.Listen("tcp", servers[me] + ports[me]);
   if e != nil {
     log.Fatal("listen error: ", e);
   }
   sp.l = l
-
 
   // please do not change any of the following code,
   // or do anything to subvert it.

@@ -194,7 +194,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 // please do not change this function.
 //
 func call(srv string, name string, args interface{}, reply interface{}) bool {
-  c, err := rpc.Dial("tcp", srv + PORT)
+  c, err := rpc.Dial("tcp", srv)
   if err != nil {
     err1 := err.(*net.OpError)
     if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
@@ -433,7 +433,7 @@ func (px *Paxos) Kill() {
 // the application wants to create a paxos peer.
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
-//
+// @mvartak: port is now included in peer addresses
 func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px := &Paxos{}
   px.peers = peers
@@ -456,7 +456,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
     // prepare to receive connections from clients.
     // change "unix" to "tcp" to use over a network.
     //os.Remove(peers[me]) // only needed for "unix"
-    l, e := net.Listen("tcp", peers[me] + PORT);
+    l, e := net.Listen("tcp", peers[me]);
     if e != nil {
       log.Fatal("listen error: ", e);
     }

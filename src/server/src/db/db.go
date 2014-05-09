@@ -12,14 +12,15 @@ import "database/sql"
 import "fmt"
 
 const HOST = "localhost"
-const PORT = 5432
+const PORT = "5432"
 
 type DBManager struct {
   db *sql.DB
+  Port string
 }
 
 func NewDBManager() *DBManager {
-  manager := new(DBManager)
+  manager := new(DBManager{Port: PORT})
   return manager
 }
 
@@ -31,7 +32,7 @@ func (manager *DBManager) OpenConnection(
     "postgres",
     fmt.Sprintf(
         "host=%s port=%v user=%s dbname=%s password=%s sslmode=disable",
-        HOST, PORT, user, dbname, password))
+        HOST, db.Port, user, dbname, password))
 
   return err
 }

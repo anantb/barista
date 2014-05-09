@@ -16,6 +16,8 @@ import "strings"
 const PORT_BINARY = ":9000"
 const PORT_JSON = ":9090"
 var ADDRS = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
+var PG_PORTS = []string {"5432", "5432", "5432", "5432", "5432"}
+var SP_PORTS = []string {":9001", ":9001", ":9001", ":9001", ":9001"}
 
 func main() {  
   binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
@@ -52,7 +54,7 @@ func main() {
      return
   }
 
-  handler := NewBaristaHandler(ADDRS, me)
+  handler := NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
   processor := barista.NewBaristaProcessor(handler)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
   json_server := thrift.NewTSimpleServer4(processor, json_transport, transport_factory, json_protocol_factory)
