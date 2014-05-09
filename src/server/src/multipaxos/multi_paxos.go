@@ -102,17 +102,12 @@ func (mpx *MultiPaxos) Done(seq int) {
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
   mpx.px.Done(seq)
-  min := mpx.px.Min()
-  for seq,_ := range mpx.results{
-    if seq < min{
-      delete(mpx.results,seq)
-    }
-  }
-
 }
 
 
 func (mpx *MultiPaxos) Max() int {
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
   return mpx.executionPointer
 }
 
@@ -157,6 +152,17 @@ func (mpx *MultiPaxos) Kill() {
     mpx.l.Close()
   }
   mpx.px.Kill()
+}
+func (mpx *MultiPaxos) cleanup(){
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
+
+  min := mpx.px.Min()
+  for seq,_ := range mpx.results{
+    if seq < min{
+      delete(mpx.results,seq)
+    }
+  }
 }
 func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
   done := false
@@ -526,6 +532,7 @@ func (mpx *MultiPaxos) refresh(){
   //while the server is still alive
   dead := false
   for dead== false{
+    mpx.cleanup()
     mpx.mu.Lock()
     dead = mpx.dead
     executionPointer := mpx.executionPointer

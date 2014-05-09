@@ -238,7 +238,7 @@ func TestDeaf(t *testing.T) {
 
   l := getandcheckleader(t,pxa)
 
-  firstDeaf := (l-1)%len(pxh)
+  firstDeaf := (l+2)%len(pxh)
   secondDeaf := (l+1)%len(pxh)
   os.Remove(pxh[firstDeaf])
   os.Remove(pxh[secondDeaf])
@@ -845,6 +845,7 @@ func TestForgetMem(t *testing.T) {
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i] = Make(pxh, i, nil)
   }
+  waitn(t, pxa,-1,nMultiPaxos)
 
   pxa[0].Start(0, "x")
   waitn(t, pxa, 0, nMultiPaxos)
@@ -881,6 +882,8 @@ func TestForgetMem(t *testing.T) {
       t.Fatalf("expected Min() %v, got %v\n", 11, pxa[i].Min())
     }
   }
+  
+  time.Sleep(nMultiPaxos*PINGINTERVAL)
 
   runtime.GC()
   var m2 runtime.MemStats
@@ -1218,6 +1221,9 @@ func TestPartitionUnreliable(t *testing.T){
     }
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
+
+    getandcheckleader(t,pxa)
+
     for i := 0; i < nMultiPaxos; i++ {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
@@ -1296,7 +1302,10 @@ func TestLots(t *testing.T) {
         }
       }
       part(t, tag, nMultiPaxos, pa[0], pa[1], pa[2])
-      time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
+
+      //repartition less often because leader needs to be elected + stabalize
+      //before progress can be made
+      time.Sleep(time.Duration(rand.Int63() % 3000) * time.Millisecond)
     }
   }()
 
@@ -1340,11 +1349,11 @@ func TestLots(t *testing.T) {
       for i := 0; i < seq; i++ {
         ndecided(t, pxa, i)
       }
-      time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
+      time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
     }
   }()
 
-  time.Sleep(20 * time.Second)
+  time.Sleep(35 * time.Second)
   done = true
   <- ch1
   <- ch2
