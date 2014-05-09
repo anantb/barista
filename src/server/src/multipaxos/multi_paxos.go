@@ -191,14 +191,14 @@ func (mpx *MultiPaxos) getInstanceNum() int{
   return executionPointerSample
 }
 
-func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
+func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP){
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
-
+  
+  ilc := mop.Op.(MultiPaxosLeaderChange)
   //boolean indicating that agreement and response generation is
   //done
-  done := false
-
+  done := false 
   //while not done or the server is not dead
   for !done && !mpx.dead{
 
@@ -251,15 +251,17 @@ func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP) interface{}{
       mAgreedOp := agreedOp.(MultiPaxosOP)
       switch mAgreedOp.Type{
         case LCHANGE:
-          ilc := mop.Op.(MultiPaxosLeaderChange)
           lc := mAgreedOp.Op.(MultiPaxosLeaderChange)
           if lc.NewEpoch >= ilc.NewEpoch{
-            return mAgreedOp
+            return 
           }
       }
     }
+    if mpx.leader.epoch >= ilc.NewEpoch{
+      return 
+    } 
   }
-  return nil
+  return 
 }
 func (mpx *MultiPaxos) getInstanceData(lowest int) map[int]MultiPaxosOP{
   instancesd := make(map[int]MultiPaxosOP)
@@ -301,7 +303,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
 
                 //increments execution pointer so that we can start waiting for
                 //the next entry of the Paxos log to be agreed upon and so can process it
-                mpx.executionPointer+=1
+                mpx.executionPointer++
 
 
                 mpx.mu.Unlock()
@@ -309,7 +311,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
   mop := val.(MultiPaxosOP)
   if executionPointer != mpx.executionPointer || mop.Epoch < mpx.leader.epoch{
     mpx.Log(-10,"Commit and Log: "+strconv.Itoa(executionPointer)+"  bad execution pointer or epoch")
-    mpx.executionPointer-=1
+    mpx.executionPointer--
     return
   }
   mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  before anything epoch "+strconv.Itoa(mpx.leader.epoch))
@@ -321,7 +323,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
       mpx.results[executionPointer] = &mop
     case LCHANGE:
       mplc := mop.Op.(MultiPaxosLeaderChange)
-      if mplc.NewEpoch > mpx.leader.epoch{
+      if mplc.NewEpoch == mpx.leader.epoch+1{
         newLeader := &MultiPaxosLeader{}
         newLeader.epoch = mplc.NewEpoch
         newLeader.id = mplc.ID
@@ -333,6 +335,8 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
         mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new epoch"+strconv.Itoa(mplc.NewEpoch))
         mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new leader"+mpx.peers[mplc.ID])
         mpx.results[executionPointer] = &mop
+      }else{
+        mpx.executionPointer--
       }
   }
   mpx.Log(1,"Commit and Log: done")
@@ -434,11 +438,11 @@ func (mpx *MultiPaxos) findLeader() string{
   me := mpx.me
   highestEpoch := 0
   highestLeader := peers[mpx.leader.id]
-  mpx.mu.Unlock()
   if mpx.isLeader() && mpx.leader.isValid(){
+    mpx.mu.Unlock()
     return highestLeader
   }
-
+  mpx.mu.Unlock()
   for _,serverAddr := range peers{
     args := &PingArgs{}
     reply :=  &PingReply{}
@@ -448,7 +452,7 @@ func (mpx *MultiPaxos) findLeader() string{
       continue
     }
     //fix magic number
-    for !ok && count <5{
+    for !ok && count <MAX_RETRY{
       ok = call(serverAddr, "MultiPaxos.HandlePing", args, reply)
       count++
     }
@@ -469,7 +473,7 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
   leaderAddr := leader
   done := false
   count :=0
-  for !mpx.dead && !done && count < 10{
+  for !mpx.dead && !done && count < MAX_RETRY{
     args := &PingArgs{}
     mpx.mu.Lock()
     me := mpx.peers[mpx.me]

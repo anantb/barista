@@ -24,7 +24,7 @@ func getandcheckleader(t *testing.T, pxa []*MultiPaxos) int{
   out:=-1
   epoch:=0
   to := 10 * time.Millisecond
-  for iters := 0; iters < 30; iters++ {
+  for iters := 0; iters < 50; iters++ {
     for i:=0; i<len(pxa); i++{
       current := pxa[i]
       if current!=nil && current.isLeaderAndValid(){
@@ -1182,17 +1182,24 @@ func TestPartition(t *testing.T) {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
+          time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
         }
       }(seq,i)
     }
+
+    getandcheckleader(t,pxa)
+
     waitn(t, pxa, seq, 3)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided")
     }
     
-    part(t, tag, nMultiPaxos, []int{0,1}, []int{2,3,4}, []int{})
+    //need for everyone to be in same partiton to receive all data from 
+    //leader
+    part(t, tag, nMultiPaxos, []int{0,1,2,3,4}, []int{}, []int{})
+
     getandcheckleader(t,pxa)
+
     for i := 0; i < nMultiPaxos; i++ {
       pxa[i].SetUnreliable(false)
     }
@@ -1276,6 +1283,7 @@ func TestLots(t *testing.T) {
               pxa[ind].Start(seq, rand.Int() % 10)
               time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
             }
+            fmt.Printf("Detected agreement on %v \n",seq)
           }(seq,i)
         }
         seq++
@@ -1296,7 +1304,7 @@ func TestLots(t *testing.T) {
     }
   }()
 
-  time.Sleep(30 * time.Second)
+  time.Sleep(20 * time.Second)
   done = true
   <- ch1
   <- ch2

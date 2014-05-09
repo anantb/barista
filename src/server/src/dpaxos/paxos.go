@@ -104,6 +104,7 @@ func (px *Paxos) SetLeaderAndEpoch(seq int, leader string,newEpoch int){
   px.leader = leader
   px.leaderproposalnum = px.GetPaxosProposalNum()
   px.leaderproposalnum.Epoch = newEpoch
+  px.UpdateEpoch(newEpoch)
   px.cleanAfter(seq)
 }
 //get's the server name of the current paxos instance
@@ -203,7 +204,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     //LEARN phase
     px.ProposeNotify(seq, v)
     done=true
-    
+
     px.mu.Lock()
     px.tentative[seq] = v
     px.mu.Unlock()
@@ -686,6 +687,13 @@ func (px *Paxos) cleanUp(){
     }
   }
 
+  //free tentative info
+  for tkey,_ := range px.tentative{
+    if tkey < seq{
+      delete(px.tentative,tkey)
+    }
+  }
+
   //free proposer info
   for pkey,_ := range px.proposeinfo{
     if pkey < seq{
@@ -709,19 +717,12 @@ func (px *Paxos) cleanAfter(seq int){
       delete(px.log,lkey)
     }
   }
-  /*//free proposer info
-  for pkey,_ := range px.proposeinfo{
-    if pkey > seq{
-      delete(px.proposeinfo,pkey)
+  //free tentative info
+  for tkey,_ := range px.tentative{
+    if tkey > seq{
+      delete(px.tentative,tkey)
     }
   }
-
-  //free acceptor info
-  for akey,_ := range px.acceptinfo{
-    if akey > seq{
-      delete(px.acceptinfo,akey)
-    }
-  }*/
   runtime.GC()
 }
 //
