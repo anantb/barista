@@ -677,7 +677,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string) *S
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
 
-  paxos_servers: = make([]string, len(servers), cap(servers))
+  paxos_servers := make([]string, len(servers), cap(servers))
   for idx, val := servers {
     paxos_servers[idx] = val + ports[idx]
   }
