@@ -11,7 +11,7 @@ import "io/ioutil"
 import "os"
 //import "json"
 
-CONST log_path = "/tmp/sqlpaxos/"
+const log_path = "/tmp/sqlpaxos/"
 
 type Logger struct {
   filename string
