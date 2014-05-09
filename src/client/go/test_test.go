@@ -8,7 +8,7 @@ import "time"
 import "fmt"
 import "math/rand"
 
-const BINARY_PORTS = {":9021", ":9022", ":9023", ":9024", ":9025"}
+const BINARY_PORTS = []string {":9021", ":9022", ":9023", ":9024", ":9025"}
 var ADDRS = []string {"128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243", "128.52.161.243"}
 var ADDRS_WITH_PORTS = []string {"128.52.161.243:9021", "128.52.161.243:9022", "128.52.161.243:9023", 
   "128.52.161.243:9024", "128.52.161.243:9025"}
@@ -65,7 +65,7 @@ func TestBasic(t *testing.T) {
   	t.Fatalf("Error nil connection returned by open:", err)
   }
 
-  _, err = clerk.ExecuteSQL(ADDRS_WITH_PORTS con,
+  _, err = clerk.ExecuteSQL(ADDRS_WITH_PORTS, con,
       "CREATE TABLE IF NOT EXISTS sqlpaxos_test (key text, value text)", nil)
   if err != nil {
     t.Fatalf("Error creating table:", err)
@@ -90,17 +90,17 @@ func TestBasic(t *testing.T) {
   // insert item into table
   key := "a"
   val := "100"
-  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS,con, 
-  	"INSERT INTO sqlpaxos_test VALUES (\'"+ key +"\', \'" + 
-  		value +"\')", nil)
+  res, err := ck.ExecuteSQL(ADDRS_WITH_PORTS, con, 
+  	"INSERT INTO sqlpaxos_test VALUES ('"+ key +"', '" + 
+  		value +"')", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
   } 
 
   // retrieve old item from table
   res, err := ck.ExecuteSQL(con, 
-  	"select value from sqlpaxos_test where key=\'" + key 
-  	  + "\'", nil)
+  	"select value from sqlpaxos_test where key='" + key 
+  	  + "'", nil)
   if err != nil || res == nil {
   	t.Fatalf("Error querying table:", err)
   } 
@@ -145,16 +145,16 @@ func TestBasic(t *testing.T) {
         if (rand.Int() % 1000) < 500 {
           // insert
           res, err := ck.ExecuteSQL(con, 
-  			"insert into sqlpaxos_test values (\'"+ key +"\', \'" + 
-  		    strconv.Itoa(rand.Int())) +"\')", nil)
+  			"insert into sqlpaxos_test values ('"+ key +"', \'" + 
+  		    strconv.Itoa(rand.Int())) +"')", nil)
 		  if err != nil || res == nil {
 		  	t.Fatalf("Error querying table:", err)
 		  } 
   		} else {
           // retrieve old item from table
 		  res, err := ck.ExecuteSQL(con, 
-		  	"select value from sqlpaxos_test where key=\'" + key 
-		  	  + "\'", nil)
+		  	"select value from sqlpaxos_test where key='" + key 
+		  	  + "'", nil)
 		  if err != nil || res == nil {
 		  	t.Fatalf("Error querying table:", err)
 		  } 
@@ -173,8 +173,8 @@ func TestBasic(t *testing.T) {
     var va [nservers]string
     for i := 0; i < nservers; i++ {
 	  res, err := ck.ExecuteSQL(con, 
-	  	"select value from sqlpaxos_test where key=\'" + key 
-	  	  + "\'", nil)
+	  	"select value from sqlpaxos_test where key='" + key 
+	  	  + "'", nil)
 	  if err != nil || res == nil {
 	  	t.Fatalf("Error querying table:", err)
 	  } 
