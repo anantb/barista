@@ -311,6 +311,9 @@ func close_connection(addr string, con *barista.Connection) error {
 }
 
 func Print_result_set(res *barista.ResultSet) {
+  print_result_set(res)
+}
+func print_result_set(res *barista.ResultSet) {
 
   if res != nil && res.FieldNames != nil {
     for _, field_name := range *(res.FieldNames) {
