@@ -1212,7 +1212,7 @@ func TestPartitionUnreliable(t *testing.T){
 
   fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].SetUnreliable(true)
+    //pxa[i].SetUnreliable(true)
   }
 
   seq := 0
