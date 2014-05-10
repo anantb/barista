@@ -575,6 +575,12 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   px.UpdateEpoch(proposalnum.Epoch)
   reply.Epoch = px.epoch
+  if proposalnum.Epoch < px.epoch{
+    reply.Status = REJECT
+
+    //TODO: maybe do something here
+    return nil
+  }
   //if the acceptor has not received a proposal yet then accept the first proposal
   //otherwise respond to proposal based on if current proposal num > max proposal num seen
   if acceptor.MaxProposal != nil{
@@ -631,15 +637,14 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   if instancenum > px.maxSeq{
     px.maxSeq = instancenum
   }
+  px.UpdateEpoch(proposalnum.Epoch)
+  reply.Epoch = px.epoch
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
 
     //TODO: maybe do something here
     return nil
-  }else{
-    px.UpdateEpoch(proposalnum.Epoch)
   }
-  reply.Epoch = px.epoch
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
   //then accept the proposal, otherwise we got an old
