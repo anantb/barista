@@ -193,8 +193,15 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 // please use call() to send all RPCs, in client.go and server.go.
 // please do not change this function.
 //
-func call(srv string, name string, args interface{}, reply interface{}) bool {
-  c, err := rpc.Dial("tcp", srv)
+func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
+  var err error
+  var c Conn
+  if unix {
+    c, err = rpc.Dial("unix", srv)
+  } else {
+    c, err = rpc.Dial("tcp", srv)
+  }
+ 
   if err != nil {
     err1 := err.(*net.OpError)
     if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
