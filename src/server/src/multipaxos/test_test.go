@@ -1133,20 +1133,14 @@ func TestPartition(t *testing.T) {
     //fmt.Printf("new partition \n")
     part(t, tag, nMultiPaxos, majority, minority, []int{})
 
-    time.Sleep(PINGWAIT)
-
-    //wait for leader
-    leaderIndexInGroup1 := getandcheckleader(t,majoritypxa)
-    l = majority[leaderIndexInGroup1]
-
     //avoid instance used for leader agreement
     seq++
 
     //old leader
     go execute(pxa,minority[0],seq,seq*10)
 
-    //new leader
-    go execute(pxa,l,seq,(seq * 10) + 1)
+    //request will be forwarded to new leader
+    go execute(pxa,majority[0],seq,(seq * 10) + 1)
 
     waitmajority(t, pxa, seq)
     if ndecided(t, pxa, seq) > 3 {
@@ -1154,6 +1148,9 @@ func TestPartition(t *testing.T) {
     }
     checkval(t,pxa,seq,(seq * 10) + 1)
     
+    //actually get what the leader was
+    leaderIndexInGroup1 := getandcheckleader(t,majoritypxa)
+    l = majority[leaderIndexInGroup1]
     //fmt.Printf("before heal \n")
 
     //if other paxos replicas are not in the same partition as the leader they will never get the results
@@ -1166,18 +1163,20 @@ func TestPartition(t *testing.T) {
     //because they got no notification RPCs and don't ping other servers to find out differently
     part(t, tag, nMultiPaxos,  join, []int{}, []int{})
     
-    newl := getandcheckleader(t,pxa)
-
-    if pxa[newl].me != pxa[l].me{
-      t.Fatalf("Leader changed when it wasn't supposed to!")
-    }
-
     //wait for replicas to catch up from leader
     time.Sleep(PINGWAIT)
     
     //should catch up
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,(seq * 10) + 1)
+    
+    //get what leader was after heal
+    newl := getandcheckleader(t,pxa)
+
+    if pxa[newl].me != pxa[l].me{
+      t.Fatalf("Leader changed when it wasn't supposed to!")
+    }
+
     l = newl
 
     fmt.Printf("Phase %v out of %v passed... \n",iters+1,niters)
@@ -1221,22 +1220,21 @@ func TestPartitionUnreliable(t *testing.T){
     seq++
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
-    
-    //ping wait essentially for replicas to notice leader is dead and vote in a new leader
-    getandcheckleader(t,pxa)
 
     for i := 0; i < nMultiPaxos; i++ {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(time.Duration(rand.Int63() % 100) * time.Millisecond)
+          time.Sleep(time.Duration((rand.Int63() % 100)) * time.Millisecond)
         }
-        fmt.Printf("Detected agreement on %v \n",seq)
+        //fmt.Printf("Detected agreement on %v \n",seq)
       }(seq,i)
     }
 
+    //getandcheckleader(t,pxa)
+
     waitn(t, pxa, seq, 3)
-    fmt.Printf("Detected majority agreement on %v \n",seq)
+    //fmt.Printf("Detected majority agreement on %v \n",seq)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided on %v",seq)
     }
@@ -1245,13 +1243,11 @@ func TestPartitionUnreliable(t *testing.T){
     //leader
     part(t, tag, nMultiPaxos, []int{0,1,2,3,4}, []int{}, []int{})
 
-    getandcheckleader(t,pxa)
-
     for i := 0; i < nMultiPaxos; i++ {
       pxa[i].SetUnreliable(false)
     }
 
-    fmt.Printf("Detected all agreement on %v \n",seq)
+    //fmt.Printf("Detected all agreement on %v \n",seq)
     waitn(t, pxa, seq, 5)
   }
 
@@ -1306,7 +1302,7 @@ func TestLots(t *testing.T) {
 
       //repartition less often because leader needs to be elected + stabalize
       //before progress can be made
-      time.Sleep(time.Duration(rand.Int63() % 3000) * time.Millisecond)
+      time.Sleep(time.Duration(rand.Int63() % 2000) * time.Millisecond)
     }
   }()
 
@@ -1331,9 +1327,9 @@ func TestLots(t *testing.T) {
           go func(seq int, ind int){
             for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
               pxa[ind].Start(seq, rand.Int() % 10)
-              time.Sleep(time.Duration(rand.Int63() % 500) * time.Millisecond)
+              time.Sleep(time.Duration(rand.Int63() % 300) * time.Millisecond)
             }
-            fmt.Printf("Detected agreement on %v \n",seq)
+            //fmt.Printf("Detected agreement on %v \n",seq)
           }(seq,i)
         }
         seq++
@@ -1368,7 +1364,6 @@ func TestLots(t *testing.T) {
   time.Sleep(5 * time.Second)
 
   for i := 0; i < seq; i++ {
-    getandcheckleader(t,pxa)
     waitn(t, pxa, i,nMultiPaxos)
   }
 

@@ -396,7 +396,12 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
         if i == me{
           continue
         }
-        ok := call(peerAddr, "MultiPaxos.HandlePing", args, reply)
+        ok := false
+        count := 0
+        for !ok && count <MAX_RETRY && !mpx.dead{
+          ok = call(peerAddr, "MultiPaxos.HandlePing", args, reply)
+          count++
+        }
         if ok{
           if i > maxInd{
             maxInd = i
@@ -405,7 +410,7 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
       }
       mpx.Log(-1,"Max was "+strconv.Itoa(maxInd))
       if me == maxInd{
-        //go mpx.startPaxosAgreementAndWait(mop)
+        mpx.startPaxosAgreementAndWait(mop)
         mpx.Log(-1,"Max was me "+mpx.peers[mpx.me])
       }
     }()*/

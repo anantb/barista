@@ -316,7 +316,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
       if !error{
         if backOff<20*time.Millisecond {
           backOff = 2*backOff
-          log.Printf("NormalPropose: prepare backing off")
+          //log.Printf("NormalPropose: prepare backing off")
         }
         //log.Printf("NormalPropose: prepare backing off")
         time.Sleep(backOff)
@@ -336,7 +336,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
       if !error{
         if backOff<20*time.Millisecond{
           backOff = 2*backOff
-          log.Printf("NormalPropose: accept backing off")
+          //log.Printf("NormalPropose: accept backing off")
         }
         //log.Printf("NormalPropose: accept backing off")
         time.Sleep(backOff)
