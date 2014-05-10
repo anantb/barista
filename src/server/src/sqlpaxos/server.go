@@ -636,7 +636,7 @@ func (sp *SQLPaxos) Close(args *CloseArgs, reply *CloseReply) error {
 }
 
 // tell the server to shut itself down.
-func (sp *SQLPaxos) kill() {
+func (sp *SQLPaxos) Kill() {
   sp.dead = true
   sp.l.Close()
   sp.px.Kill()
