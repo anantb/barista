@@ -742,7 +742,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
       }
       if err != nil && sp.dead == false {
         fmt.Printf("SQLPaxos(%v) accept: %v\n", me, err.Error())
-  sp.kill()
+  sp.Kill()
       }
     }
   }()
