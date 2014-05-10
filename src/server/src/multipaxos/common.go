@@ -1,19 +1,17 @@
 package multipaxos
 
-//import "time"
-//import "sync"
-//import "hash/fnv"
-//import "strconv"
+import "net"
+import "net/rpc"
+import "syscall"
 import "crypto/rand"
 import "math/big"
-import "net/rpc"
 import "fmt"
 import "time"
 
 //constants
 const(
 	MAX_RETRY = 10
-	DEBUG = -100
+	DEBUG = -1000
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	PINGWAIT = NPINGS*PINGINTERVAL
@@ -104,28 +102,24 @@ func nrand() int64 {
 // please use call() to send all RPCs, in client.go and server.go.
 // please don't change this function.
 //
-func call(srv string, rpcname string,
-          args interface{}, reply interface{}) bool {
-  if srv == ""{
-  	return false
+func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
+  var err error
+  var c *rpc.Client
+  if unix {
+    c, err = rpc.Dial("unix", srv)
+  } else {
+    c, err = rpc.Dial("tcp", srv)
   }
-  c, errx := rpc.Dial("unix", srv)
-  if errx != nil {
+  if err != nil {
+    err1 := err.(*net.OpError)
+    if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
+      fmt.Printf("paxos Dial() failed: %v\n", err1)
+    }
     return false
   }
   defer c.Close()
-  /*resp := make(chan error, 1)
-  go func() { resp <- c.Call(rpcname, args, reply) } ()
-
-  var err error
-
-  select {
-	case err = <-resp:
-	// use err and reply
-	case <-time.After(5*time.Second):
-	// call timed out
-  }*/
-  err := c.Call(rpcname, args, reply)
+    
+  err = c.Call(name, args, reply)
   if err == nil {
     return true
   }
@@ -133,7 +127,6 @@ func call(srv string, rpcname string,
   fmt.Println(err)
   return false
 }
-
 //debug print statement functions with priorities
 func DPrint(pri int, format string) (n int, err error) {
   if DEBUG > pri {

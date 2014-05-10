@@ -82,6 +82,8 @@ type Paxos struct {
   leaderproposalnum PaxosProposalNum
 
   tentative map[int]interface{}
+
+  unix bool
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -92,6 +94,11 @@ type Paxos struct {
 //***********************************************************************************************************************************//
 //Paxos Administrative Functions
 //***********************************************************************************************************************************//
+func(px *Paxos) UpdateEpochLocked(newEpoch int){
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  px.UpdateEpoch(newEpoch)
+}
 func(px *Paxos) UpdateEpoch(newEpoch int){
   //strictly increasing
   if newEpoch > px.epoch{
@@ -103,9 +110,8 @@ func (px *Paxos) SetLeaderAndEpoch(seq int, leader string,newEpoch int){
   defer px.mu.Unlock()
   px.leader = leader
   px.leaderproposalnum = px.GetPaxosProposalNum()
-  px.leaderproposalnum.Epoch = newEpoch
   px.UpdateEpoch(newEpoch)
-  px.cleanAfter(seq)
+  px.leaderproposalnum.Epoch = px.epoch
 }
 func (px *Paxos) GetDone() int{
   px.mu.Lock()
@@ -137,6 +143,11 @@ func (px *Paxos) UpdateMinAndCleanUp(serverName string, maxDone int){
   //update minSeq and clean up
   px.setMin()
   px.cleanUp()
+} 
+func (px *Paxos) DeleteFromLog(seq int){
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  delete(px.log,seq)
 }
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
@@ -219,8 +230,10 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   //commence proposal cycle, continue until it succeeds
   done := false
   for !done && px.dead == false{
-
-    //fmt.Printf("starting leader agreement on seq %v \n",seq)
+    if proposal.Epoch != px.epoch{
+      failCallback(proposal.Epoch)
+      return
+    }
     //ACCEPT phase
     accepted, explicit_reject, _ := px.ProposerAccept(seq,v,proposal,peers)
 
@@ -240,6 +253,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     px.mu.Lock()
     px.tentative[seq] = v
     px.mu.Unlock()
+
     break
   }
 }
@@ -286,49 +300,57 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
-  //log.Printf("NormalPropose: before prepare")
   //commence proposal cycle, continue until it succeeds
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
-    //time.Sleep(time.Duration((rand.Int63() % 300))*time.Millisecond)
+    backOff = 10*time.Millisecond
+    time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
+    //log.Printf("NormalPropose: before prepare")
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
+    //log.Printf("NormalPropose: after prepare")
     //log.Printf("NormalPropose: after prepare")
     //if the prepare phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !prepared{
       //log.Printf("NormalPropose: prepare failed "+px.peers[px.me])
-      if(!error){
-        if(backOff<2*time.Second){
+      if !error{
+        if backOff<20*time.Millisecond {
           backOff = 2*backOff
+          //log.Printf("NormalPropose: prepare backing off")
         }
         //log.Printf("NormalPropose: prepare backing off")
         time.Sleep(backOff)
       }
       continue
     }
-
+    //log.Printf("NormalPropose: before accept")
     //ACCEPT phase
     accepted,_,error := px.ProposerAccept(seq,value,proposal,peers)
+
+    //log.Printf("NormalPropose: after accept")
     //log.Printf("NormalPropose: after accept")
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !accepted{
       //log.Printf("NormalPropose: accept failed")
-      if(!error){
-        if(backOff<2*time.Second){
+      if !error{
+        if backOff<20*time.Millisecond{
           backOff = 2*backOff
+          //log.Printf("NormalPropose: accept backing off")
         }
         //log.Printf("NormalPropose: accept backing off")
         time.Sleep(backOff)
       }
       continue
     }
-    backOff = 10*time.Millisecond
+    //log.Printf("NormalPropose: before notify")
+    //backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, value)
     done=true
+    //log.Printf("NormalPropose: after notify")
     break
   }
   //log.Printf("NormalPropose: prepare succeeded")
@@ -380,7 +402,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
     if px.isMe(server){
       px.Prepare(prepareArgs,prepareReply)
     }else{
-      ok = call(server,"Paxos.Prepare",prepareArgs,prepareReply)
+      ok = call(server,"Paxos.Prepare",prepareArgs,prepareReply,px.unix)
     }
     if ok{
       //check status
@@ -391,7 +413,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
         case REJECT:
           //was rejected, don't count as PREPARE_OK
       }
-      px.UpdateEpoch(prepareReply.Epoch)
+      px.UpdateEpochLocked(prepareReply.Epoch)
     }else{
       failCount++
     }
@@ -478,7 +500,7 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
     if px.isMe(server){
       px.Accept(acceptArgs,acceptReply)
     }else{
-      ok = call(server,"Paxos.Accept",acceptArgs,acceptReply)
+      ok = call(server,"Paxos.Accept",acceptArgs,acceptReply,px.unix)
     }
     if ok{
       //check status
@@ -490,6 +512,7 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
           //was rejected, don't count as ACCEPT_OK
           explicit_reject = true
       }
+      px.UpdateEpochLocked(acceptReply.Epoch)
     }else{
       failCount++
     }
@@ -526,7 +549,7 @@ func (px *Paxos) ProposeNotify(seq int, value interface{}){
       if px.isMe(server){
         px.Teach(teachArgs,teachReply)
       }else{
-        call(server,"Paxos.Teach",teachArgs,teachReply)
+        call(server,"Paxos.Teach",teachArgs,teachReply,px.unix)
       }
     }
 }
@@ -562,6 +585,12 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   px.UpdateEpoch(proposalnum.Epoch)
   reply.Epoch = px.epoch
+  if proposalnum.Epoch < px.epoch{
+    reply.Status = REJECT
+
+    //TODO: maybe do something here
+    return nil
+  }
   //if the acceptor has not received a proposal yet then accept the first proposal
   //otherwise respond to proposal based on if current proposal num > max proposal num seen
   if acceptor.MaxProposal != nil{
@@ -618,13 +647,13 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   if instancenum > px.maxSeq{
     px.maxSeq = instancenum
   }
+  px.UpdateEpoch(proposalnum.Epoch)
+  reply.Epoch = px.epoch
   if proposalnum.Epoch < px.epoch{
     reply.Status = REJECT
 
     //TODO: maybe do something here
     return nil
-  }else{
-    px.UpdateEpoch(proposalnum.Epoch)
   }
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
@@ -669,7 +698,6 @@ func (px *Paxos) Teach(args *TeachArgs, reply *TeachReply) error{
 func (px *Paxos) handleTeach(serverName string, maxDone int, log map[int]interface{}){
   px.mu.Lock()
   defer px.mu.Unlock()
-
   //update log
   for key,val := range log{
     px.log[key] = val
@@ -742,7 +770,7 @@ func (px *Paxos) cleanUp(){
 
   runtime.GC()
 }
-func (px *Paxos) cleanAfter(seq int){
+func (px *Paxos) CleanAfter(seq int){
   //free log entries
   for lkey,_ := range px.log{
     if lkey > seq{
@@ -773,8 +801,15 @@ func (px *Paxos) cleanAfter(seq int){
 // please use call() to send all RPCs, in client.go and server.go.
 // please do not change this function.
 //
-func call(srv string, name string, args interface{}, reply interface{}) bool {
-  c, err := rpc.Dial("unix", srv)
+
+func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
+  var err error
+  var c *rpc.Client
+  if unix {
+    c, err = rpc.Dial("unix", srv)
+  } else {
+    c, err = rpc.Dial("tcp", srv)
+  }
   if err != nil {
     err1 := err.(*net.OpError)
     if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
@@ -917,7 +952,7 @@ func (px *Paxos) SetUnreliable(unreliable bool) {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 //
-func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
@@ -934,7 +969,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px.epoch = 0
   px.leader = ""
   px.leaderproposalnum = px.GetPaxosProposalNum()
-
+  px.unix = unix
   //init peers map with maxDone values,
   //-1 represents we haven't heard from that peer
   for _,val := range px.peers{
@@ -948,10 +983,16 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
     rpcs = rpc.NewServer()
     rpcs.Register(px)
 
-    // prepare to receive connections from clients.
-    // change "unix" to "tcp" to use over a network.
-    os.Remove(peers[me]) // only needed for "unix"
-    l, e := net.Listen("unix", peers[me]);
+    var l net.Listener
+    var e error
+    if unix {
+      os.Remove(peers[me])
+      l, e = net.Listen("unix", peers[me])
+      px.unix = true
+    } else {
+      l, e = net.Listen("tcp", peers[me])
+      px.unix = false
+    }
     if e != nil {
       log.Fatal("listen error: ", e);
     }
