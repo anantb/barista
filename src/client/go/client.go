@@ -274,6 +274,7 @@ func open_connection(addr string,
 
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
+  transport.SetTimeout(time.Duration(15)*time.Second)
 
   if err != nil {
      return nil, err
@@ -297,6 +298,7 @@ func close_connection(addr string, con *barista.Connection) error {
 
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
+  transport.SetTimeout(time.Duration(15)*time.Second)
 
   if err != nil {
      return err
