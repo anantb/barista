@@ -1212,7 +1212,7 @@ func TestPartitionUnreliable(t *testing.T){
 
   fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
   for i := 0; i < nMultiPaxos; i++ {
-    //pxa[i].SetUnreliable(true)
+    pxa[i].SetUnreliable(true)
   }
 
   seq := 0
@@ -1221,13 +1221,11 @@ func TestPartitionUnreliable(t *testing.T){
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
 
-    getandcheckleader(t,pxa)
-
     for i := 0; i < nMultiPaxos; i++ {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(time.Duration((rand.Int63() % 700)) * time.Millisecond)
+          time.Sleep(time.Duration((rand.Int63() % 300)) * time.Millisecond)
         }
         //fmt.Printf("Detected agreement on %v \n",seq)
       }(seq,i)
