@@ -84,7 +84,7 @@ func ndecided(t *testing.T, pxa []*MultiPaxos, seq int) int {
 
 func waitn(t *testing.T, pxa[]*MultiPaxos, seq int, wanted int) {
   to := 10 * time.Millisecond
-  for iters := 0; iters < 30; iters++ {
+  for iters := 0; iters < 50; iters++ {
     if ndecided(t, pxa, seq) >= wanted {
       break
     }
@@ -286,12 +286,12 @@ func TestBasicLeaderModified(t *testing.T) {
   fmt.Printf("  ... Passed\n")
 
   fmt.Printf("Test: Basic LeaderModified  Single Agreement to leader...\n")
-  pxa[l].Start(0,"hello1")
+  go execute(pxa,l,0,"hello1")
 
   waitn(t, pxa, 0,nMultiPaxos)
   checkval(t,pxa,0,"hello1")
 
-  pxa[l].Start(1,"hello")
+  go execute(pxa,l,1,"hello")
 
   waitn(t, pxa, 1,nMultiPaxos)
   checkval(t,pxa,1,"hello")
@@ -301,7 +301,7 @@ func TestBasicLeaderModified(t *testing.T) {
   fmt.Printf("Test: Basic LeaderModified Many proposers, same value...\n")
 
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].Start(2, 77)
+    go execute(pxa,i,2,77)
   }
   waitn(t, pxa, 2,nMultiPaxos)
 
@@ -313,9 +313,9 @@ func TestBasicLeaderModified(t *testing.T) {
 
   data := [3]int{100,101,102}
 
-  pxa[0].Start(3, data[0])
-  pxa[1].Start(3, data[1])
-  pxa[2].Start(3, data[2])
+  go execute(pxa,0,3,data[0])
+  go execute(pxa,1,3,data[1])
+  go execute(pxa,2,3,data[2])
 
   waitn(t, pxa, 3,nMultiPaxos)
 
@@ -325,11 +325,12 @@ func TestBasicLeaderModified(t *testing.T) {
 
   fmt.Printf("Test: Basic LeaderModified Out-of-order instances...\n")
 
-  pxa[l].Start(8, 300)
-  pxa[l].Start(7, 600)
-  pxa[l].Start(6, 500)
-  pxa[l].Start(5, 400)
-  pxa[l].Start(4, 300)
+  go execute(pxa,l,8,300)
+  go execute(pxa,l,7,600)
+  go execute(pxa,l,6,500)
+  go execute(pxa,l,5,400)
+  go execute(pxa,l,4,300)
+
   //waiting for instance 8 to complete means all the rest before it completed
   //can't respong to client for instance i until the results of all previous instances known
   waitn(t, pxa, 8,nMultiPaxos)
@@ -372,13 +373,14 @@ func TestRPCCount(t *testing.T) {
   ninst1 := 5
   seq := 0
   for i := 0; i < ninst1; i++ {
-    pxa[l].Start(seq, "x")
+    go execute(pxa,l,seq,"x")
+    //pxa[l].Start(seq, "x")
     waitn(t, pxa, seq, nMultiPaxos)
     checkval(t,pxa,seq,"x")
     seq++
   }
 
-  time.Sleep(4 * time.Second)
+  time.Sleep(PINGWAIT)
   
   total1 := 0
   for j := 0; j < nMultiPaxos; j++ {
@@ -400,7 +402,7 @@ func TestRPCCount(t *testing.T) {
   ninst2 := 5
   for i := 0; i < ninst2; i++ {
     for j := 0; j < nMultiPaxos; j++ {
-      go pxa[j].Start(seq, j + (i * 10))
+      go execute(pxa,j,seq, j + (i * 10))
     }
     waitn(t, pxa, seq, nMultiPaxos)
     seq++
@@ -498,11 +500,11 @@ func TestLeaderDeaths(t *testing.T) {
   l := getandcheckleader(t,pxa)
     
   //make a few agreements
-  pxa[l].Start(0,"lol1")
-  pxa[l].Start(1,"lol1")
-  pxa[l].Start(2,"lol2")
-  pxa[l].Start(3,"lol3")
-  pxa[l].Start(4,"lol4")
+  go execute(pxa,l,0,"lol0")
+  go execute(pxa,l,1,"lol1")
+  go execute(pxa,l,2,"lol2")
+  go execute(pxa,l,3,"lol3")
+  go execute(pxa,l,4,"lol4")
 
   getandcheckleader(t,pxa)
 
@@ -536,7 +538,7 @@ func TestLeaderDeaths(t *testing.T) {
   }
   maxAfterFail := pxanew[lnew].Max()
 
-  pxanew[lnew].Start(maxAfterFail,"lol5")
+  go execute(pxa,lnew,maxAfterFail,"lol5")
   waitn(t, pxanew, maxAfterFail, nMultiPaxos-1)
 
   checkval(t,pxanew,1,"lol1")
@@ -648,7 +650,7 @@ func TestFallBehind(t *testing.T) {
 
   nRequests := 20
   for seq:=0; seq<nRequests; seq++{
-    pxa[l].Start(seq, 100+seq)
+    go execute(pxa,l,seq,100+seq)
   }
   waitmajority(t, pxa, 19)
 
@@ -847,7 +849,7 @@ func TestForgetMem(t *testing.T) {
   }
   waitn(t, pxa,-1,nMultiPaxos)
 
-  pxa[0].Start(0, "x")
+  go execute(pxa,0,0,"x")
   waitn(t, pxa, 0, nMultiPaxos)
 
   runtime.GC()
@@ -874,7 +876,7 @@ func TestForgetMem(t *testing.T) {
     pxa[i].Done(10)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i].Start(11 + i, "z")
+    go execute(pxa,i,11+i,"z")
   }
   time.Sleep(3 * time.Second)
   for i := 0; i < nMultiPaxos; i++ {
@@ -924,13 +926,13 @@ func TestOld(t *testing.T) {
 
   l := getandcheckleader(t,pxa)
 
-  pxa[l].Start(0, 111)
-  pxa[l].Start(1, 111)
+  go execute(pxa,l,0,111)
+  go execute(pxa,l,1,111)
 
   waitmajority(t, pxa, 1)
 
   pxa[0] = Make(pxh, 0, nil)
-  pxa[0].Start(1, 222)
+  go execute(pxa,0,1,222)
 
   waitn(t, pxa, 1, 4)
 
@@ -1146,8 +1148,6 @@ func TestPartition(t *testing.T) {
     //new leader
     go execute(pxa,l,seq,(seq * 10) + 1)
 
-    time.Sleep(PINGWAIT)
-
     waitmajority(t, pxa, seq)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided")
@@ -1212,28 +1212,31 @@ func TestPartitionUnreliable(t *testing.T){
   waitn(t,pxa,-1,nMultiPaxos)
 
   fmt.Printf("Test: One peer switches partitions, unreliable ...\n")
+  for i := 0; i < nMultiPaxos; i++ {
+    pxa[i].SetUnreliable(true)
+  }
+
   seq := 0
   for iters := 0; iters < 20; iters++ {
     seq++
 
-    for i := 0; i < nMultiPaxos; i++ {
-      pxa[i].SetUnreliable(true)
-    }
-
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
+    
+    //ping wait essentially for replicas to notice leader is dead and vote in a new leader
+    getandcheckleader(t,pxa)
 
     for i := 0; i < nMultiPaxos; i++ {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
+          time.Sleep(time.Duration(rand.Int63() % 100) * time.Millisecond)
         }
         fmt.Printf("Detected agreement on %v \n",seq)
       }(seq,i)
     }
 
-    fmt.Printf("Detected majority agreement on %v \n",seq)
     waitn(t, pxa, seq, 3)
+    fmt.Printf("Detected majority agreement on %v \n",seq)
     if ndecided(t, pxa, seq) > 3 {
       t.Fatalf("too many decided on %v",seq)
     }
@@ -1366,7 +1369,7 @@ func TestLots(t *testing.T) {
 
   for i := 0; i < seq; i++ {
     getandcheckleader(t,pxa)
-    waitmajority(t, pxa, i)
+    waitn(t, pxa, i,nMultiPaxos)
   }
 
   fmt.Printf("  ... Passed\n")

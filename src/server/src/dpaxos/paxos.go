@@ -103,9 +103,8 @@ func (px *Paxos) SetLeaderAndEpoch(seq int, leader string,newEpoch int){
   defer px.mu.Unlock()
   px.leader = leader
   px.leaderproposalnum = px.GetPaxosProposalNum()
-  px.leaderproposalnum.Epoch = newEpoch
   px.UpdateEpoch(newEpoch)
-  px.cleanAfter(seq)
+  px.leaderproposalnum.Epoch = px.epoch
 }
 func (px *Paxos) GetDone() int{
   px.mu.Lock()
@@ -137,6 +136,11 @@ func (px *Paxos) UpdateMinAndCleanUp(serverName string, maxDone int){
   //update minSeq and clean up
   px.setMin()
   px.cleanUp()
+} 
+func (px *Paxos) DeleteFromLog(seq int){
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  delete(px.log,seq)
 }
 //get's the server name of the current paxos instance
 func(px *Paxos) getServerName() string{
@@ -219,8 +223,10 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
   //commence proposal cycle, continue until it succeeds
   done := false
   for !done && px.dead == false{
-
-    //fmt.Printf("starting leader agreement on seq %v \n",seq)
+    if proposal.Epoch != px.epoch{
+      failCallback(proposal.Epoch)
+      return
+    }
     //ACCEPT phase
     accepted, explicit_reject, _ := px.ProposerAccept(seq,v,proposal,peers)
 
@@ -240,6 +246,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
     px.mu.Lock()
     px.tentative[seq] = v
     px.mu.Unlock()
+
     break
   }
 }
@@ -291,7 +298,8 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
-    //time.Sleep(time.Duration((rand.Int63() % 300))*time.Millisecond)
+    time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
+    
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
     //log.Printf("NormalPropose: after prepare")
@@ -299,8 +307,8 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     //the loop and try again
     if !prepared{
       //log.Printf("NormalPropose: prepare failed "+px.peers[px.me])
-      if(!error){
-        if(backOff<2*time.Second){
+      if !error{
+        if backOff<10*time.Millisecond {
           backOff = 2*backOff
         }
         //log.Printf("NormalPropose: prepare backing off")
@@ -316,8 +324,8 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
     //the loop and try again
     if !accepted{
       //log.Printf("NormalPropose: accept failed")
-      if(!error){
-        if(backOff<2*time.Second){
+      if !error{
+        if backOff<10*time.Millisecond{
           backOff = 2*backOff
         }
         //log.Printf("NormalPropose: accept backing off")
@@ -391,7 +399,9 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
         case REJECT:
           //was rejected, don't count as PREPARE_OK
       }
+      px.mu.Lock()
       px.UpdateEpoch(prepareReply.Epoch)
+      px.mu.Unlock()
     }else{
       failCount++
     }
@@ -490,6 +500,9 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
           //was rejected, don't count as ACCEPT_OK
           explicit_reject = true
       }
+      px.mu.Lock()
+      px.UpdateEpoch(acceptReply.Epoch)
+      px.mu.Unlock()
     }else{
       failCount++
     }
@@ -626,6 +639,7 @@ func (px *Paxos) Accept(args *AcceptArgs,reply *AcceptReply) error{
   }else{
     px.UpdateEpoch(proposalnum.Epoch)
   }
+  reply.Epoch = px.epoch
   //fmt.Printf(px.peers[px.me]+" seq = %v current epoch = %v \n",instancenum,px.epoch)
   //if the current proposal >= max proposal number seem
   //then accept the proposal, otherwise we got an old
@@ -669,7 +683,6 @@ func (px *Paxos) Teach(args *TeachArgs, reply *TeachReply) error{
 func (px *Paxos) handleTeach(serverName string, maxDone int, log map[int]interface{}){
   px.mu.Lock()
   defer px.mu.Unlock()
-
   //update log
   for key,val := range log{
     px.log[key] = val
@@ -742,7 +755,7 @@ func (px *Paxos) cleanUp(){
 
   runtime.GC()
 }
-func (px *Paxos) cleanAfter(seq int){
+func (px *Paxos) CleanAfter(seq int){
   //free log entries
   for lkey,_ := range px.log{
     if lkey > seq{
