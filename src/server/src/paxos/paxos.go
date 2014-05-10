@@ -196,7 +196,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 //
 func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
   var err error
-  var c Conn
+  var c net.Conn
   if unix {
     c, err = rpc.Dial("unix", srv)
   } else {
