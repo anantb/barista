@@ -350,6 +350,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
         newLeader.id = mplc.ID
         newLeader.numPingsMissed = 0
         newLeader.valid = true
+        mpx.transition = false
         mpx.leader = newLeader
         mpx.px.SetLeaderAndEpoch(executionPointer, mpx.peers[newLeader.id], newLeader.epoch)
         mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found leader change")
@@ -367,7 +368,7 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
   defer mpx.mu.Unlock()
   //double check
   mpx.Log(-10,"LeaderChange: before leader change")
-  if !mpx.leader.isValid(){
+  if !mpx.leader.isValid() && !mpx.transition{
     mpx.Log(1,"LeaderChange: starting leader change")
     currentEpoch := mpx.leader.epoch
     mpl := MultiPaxosLeaderChange{currentEpoch+1,mpx.me}
@@ -377,7 +378,7 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
     mop.Epoch = mpx.leader.epoch
     mpx.transition = true
     //tell underlying paxos to not accept messages from old leader
-    mpx.px.UpdateEpoch(currentEpoch+1)
+    mpx.px.UpdateEpochLocked(currentEpoch+1)
   
     /*go func(){ 
       mpx.mu.Lock()
@@ -408,6 +409,7 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
         mpx.Log(-1,"Max was me "+mpx.peers[mpx.me])
       }
     }()*/
+    mpx.transition = true
     go mpx.startPaxosAgreementAndWait(mop)
   }
   mpx.Log(1,"LeaderChange: leader change started")
@@ -558,7 +560,7 @@ func (mpx *MultiPaxos) refresh(){
       mpx.commitAndLogInstance(executionPointer,val)
       to = 10*time.Millisecond
     }else{
-      if to < 2*time.Second{
+      if to < 100*time.Millisecond{
         to*=2
       }
     }
@@ -590,7 +592,7 @@ func (mpx *MultiPaxos) refreshLeader(){
         }else{
           mpx.getInstancesFromReplica(leader,true)
         }
-        if to < 500*time.Millisecond{
+        if to < 250*time.Millisecond{
           to *=2
         }
     }else{
@@ -690,9 +692,12 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   mpx.results = make(map[int]*MultiPaxosOP)
   if rpcs != nil {
     // caller will create socket &c
+    mpx.px = dpaxos.Make(peers,me,rpcs)
+    rpcs.Register(mpx)
   } else {
     rpcs = rpc.NewServer()
-
+    mpx.px = dpaxos.Make(peers,me,rpcs)
+    rpcs.Register(mpx)
     // prepare to receive connections from clients.
     // change "unix" to "tcp" to use over a network.
     os.Remove(peers[me]) // only needed for "unix"
@@ -741,8 +746,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
       }
     }()
   }
-  mpx.px = dpaxos.Make(peers,me,rpcs)
-  rpcs.Register(mpx)
+  time.Sleep(500*time.Millisecond)
   go mpx.refreshPing()
   go mpx.refresh()
   go mpx.refreshLeader()

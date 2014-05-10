@@ -1180,7 +1180,7 @@ func TestPartition(t *testing.T) {
     checkval(t,pxa,seq,(seq * 10) + 1)
     l = newl
 
-    fmt.Printf("Phase %v out of %v passed... \n",iters,niters)
+    fmt.Printf("Phase %v out of %v passed... \n",iters+1,niters)
   }
 
   fmt.Printf("  ... Passed\n")

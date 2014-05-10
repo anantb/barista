@@ -92,6 +92,11 @@ type Paxos struct {
 //***********************************************************************************************************************************//
 //Paxos Administrative Functions
 //***********************************************************************************************************************************//
+func(px *Paxos) UpdateEpochLocked(newEpoch int){
+  px.mu.Lock()
+  defer px.mu.Unlock()
+  px.UpdateEpoch(newEpoch)
+}
 func(px *Paxos) UpdateEpoch(newEpoch int){
   //strictly increasing
   if newEpoch > px.epoch{
@@ -293,50 +298,57 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   proposer.plock.Lock()
   defer proposer.plock.Unlock()
 
-  //log.Printf("NormalPropose: before prepare")
   //commence proposal cycle, continue until it succeeds
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
+    backOff = 10*time.Millisecond
     time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
-    
+    //log.Printf("NormalPropose: before prepare")
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
+    //log.Printf("NormalPropose: after prepare")
     //log.Printf("NormalPropose: after prepare")
     //if the prepare phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !prepared{
       //log.Printf("NormalPropose: prepare failed "+px.peers[px.me])
       if !error{
-        if backOff<10*time.Millisecond {
+        if backOff<20*time.Millisecond {
           backOff = 2*backOff
+          log.Printf("NormalPropose: prepare backing off")
         }
         //log.Printf("NormalPropose: prepare backing off")
         time.Sleep(backOff)
       }
       continue
     }
-
+    //log.Printf("NormalPropose: before accept")
     //ACCEPT phase
     accepted,_,error := px.ProposerAccept(seq,value,proposal,peers)
+
+    //log.Printf("NormalPropose: after accept")
     //log.Printf("NormalPropose: after accept")
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
     if !accepted{
       //log.Printf("NormalPropose: accept failed")
       if !error{
-        if backOff<10*time.Millisecond{
+        if backOff<20*time.Millisecond{
           backOff = 2*backOff
+          log.Printf("NormalPropose: accept backing off")
         }
         //log.Printf("NormalPropose: accept backing off")
         time.Sleep(backOff)
       }
       continue
     }
-    backOff = 10*time.Millisecond
+    //log.Printf("NormalPropose: before notify")
+    //backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, value)
     done=true
+    //log.Printf("NormalPropose: after notify")
     break
   }
   //log.Printf("NormalPropose: prepare succeeded")
@@ -399,9 +411,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
         case REJECT:
           //was rejected, don't count as PREPARE_OK
       }
-      px.mu.Lock()
-      px.UpdateEpoch(prepareReply.Epoch)
-      px.mu.Unlock()
+      px.UpdateEpochLocked(prepareReply.Epoch)
     }else{
       failCount++
     }
@@ -500,9 +510,7 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
           //was rejected, don't count as ACCEPT_OK
           explicit_reject = true
       }
-      px.mu.Lock()
-      px.UpdateEpoch(acceptReply.Epoch)
-      px.mu.Unlock()
+      px.UpdateEpochLocked(acceptReply.Epoch)
     }else{
       failCount++
     }

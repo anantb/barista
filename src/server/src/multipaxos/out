@@ -6,11 +6,6 @@ Test: Many proposers, different values ...
   ... Passed
 Test: Out-of-order instances ...
   ... Passed
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
 Test: Deaf proposer should still get data ...
   ... Passed
 Test: Basic LeaderModified Elect Leader Instance -1...
@@ -29,85 +24,61 @@ Test: RPC counts aren't too high ...
 Test: Many instances ...
   ... Passed
 Test: First leader death, make sure changes ...
-Leader 1 failover took: 5 seconds 
+Leader 1 failover took: 3 seconds 
   ... Passed
 Test: Second leader death and in flight requests...
-Leader 2 failover took: 6 seconds 
+Leader 2 failover took: 3 seconds 
 Second Leader Death Failover Passed...
 Second Leader Death In Flight Request Override/Recovery Passed...
   ... Passed
 Test: Paxos Replica Falls Behind and then Catches Up With Data From Leader...
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
-rpc: can't find service MultiPaxos.HandlePing
   ... Passed
 Test: Forgetting ...
   ... Passed
 Test: Lots of forgetting ...
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
 unexpected EOF
 unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
 unexpected EOF
 unexpected EOF
-connection is shut down
-connection is shut down
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manygc-1: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
 unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-1: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-1: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
 unexpected EOF
 unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manygc-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manygc-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manygc-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
@@ -119,145 +90,96 @@ Test: MultiPaxos frees forgotten instance memory ...
 Test: Minority proposal ignored and slow instance catches up by talking to leader...
   ... Passed
 Test: Many instances, unreliable RPC ...
-rpc: can't find service MultiPaxos.HandlePing
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-manyun-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-manyun-2: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-manyun-2: broken pipe
-write unix /var/tmp/824-1000/px-7359-manyun-2: broken pipe
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-manyun-2: broken pipe
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
 unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
 connection is shut down
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-manyun-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-manyun-0: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 connection is shut down
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-manyun-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-manyun-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-manyun-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-manyun-1: connection reset by peer
+unexpected EOF
 unexpected EOF
   ... Passed
 Test: No decision if partitioned (no leader)...
@@ -267,222 +189,189 @@ Test: Decision in majority partition with leader...
 Test: All agree after full heal ...
   ... Passed
 Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...
-Phase 0 out of 5 passed... 
 Phase 1 out of 5 passed... 
 Phase 2 out of 5 passed... 
 Phase 3 out of 5 passed... 
 Phase 4 out of 5 passed... 
+Phase 5 out of 5 passed... 
   ... Passed
 Test: One peer switches partitions, unreliable ...
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-3: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-3: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
 connection is shut down
 connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-0: connection reset by peer
 connection is shut down
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-3: broken pipe
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
 connection is shut down
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-0: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
 unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-connection is shut down
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-1: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-4: broken pipe
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-3: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-4: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-0: broken pipe
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 connection is shut down
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-2: broken pipe
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-4: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
@@ -490,71 +379,289 @@ unexpected EOF
 connection is shut down
 unexpected EOF
 unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-2: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-3: broken pipe
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-4: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-0: broken pipe
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-1: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+hut down
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partread unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+Detected agreement on 1 
+connection is shut down
+Detected agreement on 1 
+Detected agreement on 1 
 Detected agreement on 1 
 Detected agreement on 1 
 unexpected EOF
-Detected agreement on 1 
-Detected agreement on 1 
-Detected agreement on 1 
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-3: broken pipe
-write unix /var/tmp/824-1000/px-7359-partition_unreliable-3: broken pipe
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-partition_unreliable-0: broken pipe
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-partition_unreliable-2: connection reset by peer
-connection is shut down
+unexpected EOF
 Detected majority agreement on 1 
+read unix /var/tmp/824-1000/px-9973-partition_unreliable-2: connection reset by peer
 Detected all agreement on 1 
-Detected agreement on 2 
-Detected agreement on 2 
-Detected agreement on 2 
-Detected agreement on 2 
-Detected agreement on 2 
 Detected majority agreement on 2 
 Detected all agreement on 2 
-Detected agreement on 3 
-Detected agreement on 3 
+Detected agreement on 2 
+Detected agreement on 2 
+Detected agreement on 2 
+Detected agreement on 2 
+Detected agreement on 2 
 Detected agreement on 3 
 Detected agreement on 3 
 Detected agreement on 3 
 Detected majority agreement on 3 
 Detected all agreement on 3 
-Detected agreement on 4 
-Detected agreement on 4 
+Detected agreement on 3 
+Detected agreement on 3 
 Detected agreement on 4 
 Detected agreement on 4 
 Detected agreement on 4 
 Detected majority agreement on 4 
 Detected all agreement on 4 
-Detected agreement on 5 
-Detected agreement on 5 
-Detected agreement on 5 
-Detected agreement on 5 
+Detected agreement on 4 
+Detected agreement on 4 
 Detected agreement on 5 
 Detected majority agreement on 5 
 Detected all agreement on 5 
+Detected agreement on 5 
+Detected agreement on 5 
+Detected agreement on 5 
+Detected agreement on 5 
 Detected agreement on 6 
 Detected agreement on 6 
 Detected agreement on 6 
@@ -566,37 +673,37 @@ Detected agreement on 7
 Detected agreement on 7 
 Detected agreement on 7 
 Detected agreement on 7 
-Detected agreement on 7 
 Detected majority agreement on 7 
 Detected all agreement on 7 
-Detected agreement on 8 
-Detected agreement on 8 
-Detected agreement on 8 
-Detected agreement on 8 
-Detected agreement on 8 
+Detected agreement on 7 
 Detected majority agreement on 8 
 Detected all agreement on 8 
-Detected agreement on 9 
-Detected agreement on 9 
-Detected agreement on 9 
+Detected agreement on 8 
+Detected agreement on 8 
+Detected agreement on 8 
+Detected agreement on 8 
+Detected agreement on 8 
 Detected agreement on 9 
 Detected agreement on 9 
 Detected majority agreement on 9 
 Detected all agreement on 9 
-Detected agreement on 10 
+Detected agreement on 9 
+Detected agreement on 9 
+Detected agreement on 9 
 Detected agreement on 10 
 Detected agreement on 10 
 Detected agreement on 10 
 Detected agreement on 10 
 Detected majority agreement on 10 
 Detected all agreement on 10 
-Detected agreement on 11 
+Detected agreement on 10 
 Detected agreement on 11 
 Detected agreement on 11 
 Detected agreement on 11 
 Detected agreement on 11 
 Detected majority agreement on 11 
 Detected all agreement on 11 
+Detected agreement on 11 
 Detected agreement on 12 
 Detected agreement on 12 
 Detected agreement on 12 
@@ -619,33 +726,31 @@ Detected agreement on 14
 Detected majority agreement on 14 
 Detected all agreement on 14 
 Detected agreement on 15 
-Detected agreement on 15 
-Detected agreement on 15 
-Detected agreement on 15 
-Detected agreement on 15 
 Detected majority agreement on 15 
 Detected all agreement on 15 
-Detected agreement on 16 
-Detected agreement on 16 
-Detected agreement on 16 
-Detected agreement on 16 
-Detected agreement on 16 
+Detected agreement on 15 
+Detected agreement on 15 
+Detected agreement on 15 
+Detected agreement on 15 
 Detected majority agreement on 16 
 Detected all agreement on 16 
-Detected agreement on 17 
-Detected agreement on 17 
-Detected agreement on 17 
-Detected agreement on 17 
+Detected agreement on 16 
+Detected agreement on 16 
+Detected agreement on 16 
+Detected agreement on 16 
+Detected agreement on 16 
 Detected agreement on 17 
 Detected majority agreement on 17 
 Detected all agreement on 17 
-Detected agreement on 18 
+Detected agreement on 17 
+Detected agreement on 17 
 Detected agreement on 18 
 Detected agreement on 18 
 Detected agreement on 18 
 Detected agreement on 18 
 Detected majority agreement on 18 
 Detected all agreement on 18 
+Detected agreement on 18 
 Detected agreement on 19 
 Detected agreement on 19 
 Detected agreement on 19 
@@ -655,22 +760,208 @@ Detected majority agreement on 19
 Detected all agreement on 19 
 Detected agreement on 20 
 Detected agreement on 20 
-Detected agreement on 20 
-Detected agreement on 20 
-Detected agreement on 20 
 Detected majority agreement on 20 
 Detected all agreement on 20 
+Detected agreement on 20 
+Detected agreement on 20 
+Detected agreement on 20 
   ... Passed
 Test: Many requests, changing partitions ...
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+connection is shut down
 unexpected EOF
 connection is shut down
 unexpected EOF
 unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+connection is shut down
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+connection is shut down
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
 connection is shut down
 connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+connection is shut down
+connection is shut down
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+connection is shut down
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
 connection is shut down
 unexpected EOF
 unexpected EOF
@@ -679,1718 +970,1355 @@ unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reunexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+connection is shut down
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+connection is shut down
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reunexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
 unexpected EOF
 unexpected EOF
 Detected agreement on 0 
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
 Detected agreement on 0 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
 Detected agreement on 0 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-Detected agreement on 4 
-unexpected EOF
-Detected agreement on 3 
-Detected agreement on 4 
 Detected agreement on 0 
-Detected agreement on 4 
-Detected agreement on 5 
 Detected agreement on 0 
-Detected agreement on 8 
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
 Detected agreement on 1 
-Detected agreement on 3 
-Detected agreement on 6 
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
 Detected agreement on 1 
-Detected agreement on 6 
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+Detected agreement on 1 
 Detected agreement on 2 
-Detected agreement on 3 
-Detected agreement on 3 
-Detected agreement on 8 
 Detected agreement on 7 
-Detected agreement on 9 
-Detected agreement on 8 
 Detected agreement on 6 
-Detected agreement on 5 
+Detected agreement on 7 
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+Detected agreement on 1 
 Detected agreement on 4 
-unexpected EOF
-Detected agreement on 1 
-Detected agreement on 7 
-Detected agreement on 5 
-Detected agreement on 6 
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-Detected agreement on 1 
-Detected agreement on 2 
-Detected agreement on 5 
-Detected agreement on 4 
-Detected agreement on 6 
-Detected agreement on 9 
-Detected agreement on 2 
-Detected agreement on 7 
-Detected agreement on 7 
-Detected agreement on 9 
-Detected agreement on 8 
-connection is shut down
-Detected agreement on 9 
-Detected agreement on 7 
-Detected agreement on 1 
-Detected agreement on 5 
-Detected agreement on 2 
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-Detected agreement on 2 
-Detected agreement on 9 
-unexpected EOF
 Detected agreement on 3 
+Detected agreement on 5 
+Detected agreement on 7 
+Detected agreement on 1 
+Detected agreement on 8 
+Detected agreement on 4 
+Detected agreement on 9 
+Detected agreement on 2 
+Detected agreement on 2 
+Detected agreement on 9 
+Detected agreement on 8 
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+Detected agreement on 8 
+Detected agreement on 4 
+Detected agreement on 5 
+Detected agreement on 3 
+Detected agreement on 3 
+Detected agreement on 5 
+Detected agreement on 6 
+Detected agreement on 9 
+Detected agreement on 3 
+Detected agreement on 3 
+Detected agreement on 6 
+Detected agreement on 6 
+Detected agreement on 7 
+Detected agreement on 2 
+Detected agreement on 5 
+connection is shut down
+Detected agreement on 6 
+Detected agreement on 2 
+Detected agreement on 4 
+Detected agreement on 9 
+connection is shut down
 unexpected EOF
 unexpected EOF
+Detected agreement on 4 
+Detected agreement on 8 
 Detected agreement on 8 
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
+Detected agreement on 9 
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+Detected agreement on 7 
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+Detected agreement on 5 
 unexpected EOF
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
 unexpected EOF
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
 unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
 unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
 unexpected EOF
 connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+connection is shut down
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+connection is shut down
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
 unexpected EOF
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
 unexpected EOF
 unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+connection is shut down
+connection is shut down
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
 unexpected EOF
 Detected agreement on 10 
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-Detected agreement on 13 
-connection is shut down
-Detected agreement on 11 
-Detected agreement on 10 
-Detected agreement on 15 
-Detected agreement on 12 
-Detected agreement on 15 
-unexpected EOF
-Detected agreement on 15 
-Detected agreement on 14 
-Detected agreement on 12 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 15 
-Detected agreement on 12 
-Detected agreement on 13 
-Detected agreement on 14 
-Detected agreement on 12 
-Detected agreement on 14 
-unexpected EOF
-Detected agreement on 11 
-Detected agreement on 14 
 Detected agreement on 10 
 Detected agreement on 10 
-Detected agreement on 11 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 11 
-Detected agreement on 14 
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
+Detected agreement on 10 
+Detected agreement on 10 
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
 unexpected EOF
-Detected agreement on 13 
-Detected agreement on 11 
-Detected agreement on 13 
-Detected agreement on 13 
 unexpected EOF
-Detected agreement on 15 
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-4: broken pipe
+unexpected EOF
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+connection is shut down
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-0: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-2: broken pipe
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+write unix /var/tmp/824-1000/px-9973-lots-1: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+connection is shut down
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+write unix /var/tmp/824-1000/px-9973-lots-3: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-0: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+Detected agreement on 11 
+Detected agreement on 11 
+Detected agreement on 11 
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+Detected agreement on 11 
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+Detected agreement on 11 
 unexpected EOF
 Detected agreement on 12 
 unexpected EOF
-Detected agreement on 10 
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
 unexpected EOF
-connection is shut down
 unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-unexpected EOF
-connection is shut down
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-connection is shut down
-connection is shut down
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reread unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-Detected agreement on 17 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+Detected agreement on 13 
+unexpected EOF
+read unix /var/tmp/824-1000/px-9973-lots-3: connection reset by peer
+read unix /var/tmp/824-1000/px-9973-lots-4: connection reset by peer
+unexpected EOF
+Detected agreement on 12 
+Detected agreement on 12 
+unexpected EOF
+unexpected EOF
+Detected agreement on 12 
+Detected agreement on 13 
+Detected agreement on 12 
+Detected agreement on 13 
+Detected agreement on 13 
+Detected agreement on 13 
+Detected agreement on 14 
+Detected agreement on 14 
+Detected agreement on 15 
+Detected agreement on 15 
+Detected agreement on 16 
+Detected agreement on 16 
+Detected agreement on 14 
+Detected agreement on 15 
+Detected agreement on 14 
+Detected agreement on 16 
+Detected agreement on 19 
 Detected agreement on 18 
 Detected agreement on 17 
 Detected agreement on 17 
+Detected agreement on 20 
+Detected agreement on 18 
+Detected agreement on 19 
+Detected agreement on 18 
+Detected agreement on 19 
+Detected agreement on 15 
 Detected agreement on 17 
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-Detected agreement on 19 
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 19 
+Detected agreement on 14 
+Detected agreement on 20 
 Detected agreement on 16 
-Detected agreement on 16 
-Detected agreement on 16 
-Detected agreement on 19 
+Detected agreement on 18 
+Detected agreement on 20 
 Detected agreement on 17 
-Detected agreement on 19 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-Detected agreement on 18 
-unexpected EOF
-unexpected EOF
-Detected agreement on 18 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-Detected agreement on 18 
-unexpected EOF
+Detected agreement on 17 
 Detected agreement on 16 
-unexpected EOF
-Detected agreement on 16 
-Detected agreement on 19 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
 Detected agreement on 18 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
+Detected agreement on 15 
 Detected agreement on 20 
-unexpected EOF
+Detected agreement on 19 
 Detected agreement on 20 
-Detected agreement on 21 
-Detected agreement on 21 
-unexpected EOF
-unexpected EOF
-Detected agreement on 21 
-unexpected EOF
-Detected agreement on 21 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-Detected agreement on 20 
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 21 
-unexpected EOF
-Detected agreement on 20 
-unexpected EOF
-Detected agreement on 20 
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 23 
-Detected agreement on 22 
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-Detected agreement on 22 
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 22 
-unexpected EOF
-Detected agreement on 23 
-Detected agreement on 22 
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-Detected agreement on 23 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 23 
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-Detected agreement on 23 
-Detected agreement on 22 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-Detected agreement on 24 
-Detected agreement on 24 
-Detected agreement on 24 
-unexpected EOF
-Detected agreement on 24 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-Detected agreement on 24 
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-Detected agreement on 26 
-Detected agreement on 27 
-Detected agreement on 25 
-Detected agreement on 27 
-connection is shut down
-connection is shut down
-Detected agreement on 26 
-unexpected EOF
-Detected agreement on 25 
-Detected agreement on 25 
-unexpected EOF
-unexpected EOF
-Detected agreement on 25 
-Detected agreement on 26 
-Detected agreement on 26 
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-Detected agreement on 27 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-Detected agreement on 26 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-Detected agreement on 29 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 28 
-Detected agreement on 28 
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-Detected agreement on 28 
-connection is shut down
-unexpected EOF
-Detected agreement on 29 
-Detected agreement on 29 
-Detected agreement on 28 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 29 
-unexpected EOF
-unexpected EOF
-Detected agreement on 28 
-Detected agreement on 29 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-Detected agreement on 30 
-Detected agreement on 30 
-Detected agreement on 32 
-Detected agreement on 37 
-Detected agreement on 35 
-Detected agreement on 34 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-Detected agreement on 36 
-Detected agreement on 34 
-Detected agreement on 34 
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 32 
-Detected agreement on 34 
-unexpected EOF
-Detected agreement on 33 
-Detected agreement on 37 
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-Detected agreement on 32 
-Detected agreement on 33 
-Detected agreement on 33 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 39 
-Detected agreement on 38 
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 39 
-Detected agreement on 38 
-Detected agreement on 38 
-Detected agreement on 41 
-Detected agreement on 40 
-unexpected EOF
-Detected agreement on 40 
-Detected agreement on 41 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-Detected agreement on 41 
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-Detected agreement on 40 
-Detected agreement on 41 
-unexpected EOF
-Detected agreement on 40 
-unexpected EOF
-unexpected EOF
-Detected agreement on 38 
-Detected agreement on 38 
-Detected agreement on 41 
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-Detected agreement on 40 
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-Detected agreement on 39 
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-Detected agreement on 42 
-Detected agreement on 42 
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-Detected agreement on 42 
-Detected agreement on 42 
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-Detected agreement on 42 
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-connection is shut down
-connection is shut down
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-connection is shut down
-write unix /var/tmp/824-1000/px-7359-lots-0: broken pipe
-connection is shut down
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-connection is shut down
-connection is shut down
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-2: broken pipe
-connection is shut down
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-2: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-0: connection reset by peer
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-write unix /var/tmp/824-1000/px-7359-lots-3: broken pipe
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-1: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-write unix /var/tmp/824-1000/px-7359-lots-4: broken pipe
-write unix /var/tmp/824-1000/px-7359-lots-1: broken pipe
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-read unix /var/tmp/824-1000/px-7359-lots-3: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-read unix /var/tmp/824-1000/px-7359-lots-4: connection reset by peer
-unexpected EOF
-unexpected EOF
-unexpected EOF
-Detected agreement on 43 
-Detected agreement on 44 
-Detected agreement on 44 
-Detected agreement on 43 
-Detected agreement on 43 
-Detected agreement on 44 
-Detected agreement on 43 
-Detected agreement on 45 
-Detected agreement on 43 
-Detected agreement on 44 
-Detected agreement on 45 
-Detected agreement on 45 
-Detected agreement on 44 
-Detected agreement on 46 
-Detected agreement on 46 
-Detected agreement on 46 
-Detected agreement on 45 
-Detected agreement on 45 
-Detected agreement on 46 
-Detected agreement on 47 
-Detected agreement on 46 
-Detected agreement on 47 
-Detected agreement on 47 
-Detected agreement on 47 
-Detected agreement on 47 
-Detected agreement on 48 
-Detected agreement on 48 
-Detected agreement on 48 
-Detected agreement on 48 
-Detected agreement on 48 
-Detected agreement on 49 
-Detected agreement on 49 
-Detected agreement on 49 
-Detected agreement on 49 
-Detected agreement on 49 
-Detected agreement on 50 
-Detected agreement on 50 
-Detected agreement on 50 
-Detected agreement on 50 
-Detected agreement on 50 
-Detected agreement on 51 
-Detected agreement on 51 
-Detected agreement on 51 
-Detected agreement on 51 
-Detected agreement on 51 
+Detected agreement on 19 
   ... Passed
 PASS
-ok  	multipaxos	200.612s
+ok  	multipaxos	184.647s
