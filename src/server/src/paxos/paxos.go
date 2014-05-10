@@ -454,7 +454,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
     rpcs.Register(px)
 
   var l net.Listener
-  var e err
+  var e error
   if unix {
     os.Remove(peers[me])
     l, e = net.Listen("unix", peers[me])

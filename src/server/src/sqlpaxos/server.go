@@ -689,11 +689,13 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
 
   sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
 
+  var l net.Listener
+  var e error
   if unix {
     os.Remove(ports[me])
-    l, e := net.Listen("unix", ports[me])
+    l, e = net.Listen("unix", ports[me])
   } else {
-    l, e := net.Listen("tcp", servers[me] + ports[me])
+    l, e = net.Listen("tcp", servers[me] + ports[me])
   }
   
   if e != nil {
@@ -715,16 +717,21 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
           // process the request but force discard of reply.
           if unix {
             c1 := conn.(*net.UnixConn)
+            f, _ := c1.File()
+            err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+            if err != nil {
+              fmt.Printf("shutdown: %v\n", err)
+            }
+            go rpcs.ServeConn(conn)
           } else {
             c1 := conn.(*net.TCPConn)
+            f, _ := c1.File()
+            err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+            if err != nil {
+              fmt.Printf("shutdown: %v\n", err)
+            }
+            go rpcs.ServeConn(conn)
           }
-          
-          f, _ := c1.File()
-          err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
-          if err != nil {
-            fmt.Printf("shutdown: %v\n", err)
-          }
-          go rpcs.ServeConn(conn)
         } else {
           go rpcs.ServeConn(conn)
         }
