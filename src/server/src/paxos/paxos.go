@@ -30,7 +30,7 @@ package paxos
 import "net"
 import "net/rpc"
 import "log"
-//import "os"
+import "os"
 import "syscall"
 import "sync"
 import "fmt"
@@ -453,11 +453,13 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
     rpcs = rpc.NewServer()
     rpcs.Register(px)
 
+  var l net.Listener
+  var e err
   if unix {
     os.Remove(peers[me])
-    l, e := net.Listen("unix", peers[me])
+    l, e = net.Listen("unix", peers[me])
   } else {
-    l, e := net.Listen("tcp", peers[me])
+    l, e = net.Listen("tcp", peers[me])
   }
 
    if e != nil {
@@ -478,19 +480,26 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
             conn.Close()
           } else if px.unreliable && (rand.Int63() % 1000) < 200 {
             // process the request but force discard of reply.
+
             if unix {
               c1 := conn.(*net.UnixConn)
+              f, _ := c1.File()
+              err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+              if err != nil {
+                fmt.Printf("shutdown: %v\n", err)
+              }
+              px.rpcCount++
+              go rpcs.ServeConn(conn)
             } else {
               c1 := conn.(*net.TCPConn)
+              f, _ := c1.File()
+              err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+              if err != nil {
+                fmt.Printf("shutdown: %v\n", err)
+              }
+              px.rpcCount++
+              go rpcs.ServeConn(conn)
             }
-	          
-            f, _ := c1.File()
-            err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
-            if err != nil {
-              fmt.Printf("shutdown: %v\n", err)
-            }
-            px.rpcCount++
-            go rpcs.ServeConn(conn)
           } else {
             px.rpcCount++
             go rpcs.ServeConn(conn)
