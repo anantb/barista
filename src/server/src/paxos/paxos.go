@@ -30,7 +30,7 @@ package paxos
 import "net"
 import "net/rpc"
 import "log"
-//import "os"
+import "os"
 import "syscall"
 import "sync"
 import "fmt"
@@ -60,6 +60,7 @@ type Paxos struct {
   done map[string]int
   store map[int]*Paxo
   paxos_lock sync.Mutex
+  unix bool
 }
 
 const (
@@ -193,8 +194,15 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 // please use call() to send all RPCs, in client.go and server.go.
 // please do not change this function.
 //
-func call(srv string, name string, args interface{}, reply interface{}) bool {
-  c, err := rpc.Dial("tcp", srv)
+func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
+  var err error
+  var c *rpc.Client
+  if unix {
+    c, err = rpc.Dial("unix", srv)
+  } else {
+    c, err = rpc.Dial("tcp", srv)
+  }
+ 
   if err != nil {
     err1 := err.(*net.OpError)
     if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
@@ -245,7 +253,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       prepare_args := PrepareArgs {Me:me, N: n, Seq: seq, Done: px.done[me]}
       var prepare_reply PrepareReply
       if peer != me {
-        call(peer, "Paxos.Prepare", &prepare_args, &prepare_reply)
+        call(peer, "Paxos.Prepare", &prepare_args, &prepare_reply, px.unix)
       } else {
         px.Prepare(&prepare_args, &prepare_reply)
       }
@@ -273,7 +281,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       accept_args := AcceptArgs {Me:me, N_A: n, Seq: seq, Value: highest_v_a, Done: px.done[me]}
       var accept_reply AcceptReply
       if peer != me {
-        call(peer, "Paxos.Accept", &accept_args, &accept_reply)
+        call(peer, "Paxos.Accept", &accept_args, &accept_reply, px.unix)
       } else {
         px.Accept(&accept_args, &accept_reply)
       }
@@ -293,7 +301,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       decided_args := DecidedArgs {Me:me, Seq: seq, Value: highest_v_a, Done: px.done[me]}
       var decided_reply DecidedReply
       if peer != me {
-        call(peer, "Paxos.Decided", &decided_args, &decided_reply)
+        call(peer, "Paxos.Decided", &decided_args, &decided_reply, px.unix)
       } else {
         px.Decided(&decided_args, &decided_reply)
       }   
@@ -434,10 +442,11 @@ func (px *Paxos) Kill() {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 // @mvartak: port is now included in peer addresses
-func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
+  px.unix = unix
 
   // Your initialization code here.
   px.majority = (len(peers) / 2) + 1
@@ -453,11 +462,16 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
     rpcs = rpc.NewServer()
     rpcs.Register(px)
 
-    // prepare to receive connections from clients.
-    // change "unix" to "tcp" to use over a network.
-    //os.Remove(peers[me]) // only needed for "unix"
-    l, e := net.Listen("tcp", peers[me]);
-    if e != nil {
+  var l net.Listener
+  var e error
+  if unix {
+    os.Remove(peers[me])
+    l, e = net.Listen("unix", peers[me])
+  } else {
+    l, e = net.Listen("tcp", peers[me])
+  }
+
+   if e != nil {
       log.Fatal("listen error: ", e);
     }
     px.l = l
@@ -475,15 +489,26 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
             conn.Close()
           } else if px.unreliable && (rand.Int63() % 1000) < 200 {
             // process the request but force discard of reply.
-            //c1 := conn.(*net.UnixConn)
-	    c1 := conn.(*net.TCPConn)
-            f, _ := c1.File()
-            err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
-            if err != nil {
-              fmt.Printf("shutdown: %v\n", err)
+
+            if unix {
+              c1 := conn.(*net.UnixConn)
+              f, _ := c1.File()
+              err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+              if err != nil {
+                fmt.Printf("shutdown: %v\n", err)
+              }
+              px.rpcCount++
+              go rpcs.ServeConn(conn)
+            } else {
+              c1 := conn.(*net.TCPConn)
+              f, _ := c1.File()
+              err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
+              if err != nil {
+                fmt.Printf("shutdown: %v\n", err)
+              }
+              px.rpcCount++
+              go rpcs.ServeConn(conn)
             }
-            px.rpcCount++
-            go rpcs.ServeConn(conn)
           } else {
             px.rpcCount++
             go rpcs.ServeConn(conn)
