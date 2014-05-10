@@ -82,6 +82,8 @@ type Paxos struct {
   leaderproposalnum PaxosProposalNum
 
   tentative map[int]interface{}
+
+  unix bool
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -400,7 +402,7 @@ func (px *Paxos) proposerPrepare(seq int, v interface{}, peers []string) (PaxosP
     if px.isMe(server){
       px.Prepare(prepareArgs,prepareReply)
     }else{
-      ok = call(server,"Paxos.Prepare",prepareArgs,prepareReply)
+      ok = call(server,"Paxos.Prepare",prepareArgs,prepareReply,px.unix)
     }
     if ok{
       //check status
@@ -498,7 +500,7 @@ func (px *Paxos) ProposerAccept(seq int, v interface{}, proposal PaxosProposalNu
     if px.isMe(server){
       px.Accept(acceptArgs,acceptReply)
     }else{
-      ok = call(server,"Paxos.Accept",acceptArgs,acceptReply)
+      ok = call(server,"Paxos.Accept",acceptArgs,acceptReply,px.unix)
     }
     if ok{
       //check status
@@ -547,7 +549,7 @@ func (px *Paxos) ProposeNotify(seq int, value interface{}){
       if px.isMe(server){
         px.Teach(teachArgs,teachReply)
       }else{
-        call(server,"Paxos.Teach",teachArgs,teachReply)
+        call(server,"Paxos.Teach",teachArgs,teachReply,px.unix)
       }
     }
 }
@@ -799,8 +801,15 @@ func (px *Paxos) CleanAfter(seq int){
 // please use call() to send all RPCs, in client.go and server.go.
 // please do not change this function.
 //
-func call(srv string, name string, args interface{}, reply interface{}) bool {
-  c, err := rpc.Dial("unix", srv)
+
+func call(srv string, name string, args interface{}, reply interface{}, unix bool) bool {
+  var err error
+  var c *rpc.Client
+  if unix {
+    c, err = rpc.Dial("unix", srv)
+  } else {
+    c, err = rpc.Dial("tcp", srv)
+  }
   if err != nil {
     err1 := err.(*net.OpError)
     if err1.Err != syscall.ENOENT && err1.Err != syscall.ECONNREFUSED {
@@ -943,7 +952,7 @@ func (px *Paxos) SetUnreliable(unreliable bool) {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 //
-func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
@@ -960,7 +969,7 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
   px.epoch = 0
   px.leader = ""
   px.leaderproposalnum = px.GetPaxosProposalNum()
-
+  px.unix = unix
   //init peers map with maxDone values,
   //-1 represents we haven't heard from that peer
   for _,val := range px.peers{
@@ -974,10 +983,16 @@ func Make(peers []string, me int, rpcs *rpc.Server) *Paxos {
     rpcs = rpc.NewServer()
     rpcs.Register(px)
 
-    // prepare to receive connections from clients.
-    // change "unix" to "tcp" to use over a network.
-    os.Remove(peers[me]) // only needed for "unix"
-    l, e := net.Listen("unix", peers[me]);
+    var l net.Listener
+    var e error
+    if unix {
+      os.Remove(peers[me])
+      l, e = net.Listen("unix", peers[me])
+      px.unix = true
+    } else {
+      l, e = net.Listen("tcp", peers[me])
+      px.unix = false
+    }
     if e != nil {
       log.Fatal("listen error: ", e);
     }

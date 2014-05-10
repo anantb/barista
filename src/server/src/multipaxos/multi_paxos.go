@@ -29,6 +29,7 @@ type MultiPaxos struct{
   executionPointer int
   transition bool
   results map[int]*MultiPaxosOP
+  unix bool
 }
 func (mpx *MultiPaxos) isLeaderAndValid() bool{
   mpx.mu.Lock()
@@ -182,7 +183,7 @@ func (mpx *MultiPaxos) remoteStart(seq int, v interface{}){
     if leaderAddr == me{
       mpx.RemoteStart(args,reply)
     }else{
-      ok=call(leaderAddr, "MultiPaxos.RemoteStart", args, reply)
+      ok=call(leaderAddr, "MultiPaxos.RemoteStart", args, reply,mpx.unix)
     }
     if ok{
       switch reply.Status{
@@ -379,41 +380,6 @@ func (mpx *MultiPaxos) initiateLeaderChange(){
     mpx.transition = true
     //tell underlying paxos to not accept messages from old leader
     mpx.px.UpdateEpochLocked(currentEpoch+1)
-  
-    /*go func(){ 
-      mpx.mu.Lock()
-      me  := mpx.me
-      maxInd := mpx.me
-      peers := mpx.peers
-      executionPointer := mpx.executionPointer
-      mpx.mu.Unlock()
-      for i:=0 ; i<len(peers);i++{
-        peerAddr := peers[i]
-        args := &PingArgs{}
-        args.LowestInstance = executionPointer
-        reply :=  &PingReply{}
-
-        if i == me{
-          continue
-        }
-        ok := false
-        count := 0
-        for !ok && count <MAX_RETRY && !mpx.dead{
-          ok = call(peerAddr, "MultiPaxos.HandlePing", args, reply)
-          count++
-        }
-        if ok{
-          if i > maxInd{
-            maxInd = i
-          }
-        }
-      }
-      mpx.Log(-1,"Max was "+strconv.Itoa(maxInd))
-      if me == maxInd{
-        mpx.startPaxosAgreementAndWait(mop)
-        mpx.Log(-1,"Max was me "+mpx.peers[mpx.me])
-      }
-    }()*/
     mpx.transition = true
     go mpx.startPaxosAgreementAndWait(mop)
   }
@@ -439,7 +405,7 @@ func (mpx *MultiPaxos) ping(){
   args.LowestInstance = executionPointer
   args.MaxDone = mpx.px.GetDone()
   reply :=  &PingReply{}
-  ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply)
+  ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply,mpx.unix)
 
   if(!ok){
     mpx.mu.Lock()
@@ -484,7 +450,7 @@ func (mpx *MultiPaxos) findLeader() string{
     }
     //fix magic number
     for !ok && count <MAX_RETRY && !mpx.dead{
-      ok = call(serverAddr, "MultiPaxos.HandlePing", args, reply)
+      ok = call(serverAddr, "MultiPaxos.HandlePing", args, reply,mpx.unix)
       count++
     }
     if ok{
@@ -514,7 +480,7 @@ func (mpx *MultiPaxos) getInstancesFromReplica(leader string, forceLeader bool){
       return
     }
     reply :=  &PingReply{}
-    ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply)
+    ok := call(leaderAddr, "MultiPaxos.HandlePing", args, reply,mpx.unix)
     //if rpc succeeded then update records
     if ok{
         switch reply.Status{
@@ -681,7 +647,7 @@ func (mpx *MultiPaxos) GetRPCCount() int{
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 //
-func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *MultiPaxos {
   gob.Register(MultiPaxosOP{})
   gob.Register(PingArgs{})
   gob.Register(PingReply{})
@@ -695,18 +661,23 @@ func Make(peers []string, me int, rpcs *rpc.Server) *MultiPaxos {
   mpx.leader = &MultiPaxosLeader{0,me,0,false}
   mpx.transition = false
   mpx.results = make(map[int]*MultiPaxosOP)
+  mpx.unix = unix
   if rpcs != nil {
     // caller will create socket &c
-    mpx.px = dpaxos.Make(peers,me,rpcs)
+    mpx.px = dpaxos.Make(peers,me,rpcs,unix)
     rpcs.Register(mpx)
   } else {
     rpcs = rpc.NewServer()
-    mpx.px = dpaxos.Make(peers,me,rpcs)
+    mpx.px = dpaxos.Make(peers,me,rpcs,unix)
     rpcs.Register(mpx)
-    // prepare to receive connections from clients.
-    // change "unix" to "tcp" to use over a network.
-    os.Remove(peers[me]) // only needed for "unix"
-    l, e := net.Listen("unix", peers[me]);
+    var l net.Listener
+    var e error
+    if unix {
+      os.Remove(peers[me])
+      l, e = net.Listen("unix", peers[me])
+    } else {
+      l, e = net.Listen("tcp", peers[me])
+    }
     if e != nil {
       log.Fatal("listen error: ", e);
     }
