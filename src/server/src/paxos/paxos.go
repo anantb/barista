@@ -60,6 +60,7 @@ type Paxos struct {
   done map[string]int
   store map[int]*Paxo
   paxos_lock sync.Mutex
+  unix bool
 }
 
 const (
@@ -252,7 +253,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       prepare_args := PrepareArgs {Me:me, N: n, Seq: seq, Done: px.done[me]}
       var prepare_reply PrepareReply
       if peer != me {
-        call(peer, "Paxos.Prepare", &prepare_args, &prepare_reply)
+        call(peer, "Paxos.Prepare", &prepare_args, &prepare_reply, px.unix)
       } else {
         px.Prepare(&prepare_args, &prepare_reply)
       }
@@ -280,7 +281,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       accept_args := AcceptArgs {Me:me, N_A: n, Seq: seq, Value: highest_v_a, Done: px.done[me]}
       var accept_reply AcceptReply
       if peer != me {
-        call(peer, "Paxos.Accept", &accept_args, &accept_reply)
+        call(peer, "Paxos.Accept", &accept_args, &accept_reply, px.unix)
       } else {
         px.Accept(&accept_args, &accept_reply)
       }
@@ -300,7 +301,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       decided_args := DecidedArgs {Me:me, Seq: seq, Value: highest_v_a, Done: px.done[me]}
       var decided_reply DecidedReply
       if peer != me {
-        call(peer, "Paxos.Decided", &decided_args, &decided_reply)
+        call(peer, "Paxos.Decided", &decided_args, &decided_reply, px.unix)
       } else {
         px.Decided(&decided_args, &decided_reply)
       }   
@@ -445,6 +446,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
+  px.unix = unix
 
   // Your initialization code here.
   px.majority = (len(peers) / 2) + 1
