@@ -469,7 +469,6 @@ func (sp *SQLPaxos) reserveSlot(op Op) int {
        getOpRequestId(v_a.(Op)) == getOpRequestId(v))) {
         // we successfully claimed this slot for our operation
         if _, ok := sp.ops[seq]; !ok {
-           fmt.Printf("achieved consensus for seqnum: %d\n", seq)
            v.SeqNum = seq
            sp.ops[seq] = v
         }
