@@ -47,7 +47,7 @@ func MakeClerk() *Clerk {
 // 128.52.161.24:9000
 
 // to demonstrate external consistency we create three groups
-var group_1 = []string {"128.52.161.243:9000", "128.52.160.104:9000"}
+var group_1 = []string {"128.52.160.104:9000", "128.52.161.243:9000"}
 var group_2 = []string {"128.52.161.242:9000", "128.52.160.122:9000"}
 var group_3 = []string {"128.52.161.24:9000"}
 
