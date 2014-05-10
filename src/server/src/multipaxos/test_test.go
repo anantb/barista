@@ -1187,7 +1187,7 @@ func TestPartition(t *testing.T) {
 }
 func TestPartitionUnreliable(t *testing.T){
   runtime.GOMAXPROCS(4)
-  tag := "partition_unreliable"
+  tag := "partitionunreliable"
   const nMultiPaxos = 5
   var pxa []*MultiPaxos = make([]*MultiPaxos, nMultiPaxos)
   defer cleanup(pxa)
@@ -1225,7 +1225,7 @@ func TestPartitionUnreliable(t *testing.T){
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
           pxa[ind].Start(seq, (seq * 10) + ind)
-          time.Sleep(time.Duration((rand.Int63() % 100)) * time.Millisecond)
+          time.Sleep(time.Duration((rand.Int63() % 700)) * time.Millisecond)
         }
         //fmt.Printf("Detected agreement on %v \n",seq)
       }(seq,i)
