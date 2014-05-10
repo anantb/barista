@@ -14,6 +14,7 @@ import "sync"
 import "crypto/rand"
 import "math/big"
 import "strconv"
+import "time"
 
 func nrand() int64 {
   max := big.NewInt(int64(1) << 62)
@@ -199,12 +200,17 @@ func (ck *Clerk) ExecuteSQL(
   con.SeqId = &seqId
 
   var err error
+  //fmt.Printf("Querying: %v, %v\n", query, addrs)
 
+  for {
   for _, addr := range addrs {
+    //fmt.Printf("Querying: %v\n", addr)
     res, err :=  execute_sql(addr, query, query_params, con)
     if err == nil {
       return res, err
-    }    
+    }   
+    //fmt.Println(err) 
+  }
   }
 
   return nil, err
@@ -244,7 +250,7 @@ func execute_sql(
 
   protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
   transport, err := thrift.NewTSocket(addr)
-
+  transport.SetTimeout(time.Duration(15)*time.Second)
   if err != nil {
      return nil, err
   }
