@@ -30,7 +30,7 @@ func StartServer(me int) {
   }
 
   handler := handler.NewBaristaHandler(ADDRS, me, PG_PORTS, SP_PORTS)
-  processor := barista.NewBaristaProcessor(handler)
+  processor := barista.NewBaristaProcessor(handler, true)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
 
   fmt.Println("Starting the Barista server (Binary Mode) on ", ADDRS[me] + BINARY_PORTS[me])
@@ -210,9 +210,10 @@ func TestBasic(t *testing.T) {
   }
 
   fmt.Printf("  ... Passed\n")
-
   time.Sleep(1 * time.Second)
 }
+
+
 
 
 

@@ -647,7 +647,7 @@ func (sp *SQLPaxos) kill() {
 // form the fault-tolerant key/value service.
 // me is the index of the current server in servers[].
 //
-func StartServer(servers []string, me int, pg_ports []string, ports []string) *SQLPaxos {
+func StartServer(servers []string, me int, pg_ports []string, ports []string, unix bool) *SQLPaxos {
   // call gob.Register on structures you want
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
@@ -680,14 +680,22 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string) *S
 
   paxos_servers := make([]string, len(servers), cap(servers))
   for idx, val := range servers {
-    paxos_servers[idx] = val + ports[idx]
+    if unix {
+      paxos_servers[idx] = ports[idx]
+    } else {
+      paxos_servers[idx] = val + ports[idx]
+    }
   }
 
-  sp.px = paxos.Make(paxos_servers, me, rpcs)
+  sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
 
-  //os.Remove(servers[me]) // only needed for "unix"
-  //l, e := net.Listen("unix", servers[me]);
-  l, e := net.Listen("tcp", servers[me] + ports[me]);
+  if unix {
+    os.Remove(ports[me])
+    l, e := net.Listen("unix", ports[me])
+  } else {
+    l, e := net.Listen("tcp", servers[me] + ports[me])
+  }
+  
   if e != nil {
     log.Fatal("listen error: ", e);
   }
@@ -705,8 +713,12 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string) *S
           conn.Close()
         } else if sp.unreliable && (rand.Int63() % 1000) < 200 {
           // process the request but force discard of reply.
-          //c1 := conn.(*net.UnixConn)
-          c1 := conn.(*net.TCPConn)
+          if unix {
+            c1 := conn.(*net.UnixConn)
+          } else {
+            c1 := conn.(*net.TCPConn)
+          }
+          
           f, _ := c1.File()
           err := syscall.Shutdown(int(f.Fd()), syscall.SHUT_WR)
           if err != nil {

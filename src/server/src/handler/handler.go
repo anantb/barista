@@ -14,11 +14,14 @@ import "strconv"
 
 type Handler struct {
   sqlpaxos *sqlpaxos.SQLPaxos
+  unix bool
 }
 
-func NewBaristaHandler(servers []string, me int, pg_ports []string, sp_ports []string) *Handler {
+func NewBaristaHandler(servers []string, me int, pg_ports []string, 
+  sp_ports []string, unix bool) *Handler {
   handler := new(Handler)
   handler.sqlpaxos = sqlpaxos.StartServer(servers, me, pg_ports, sp_ports)
+  handler.unix = unix
   return handler
 }
 
