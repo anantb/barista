@@ -11,7 +11,7 @@ import "time"
 //constants
 const(
 	MAX_RETRY = 10
-	DEBUG = 3
+	DEBUG = -1000
 	NPINGS = 5
 	PINGINTERVAL = 500*time.Millisecond
 	PINGWAIT = NPINGS*PINGINTERVAL

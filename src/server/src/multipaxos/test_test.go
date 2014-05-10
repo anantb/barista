@@ -1217,7 +1217,6 @@ func TestPartitionUnreliable(t *testing.T){
 
   seq := 0
   for iters := 0; iters < 20; iters++ {
-    seq++
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
 
@@ -1249,6 +1248,8 @@ func TestPartitionUnreliable(t *testing.T){
 
     //fmt.Printf("Detected all agreement on %v \n",seq)
     waitn(t, pxa, seq, 5)
+
+    seq++
   }
 
   fmt.Printf("  ... Passed\n")
