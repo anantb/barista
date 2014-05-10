@@ -1221,6 +1221,8 @@ func TestPartitionUnreliable(t *testing.T){
 
     part(t, tag, nMultiPaxos, []int{0,1,2}, []int{3,4}, []int{})
 
+    getandcheckleader(t,pxa)
+
     for i := 0; i < nMultiPaxos; i++ {
       go func(seq int, ind int){
         for ndecided(t, pxa, seq) < ((len(pxa) / 2) + 1) && !pxa[ind].dead{
