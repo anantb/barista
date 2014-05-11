@@ -581,6 +581,7 @@ func (px *Paxos) Kill() {
   if px.l != nil {
     px.l.Close()
   }
+  px.sm.Close()
 }
 
 //
@@ -606,7 +607,6 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   if px.use_zookeeper {
     px.sm = storage.MakeStorageManager()
     px.sm.Open("localhost:2181")
-    defer px.sm.Close()
 
     px.CreateS("/paxos", "")
     px.path = "/paxos/" + px.Format(px.peers[px.me])
