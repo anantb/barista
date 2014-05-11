@@ -1,38 +1,48 @@
 package main
 
 import "fmt"
+import "time"
 import "launchpad.net/gozk/zookeeper"
 
-type ZK struct {
-  Conn *zookeeper.Conn
+type StorageManager struct {
+  conn *zookeeper.Conn
 }
 
-func Make() (*ZK, error) {
-  zk := &ZK{}
-  conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
+func MakeStorageManager() *StorageManager {
+  sm := &StorageManager{}
+  return sm
+}
+
+func (sm *StorageManager) Open(servers) error {
+  conn, session, err := zookeeper.Dial(servers, 5 * time.Second)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
-    return nil, err
+    return err
   }
-  defer conn.Close()
 
   // Wait for connection.
   event := <-session
   if event.State != zookeeper.STATE_CONNECTED {
     fmt.Printf("Can't connect to zookeeper: %v\n", event)
-    return nil, err
+    return err
   }
-  zk.Conn = conn
-  return zk, nil
+
+  sm.conn = conn
+  return nil
 }
 
-func (zk *ZK) Write(path string, data string) error {
-  stats, _ := zk.Conn.Exists(path)
+func (sm *StorageManager) Close() error {
+  return sm.conn.Close()
+}
+
+func (sm *StorageManager) Write(path string, data string) error {
+  stats, _ := sm.conn.Exists(path)
   var err error
+
   if stats == nil {
-    _, err = zk.Conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
+    _, err = sm.conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
   } else {
-    _, err = zk.Conn.Set(path, data, -1)
+    _, err = sm.conn.Set(path, data, -1)
   }
 
   if err != nil {
@@ -42,8 +52,8 @@ func (zk *ZK) Write(path string, data string) error {
   return err
 }
 
-func (zk *ZK) Read(path string) (string, error) {
-  data, _, err := zk.Conn.Get(path)
+func (sm *StorageManager) Read(path string) (string, error) {
+  data, _, err := sm.conn.Get(path)
 
   if err != nil {
     fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
@@ -54,8 +64,11 @@ func (zk *ZK) Read(path string) (string, error) {
 
 
 func main() {
-  zk, _ := Make()
-  _ = zk.Write("/counter2", "000000")
+  servers := "localhost:2181"
+  sm, _ := MakeStorageManager()
+  sm.Open(servers)
+  defer sm.Close()
+  _ = sm.Write("/counter2", "000000")
   data, _ := zk.Read("/counter2")
   fmt.Println(data)
 }
