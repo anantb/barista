@@ -25,7 +25,7 @@ func TestBasicLeaderModified(t *testing.T) {
   }
 
   _ = sm.Write("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.831")
-  data, _ := sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
+  data, _ = sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
   if data != "6.831" {
     t.Fatalf("got=%v wanted=%v", data, "6.831")
   }
