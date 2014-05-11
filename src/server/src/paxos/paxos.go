@@ -503,7 +503,7 @@ func (px *Paxos) Read(path string) (*Paxo, bool) {
   data, err := px.sm.Read(path)
 
   if err != nil {
-    return true, err
+    return nil, true
   }
 
   var paxo Paxo
