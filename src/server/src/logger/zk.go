@@ -7,7 +7,7 @@ type ZK struct {
   Conn *zookeeper.Conn
 }
 
-func Make() (*ZK, err) {
+func Make() (*ZK, error) {
   zk := &ZK{}
   conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
   if err != nil {
@@ -50,8 +50,8 @@ func (zk *ZK) Read(key string) (string, error) {
 
 
 func main() {
-  zk, _ := Make()
+  zk, err := Make()
   zk.Write("K", "V")
-  data, _ := zk.Read('K')
+  data, err := zk.Read('K')
   fmt.Println(data)
 }
