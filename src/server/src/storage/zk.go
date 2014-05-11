@@ -52,6 +52,8 @@ func (sm *StorageManager) Create(path string, data string) error {
 
   if err != nil {
     fmt.Printf("Error creating a node (%v): %v\n", path, err)
+  } else {
+    fmt.Printf("Created node (%v): %v\n", path, data)
   }
 
   return err
@@ -63,6 +65,8 @@ func (sm *StorageManager) Delete(path string) error {
 
   if err != nil {
     fmt.Printf("Error writing to node (%v): %v\n", path, err)
+  } else {
+    fmt.Printf("Deleted node (%v)", path)
   }
 
   return err
@@ -79,6 +83,8 @@ func (sm *StorageManager) Write(path string, data string) error {
       return err_create
     }
   }
+
+  fmt.Printf("Written node (%v): %v\n", path, data)
   return err
 }
 
@@ -88,6 +94,8 @@ func (sm *StorageManager) Read(path string) (string, error) {
   if err != nil {
     fmt.Printf("Error reading from node (%v): %v\n", path, err)
   }
+
+  fmt.Printf("Read node (%v): %v\n", path, data)
 
   return data, err
 }
