@@ -648,7 +648,7 @@ func (sp *SQLPaxos) Kill() {
 // form the fault-tolerant key/value service.
 // me is the index of the current server in servers[].
 //
-func StartServer(servers []string, me int, pg_ports []string, ports []string, unix bool, unreliable bool, use_zookeeper) *SQLPaxos {
+func StartServer(servers []string, me int, pg_ports []string, ports []string, unix bool, unreliable bool, use_zookeeper bool) *SQLPaxos {
   // call gob.Register on structures you want
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
