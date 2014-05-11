@@ -34,7 +34,7 @@ func (zk *ZK) Write(path string, data string) error {
   }
 
   if stats == nil {
-    _, err = zk.Conn.Create(key, value, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
+    _, err = zk.Conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
   } else {
     _, err = zk.Conn.Set(path, data, -1)
   }
