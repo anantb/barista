@@ -150,10 +150,10 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
-    px.done[args.Me] = args.Done
     px.store[args.Seq] = paxo
     reply.Done = px.done[px.peers[px.me]]
   }
+  px.done[args.Me] = args.Done
   return nil
 }
 
@@ -189,10 +189,11 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
-    px.done[args.Me] = args.Done
     px.store[args.Seq] = paxo
     reply.Done = px.done[px.peers[px.me]]
   }
+
+  px.done[args.Me] = args.Done
 
   return nil
 }
@@ -224,10 +225,12 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
-    px.done[args.Me] = args.Done
     px.store[args.Seq] = paxo
     reply.Done = px.done[px.peers[px.me]]
   }
+
+  px.done[args.Me] = args.Done
+  
   return nil
 }
 
@@ -307,7 +310,6 @@ func (px *Paxos) Propose(seq int, v interface{}) {
 
   if !ok {
     paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
-    px.store[seq] = paxo
   }
 
   if px.use_zookeeper {
