@@ -372,7 +372,7 @@ func (px *Paxos) Done(seq int) {
   if px.use_zookeeper {
     data, err := px.sm.Read(px.path + "/done/" + peer)
     if err == nil {
-      sq_done = strconv.Atoi(data)
+      sq_done, _ = strconv.Atoi(data)
     }
   } else {
     sq_done = px.done[peer]
@@ -537,7 +537,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
     px.sm.Create(px.path + "/done", "")
 
     for _, peer := range px.peers {
-      px.sm.Create(px.path + "/done/" + px.peers[peer], "0")
+      px.sm.Create(px.path + "/done/" + peer, "0")
     }    
   }
 
