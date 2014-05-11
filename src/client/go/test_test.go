@@ -152,7 +152,7 @@ func TestBasic(t *testing.T) {
         t.Fatalf("Error closing connection:", err)
   }
   fmt.Printf("Passed close ...\n")
-  
+
   fmt.Printf("  ... Passed\n")  
 
   fmt.Printf("Test: Concurrent clients ...\n")
@@ -856,7 +856,7 @@ func TestManyPartition(t *testing.T) {
         }
       }
       part(t, tag, nservers, pa[0], pa[1], pa[2])
-      time.Sleep(time.Duration(rand.Int63() % 200) * time.Millisecond)
+      time.Sleep(time.Duration(rand.Int63() % 2000) * time.Millisecond)
     }
   }()
 

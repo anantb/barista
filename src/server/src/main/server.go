@@ -17,9 +17,11 @@ import "handler"
 const PORT_BINARY = ":9000"
 const PORT_JSON = ":9090"
 //var ADDRS = []string {"128.52.161.243", "128.52.160.104", "128.52.161.242", "128.52.160.122", "128.52.161.24"}
+//var PG_PORTS = []string {"5432", "5432", "5432", "5432", "5432"}
+//var SP_PORTS = []string {":9001", ":9001", ":9001", ":9001", ":9001"}
 var ADDRS = []string {"128.52.161.243"}
-var PG_PORTS = []string {"5432", "5432", "5432", "5432", "5432"}
-var SP_PORTS = []string {":9001", ":9001", ":9001", ":9001", ":9001"}
+var PG_PORTS = []string {"5432"}
+var SP_PORTS = []string {":9001"}
 
 func main() {  
   binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
