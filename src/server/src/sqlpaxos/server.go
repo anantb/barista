@@ -55,6 +55,7 @@ type SQLPaxos struct {
   logger *logger.Logger // logger to write paxos log to file
   port string // what port should this run on
   pg_port string // what port is postgres running on
+  instanceNum int
 }
 
 func (sp *SQLPaxos) execute(op Op) interface{} {
@@ -462,7 +463,7 @@ func (sp *SQLPaxos) checkIfExecuted(op Op) (interface{}, bool) {
 func (sp *SQLPaxos) reserveSlot(op Op) int {
 
   // propose this operation for slot seq
-  seq := sp.px.Max() + 1
+  seq := sp.px.Max()
   v := op
   sp.px.Start(seq, v)
 
@@ -681,6 +682,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   sp.pg_port = pg_ports[me]
   sp.logger = logger.Make("sqlpaxos_log.txt", sp.pg_port)
   sp.unreliable = unreliable
+  sp.instanceNum = 0
   
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
