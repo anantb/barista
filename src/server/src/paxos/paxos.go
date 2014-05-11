@@ -193,9 +193,9 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   reply.Status = OK
   if px.use_zookeeper {
     data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
-    reply.Done = strconv.Atoi(data)
+    reply.Done, _ = strconv.Atoi(data)
   } else {
-    reply.Done, _ = px.done[px.peers[px.me]]
+    reply.Done = px.done[px.peers[px.me]]
   }
   return nil
 }
