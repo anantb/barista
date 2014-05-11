@@ -230,7 +230,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   }
 
   px.done[args.Me] = args.Done
-  
+
   return nil
 }
 
@@ -445,7 +445,7 @@ func (px *Paxos) Done(seq int) {
   sq_done := 0
 
   if px.use_zookeeper {
-    data, ok := px.ReadS(px.path + "/done/" + peer)
+    data, ok := px.ReadS(px.path + "/done/" + px.Format(peer))
     if ok {
       sq_done, _ = strconv.Atoi(data)
       px.done[peer] = sq_done
@@ -455,7 +455,7 @@ func (px *Paxos) Done(seq int) {
   }
   if sq_done < seq {
     if px.use_zookeeper {
-      px.WriteS(px.path + "/done/" + peer, strconv.Itoa(seq))
+      px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(seq))
       px.done[peer] = seq
     }else {
       px.done[peer] = seq
