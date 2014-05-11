@@ -431,6 +431,11 @@ func TestRPCCount(t *testing.T) {
 
   fmt.Printf("Test: RPC counts aren't too high ...\n")
 
+  if use_zookeeper {
+    fmt.Printf("Ignoring: in Zookeeper mode ...\n")
+    return
+  }
+
   const npaxos = 3
   var pxa []*Paxos = make([]*Paxos, npaxos)
   var pxh []string = make([]string, npaxos)
