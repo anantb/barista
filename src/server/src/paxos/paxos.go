@@ -122,7 +122,7 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   defer px.mu.Unlock()
 
   var paxo *Paxo
-  var ok error
+  var ok bool
 
   if px.use_zookeeper {
     paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
@@ -161,7 +161,7 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   defer px.mu.Unlock()
 
   var paxo *Paxo
-  var ok error
+  var ok bool
 
   if px.use_zookeeper {
     paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
@@ -201,7 +201,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   defer px.mu.Unlock()
 
   var paxo *Paxo
-  var ok error
+  var ok bool
 
   if px.use_zookeeper {
     paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
@@ -499,16 +499,16 @@ func (px *Paxos) Write(path string, paxo *Paxo) {
   px.sm.Write(path, string(data))
 }
 
-func (px *Paxos) Read(path string) (*Paxo, err) {
+func (px *Paxos) Read(path string) (*Paxo, bool) {
   data, err := px.sm.Read(path)
 
   if err != nil {
-    return nil, err
+    return true, err
   }
 
   var paxo Paxo
   json.Unmarshal([]byte(data), paxo)
-  return &paxo, nil
+  return &paxo, false
 }
 
 func (px *Paxos) Delete(path string){
