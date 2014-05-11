@@ -602,7 +602,9 @@ func (px *Paxos) Kill() {
   if px.l != nil {
     px.l.Close()
   }
-  px.sm.Close()
+  if px.use_zookeeper && px.sm != nil {
+    px.sm.Close()
+  }
 }
 
 //
