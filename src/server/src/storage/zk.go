@@ -42,18 +42,38 @@ func (sm *StorageManager) Close() error {
   return sm.conn.Close()
 }
 
-func (sm *StorageManager) Write(path string, data string) error {
+func (sm *StorageManager) Create(path string, data string) error {
   stats, _ := sm.conn.Exists(path)
   var err error
 
   if stats == nil {
     _, err = sm.conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
-  } else {
-    _, err = sm.conn.Set(path, data, -1)
   }
 
   if err != nil {
-    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
+    fmt.Printf("Error creating a node (%v): %v\n", path, err)
+  }
+
+  return err
+}
+
+func (sm *StorageManager) Delete(path string) error {
+  
+  err = sm.conn.Delete(path)
+
+  if err != nil {
+    fmt.Printf("Error writing to node (%v): %v\n", path, err)
+  }
+
+  return err
+}
+
+func (sm *StorageManager) Write(path string, data string) error {
+  
+  _, err = sm.conn.Set(path, data, -1)
+
+  if err != nil {
+    fmt.Printf("Error writing to node (%v): %v\n", path, err)
   }
 
   return err
@@ -63,7 +83,7 @@ func (sm *StorageManager) Read(path string) (string, error) {
   data, _, err := sm.conn.Get(path)
 
   if err != nil {
-    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
+    fmt.Printf("Error reading from node (%v): %v\n", path, err)
   }
 
   return data, err
