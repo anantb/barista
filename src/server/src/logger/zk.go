@@ -3,21 +3,10 @@ package main
 import (
   "fmt"
   "launchpad.net/gozk/zookeeper"
-  "log"
 )
 
 func main() {
-  server, err := zookeeper.CreateServer(4000, "~/zookeeper", nil)
-  if err != nil {
-    fmt.Printf("Can't connect: %v\n", err)
-  }
-  
-  err = server.Start()
-  if err != nil {
-    fmt.Printf("Can't connect: %v", err)
-  }
-
-  zk, session, err := zookeeper.Dial("localhost:4000", 5e9)
+  zk, session, err := zookeeper.Dial("localhost:2181", 5e9)
   if err != nil {
     fmt.Printf("Can't connect: %v\n", err)
   }
