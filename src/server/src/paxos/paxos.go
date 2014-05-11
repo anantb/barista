@@ -269,7 +269,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_n_a = prepare_reply.N_A
           highest_v_a = prepare_reply.Value
         }
-        px.done[peer] = prepare_reply.Done
+        if px.use_zookeeper {
+          px.Set(px.path + "/done/" + peer, strconv.Itoa(prepare_reply.Done))
+        }else {
+          px.done[peer] = prepare_reply.Done
+        } 
       }
     }
 
@@ -293,7 +297,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       }
       if accept_reply.Status == OK {
         accept_ok_count += 1
-        px.done[peer] = accept_reply.Done
+        if px.use_zookeeper {
+          px.Set(px.path + "/done/" + peer, strconv.Itoa(accept_reply.Done))
+        }else {
+          px.done[peer] = accept_reply.Done
+        } 
       }
     }
 
@@ -310,8 +318,12 @@ func (px *Paxos) Propose(seq int, v interface{}) {
         call(peer, "Paxos.Decided", &decided_args, &decided_reply, px.unix)
       } else {
         px.Decided(&decided_args, &decided_reply)
-      }   
-      px.done[peer] = decided_reply.Done      
+      }
+      if px.use_zookeeper {
+        px.Set(px.path + "/done/" + peer, strconv.Itoa(decided_reply.Done))
+      }else {
+        px.done[peer] = decided_reply.Done
+      }     
     }
 
   }
@@ -320,7 +332,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
 func (px *Paxos) ClearMemory(seq int) {
   for k, _ := range(px.store) {
     if k < seq {
-      delete(px.store, k)
+      if px.use_zookeeper {
+        px.Delete(px.path + "/store/" + strconv.Itoa(seq))
+      } else {
+        delete(px.store, k)
+      }
     }
   }
 }
@@ -350,8 +366,23 @@ func (px *Paxos) Done(seq int) {
   px.mu.Lock()
   defer px.mu.Unlock()
   peer := px.peers[px.me]
-  if px.done[peer] < seq {
-    px.done[peer] = seq
+
+  sq_done := 0
+
+  if px.use_zookeeper {
+    data := px.Read(px.path + "/done/" + peer)
+    if data != nil {
+      sq_done = strconv.Atoi(data)
+    }
+  } else {
+    sq_done = px.done[peer]
+  }
+  if sq_done < seq {
+    if px.use_zookeeper {
+      px.Set(px.path + "/done/" + peer, strconv.Itoa(seq))
+    }else {
+      px.done[peer] = seq
+    }
   }
 }
 
@@ -453,7 +484,7 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   var paxo *Paxo
 
   if px.use_zookeeper {
-    paxo = px.Read(px.path + "/" + strconv.Itoa(seq))
+    paxo = px.Read(px.path + "/store/" + strconv.Itoa(seq))
   } else {
     paxo = px.store[seq]
   }
@@ -495,14 +526,20 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
 
-  px.path = "/paxos/localhost"
+  if px.use_zookeeper {
+    px.sm = storage.MakeStorageManager()
+    px.sm.Open("localhost:2181")
+    defer px.sm.Close()
 
-  px.sm = storage.MakeStorageManager()
-  px.sm.Open("localhost:2181")
-  defer px.sm.Close()
-  px.sm.Create("/paxos", "")
-  px.sm.Create(px.path, "")
-  px.sm.Create(px.path + "/done", "")
+    px.sm.Create("/paxos", "")
+    px.path = "/paxos/" + px.peers[px.me]
+    px.sm.Create(px.path + "/store", "")
+    px.sm.Create(px.path + "/done", "")
+
+    for _, peer := range px.peers {
+      px.sm.Create(px.path + "/done/" + px.peers[peer], "0")
+    }    
+  }
 
   if rpcs != nil {
     // caller will create socket &c
