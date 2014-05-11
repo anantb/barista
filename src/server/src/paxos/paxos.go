@@ -37,7 +37,7 @@ import "fmt"
 import "math/rand"
 import "math"
 import "time"
-import "zk"
+import "storage"
 import "encoding/json"
 import "strconv"
 
@@ -65,7 +65,7 @@ type Paxos struct {
   paxos_lock sync.Mutex
   unix bool
   path string
-  sm *StorageManager
+  sm *storage.StorageManager
 }
 
 const (
