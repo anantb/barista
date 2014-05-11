@@ -43,7 +43,12 @@ func (sm *StorageManager) Close() error {
 }
 
 func (sm *StorageManager) Create(path string, data string) error {
-  _, err := sm.conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
+  stats, _ := sm.conn.Exists(path)
+  var err error
+
+  if stats == nil {
+    _, err = sm.conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
+  }
 
   if err != nil {
     fmt.Printf("Error creating a node (%v): %v\n", path, err)
