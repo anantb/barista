@@ -572,13 +572,13 @@ func TestOld(t *testing.T) {
 
   waitmajority(t, pxa, 1)
 
-  pxa[0] = Make(pxh, 0, nil, true)
+  pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
   pxa[0].Start(1, 222)
 
   waitn(t, pxa, 1, 4)
 
   if false {
-    pxa[4] = Make(pxh, 4, nil, true)
+    pxa[4] = Make(pxh, 4, nil, true, use_zookeeper)
     waitn(t, pxa, 1, npaxos)
   }
 
