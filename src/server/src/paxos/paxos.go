@@ -139,7 +139,7 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   if px.use_zookeeper {
     data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
-    reply.Done = trconv.Atoi(data)
+    reply.Done = strconv.Atoi(data)
   } else {
     reply.Done = px.done[px.peers[px.me]]
   }
@@ -168,7 +168,7 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
 
   if px.use_zookeeper {
     data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
-    reply.Done = trconv.Atoi(data)
+    reply.Done = strconv.Atoi(data)
   } else {
     reply.Done = px.done[px.peers[px.me]]
   }
@@ -193,7 +193,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   reply.Status = OK
   if px.use_zookeeper {
     data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
-    reply.Done = trconv.Atoi(data)
+    reply.Done = strconv.Atoi(data)
   } else {
     reply.Done = px.done[px.peers[px.me]]
   }
