@@ -332,7 +332,6 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_n_a = prepare_reply.N_A
           highest_v_a = prepare_reply.Value
         }
-
         px.done[peer] = prepare_reply.Done
         
       }
@@ -484,33 +483,59 @@ func (px *Paxos) Min() int {
   return min
 }
 
+func (px *Paxos) Format(path string) string {
+  return strings.Replace(path, "/", "_", -1)
+}
+
+func (px *Paxos) CreateS(path string, data string) {
+  px.sm.Create(path, data)
+}
+
+func (px *Paxos) WriteS(path string, data string) {
+  px.sm.Write(path, data)
+}
+
+func (px *Paxos) ReadS(path string) (string, bool) {
+  data, err := px.sm.Read(path)
+
+  if err != nil {
+    return "", false
+  }
+
+  return data, true
+}
+
+func (px *Paxos) DeleteS(path string){
+  px.sm.Delete(path)
+}
+
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
   data, _ := json.Marshal(paxo)
   data_str := string(data)
-  px.sm.Create(path, data_str)
+  px.CreateS(path, data_str)
 }
 
 func (px *Paxos) Write(path string, paxo *Paxo) {
   data, _ := json.Marshal(paxo)
   data_str := string(data)
-  px.sm.Write(path, data_str)
+  px.WriteS(path, data_str)
 }
 
 func (px *Paxos) Read(path string) (*Paxo, bool) {
-  data, err := px.sm.Read(path)
+  data, ok := px.ReadS(path)
 
-  if err != nil {
-    return nil, false
+  if !ok {
+    return nil, ok
   }
 
   var paxo Paxo
   json.Unmarshal([]byte(data), &paxo)
-  return &paxo, true
+  return &paxo, ok
 }
 
 func (px *Paxos) Delete(path string){
-  px.sm.Delete(path)
+  px.DeleteS(path)
 }
 //
 // the application wants to know whether this
