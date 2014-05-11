@@ -14,8 +14,7 @@ func TestBasicLeaderModified(t *testing.T) {
   sm := MakeStorageManager()
   sm.Open(servers)
   defer sm.Close()
-  sm.Create("/test/")
-  sm.Create("/test/localhost")
+  sm.Create("/test/localhost", "6.824")
   _ = sm.Write("/test/localhost", "6.824")
   data, _ := sm.Read("/test/localhost")
   if data != "6.824" {
