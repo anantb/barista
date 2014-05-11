@@ -122,12 +122,12 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   defer px.mu.Unlock()
 
   var paxo *Paxo
-  var err error
+  var ok error
 
   if px.use_zookeeper {
     paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
   } else {
-    paxo, ok := px.store[args.Seq]
+    paxo, ok = px.store[args.Seq]
   }
   
   if !ok {
@@ -160,10 +160,13 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   px.mu.Lock()
   defer px.mu.Unlock()
 
+  var paxo *Paxo
+  var ok error
+
   if px.use_zookeeper {
     paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
   } else {
-    paxo, ok := px.store[args.Seq]
+    paxo, ok = px.store[args.Seq]
   }
   
   if !ok {
@@ -197,7 +200,15 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   px.mu.Lock()
   defer px.mu.Unlock()
 
-  paxo, ok := px.store[args.Seq]
+  var paxo *Paxo
+  var ok error
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
+  } else {
+    paxo, ok = px.store[args.Seq]
+  }
+  
   if !ok {
     paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
   }
