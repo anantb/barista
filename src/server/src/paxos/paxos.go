@@ -66,6 +66,7 @@ type Paxos struct {
   unix bool
   path string
   sm *storage.StorageManager
+  use_zookeeper bool
 }
 
 const (
@@ -422,7 +423,7 @@ func (px *Paxos) Write(path string, paxo *Paxo) {
 }
 
 func (px *Paxos) Read(path string) *Paxo {
-  data, err := px.sm.Read(px.path + "/" + strconv.Itoa(seq))
+  data, err := px.sm.Read(path)
 
   if err!= nil {
     return nil
@@ -448,8 +449,15 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   min := px.Min()
   px.mu.Lock()
   defer px.mu.Unlock()
-  
-  paxo := px.Read(px.path + "/" + strconv.Itoa(seq))
+
+  var paxo *Paxo
+
+  if px.use_zookeeper {
+    paxo = px.Read(px.path + "/" + strconv.Itoa(seq))
+  } else {
+    paxo = px.store[seq]
+  }
+
   if seq >= min && paxo != nil && paxo.decided == true {
     return true, paxo.v_a
   }
