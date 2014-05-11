@@ -543,13 +543,13 @@ func (px *Paxos) DeleteS(path string){
 
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
-  data, err := json.Marshal(paxo)
+  data, _ := json.Marshal(paxo)
   data_str := string(data)
   px.CreateS(path, data_str)
 }
 
 func (px *Paxos) Write(path string, paxo *Paxo) {
-  data, err := json.Marshal(paxo)
+  data, _ := json.Marshal(paxo)
   data_str := string(data)
   px.WriteS(path, data_str)
 }
