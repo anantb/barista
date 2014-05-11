@@ -411,17 +411,17 @@ func (px *Paxos) Min() int {
   return min
 }
 
-func (px *Paxos) Create(seq int, paxo *Paxo) {
+func (px *Paxos) Create(path string, paxo *Paxo) {
   data, _ := json.Marshal(*paxo)
-  px.sm.Create(px.path + "/" + strconv.Itoa(seq), string(data))
+  px.sm.Create(path, string(data))
 }
 
-func (px *Paxos) Write(seq int, paxo *Paxo) {
+func (px *Paxos) Write(path string, paxo *Paxo) {
   data, _ := json.Marshal(*paxo)
-  px.sm.Write(px.path + "/" + strconv.Itoa(seq), string(data))
+  px.sm.Write(path, string(data))
 }
 
-func (px *Paxos) Read(seq int) *Paxo {
+func (px *Paxos) Read(path string) *Paxo {
   data, err := px.sm.Read(px.path + "/" + strconv.Itoa(seq))
 
   if err!= nil {
@@ -433,8 +433,8 @@ func (px *Paxos) Read(seq int) *Paxo {
   return &paxo
 }
 
-func (px *Paxos) Delete(seq int){
-  px.sm.Delete(px.path + "/" + strconv.Itoa(seq))
+func (px *Paxos) Delete(path string){
+  px.sm.Delete(path)
 }
 //
 // the application wants to know whether this
@@ -449,7 +449,7 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   px.mu.Lock()
   defer px.mu.Unlock()
   
-  paxo := px.Read(seq)
+  paxo := px.Read(px.path + "/" + strconv.Itoa(seq))
   if seq >= min && paxo != nil && paxo.decided == true {
     return true, paxo.v_a
   }
