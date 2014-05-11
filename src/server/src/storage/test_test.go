@@ -19,15 +19,11 @@ func TestBasicLeaderModified(t *testing.T) {
   sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/store", "")
   sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/done", "")
   sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.824")
-  data, _ := sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
-  if data != "6.824" {
-    t.Fatalf("got=%v wanted=%v", data, "6.824")
-  }
 
-  _ = sm.Write("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.831")
+  _ = sm.Write("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.824")
   data, _ = sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
   if data != "6.831" {
-    t.Fatalf("got=%v wanted=%v", data, "6.831")
+    t.Fatalf("got=%v wanted=%v", data, "6.824")
   }
 }
 

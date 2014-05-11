@@ -610,6 +610,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
 
     px.CreateS("/paxos", "")
     px.path = "/paxos/" + px.Format(px.peers[px.me])
+    px.CreateS(px.path, "")
     px.CreateS(px.path + "/store", "")
     px.CreateS(px.path + "/done", "")
 
