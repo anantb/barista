@@ -716,7 +716,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   // please do not change any of the following code,
   // or do anything to subvert it.
 
-  pcs.Register(sp)
+  rpcs.Register(sp)
 
   go func() {
     for sp.dead == false {
