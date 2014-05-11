@@ -429,7 +429,7 @@ func (px *Paxos) Read(seq int) *Paxo {
   }
 
   var paxo Paxo
-  paxo := json.Unmarshal(data, &paxo)
+  paxo := json.Unmarshal(data, paxo)
   return &paxo
 }
 
@@ -489,7 +489,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
 
   px.path = "/paxos/localhost"
 
-  px.sm = MakeStorageManager()
+  px.sm = storage.MakeStorageManager()
   px.sm.Open("localhost:2181")
   defer sm.Close()
   px.sm.Create("/paxos", "")
