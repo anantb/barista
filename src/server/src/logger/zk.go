@@ -28,10 +28,6 @@ func Make() (*ZK, error) {
 
 func (zk *ZK) Write(key string, value string) error {
   stats, err := zk.Conn.Exists(key)
-  if err != nil {
-      fmt.Printf("Error creating or writing to file: %v\n", err)
-      return err
-  }
   if stats == nil {
     _, err = zk.Conn.Create(key, value, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
     if err != nil {
