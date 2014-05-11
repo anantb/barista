@@ -5,8 +5,8 @@ import "fmt"
 import "net/rpc"
 import "log"
 import "time"
-import "paxos"
-//import paxos "multipaxos"
+//import "paxos"
+import "multipaxos"
 import "sync"
 import "reflect"
 import "syscall"
@@ -41,7 +41,7 @@ type SQLPaxos struct {
   me int
   dead bool // for testing
   unreliable bool // for testing
-  px *paxos.Paxos
+  px *multipaxos.MultiPaxos
 
   // Your definitions here.
   ops map[int]Op // log of operations
@@ -358,7 +358,13 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
         decided, v_i := sp.px.Status(i)
         if decided {
            // the operation in slot i has been decided
-           v := v_i.(Op)
+           var v Op
+           if v_i != nil{
+            v = v_i.(Op)
+           }else{
+            //just in case agreed on leader change op
+            v = Op{NoOp: true}
+           }
            v.SeqNum = i
            sp.ops[i] = v
            break
@@ -688,7 +694,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
     }
   }
 
-  sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
+  sp.px = multipaxos.Make(paxos_servers, me, rpcs, unix)
 
   var l net.Listener
   var e error
