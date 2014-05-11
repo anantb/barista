@@ -146,7 +146,7 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
 
   if px.use_zookeeper {
     px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
-    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), *paxo)
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
@@ -185,7 +185,7 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
 
   if px.use_zookeeper {
     px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
-    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), *paxo)
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
@@ -220,7 +220,7 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   reply.Status = OK
   if px.use_zookeeper {
     px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
-    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), *paxo)
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
     data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
