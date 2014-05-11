@@ -286,11 +286,26 @@ func (px *Paxos) Propose(seq int, v interface{}) {
     px.max_seq = seq
   }
 
-  paxo, ok := px.store[seq]
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
+  } else {
+    paxo, ok = px.store[args.Seq]
+  }
+
   if !ok {
     paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
     px.store[seq] = paxo
   }
+
+  if px.use_zookeeper {
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
+  } else {
+    px.store[args.Seq] = paxo
+  }
+  
   px.mu.Unlock()
   me := px.peers[px.me]
   t_wait := 50 * time.Millisecond
