@@ -13,7 +13,7 @@ func MakeStorageManager() *StorageManager {
   return sm
 }
 
-func (sm *StorageManager) Open(servers) error {
+func (sm *StorageManager) Open(servers string) error {
   conn, session, err := zookeeper.Dial(servers, 5 * time.Second)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
@@ -65,10 +65,10 @@ func (sm *StorageManager) Read(path string) (string, error) {
 
 func main() {
   servers := "localhost:2181"
-  sm, _ := MakeStorageManager()
+  sm := MakeStorageManager()
   sm.Open(servers)
   defer sm.Close()
   _ = sm.Write("/counter2", "000000")
-  data, _ := zk.Read("/counter2")
+  data, _ := sm.Read("/counter2")
   fmt.Println(data)
 }
