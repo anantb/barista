@@ -635,7 +635,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
 
-  px.use_zookeeper = false
+  px.use_zookeeper = true
 
   if px.use_zookeeper {
     px.sm = storage.MakeStorageManager()
