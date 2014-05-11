@@ -503,12 +503,12 @@ func (px *Paxos) Read(path string) (*Paxo, bool) {
   data, err := px.sm.Read(path)
 
   if err != nil {
-    return nil, true
+    return nil, false
   }
 
   var paxo Paxo
   json.Unmarshal([]byte(data), paxo)
-  return &paxo, false
+  return &paxo, true
 }
 
 func (px *Paxos) Delete(path string){
