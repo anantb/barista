@@ -40,6 +40,7 @@ import "time"
 import "storage"
 import "encoding/json"
 import "strconv"
+import "strings"
 
 type Paxo struct {
   n_p int64
@@ -416,8 +417,8 @@ func (px *Paxos) Done(seq int) {
   sq_done := 0
 
   if px.use_zookeeper {
-    data, err := px.ReadS(px.path + "/done/" + peer)
-    if err == nil {
+    data, ok := px.ReadS(px.path + "/done/" + peer)
+    if ok {
       sq_done, _ = strconv.Atoi(data)
     }
   } else {
@@ -490,7 +491,7 @@ func (px *Paxos) Min() int {
 }
 
 func (px *Paxos) Format(path string) string {
-  strings.Replace(path, "/", "_", -1)
+  return strings.Replace(path, "/", "_", -1)
 }
 
 func (px *Paxos) CreateS(path string, data string) {
@@ -530,7 +531,7 @@ func (px *Paxos) Read(path string) (*Paxo, bool) {
   data, ok := px.ReadS(path)
 
   if !ok {
-    return data, ok
+    return nil, ok
   }
 
   var paxo Paxo
