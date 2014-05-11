@@ -500,8 +500,8 @@ func (px *Paxos) Write(path string, paxo *Paxo) {
 func (px *Paxos) Read(path string) (*Paxo, bool) {
   data, err := px.sm.Read(path)
 
-  if err! = nil {
-    return "", false
+  if err != nil {
+    return nil, false
   }
 
   var paxo Paxo
