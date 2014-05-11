@@ -524,7 +524,7 @@ func TestMany(t *testing.T) {
     pxa[i].Start(0, 0)
   }
 
-  const ninst = 50
+  const ninst = 10
   for seq := 1; seq < ninst; seq++ {
     // only 5 active instances, to limit the
     // number of file descriptors.
@@ -613,7 +613,7 @@ func TestManyUnreliable(t *testing.T) {
     pxa[i].Start(0, 0)
   }
 
-  const ninst = 50
+  const ninst = 10
   for seq := 1; seq < ninst; seq++ {
     // only 3 active instances, to limit the
     // number of file descriptors.
