@@ -685,7 +685,6 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   sp.instanceNum = 0
   
   rpcs := rpc.NewServer()
-  rpcs.Register(sp)
 
   paxos_servers := make([]string, len(servers), cap(servers))
   for idx, val := range servers {
@@ -696,9 +695,6 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
     }
   }
 
-  sp.px = multipaxos.Make(paxos_servers, me, rpcs, unix)
-
-  time.Sleep(500 * time.Millisecond)
 
   var l net.Listener
   var e error
@@ -714,8 +710,13 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   }
   sp.l = l
 
+  sp.px = multipaxos.Make(paxos_servers, me, rpcs, unix)
+
+  time.Sleep(500 * time.Millisecond)
   // please do not change any of the following code,
   // or do anything to subvert it.
+
+  pcs.Register(sp)
 
   go func() {
     for sp.dead == false {
