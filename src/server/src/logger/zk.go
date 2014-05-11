@@ -4,12 +4,12 @@ import "fmt"
 import "launchpad.net/gozk/zookeeper"
 
 type ZK struct {
-  conn *zookeeper.Conn
+  Conn *zookeeper.Conn
 }
 
 func Make() *ZK {
   zk = &ZK{}
-  zk.conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
+  conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
     return
@@ -21,29 +21,29 @@ func Make() *ZK {
   if event.State != zookeeper.STATE_CONNECTED {
     fmt.Printf("Can't connect to zookeeper: %v\n", event)
   }
-
+  zk.Conn = conn
   return zk
 }
 
 func (zk *ZK) Write(key string, value string) error {
-  stats, err := zk.conn.Exists(key)
+  stats, err := zk.Conn.Exists(key)
   if err != nil {
       fmt.Println("Error creating or writing to file")
       return err
   }
   if stats != nil {
-    _, err = zk.conn.Create(key, value, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
+    _, err = zk.Conn.Create(key, value, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
     if err != nil {
       fmt.Printf("Can't create key: %v\n", err)
       return err
     }
   }
-  stats, err = zk.conn.Set(key, value, -1)
+  stats, err = zk.Conn.Set(key, value, -1)
   return err
 }
 
-func (zk *ZK) Read(key string) string, error {
-  data, stats, err := zk.conn.Get(key)
+func (zk *ZK) Read(key string) (string, error) {
+  data, stats, err := zk.Conn.Get(key)
   return data, err
 }
 
