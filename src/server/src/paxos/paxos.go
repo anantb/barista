@@ -411,15 +411,17 @@ func (px *Paxos) Min() int {
   return min
 }
 
-func (px *Paxos) Create(seq int, paxo Paxo) {
-  px.sm.Create(px.path + "/" + strconv.Itoa(seq), string(json.Marshal(paxo)))
+func (px *Paxos) Create(seq int, paxo *Paxo) {
+  data, _ := json.Marshal(*paxo)
+  px.sm.Create(px.path + "/" + strconv.Itoa(seq), string(data))
 }
 
-func (px *Paxos) Write(seq int, paxo Paxo) {
-  px.sm.Write(px.path + "/" + strconv.Itoa(seq), string(json.Marshal(paxo)))
+func (px *Paxos) Write(seq int, paxo *Paxo) {
+  data, _ := json.Marshal(*paxo)
+  px.sm.Write(px.path + "/" + strconv.Itoa(seq), string(data))
 }
 
-func (px *Paxos) Read(seq int) Paxo {
+func (px *Paxos) Read(seq int) *Paxo {
   data, err := px.sm.Read(px.path + "/" + strconv.Itoa(seq))
 
   if err!= nil {
@@ -428,7 +430,7 @@ func (px *Paxos) Read(seq int) Paxo {
 
   var paxo Paxo
   paxo := json.Unmarshal(data, &paxo)
-  return paxo
+  return &paxo
 }
 
 func (px *Paxos) Delete(seq int){
