@@ -463,7 +463,7 @@ func (sp *SQLPaxos) checkIfExecuted(op Op) (interface{}, bool) {
 func (sp *SQLPaxos) reserveSlot(op Op) int {
 
   // propose this operation for slot seq
-  seq := sp.px.Max()
+  seq := sp.px.Max()+1
   v := op
   sp.px.Start(seq, v)
 
@@ -482,7 +482,7 @@ func (sp *SQLPaxos) reserveSlot(op Op) int {
         break
      } else if decided {
         // another proposer got this slot, so try to get our operation in a new slot
-        seq = int(math.Max(float64(sp.px.Max()), float64(seq + 1)))
+        seq = int(math.Max(float64(sp.px.Max()+1), float64(seq + 1)))
         sp.px.Start(seq, v)
         nwaits = 0
      } else {

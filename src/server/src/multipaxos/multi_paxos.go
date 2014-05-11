@@ -110,7 +110,7 @@ func (mpx *MultiPaxos) Done(seq int) {
 func (mpx *MultiPaxos) Max() int {
   mpx.mu.Lock()
   defer mpx.mu.Unlock()
-  return mpx.executionPointer
+  return mpx.px.Max()
 }
 
 
