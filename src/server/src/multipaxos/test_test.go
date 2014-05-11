@@ -137,7 +137,7 @@ func noTestSpeed(t *testing.T) {
     pxh[i] = port("time", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
 
   t0 := time.Now()
@@ -170,7 +170,7 @@ func TestBasic(t *testing.T) {
     pxh[i] = port("basic", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
 
   fmt.Printf("Test: Single proposer ...\n")
@@ -212,7 +212,7 @@ func TestBasic(t *testing.T) {
   waitn(t, pxa, 4, nMultiPaxos)
   waitn(t, pxa, 3, nMultiPaxos)
 
-  if pxa[0].Max() != 8 {
+  if pxa[0].Max() != 7 {
     t.Fatalf("wrong Max()")
   }
 
@@ -230,7 +230,7 @@ func TestDeaf(t *testing.T) {
     pxh[i] = port("deaf", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
 
   fmt.Printf("Test: Deaf proposer should still get data ...\n")
@@ -279,7 +279,7 @@ func TestBasicLeaderModified(t *testing.T) {
     pxh[i] = port("basicLeaderModified", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
 
   fmt.Printf("Test: Basic LeaderModified Elect Leader Instance -1...\n")
@@ -361,7 +361,7 @@ func TestRPCCount(t *testing.T) {
     pxh[i] = port("count", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
 
   waitn(t, pxa, -1,nMultiPaxos)
@@ -455,7 +455,7 @@ func TestMany(t *testing.T) {
     pxh[i] = port("many", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   waitn(t, pxa, -1,nMultiPaxos)
 
@@ -495,7 +495,7 @@ func TestLeaderDeaths(t *testing.T) {
     pxh[i] = port("leaderdeaths", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   fmt.Printf("Test: First leader death, make sure changes ...\n")
 
@@ -645,9 +645,9 @@ func TestFallBehind(t *testing.T) {
     pxh[i] = port("old", i)
   }
 
-  pxa[1] = Make(pxh, 1, nil,true)
-  pxa[2] = Make(pxh, 2, nil,true)
-  pxa[3] = Make(pxh, 3, nil,true)
+  pxa[1] = Make(pxh, 1, nil,true,false)
+  pxa[2] = Make(pxh, 2, nil,true,false)
+  pxa[3] = Make(pxh, 3, nil,true,false)
 
   waitmajority(t, pxa, -1)
 
@@ -659,7 +659,7 @@ func TestFallBehind(t *testing.T) {
   }
   waitmajority(t, pxa, 19)
 
-  pxa[0] = Make(pxh, 0, nil,true)
+  pxa[0] = Make(pxh, 0, nil,true,false)
 
   //wait for paxos 0 to catch up
   waitn(t, pxa, 19, 4)
@@ -689,7 +689,7 @@ func TestForget(t *testing.T) {
     pxh[i] = port("gc", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   waitn(t, pxa, -1, nMultiPaxos)
 
@@ -720,7 +720,7 @@ func TestForget(t *testing.T) {
   // Min() correct?
   for i := 0; i < nMultiPaxos; i++ {
     m := pxa[i].Min()
-    if m != 1 {
+    if m != 0 {
       t.Fatalf("wrong Min() %v; expected 1", m)
     }
   }
@@ -731,7 +731,7 @@ func TestForget(t *testing.T) {
   // Min() correct?
   for i := 0; i < nMultiPaxos; i++ {
     m := pxa[i].Min()
-    if m != 1 {
+    if m != 0 {
       t.Fatalf("wrong Min() %v; expected 0", m)
     }
   }
@@ -740,26 +740,25 @@ func TestForget(t *testing.T) {
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Done(0)
   }
-  for i := 0; i < nMultiPaxos; i++ {
+  for i := 1; i < nMultiPaxos; i++ {
     pxa[i].Done(1)
   }
   for i := 0; i < nMultiPaxos; i++ {
     pxa[i].Start(8 + i, "xx")
   }
-
+  time.Sleep(nMultiPaxos*PINGINTERVAL)
   allok := false
   for iters := 0; iters < 12; iters++ {
     allok = true
     for i := 0; i < nMultiPaxos; i++ {
       s := pxa[i].Min()
-      if s != 2 {
+      if s != 1 {
         allok = false
       }
     }
     if allok {
       break
     }
-    time.Sleep(nMultiPaxos*PINGINTERVAL)
   }
   if allok != true {
     t.Fatalf("Min() did not advance after Done()")
@@ -780,7 +779,7 @@ func TestManyForget(t *testing.T) {
     pxh[i] = port("manygc", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
     pxa[i].SetUnreliable(true)
   }
 
@@ -850,7 +849,7 @@ func TestForgetMem(t *testing.T) {
     pxh[i] = port("gcmem", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   waitn(t, pxa,-1,nMultiPaxos)
 
@@ -923,9 +922,9 @@ func TestOld(t *testing.T) {
     pxh[i] = port("old", i)
   }
 
-  pxa[1] = Make(pxh, 1, nil,true)
-  pxa[2] = Make(pxh, 2, nil,true)
-  pxa[3] = Make(pxh, 3, nil,true)
+  pxa[1] = Make(pxh, 1, nil,true,false)
+  pxa[2] = Make(pxh, 2, nil,true,false)
+  pxa[3] = Make(pxh, 3, nil,true,false)
 
   waitmajority(t, pxa, -1)
 
@@ -936,13 +935,13 @@ func TestOld(t *testing.T) {
 
   waitmajority(t, pxa, 1)
 
-  pxa[0] = Make(pxh, 0, nil,true)
+  pxa[0] = Make(pxh, 0, nil,true,false)
   go execute(pxa,0,1,222)
 
   waitn(t, pxa, 1, 4)
 
   if false {
-    pxa[4] = Make(pxh, 4, nil,true)
+    pxa[4] = Make(pxh, 4, nil,true,false)
     waitn(t, pxa, 1, nMultiPaxos)
   }
 
@@ -966,7 +965,7 @@ func TestManyUnreliable(t *testing.T) {
     pxh[i] = port("manyun", i)
   }
   for i := 0; i < nMultiPaxos; i++ {
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
     pxa[i].SetUnreliable(true)
     go execute(pxa,i,0,0)
   }
@@ -1061,7 +1060,7 @@ func TestPartition(t *testing.T) {
         pxh[j] = pp(tag, i, j)
       }
     }
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
 
@@ -1207,7 +1206,7 @@ func TestPartitionUnreliable(t *testing.T){
         pxh[j] = pp(tag, i, j)
       }
     }
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})
 
@@ -1279,7 +1278,7 @@ func TestLots(t *testing.T) {
         pxh[j] = pp(tag, i, j)
       }
     }
-    pxa[i] = Make(pxh, i, nil,true)
+    pxa[i] = Make(pxh, i, nil,true,false)
     pxa[i].SetUnreliable(true)
   }
   defer part(t, tag, nMultiPaxos, []int{}, []int{}, []int{})

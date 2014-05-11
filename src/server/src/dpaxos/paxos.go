@@ -143,18 +143,25 @@ func (px *Paxos) GetMin() int{
 func (px *Paxos) SetMin(min int) {
   px.mu.Lock()
   defer px.mu.Unlock()
-    if min > px.minSeq{
+  if min > px.minSeq{
      px.minSeq = min
   }
   for _,peer := range px.peers{
-    px.peersMap[peer] = px.minSeq
+    current := px.peersMap[peer]
+    if px.minSeq > current{
+      px.peersMap[peer] = px.minSeq
+    }
   }
+  px.setMin()
   px.cleanUp()
 }
 func (px *Paxos) UpdateMinAndCleanUp(serverName string, maxDone int){
   px.mu.Lock()
   defer px.mu.Unlock()
-  px.peersMap[serverName] = maxDone
+  current,_ := px.peersMap[serverName]
+  if maxDone>current{
+    px.peersMap[serverName] = maxDone
+  }
   //update minSeq and clean up
   px.setMin()
   px.cleanUp()
@@ -554,8 +561,10 @@ func (px *Paxos) ProposeNotify(seq int, value interface{}){
     out[seq]=value
     teachArgs.Log = out
 
+    px.mu.Lock()
     //tell about max done
     teachArgs.MaxDone = px.highestDone
+    px.mu.Unlock()
 
     //tell peer who is talking to it
     teachArgs.ServerName = px.getServerName()
@@ -718,7 +727,10 @@ func (px *Paxos) handleTeach(serverName string, maxDone int, log map[int]interfa
   for key,val := range log{
     px.log[key] = val
   }
-  px.peersMap[serverName] = maxDone
+  current := px.peersMap[serverName]
+  if maxDone >= current{
+    px.peersMap[serverName] = maxDone
+  }
 
   //update minSeq and clean up
   px.setMin()
@@ -739,9 +751,14 @@ func (px *Paxos) setMin(){
   //scan over all peers and find the min of all maxDone
   //values they have sent us
   for _,key := range px.peers{
-    val,_:=px.peersMap[key]
-    if val < min{
-      min = val
+    val,ok:=px.peersMap[key]
+    if ok{
+      if val < min{
+        min = val
+      }
+    }else{
+      min = -1
+      break
     }
   }
   //if a peer hasn't sent us a maxDone value
@@ -751,7 +768,8 @@ func (px *Paxos) setMin(){
   if min != -1 && min>=px.minSeq{
     px.minSeq = min
   }
-  //log.Printf("min is %v",px.peersMap)
+  //log.Printf("min is %v \n",px.peersMap)
+
 }
 //frees space based on the minSeq( Min() value)
 func (px *Paxos) cleanUp(){
@@ -856,7 +874,7 @@ func call(srv string, name string, args interface{}, reply interface{}, unix boo
 func (px *Paxos) Start(seq int, v interface{}) {
   px.mu.Lock()
   defer px.mu.Unlock()
-  if seq >= px.Min() {
+  if seq >= px.minSeq{
     go px.propose(seq,v,px.peers)
   }
 }
@@ -871,10 +889,9 @@ func (px *Paxos) Done(seq int) {
   px.mu.Lock()
   defer px.mu.Unlock()
   // Your code here.
-  if seq > px.highestDone{
+  if seq >= px.highestDone{
     px.highestDone = seq
-    px.peersMap[px.peers[px.me]] = px.highestDone 
-    //update minSeq and clean up
+    px.peersMap[px.peers[px.me]] = seq
   }
 }
 
@@ -936,10 +953,6 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   px.mu.Lock()
   defer px.mu.Unlock()
 
-  if seq > px.maxSeq{
-    px.maxSeq = seq
-  }
-
   val,ok := px.log[seq]
   if ok && seq >= px.minSeq{
     return ok,val
@@ -976,7 +989,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool,use_zookeeper bool
   px.mu = sync.Mutex{}
 
   // Your initialization code here.
-  px.maxSeq = 0
+  px.maxSeq = -1
   px.highestDone = -1
   px.minSeq = -1
   px.log = make(map[int]interface{})

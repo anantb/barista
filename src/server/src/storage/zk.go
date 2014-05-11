@@ -1,8 +1,8 @@
 package storage
 
-import "fmt"
-import "time"
-import "launchpad.net/gozk/zookeeper"
+//import "fmt"
+//import "time"
+//import "launchpad.net/gozk/zookeeper"
 
 /**
  * ZooKeeper Storage Manager
@@ -12,7 +12,7 @@ import "launchpad.net/gozk/zookeeper"
  */
 
 type StorageManager struct {
-  conn *zookeeper.Conn
+  //conn *zookeeper.Conn
 }
 
 func MakeStorageManager() *StorageManager {
@@ -20,7 +20,7 @@ func MakeStorageManager() *StorageManager {
   return sm
 }
 
-func (sm *StorageManager) Open(servers string) error {
+/*func (sm *StorageManager) Open(servers string) error {
   conn, session, err := zookeeper.Dial(servers, 5 * time.Second)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
@@ -98,4 +98,4 @@ func (sm *StorageManager) Read(path string) (string, error) {
   //fmt.Printf("Read node (%v): %v\n", path, data)
 
   return data, err
-}
+}*/

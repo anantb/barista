@@ -121,6 +121,8 @@ func (mpx *MultiPaxos) Max() int {
 
 
 func (mpx *MultiPaxos) Min() int {
+  mpx.mu.Lock()
+  defer mpx.mu.Unlock()
   return mpx.px.Min()
 }
 
@@ -577,6 +579,7 @@ func (mpx *MultiPaxos) refreshLeader(){
           to *=2
         }
     }else{
+      mpx.Log(-10,"leader was valid "+mpx.peers[leaderT.id])
       to = main
     }
     time.Sleep(to)
@@ -595,12 +598,6 @@ func (mpx *MultiPaxos) refreshPing(){
     mpx.mu.Unlock()
     time.Sleep(to)
   }
-}
-func (mpx *MultiPaxos) getDumpOfInstance() string{
-  return ""
-}
-func (mpx *MultiPaxos) loadFromDump(dump string){
-
 }
 func (mpx *MultiPaxos) HandlePing(args *PingArgs, reply *PingReply) error{
   mpx.mu.Lock()
