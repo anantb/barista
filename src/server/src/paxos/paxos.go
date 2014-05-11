@@ -518,7 +518,9 @@ func (px *Paxos) DeleteS(path string){
 
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
+  fmt.Println(*paxo)
   data, _ := json.Marshal(*paxo)
+  fmt.Println(data)
   px.CreateS(path, string(data))
 }
 
