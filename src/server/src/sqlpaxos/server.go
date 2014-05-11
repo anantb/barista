@@ -41,8 +41,8 @@ type SQLPaxos struct {
   me int
   dead bool // for testing
   unreliable bool // for testing
-  //px *multipaxos.MultiPaxos
-  px *paxos.Paxos
+  px *multipaxos.MultiPaxos
+  //px *paxos.Paxos
   // Your definitions here.
   ops map[int]Op // log of operations
   replies map[int]interface{} // the replies for this sequence number
@@ -710,7 +710,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   }
   sp.l = l
 
-  sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
+  sp.px = multipaxos.Make(paxos_servers, me, rpcs, unix)
 
   time.Sleep(500 * time.Millisecond)
   // please do not change any of the following code,
