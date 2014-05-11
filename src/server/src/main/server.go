@@ -21,7 +21,7 @@ const PORT_JSON = ":9090"
 //var SP_PORTS = []string {":9001", ":9001", ":9001", ":9001", ":9001"}
 var ADDRS = []string {"128.52.161.243"}
 var PG_PORTS = []string {"5432"}
-var SP_PORTS = []string {":9000"}
+var SP_PORTS = []string {":9001"}
 
 func main() {  
   binary_protocol_factory := thrift.NewTBinaryProtocolFactoryDefault()
