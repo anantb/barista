@@ -370,8 +370,8 @@ func (px *Paxos) Done(seq int) {
   sq_done := 0
 
   if px.use_zookeeper {
-    data := px.sm.Read(px.path + "/done/" + peer)
-    if data != nil {
+    data, err := px.sm.Read(px.path + "/done/" + peer)
+    if err == nil {
       sq_done = strconv.Atoi(data)
     }
   } else {
