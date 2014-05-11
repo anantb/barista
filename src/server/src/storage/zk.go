@@ -72,11 +72,13 @@ func (sm *StorageManager) Write(path string, data string) error {
   
   _, err := sm.conn.Set(path, data, -1)
 
-  if err != nil {
-    fmt.Printf("Error writing to node (%v): %v\n", path, err)
+  if err != nil {    
+    err_create := sm.Create(path, data)
+    if err_create != nil {
+      fmt.Printf("Error writing to node (%v): %v\n", path, err)
+      return err
+    }
   }
-
-  return err
 }
 
 func (sm *StorageManager) Read(path string) (string, error) {
