@@ -145,9 +145,9 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   }
 
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.peers[px.me], strconv.Itoa(args.Done))
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.peers[px.me])
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
     px.done[args.Me] = args.Done
@@ -184,9 +184,9 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   }
 
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.peers[px.me], strconv.Itoa(args.Done))
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.peers[px.me])
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
     px.done[args.Me] = args.Done
@@ -219,9 +219,9 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 
   reply.Status = OK
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.peers[px.me], strconv.Itoa(args.Done))
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.peers[px.me])
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
     reply.Done, _ = strconv.Atoi(data)
   } else {
     px.done[args.Me] = args.Done
@@ -317,7 +317,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_v_a = prepare_reply.Value
         }
         if px.use_zookeeper {
-          px.WriteS(px.path + "/done/" + peer, strconv.Itoa(prepare_reply.Done))
+          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(prepare_reply.Done))
         }else {
           px.done[peer] = prepare_reply.Done
         } 
@@ -345,7 +345,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       if accept_reply.Status == OK {
         accept_ok_count += 1
         if px.use_zookeeper {
-          px.WriteS(px.path + "/done/" + peer, strconv.Itoa(accept_reply.Done))
+          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(accept_reply.Done))
         }else {
           px.done[peer] = accept_reply.Done
         } 
@@ -367,7 +367,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
         px.Decided(&decided_args, &decided_reply)
       }
       if px.use_zookeeper {
-        px.WriteS(px.path + "/done/" + peer, strconv.Itoa(decided_reply.Done))
+        px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(decided_reply.Done))
       }else {
         px.done[peer] = decided_reply.Done
       }     
@@ -495,15 +495,15 @@ func (px *Paxos) Format(path string) string {
 }
 
 func (px *Paxos) CreateS(path string, data string) {
-  px.sm.Create(px.Format(path), data)
+  px.sm.Create(path, data)
 }
 
 func (px *Paxos) WriteS(path string, data string) {
-  px.sm.Write(px.Format(path), data)
+  px.sm.Write(path, data)
 }
 
 func (px *Paxos) ReadS(path string) (string, bool) {
-  data, err := px.sm.Read(px.Format(path))
+  data, err := px.sm.Read(path)
 
   if err != nil {
     return "", false
@@ -513,7 +513,7 @@ func (px *Paxos) ReadS(path string) (string, bool) {
 }
 
 func (px *Paxos) DeleteS(path string){
-  px.sm.Delete(px.Format(path))
+  px.sm.Delete(path)
 }
 
 
@@ -609,12 +609,12 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
     defer px.sm.Close()
 
     px.CreateS("/paxos", "")
-    px.path = "/paxos/" + px.peers[px.me]
+    px.path = "/paxos/" + px.Format(px.peers[px.me])
     px.CreateS(px.path + "/store", "")
     px.CreateS(px.path + "/done", "")
 
     for _, peer := range px.peers {
-      px.CreateS(px.path + "/done/" + peer, "0")
+      px.CreateS(px.path + "/done/" + px.Format(peer), "0")
     }    
   }
 
