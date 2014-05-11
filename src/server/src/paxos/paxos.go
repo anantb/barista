@@ -43,10 +43,10 @@ import "strconv"
 import "strings"
 
 type Paxo struct {
-  n_p int64
-  n_a int64
-  v_a interface{}
-  decided bool
+  N_P int64
+  N_A int64
+  V_A interface{}
+  Decided bool
 }
 
 type Paxos struct {
@@ -132,14 +132,14 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   }
   
   if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
   }
 
-  if args.N > paxo.n_p {
-    paxo.n_p = args.N
+  if args.N > paxo.N_P {
+    paxo.N_P = args.N
     reply.Status = OK
-    reply.N_A = paxo.n_a
-    reply.Value = paxo.v_a
+    reply.N_A = paxo.N_A
+    reply.Value = paxo.V_A
   } else {
     reply.Status = REJECT
   }
@@ -171,13 +171,13 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   }
   
   if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
   }
 
-  if args.N_A >= paxo.n_p {
-    paxo.n_p = args.N_A
-    paxo.n_a = args.N_A
-    paxo.v_a = args.Value
+  if args.N_A >= paxo.N_P {
+    paxo.N_P = args.N_A
+    paxo.N_A = args.N_A
+    paxo.V_A = args.Value
     reply.Status = OK
   } else {
     reply.Status = REJECT
@@ -211,11 +211,11 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   }
 
   if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
   }
 
-  paxo.v_a = args.Value
-  paxo.decided = true
+  paxo.V_A = args.Value
+  paxo.Decided = true
 
   reply.Status = OK
   if px.use_zookeeper {
@@ -306,7 +306,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
   }
 
   if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
     px.store[seq] = paxo
   }
 
@@ -319,7 +319,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
   px.mu.Unlock()
   me := px.peers[px.me]
   t_wait := 50 * time.Millisecond
-  for px.dead == false && paxo.decided == false {
+  for px.dead == false && paxo.Decided == false {
     n := px.generate_id()
     highest_n_a := int64(-1)
     highest_v_a := v
@@ -575,7 +575,7 @@ func (px *Paxos) Delete(path string){
 }
 //
 // the application wants to know whether this
-// peer thinks an instance has been decided,
+// peer thinks an instance has been Decided,
 // and if so what the agreed value is. Status()
 // should just inspect the local peer state;
 // it should not contact other Paxos peers.
@@ -595,8 +595,8 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
     paxo, ok = px.store[seq]
   }
 
-  if ok && seq >= min && paxo != nil && paxo.decided == true {
-    return true, paxo.v_a
+  if ok && seq >= min && paxo != nil && paxo.Decided == true {
+    return true, paxo.V_A
   }
   return false, nil
 }
