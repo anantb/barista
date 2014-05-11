@@ -270,7 +270,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_v_a = prepare_reply.Value
         }
         if px.use_zookeeper {
-          px.Write(px.path + "/done/" + peer, strconv.Atoi(prepare_reply.Done))
+          px.Write(px.path + "/done/" + peer, strconv.Itoa(prepare_reply.Done))
         }else {
           px.done[peer] = prepare_reply.Done
         } 
@@ -298,7 +298,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       if accept_reply.Status == OK {
         accept_ok_count += 1
         if px.use_zookeeper {
-          px.Write(px.path + "/done/" + peer, strconv.Atoi(accept_reply.Done))
+          px.Write(px.path + "/done/" + peer, strconv.Itoa(accept_reply.Done))
         }else {
           px.done[peer] = accept_reply.Done
         } 
@@ -320,7 +320,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
         px.Decided(&decided_args, &decided_reply)
       }
       if px.use_zookeeper {
-        px.Write(px.path + "/done/" + peer, strconv.Atoi(decided_reply.Done))
+        px.Write(px.path + "/done/" + peer, strconv.Itoa(decided_reply.Done))
       }else {
         px.done[peer] = decided_reply.Done
       }     
@@ -379,7 +379,7 @@ func (px *Paxos) Done(seq int) {
   }
   if sq_done < seq {
     if px.use_zookeeper {
-      px.Write(px.path + "/done/" + peer, strconv.Atoi(seq))
+      px.Write(px.path + "/done/" + peer, strconv.Itoa(seq))
     }else {
       px.done[peer] = seq
     }
