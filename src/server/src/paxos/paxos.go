@@ -519,13 +519,13 @@ func (px *Paxos) DeleteS(path string){
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
   data, _ := json.Marshal(*paxo)
-  fmt.Printf("create path: %v, pax: %v, data: %v\n", path, *paxo, data)
+  fmt.Printf("create path: %v, pax: %v, data: %v\n", path, *paxo, string(data))
   px.CreateS(path, string(data))
 }
 
 func (px *Paxos) Write(path string, paxo *Paxo) {
   data, _ := json.Marshal(*paxo)
-  fmt.Printf("write path: %v, pax: %v, data: %v\n", path, *paxo, data)
+  fmt.Printf("write path: %v, pax: %v, data: %v\n", path, *paxo, string(data))
   px.WriteS(path, string(data))
 }
 
