@@ -355,17 +355,10 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
   if _, ok := sp.ops[i]; ok || sp.next > i {
            break
         }
-
         decided, v_i := sp.px.Status(i)
         if decided {
            // the operation in slot i has been decided
-           var v Op
-           if v_i != nil{
-            v = v_i.(Op)
-           }else{
-            //just in case agreed on leader change op
-            v = Op{NoOp: true}
-           }
+           v := v_i.(Op)
            v.SeqNum = i
            sp.ops[i] = v
            break
@@ -496,7 +489,7 @@ func (sp *SQLPaxos) reserveSlot(op Op) int {
         } else {
            time.Sleep(10 * time.Millisecond)
       }
-    sp.mu.Lock()
+      sp.mu.Lock()
      }
   }
   return seq
