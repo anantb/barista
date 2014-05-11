@@ -145,15 +145,12 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   }
 
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
-    reply.Done, _ = strconv.Atoi(data)
   } else {
     px.store[args.Seq] = paxo
-    reply.Done = px.done[px.peers[px.me]]
   }
   px.done[args.Me] = args.Done
+  reply.Done = px.done[px.peers[px.me]]
   return nil
 }
 
@@ -184,16 +181,12 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   }
 
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
-    reply.Done, _ = strconv.Atoi(data)
   } else {
     px.store[args.Seq] = paxo
-    reply.Done = px.done[px.peers[px.me]]
   }
-
   px.done[args.Me] = args.Done
+  reply.Done = px.done[px.peers[px.me]]
 
   return nil
 }
@@ -220,16 +213,12 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
 
   reply.Status = OK
   if px.use_zookeeper {
-    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
     px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
-    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
-    reply.Done, _ = strconv.Atoi(data)
   } else {
     px.store[args.Seq] = paxo
-    reply.Done = px.done[px.peers[px.me]]
   }
-
   px.done[args.Me] = args.Done
+  reply.Done = px.done[px.peers[px.me]]
 
   return nil
 }
@@ -343,10 +332,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_n_a = prepare_reply.N_A
           highest_v_a = prepare_reply.Value
         }
-        if px.use_zookeeper {
-          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(prepare_reply.Done))
-        }
-        
+
         px.done[peer] = prepare_reply.Done
         
       }
@@ -372,9 +358,6 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       }
       if accept_reply.Status == OK {
         accept_ok_count += 1
-        if px.use_zookeeper {
-          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(accept_reply.Done))
-        }
         
         px.done[peer] = accept_reply.Done 
       }
@@ -394,10 +377,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       } else {
         px.Decided(&decided_args, &decided_reply)
       }
-      if px.use_zookeeper {
-        px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(decided_reply.Done))
-      }
-      
+
       px.done[peer] = decided_reply.Done          
     }
 
@@ -442,24 +422,8 @@ func (px *Paxos) Done(seq int) {
   defer px.mu.Unlock()
   peer := px.peers[px.me]
 
-  sq_done := 0
-
-  if px.use_zookeeper {
-    data, ok := px.ReadS(px.path + "/done/" + px.Format(peer))
-    if ok {
-      sq_done, _ = strconv.Atoi(data)
-      px.done[peer] = sq_done
-    }
-  } else {
-    sq_done = px.done[peer]
-  }
-  if sq_done < seq {
-    if px.use_zookeeper {
-      px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(seq))
-      px.done[peer] = seq
-    }else {
-      px.done[peer] = seq
-    }
+  if px.done[peer] < seq {    
+    px.done[peer] = seq
   }
 }
 
@@ -520,59 +484,33 @@ func (px *Paxos) Min() int {
   return min
 }
 
-func (px *Paxos) Format(path string) string {
-  return strings.Replace(path, "/", "_", -1)
-}
-
-func (px *Paxos) CreateS(path string, data string) {
-  px.sm.Create(path, data)
-}
-
-func (px *Paxos) WriteS(path string, data string) {
-  px.sm.Write(path, data)
-}
-
-func (px *Paxos) ReadS(path string) (string, bool) {
-  data, err := px.sm.Read(path)
-
-  if err != nil {
-    return "", false
-  }
-
-  return data, true
-}
-
-func (px *Paxos) DeleteS(path string){
-  px.sm.Delete(path)
-}
-
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
   data, _ := json.Marshal(paxo)
   data_str := string(data)
-  px.CreateS(path, data_str)
+  px.sm.Create(path, data_str)
 }
 
 func (px *Paxos) Write(path string, paxo *Paxo) {
   data, _ := json.Marshal(paxo)
   data_str := string(data)
-  px.WriteS(path, data_str)
+  px.sm.Write(path, data_str)
 }
 
 func (px *Paxos) Read(path string) (*Paxo, bool) {
-  data, ok := px.ReadS(path)
+  data, err := px.sm.Read(path)
 
-  if !ok {
-    return nil, ok
+  if err! = nil {
+    return "", false
   }
 
   var paxo Paxo
   json.Unmarshal([]byte(data), &paxo)
-  return &paxo, ok
+  return &paxo, true
 }
 
 func (px *Paxos) Delete(path string){
-  px.DeleteS(path)
+  px.sm.Delete(path)
 }
 //
 // the application wants to know whether this
@@ -647,11 +585,6 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool, use_zookeeper boo
     px.CreateS(px.path, "")
     px.CreateS(px.path + "/max_seq", "-1")
     px.CreateS(px.path + "/store", "")
-    px.CreateS(px.path + "/done", "")
-
-    for _, peer := range px.peers {
-      px.CreateS(px.path + "/done/" + px.Format(peer), "0")
-    }    
   }
 
   if rpcs != nil {
