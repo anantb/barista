@@ -72,8 +72,7 @@ func main() {
   }
 
   // create the table on a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con,
-      "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+  _, err = clerk.ExecuteSQL(group_2, con,"CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -165,11 +164,11 @@ func (ck *Clerk) OpenConnection(
 
   user, password, database := "postgres", "postgres", "postgres"
   con_params := barista.ConnectionParams {
-     ClientId: clientId,
-     SeqId: seqId,
-     User: user,
-     Password: password,
-     Database: database }
+     ClientId: &clientId,
+     SeqId: &seqId,
+     User: &user,
+     Password: &password,
+     Database: &database }
 
   var err error
 
@@ -198,8 +197,8 @@ func (ck *Clerk) ExecuteSQL(
   clientId := strconv.FormatInt(ck.me, 10)
   seqId := strconv.Itoa(ck.curRequest)
 
-  con.ClientId = clientId
-  con.SeqId = seqId
+  con.ClientId = &clientId
+  con.SeqId = &seqId
 
   var err error
   //fmt.Printf("Querying: %v, %v\n", query, addrs)
@@ -230,8 +229,8 @@ func (ck *Clerk) CloseConnection(
   clientId := strconv.FormatInt(ck.me, 10)
   seqId := strconv.Itoa(ck.curRequest)
 
-  con.ClientId = clientId
-  con.SeqId = seqId
+  con.ClientId = &clientId
+  con.SeqId = &seqId
 
   var err error
 
