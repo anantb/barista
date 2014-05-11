@@ -9,7 +9,7 @@ import "testing"
  * @date: 05/11/2014
  */
 
-func TestBasicLeaderModified(t *testing.T) {
+func TestBasic(t *testing.T) {
   servers := "localhost:2181"
   sm := MakeStorageManager()
   sm.Open(servers)
