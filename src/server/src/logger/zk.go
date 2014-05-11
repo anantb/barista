@@ -44,13 +44,18 @@ func (zk *ZK) Write(path string, data string) error {
 
 func (zk *ZK) Read(path string) (string, error) {
   data, _, err := zk.Conn.Get(path)
+
+  if err != nil {
+    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
+  }
+
   return data, err
 }
 
 
 func main() {
   zk, _ := Make()
-  _ = zk.Write("/counter", "000000")
-  data, _ := zk.Read("/counter")
+  _ = zk.Write("/counter2", "000000")
+  data, _ := zk.Read("/counter2")
   fmt.Println(data)
 }
