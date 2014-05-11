@@ -1,8 +1,15 @@
-package main
+package storage
 
 import "fmt"
 import "time"
 import "launchpad.net/gozk/zookeeper"
+
+/**
+ * ZooKeeper Storage Manager
+ *
+ * @author: Anant Bhardwaj
+ * @date: 05/11/2014
+ */
 
 type StorageManager struct {
   conn *zookeeper.Conn
@@ -60,15 +67,4 @@ func (sm *StorageManager) Read(path string) (string, error) {
   }
 
   return data, err
-}
-
-
-func main() {
-  servers := "localhost:2181"
-  sm := MakeStorageManager()
-  sm.Open(servers)
-  defer sm.Close()
-  _ = sm.Write("/counter2", "000000")
-  data, _ := sm.Read("/counter2")
-  fmt.Println(data)
 }
