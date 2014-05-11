@@ -528,14 +528,15 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   defer px.mu.Unlock()
 
   var paxo *Paxo
+  var ok bool
 
   if px.use_zookeeper {
-    paxo, _ = px.Read(px.path + "/store/" + strconv.Itoa(seq))
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
   } else {
-    paxo = px.store[seq]
+    paxo, ok = px.store[seq]
   }
 
-  if seq >= min && paxo != nil && paxo.decided == true {
+  if ok && seq >= min && paxo != nil && paxo.decided == true {
     return true, paxo.v_a
   }
   return false, nil
@@ -571,6 +572,8 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.store = make(map[int]*Paxo)
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
+
+  px.use_zookeeper = true
 
   if px.use_zookeeper {
     px.sm = storage.MakeStorageManager()
