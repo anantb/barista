@@ -3,11 +3,10 @@ abspath=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
 
 basepath=$(cd "$abspath/../../.."; pwd)
 
-cd /project/barista/src/server/src
-sh reset.sh 5432
-sh run.sh
-sudo su postgres
+sh ~/project/barista/src/server/src/reset.sh 5432
+sh ~/project/barista/src/server/src/run.sh
 
+sudo su postgres
 cd
 export PATH=$PATH:/usr/lib/postgresql/9.1/bin
 DBT2PORT=5432; export DBT2PORT
