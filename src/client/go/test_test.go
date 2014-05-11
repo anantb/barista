@@ -80,6 +80,8 @@ func TestBasic(t *testing.T) {
         t.Fatalf("Error nil connection returned by open:", err)
   }
 
+  fmt.Printf("Passed open ...\n")
+  
   _, err = ck.ExecuteSQL(ADDRS_WITH_PORTS, con,
       "DROP TABLE IF EXISTS sqlpaxos_test", nil)
   if err != nil {
@@ -144,13 +146,14 @@ func TestBasic(t *testing.T) {
       }
     }
   }
-
+  fmt.Printf("Passed execute ...\n")
   err = ck.CloseConnection(ADDRS_WITH_PORTS, con)
         if err != nil {
         t.Fatalf("Error closing connection:", err)
   }
-
-  fmt.Printf("  ... Passed\n")
+  fmt.Printf("Passed close ...\n")
+  
+  fmt.Printf("  ... Passed\n")  
 
   fmt.Printf("Test: Concurrent clients ...\n")
 

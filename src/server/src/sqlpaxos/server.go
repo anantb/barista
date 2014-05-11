@@ -696,6 +696,8 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
 
   sp.px = multipaxos.Make(paxos_servers, me, rpcs, unix)
 
+  time.Sleep(500 * time.Millisecond)
+
   var l net.Listener
   var e error
   if unix {
