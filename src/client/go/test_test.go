@@ -29,7 +29,7 @@ func StartServer(sp_ports []string, me int, unreliable bool) (*thrift.TSimpleSer
     return nil, nil
   }
 
-  handler := handler.NewBaristaHandler(ADDRS[:len(sp_ports)], me, PG_PORTS[:len(sp_ports)], sp_ports, true, unreliable)
+  handler := handler.NewBaristaHandler(ADDRS[:len(sp_ports)], me, PG_PORTS[:len(sp_ports)], sp_ports, true, unreliable, false)
   processor := barista.NewBaristaProcessor(handler)
   binary_server := thrift.NewTSimpleServer4(processor, binary_transport, transport_factory, binary_protocol_factory)
 
