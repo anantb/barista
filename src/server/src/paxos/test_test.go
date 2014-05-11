@@ -8,7 +8,7 @@ import "time"
 import "fmt"
 import "math/rand"
 
-var use_zookeeper = false
+var use_zookeeper = true
 
 func port(tag string, host int) string {
   s := "/var/tmp/824-"
