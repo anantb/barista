@@ -5,7 +5,8 @@ import "fmt"
 import "net/rpc"
 import "log"
 import "time"
-import "paxos"
+//import "paxos"
+import paxos "multipaxos"
 import "sync"
 import "reflect"
 import "syscall"
@@ -358,7 +359,13 @@ func (sp *SQLPaxos) fillHoles(next int, seq int) interface{} {
         decided, v_i := sp.px.Status(i)
         if decided {
            // the operation in slot i has been decided
-           v := v_i.(Op)
+           var v Op
+           if v_i != nil{
+            v = v_i.(Op)
+           }else{
+            //just in case agreed on leader change op
+            v = Op{NoOp: true}
+           }
            v.SeqNum = i
            sp.ops[i] = v
            break
