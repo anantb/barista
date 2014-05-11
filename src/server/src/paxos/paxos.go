@@ -37,6 +37,9 @@ import "fmt"
 import "math/rand"
 import "math"
 import "time"
+import "zk"
+import "encoding/json"
+import "strconv"
 
 type Paxo struct {
   n_p int64
@@ -61,6 +64,8 @@ type Paxos struct {
   store map[int]*Paxo
   paxos_lock sync.Mutex
   unix bool
+  path string
+  sm *StorageManager
 }
 
 const (
@@ -406,6 +411,29 @@ func (px *Paxos) Min() int {
   return min
 }
 
+func (px *Paxos) Create(seq int, paxo Paxo) {
+  px.sm.Create(px.path + "/" + strconv.Itoa(seq), string(json.Marshal(paxo)))
+}
+
+func (px *Paxos) Write(seq int, paxo Paxo) {
+  px.sm.Write(px.path + "/" + strconv.Itoa(seq), string(json.Marshal(paxo)))
+}
+
+func (px *Paxos) Read(seq int) Paxo {
+  data, err := px.sm.Read(px.path + "/" + strconv.Itoa(seq))
+
+  if err!= nil {
+    return nil
+  }
+
+  var paxo Paxo
+  paxo := json.Unmarshal(data, &paxo)
+  return paxo
+}
+
+func (px *Paxos) Delete(seq int){
+  px.sm.Delete(px.path + "/" + strconv.Itoa(seq))
+}
 //
 // the application wants to know whether this
 // peer thinks an instance has been decided,
@@ -418,8 +446,10 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   min := px.Min()
   px.mu.Lock()
   defer px.mu.Unlock()
-  if seq >= min && px.store[seq] != nil && px.store[seq].decided == true {
-    return true, px.store[seq].v_a
+  
+  paxo := px.Read(seq)
+  if seq >= min && paxo != nil && paxo.decided == true {
+    return true, paxo.v_a
   }
   return false, nil
 }
@@ -454,6 +484,15 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.store = make(map[int]*Paxo)
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
+
+  px.path = "/paxos/localhost"
+
+  px.sm = MakeStorageManager()
+  px.sm.Open("localhost:2181")
+  defer sm.Close()
+  px.sm.Create("/paxos", "")
+  px.sm.Create(sm.path, "")
+  px.sm.Create(sm.path + "/done", "")
 
   if rpcs != nil {
     // caller will create socket &c
