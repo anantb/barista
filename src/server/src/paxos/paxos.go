@@ -290,9 +290,9 @@ func (px *Paxos) Propose(seq int, v interface{}) {
   var ok bool
 
   if px.use_zookeeper {
-    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
   } else {
-    paxo, ok = px.store[args.Seq]
+    paxo, ok = px.store[seq]
   }
 
   if !ok {
@@ -301,11 +301,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
   }
 
   if px.use_zookeeper {
-    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
+    px.Write(px.path + "/store/" + strconv.Itoa(seq), paxo)
   } else {
-    px.store[args.Seq] = paxo
+    px.store[seq] = paxo
   }
-  
+
   px.mu.Unlock()
   me := px.peers[px.me]
   t_wait := 50 * time.Millisecond
