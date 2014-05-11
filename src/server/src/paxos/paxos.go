@@ -621,7 +621,7 @@ func (px *Paxos) Kill() {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 // @mvartak: port is now included in peer addresses
-func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool, use_zookeeper bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
@@ -634,7 +634,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
 
-  px.use_zookeeper = true
+  px.use_zookeeper = use_zookeeper
 
   if px.use_zookeeper {
     px.sm = storage.MakeStorageManager()

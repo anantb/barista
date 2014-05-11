@@ -18,9 +18,9 @@ type Handler struct {
 }
 
 func NewBaristaHandler(servers []string, me int, pg_ports []string, 
-  sp_ports []string, unix bool, unreliable bool) *Handler {
+  sp_ports []string, unix bool, unreliable bool, use_zookeeper bool) *Handler {
   handler := new(Handler)
-  handler.sqlpaxos = sqlpaxos.StartServer(servers, me, pg_ports, sp_ports, unix, unreliable)
+  handler.sqlpaxos = sqlpaxos.StartServer(servers, me, pg_ports, sp_ports, unix, unreliable, use_zookeeper)
   handler.unix = unix
   return handler
 }

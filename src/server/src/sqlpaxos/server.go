@@ -40,6 +40,7 @@ type SQLPaxos struct {
   me int
   dead bool // for testing
   unreliable bool // for testing
+  use_zookeeper bool
   px *paxos.Paxos
 
   // Your definitions here.
@@ -688,7 +689,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
     }
   }
 
-  sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
+  sp.px = paxos.Make(paxos_servers, me, rpcs, unix, use_zookeeper)
 
   var l net.Listener
   var e error
