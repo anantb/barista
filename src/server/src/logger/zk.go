@@ -52,6 +52,6 @@ func (zk *ZK) Read(key string) (string, error) {
 func main() {
   zk, err := Make()
   zk.Write("K", "V")
-  data, err := zk.Read('K')
+  data, err := zk.Read("K")
   fmt.Println(data)
 }
