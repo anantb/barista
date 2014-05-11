@@ -491,10 +491,10 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
 
   px.sm = storage.MakeStorageManager()
   px.sm.Open("localhost:2181")
-  defer sm.Close()
+  defer px.sm.Close()
   px.sm.Create("/paxos", "")
-  px.sm.Create(sm.path, "")
-  px.sm.Create(sm.path + "/done", "")
+  px.sm.Create(px.path, "")
+  px.sm.Create(px.path + "/done", "")
 
   if rpcs != nil {
     // caller will create socket &c
