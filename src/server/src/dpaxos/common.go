@@ -1,5 +1,10 @@
 package dpaxos
-
+/**
+ * Paxos Library
+ *
+ * @author: David Goehring
+ * @date: 5/11/2014
+ */
 //import "time"
 import "sync"
 
