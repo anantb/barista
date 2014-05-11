@@ -26,11 +26,12 @@ func TestBasicLeaderModified(t *testing.T) {
     t.Fatalf("got=%v wanted=%v", data, "6.824")
   }
 
-  sm.Close(servers)
+  sm.Close()
   sm.Open(servers)
   data, _ := sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
   if data != "6.824" {
     t.Fatalf("got=%v wanted=%v", data, "6.824")
   }
+  sm.Close()
 }
 
