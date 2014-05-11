@@ -7,22 +7,23 @@ type ZK struct {
   Conn *zookeeper.Conn
 }
 
-func Make() *ZK {
+func Make() (*ZK, err) {
   zk := &ZK{}
   conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
-    return
+    return nil, err
   }
-  defer zk.Close()
+  defer conn.Close()
 
   // Wait for connection.
   event := <-session
   if event.State != zookeeper.STATE_CONNECTED {
     fmt.Printf("Can't connect to zookeeper: %v\n", event)
+    return nil, err
   }
   zk.Conn = conn
-  return zk
+  return zk, nil
 }
 
 func (zk *ZK) Write(key string, value string) error {
@@ -49,8 +50,8 @@ func (zk *ZK) Read(key string) (string, error) {
 
 
 func main() {
-  zk := Make()
-  zk.Write('K', 'V')
+  zk, _ := Make()
+  zk.Write("K", "V")
   data, _ := zk.Read('K')
   fmt.Println(data)
 }
