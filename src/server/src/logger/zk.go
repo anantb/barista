@@ -44,7 +44,7 @@ func (zk *ZK) Write(key string, value string) error {
 }
 
 func (zk *ZK) Read(key string) (string, error) {
-  data, stats, err := zk.Conn.Get(key)
+  data, _, err := zk.Conn.Get(key)
   return data, err
 }
 
