@@ -29,7 +29,7 @@ func Make() (*ZK, error) {
 func (zk *ZK) Write(key string, value string) error {
   stats, err := zk.Conn.Exists(key)
   if err != nil {
-      fmt.Println("Error creating or writing to file: %v\n", err)
+      fmt.Printf("Error creating or writing to file: %v\n", err)
       return err
   }
   if stats == nil {
