@@ -8,7 +8,7 @@ type ZK struct {
 }
 
 func Make() *ZK {
-  zk = &ZK{}
+  zk := &ZK{}
   conn, session, err := zookeeper.Dial("localhost:2181", 5e9)
   if err != nil {
     fmt.Printf("Can't connect to zookeeper: %v\n", err)
