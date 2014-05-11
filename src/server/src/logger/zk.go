@@ -26,28 +26,31 @@ func Make() (*ZK, error) {
   return zk, nil
 }
 
-func (zk *ZK) Write(key string, value string) error {
-  stats, err := zk.Conn.Exists(key)
+func (zk *ZK) Write(path string, data string) error {
+  stats, err := zk.Conn.Exists(path)
+  if err != nil {
+    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
+    return err
+  }
+
   if stats == nil {
     _, err = zk.Conn.Create(key, value, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
-    if err != nil {
-      fmt.Printf("Can't create key: %v\n", err)
-      return err
-    }
+  } else {
+    _, err = zk.Conn.Set(path, data, -1)
   }
-  _, err = zk.Conn.Set(key, value, -1)
+
   return err
 }
 
-func (zk *ZK) Read(key string) (string, error) {
-  data, _, err := zk.Conn.Get(key)
+func (zk *ZK) Read(path string) (string, error) {
+  data, _, err := zk.Conn.Get(path)
   return data, err
 }
 
 
 func main() {
   zk, _ := Make()
-  _ = zk.Write("/K", "V")
-  data, _ := zk.Read("/K")
+  _ = zk.Write("/counter", "000000")
+  data, _ := zk.Read("/counter")
   fmt.Println(data)
 }
