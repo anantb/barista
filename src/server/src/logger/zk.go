@@ -39,7 +39,7 @@ func (zk *ZK) Write(key string, value string) error {
       return err
     }
   }
-  stats, err = zk.Conn.Set(key, value, -1)
+  _, err = zk.Conn.Set(key, value, -1)
   return err
 }
 
@@ -50,8 +50,8 @@ func (zk *ZK) Read(key string) (string, error) {
 
 
 func main() {
-  zk, err := Make()
-  zk.Write("K", "V")
-  data, err := zk.Read("K")
+  zk, _ := Make()
+  _ = zk.Write("K", "V")
+  data, _ := zk.Read("K")
   fmt.Println(data)
 }
