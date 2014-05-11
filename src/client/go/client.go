@@ -66,7 +66,7 @@ func main() {
 
   // open connection to a machine in group 1
   con, err = clerk.OpenConnection(group_1)
-  if err != nil || con == nil{
+  if err != nil{
     fmt.Println(err)
     return
   }
