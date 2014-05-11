@@ -394,8 +394,8 @@ func TestPartition(t *testing.T) {
   Get(1, cka, cons, "b", "140")
 
   part(t, tag, nservers, []int{0,1,2,3,4}, []int{}, []int{})
-  for i, con := range cons {
-    Close(i, cka, con)
+  for i, _ := range cons {
+    Close(i, cka, cons)
   }
 
   fmt.Printf("  ... Passed\n")
@@ -431,8 +431,22 @@ func Open2(ck *Clerk) *barista.Connection {
   return con
 }
 
-func Close(idx int, cka [5]*Clerk, con *barista.Connection) {
-  err := cka[idx].CloseConnection([]string{ADDRS_WITH_PORTS[idx]}, con)
+func Close(idx int, cka [5]*Clerk, cons [5]*barista.Connection) {
+  err := cka[idx].CloseConnection([]string{ADDRS_WITH_PORTS[idx]}, cons[idx])
+  if err != nil {
+    fmt.Println("Error closing connection:", err)
+  }
+}
+
+func Close3(idx int, cka [3]*Clerk, cons [3]*barista.Connection) {
+  err := cka[idx].CloseConnection([]string{ADDRS_WITH_PORTS[idx]}, cons[idx])
+  if err != nil {
+    fmt.Println("Error closing connection:", err)
+  }
+}
+
+func Close2(ck *Clerk, con *barista.Connection) {
+  err := ck.CloseConnection(ADDRS_WITH_PORTS, con)
   if err != nil {
     fmt.Println("Error closing connection:", err)
   }
@@ -643,6 +657,7 @@ func TestUnreliable(t *testing.T) {
         time.Sleep(100 * time.Millisecond)
         Get2(myck, con, key, "1000")
         ok = true
+        Close2(myck, con)
       }(cli)
     }
     for cli := 0; cli < ncli; cli++ {
@@ -677,6 +692,7 @@ func TestUnreliable(t *testing.T) {
         } else {
           Get4(myck, con, "b")
         }
+        Close2(myck, con)
       }(cli)
     }
     for cli := 0; cli < ncli; cli++ {
@@ -690,6 +706,11 @@ func TestUnreliable(t *testing.T) {
         t.Fatalf("mismatch; 0 got %v, %v got %v", va[0], i, va[i])
       }
     }
+  }
+
+  Close2(ck, con)
+  for idx, _ := range cons {
+    Close3(idx, cka, cons)
   }
 
   fmt.Printf("  ... Passed\n")
@@ -765,6 +786,9 @@ func TestHole(t *testing.T) {
             }
           }
         }
+        for i := 0; i < nservers; i++ {
+          Close(i, cka, cons)//[]string{port(tag, i)})
+        }
         ok = true
       } (xcli)
     }
@@ -793,6 +817,7 @@ func TestHole(t *testing.T) {
       t.Fatal("something is wrong")
     }
     Get2(ck2, con, "q", "qq")
+    Close2(ck2, con)
   }
 
   fmt.Printf("  ... Passed\n")
@@ -885,6 +910,7 @@ func TestManyPartition(t *testing.T) {
           Get2(myck, con, key, last)
         }
       }
+      Close2(myck, con)
       ok = true
     } (xcli)
   }
@@ -898,6 +924,10 @@ func TestManyPartition(t *testing.T) {
   for i := 0; i < nclients; i++ {
     z := <- ca[i]
     ok = ok && z
+  }
+
+  for i := 0; i < nservers; i++ {
+    Close(i, cka, cons)
   }
 
   if ok {

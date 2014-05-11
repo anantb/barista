@@ -37,12 +37,16 @@ import "fmt"
 import "math/rand"
 import "math"
 import "time"
+import "storage"
+import "encoding/json"
+import "strconv"
+import "strings"
 
 type Paxo struct {
-  n_p int64
-  n_a int64
-  v_a interface{}
-  decided bool
+  N_P int64
+  N_A int64
+  V_A interface{}
+  Decided bool
 }
 
 type Paxos struct {
@@ -61,6 +65,9 @@ type Paxos struct {
   store map[int]*Paxo
   paxos_lock sync.Mutex
   unix bool
+  path string
+  sm *storage.StorageManager
+  use_zookeeper bool
 }
 
 const (
@@ -113,68 +120,114 @@ type DecidedReply struct {
 
 func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
   px.mu.Lock()
-  px.done[args.Me] = args.Done
+  defer px.mu.Unlock()
 
-  paxo, ok := px.store[args.Seq]
-  if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
-    px.store[args.Seq] = paxo
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
+  } else {
+    paxo, ok = px.store[args.Seq]
   }
-  px.mu.Unlock()
+  
+  if !ok {
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
+  }
 
-  if args.N > paxo.n_p {
-    paxo.n_p = args.N
+  if args.N > paxo.N_P {
+    paxo.N_P = args.N
     reply.Status = OK
-    reply.N_A = paxo.n_a
-    reply.Value = paxo.v_a
+    reply.N_A = paxo.N_A
+    reply.Value = paxo.V_A
   } else {
     reply.Status = REJECT
   }
 
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
+    reply.Done, _ = strconv.Atoi(data)
+  } else {
+    px.done[args.Me] = args.Done
+    px.store[args.Seq] = paxo
+    reply.Done = px.done[px.peers[px.me]]
+  }
   return nil
 }
 
 func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
   px.mu.Lock()
-  px.done[args.Me] = args.Done
+  defer px.mu.Unlock()
 
-  paxo, ok := px.store[args.Seq]
-  if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
-    px.store[args.Seq] = paxo
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
+  } else {
+    paxo, ok = px.store[args.Seq]
   }
-  px.mu.Unlock()
+  
+  if !ok {
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
+  }
 
-  if args.N_A >= paxo.n_p {
-    paxo.n_p = args.N_A
-    paxo.n_a = args.N_A
-    paxo.v_a = args.Value
+  if args.N_A >= paxo.N_P {
+    paxo.N_P = args.N_A
+    paxo.N_A = args.N_A
+    paxo.V_A = args.Value
     reply.Status = OK
   } else {
     reply.Status = REJECT
   }
 
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
+    reply.Done, _ = strconv.Atoi(data)
+  } else {
+    px.done[args.Me] = args.Done
+    px.store[args.Seq] = paxo
+    reply.Done = px.done[px.peers[px.me]]
+  }
+
   return nil
 }
 
 func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   px.mu.Lock()
-  px.done[args.Me] = args.Done
+  defer px.mu.Unlock()
 
-  paxo, ok := px.store[args.Seq]
-  if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
-    px.store[args.Seq] = paxo
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(args.Seq))
+  } else {
+    paxo, ok = px.store[args.Seq]
   }
-  px.mu.Unlock()
 
-  paxo.v_a = args.Value
-  paxo.decided = true
+  if !ok {
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
+  }
+
+  paxo.V_A = args.Value
+  paxo.Decided = true
 
   reply.Status = OK
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    px.WriteS(px.path + "/done/" + px.Format(px.peers[px.me]), strconv.Itoa(args.Done))
+    px.Write(px.path + "/store/" + strconv.Itoa(args.Seq), paxo)
+    data, _ := px.ReadS(px.path + "/done/" + px.Format(px.peers[px.me]))
+    reply.Done, _ = strconv.Atoi(data)
+  } else {
+    px.done[args.Me] = args.Done
+    px.store[args.Seq] = paxo
+    reply.Done = px.done[px.peers[px.me]]
+  }
   return nil
 }
 
@@ -229,19 +282,44 @@ func (px *Paxos) generate_id() int64 {
 func (px *Paxos) Propose(seq int, v interface{}) {
   // Your code here.
   px.mu.Lock()
-  if seq > px.max_seq {
-    px.max_seq = seq
+  if px.use_zookeeper {
+    data, _ := px.ReadS(px.path + "/max_seq")
+    max_seq, _ := strconv.Atoi(data)
+    if seq > max_seq {
+      px.WriteS(px.path + "/max_seq", strconv.Itoa(seq))
+      px.max_seq = seq
+    }
+  } else {
+    if seq > px.max_seq {
+      px.max_seq = seq
+    }
+  }
+  
+
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
+  } else {
+    paxo, ok = px.store[seq]
   }
 
-  paxo, ok := px.store[seq]
   if !ok {
-    paxo = &Paxo{n_p: -1, n_a: -1, v_a: nil, decided: false}
+    paxo = &Paxo{N_P: -1, N_A: -1, V_A: nil, Decided: false}
     px.store[seq] = paxo
   }
+
+  if px.use_zookeeper {
+    px.Write(px.path + "/store/" + strconv.Itoa(seq), paxo)
+  } else {
+    px.store[seq] = paxo
+  }
+
   px.mu.Unlock()
   me := px.peers[px.me]
   t_wait := 50 * time.Millisecond
-  for px.dead == false && paxo.decided == false {
+  for px.dead == false && paxo.Decided == false {
     n := px.generate_id()
     highest_n_a := int64(-1)
     highest_v_a := v
@@ -263,7 +341,12 @@ func (px *Paxos) Propose(seq int, v interface{}) {
           highest_n_a = prepare_reply.N_A
           highest_v_a = prepare_reply.Value
         }
+        if px.use_zookeeper {
+          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(prepare_reply.Done))
+        }
+        
         px.done[peer] = prepare_reply.Done
+        
       }
     }
 
@@ -287,7 +370,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
       }
       if accept_reply.Status == OK {
         accept_ok_count += 1
-        px.done[peer] = accept_reply.Done
+        if px.use_zookeeper {
+          px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(accept_reply.Done))
+        }
+        
+        px.done[peer] = accept_reply.Done 
       }
     }
 
@@ -304,8 +391,12 @@ func (px *Paxos) Propose(seq int, v interface{}) {
         call(peer, "Paxos.Decided", &decided_args, &decided_reply, px.unix)
       } else {
         px.Decided(&decided_args, &decided_reply)
-      }   
-      px.done[peer] = decided_reply.Done      
+      }
+      if px.use_zookeeper {
+        px.WriteS(px.path + "/done/" + px.Format(peer), strconv.Itoa(decided_reply.Done))
+      }
+      
+      px.done[peer] = decided_reply.Done          
     }
 
   }
@@ -314,7 +405,11 @@ func (px *Paxos) Propose(seq int, v interface{}) {
 func (px *Paxos) ClearMemory(seq int) {
   for k, _ := range(px.store) {
     if k < seq {
-      delete(px.store, k)
+      if px.use_zookeeper {
+        px.Delete(px.path + "/store/" + strconv.Itoa(seq))
+      } else {
+        delete(px.store, k)
+      }
     }
   }
 }
@@ -344,8 +439,25 @@ func (px *Paxos) Done(seq int) {
   px.mu.Lock()
   defer px.mu.Unlock()
   peer := px.peers[px.me]
-  if px.done[peer] < seq {
-    px.done[peer] = seq
+
+  sq_done := 0
+
+  if px.use_zookeeper {
+    data, ok := px.ReadS(px.path + "/done/" + peer)
+    if ok {
+      sq_done, _ = strconv.Atoi(data)
+      px.done[peer] = sq_done
+    }
+  } else {
+    sq_done = px.done[peer]
+  }
+  if sq_done < seq {
+    if px.use_zookeeper {
+      px.WriteS(px.path + "/done/" + peer, strconv.Itoa(seq))
+      px.done[peer] = seq
+    }else {
+      px.done[peer] = seq
+    }
   }
 }
 
@@ -406,9 +518,63 @@ func (px *Paxos) Min() int {
   return min
 }
 
+func (px *Paxos) Format(path string) string {
+  return strings.Replace(path, "/", "_", -1)
+}
+
+func (px *Paxos) CreateS(path string, data string) {
+  px.sm.Create(path, data)
+}
+
+func (px *Paxos) WriteS(path string, data string) {
+  px.sm.Write(path, data)
+}
+
+func (px *Paxos) ReadS(path string) (string, bool) {
+  data, err := px.sm.Read(path)
+
+  if err != nil {
+    return "", false
+  }
+
+  return data, true
+}
+
+func (px *Paxos) DeleteS(path string){
+  px.sm.Delete(path)
+}
+
+
+func (px *Paxos) Create(path string, paxo *Paxo) {
+  data, _ := json.Marshal(paxo)
+  data_str := string(data)
+  px.CreateS(path, data_str)
+}
+
+func (px *Paxos) Write(path string, paxo *Paxo) {
+  data, _ := json.Marshal(paxo)
+  data_str := string(data)
+  px.WriteS(path, data_str)
+}
+
+func (px *Paxos) Read(path string) (*Paxo, bool) {
+  data, ok := px.ReadS(path)
+
+  if !ok {
+    return nil, ok
+  }
+
+  var paxo Paxo
+  json.Unmarshal([]byte(data), &paxo)
+  return &paxo, ok
+}
+
+func (px *Paxos) Delete(path string){
+  px.DeleteS(path)
+}
 //
 // the application wants to know whether this
-// peer thinks an instance has been decided,
+// peer thinks an instance has been Decided,
 // and if so what the agreed value is. Status()
 // should just inspect the local peer state;
 // it should not contact other Paxos peers.
@@ -418,8 +584,18 @@ func (px *Paxos) Status(seq int) (bool, interface{}) {
   min := px.Min()
   px.mu.Lock()
   defer px.mu.Unlock()
-  if seq >= min && px.store[seq] != nil && px.store[seq].decided == true {
-    return true, px.store[seq].v_a
+
+  var paxo *Paxo
+  var ok bool
+
+  if px.use_zookeeper {
+    paxo, ok = px.Read(px.path + "/store/" + strconv.Itoa(seq))
+  } else {
+    paxo, ok = px.store[seq]
+  }
+
+  if ok && seq >= min && paxo != nil && paxo.Decided == true {
+    return true, paxo.V_A
   }
   return false, nil
 }
@@ -435,6 +611,9 @@ func (px *Paxos) Kill() {
   if px.l != nil {
     px.l.Close()
   }
+  if px.use_zookeeper && px.sm != nil {
+    px.sm.Close()
+  }
 }
 
 //
@@ -442,7 +621,7 @@ func (px *Paxos) Kill() {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 // @mvartak: port is now included in peer addresses
-func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool, use_zookeeper bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
@@ -454,6 +633,24 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.store = make(map[int]*Paxo)
   px.done = make(map[string]int)
   px.done[peers[me]] = -1
+
+  px.use_zookeeper = use_zookeeper
+
+  if px.use_zookeeper {
+    px.sm = storage.MakeStorageManager()
+    px.sm.Open("localhost:2181")
+
+    px.CreateS("/paxos", "")
+    px.path = "/paxos/" + px.Format(px.peers[px.me])
+    px.CreateS(px.path, "")
+    px.CreateS(px.path + "/max_seq", "-1")
+    px.CreateS(px.path + "/store", "")
+    px.CreateS(px.path + "/done", "")
+
+    for _, peer := range px.peers {
+      px.CreateS(px.path + "/done/" + px.Format(peer), "0")
+    }    
+  }
 
   if rpcs != nil {
     // caller will create socket &c

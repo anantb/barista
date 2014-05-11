@@ -8,6 +8,8 @@ import "time"
 import "fmt"
 import "math/rand"
 
+var use_zookeeper = false
+
 func port(tag string, host int) string {
   s := "/var/tmp/824-"
   s += strconv.Itoa(os.Getuid()) + "/"
@@ -87,7 +89,7 @@ func noTestSpeed(t *testing.T) {
     pxh[i] = port("time", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   t0 := time.Now()
@@ -113,7 +115,7 @@ func TestBasic(t *testing.T) {
     pxh[i] = port("basic", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   fmt.Printf("Test: Single proposer ...\n")
@@ -173,7 +175,7 @@ func TestDeaf(t *testing.T) {
     pxh[i] = port("deaf", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   fmt.Printf("Test: Deaf proposer ...\n")
@@ -216,7 +218,7 @@ func TestForget(t *testing.T) {
     pxh[i] = port("gc", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   fmt.Printf("Test: Forgetting ...\n")
@@ -299,7 +301,7 @@ func TestManyForget(t *testing.T) {
     pxh[i] = port("manygc", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
     pxa[i].unreliable = true
   }
 
@@ -355,10 +357,15 @@ func TestManyForget(t *testing.T) {
 //
 // does paxos forgetting actually free the memory?
 //
+
 func TestForgetMem(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
   fmt.Printf("Test: Paxos frees forgotten instance memory ...\n")
+  if use_zookeeper {
+    fmt.Printf("  ... Ignore this test because Zookeeper is enabled\n")
+    return
+  }
 
   const npaxos = 3
   var pxa []*Paxos = make([]*Paxos, npaxos)
@@ -369,7 +376,7 @@ func TestForgetMem(t *testing.T) {
     pxh[i] = port("gcmem", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   pxa[0].Start(0, "x")
@@ -433,7 +440,7 @@ func TestRPCCount(t *testing.T) {
     pxh[i] = port("count", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
   ninst1 := 5
@@ -508,7 +515,7 @@ func TestMany(t *testing.T) {
     pxh[i] = port("many", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
     pxa[i].Start(0, 0)
   }
 
@@ -558,20 +565,20 @@ func TestOld(t *testing.T) {
     pxh[i] = port("old", i)
   }
 
-  pxa[1] = Make(pxh, 1, nil)
-  pxa[2] = Make(pxh, 2, nil)
-  pxa[3] = Make(pxh, 3, nil)
+  pxa[1] = Make(pxh, 1, nil, true, use_zookeeper)
+  pxa[2] = Make(pxh, 2, nil, true, use_zookeeper)
+  pxa[3] = Make(pxh, 3, nil, true, use_zookeeper)
   pxa[1].Start(1, 111)
 
   waitmajority(t, pxa, 1)
 
-  pxa[0] = Make(pxh, 0, nil)
+  pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
   pxa[0].Start(1, 222)
 
   waitn(t, pxa, 1, 4)
 
   if false {
-    pxa[4] = Make(pxh, 4, nil)
+    pxa[4] = Make(pxh, 4, nil, true, use_zookeeper)
     waitn(t, pxa, 1, npaxos)
   }
 
@@ -596,7 +603,7 @@ func TestManyUnreliable(t *testing.T) {
     pxh[i] = port("manyun", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
     pxa[i].unreliable = true
     pxa[i].Start(0, 0)
   }
@@ -691,7 +698,7 @@ func TestPartition(t *testing.T) {
         pxh[j] = pp(tag, i, j)
       }
     }
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
   defer part(t, tag, npaxos, []int{}, []int{}, []int{})
 
@@ -793,7 +800,7 @@ func TestLots(t *testing.T) {
         pxh[j] = pp(tag, i, j)
       }
     }
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
     pxa[i].unreliable = true
   }
   defer part(t, tag, npaxos, []int{}, []int{}, []int{})

@@ -1,5 +1,10 @@
 package dpaxos
-
+/**
+ * Paxos Library
+ *
+ * @author: David Goehring
+ * @date: 5/11/2014
+ */
 //
 // Paxos library, to be included in an application.
 // Multiple applications will run, each including
@@ -29,6 +34,7 @@ import "sync"
 import "fmt"
 import "math/rand"
 import "math"
+import "storage"
 //import "strconv"
 import "time"
 import "runtime"
@@ -40,7 +46,12 @@ func pd(arg string){
     log.Printf(arg)
   }
 }
-
+type Paxo struct {
+  N_P int64
+  N_A int64
+  V_A interface{}
+  Decided bool
+}
 //main Paxos Data Structure
 type Paxos struct {
   mu sync.Mutex
@@ -84,6 +95,10 @@ type Paxos struct {
   tentative map[int]interface{}
 
   unix bool
+  
+  sm *storage.StorageManager
+  
+  use_zookeeper bool
 }
 //***********************************************************************************************************************************//
 //Notes
@@ -841,7 +856,9 @@ func call(srv string, name string, args interface{}, reply interface{}, unix boo
 func (px *Paxos) Start(seq int, v interface{}) {
   px.mu.Lock()
   defer px.mu.Unlock()
-  go px.propose(seq,v,px.peers)
+  if seq >= px.Min() {
+    go px.propose(seq,v,px.peers)
+  }
 }
 
 //
@@ -952,7 +969,7 @@ func (px *Paxos) SetUnreliable(unreliable bool) {
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 //
-func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool,use_zookeeper bool) *Paxos {
   px := &Paxos{}
   px.peers = peers
   px.me = me
@@ -971,6 +988,8 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
   px.leader = ""
   px.leaderproposalnum = px.GetPaxosProposalNum()
   px.unix = unix
+  px.use_zookeeper = use_zookeeper
+  px.sm = storage.MakeStorageManager()
   //init peers map with maxDone values,
   //-1 represents we haven't heard from that peer
   for _,val := range px.peers{

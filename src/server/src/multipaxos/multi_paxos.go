@@ -1,5 +1,10 @@
 package multipaxos
-
+/**
+ * Multi-Paxos Library
+ *
+ * @author: David Goehring
+ * @date: 5/11/2014
+ */
 import "dpaxos"
 import "net"
 import "net/rpc"
@@ -30,6 +35,7 @@ type MultiPaxos struct{
   transition bool
   results map[int]*MultiPaxosOP
   unix bool
+  use_zookeeper bool
 }
 func (mpx *MultiPaxos) isLeaderAndValid() bool{
   mpx.mu.Lock()
@@ -651,7 +657,7 @@ func (mpx *MultiPaxos) GetRPCCount() int{
 // the ports of all the paxos peers (including this one)
 // are in peers[]. this servers port is peers[me].
 //
-func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *MultiPaxos {
+func Make(peers []string, me int, rpcs *rpc.Server, unix bool, use_zookeeper bool) *MultiPaxos {
   gob.Register(MultiPaxosOP{})
   gob.Register(PingArgs{})
   gob.Register(PingReply{})
@@ -666,13 +672,14 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *MultiPaxos {
   mpx.transition = false
   mpx.results = make(map[int]*MultiPaxosOP)
   mpx.unix = unix
+  mpx.use_zookeeper = use_zookeeper
   if rpcs != nil {
     // caller will create socket &c
-    mpx.px = dpaxos.Make(peers,me,rpcs,unix)
+    mpx.px = dpaxos.Make(peers,me,rpcs,unix,use_zookeeper)
     rpcs.Register(mpx)
   } else {
     rpcs = rpc.NewServer()
-    mpx.px = dpaxos.Make(peers,me,rpcs,unix)
+    mpx.px = dpaxos.Make(peers,me,rpcs,unix,use_zookeeper)
     rpcs.Register(mpx)
     var l net.Listener
     var e error
