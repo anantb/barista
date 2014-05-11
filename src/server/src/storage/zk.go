@@ -76,9 +76,10 @@ func (sm *StorageManager) Write(path string, data string) error {
     err_create := sm.Create(path, data)
     if err_create != nil {
       fmt.Printf("Error writing to node (%v): %v\n", path, err)
-      return err
+      return err_create
     }
   }
+  return err
 }
 
 func (sm *StorageManager) Read(path string) (string, error) {
