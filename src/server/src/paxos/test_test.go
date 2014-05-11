@@ -355,6 +355,7 @@ func TestManyForget(t *testing.T) {
 //
 // does paxos forgetting actually free the memory?
 //
+
 func TestForgetMem(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
@@ -373,6 +374,10 @@ func TestForgetMem(t *testing.T) {
   }
 
   pxa[0].Start(0, "x")
+  if pxa[0].use_zookeeper {
+    fmt.Printf("  ... Ignore for Zookeeper case\n")
+    return
+  }
   waitn(t, pxa, 0, npaxos)
 
   runtime.GC()

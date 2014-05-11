@@ -544,17 +544,13 @@ func (px *Paxos) DeleteS(path string){
 
 func (px *Paxos) Create(path string, paxo *Paxo) {
   data, err := json.Marshal(paxo)
-  fmt.Printf("Error %v\n", err)
   data_str := string(data)
-  fmt.Printf("create path: %v, pax: %v, data: %v, data_str: %v\n", path, paxo, data, data_str)
   px.CreateS(path, data_str)
 }
 
 func (px *Paxos) Write(path string, paxo *Paxo) {
   data, err := json.Marshal(paxo)
-  fmt.Printf("Error %v\n", err)
   data_str := string(data)
-  fmt.Printf("write path: %v, pax: %v, data: %v, data_str: %v\n", path, paxo, data, data_str)
   px.WriteS(path, data_str)
 }
 
