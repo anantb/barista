@@ -282,9 +282,18 @@ func (px *Paxos) generate_id() int64 {
 func (px *Paxos) Propose(seq int, v interface{}) {
   // Your code here.
   px.mu.Lock()
-  if seq > px.max_seq {
-    px.max_seq = seq
+  if px.use_zookeeper {
+    max_seq := strconv.Itoa(px.ReadS(px.path + "/max_seq"))
+    if seq > max_seq {
+      px.WriteS(px.path + "/max_seq", strconv.Itoa(seq))
+      px.max_seq = seq
+    }
+  } else {
+    if seq > px.max_seq {
+      px.max_seq = seq
+    }
   }
+  
 
   var paxo *Paxo
   var ok bool
@@ -634,6 +643,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
     px.CreateS("/paxos", "")
     px.path = "/paxos/" + px.Format(px.peers[px.me])
     px.CreateS(px.path, "")
+    px.CreateS(px.path + "/max_seq", "-1")
     px.CreateS(px.path + "/store", "")
     px.CreateS(px.path + "/done", "")
 
