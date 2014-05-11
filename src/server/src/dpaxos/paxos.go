@@ -266,6 +266,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
 
   //ensure we have at least one peer
   if len(peers) == 0{
+    log.Println("len peers 0")
     px.mu.Unlock()
     return
   }
@@ -306,10 +307,10 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   for !done && px.dead == false{
     backOff = 10*time.Millisecond
     time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
-    //log.Printf("NormalPropose: before prepare")
+    log.Printf("NormalPropose: before prepare")
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)
-    //log.Printf("NormalPropose: after prepare")
+    log.Printf("NormalPropose: after prepare")
     //log.Printf("NormalPropose: after prepare")
     //if the prepare phase failed we cannot proceed, so skip the rest of
     //the loop and try again
@@ -325,11 +326,11 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
       }
       continue
     }
-    //log.Printf("NormalPropose: before accept")
+    log.Printf("NormalPropose: before accept")
     //ACCEPT phase
     accepted,_,error := px.ProposerAccept(seq,value,proposal,peers)
 
-    //log.Printf("NormalPropose: after accept")
+    log.Printf("NormalPropose: after accept")
     //log.Printf("NormalPropose: after accept")
     //if the accept phase failed we cannot proceed, so skip the rest of
     //the loop and try again
@@ -345,12 +346,12 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
       }
       continue
     }
-    //log.Printf("NormalPropose: before notify")
+    log.Printf("NormalPropose: before notify")
     //backOff = 10*time.Millisecond
     //LEARN phase
     px.ProposeNotify(seq, value)
     done=true
-    //log.Printf("NormalPropose: after notify")
+    log.Printf("NormalPropose: after notify")
     break
   }
   //log.Printf("NormalPropose: prepare succeeded")
@@ -735,6 +736,7 @@ func (px *Paxos) setMin(){
   if min != -1 && min>=px.minSeq{
     px.minSeq = min
   }
+  log.Printf("min is %v",px.peersMap)
 }
 //frees space based on the minSeq( Min() value)
 func (px *Paxos) cleanUp(){
@@ -839,9 +841,7 @@ func call(srv string, name string, args interface{}, reply interface{}, unix boo
 func (px *Paxos) Start(seq int, v interface{}) {
   px.mu.Lock()
   defer px.mu.Unlock()
-  if seq >= px.minSeq{
-    go px.propose(seq,v,px.peers)
-  }
+  go px.propose(seq,v,px.peers)
 }
 
 //
@@ -960,6 +960,7 @@ func Make(peers []string, me int, rpcs *rpc.Server, unix bool) *Paxos {
 
   // Your initialization code here.
   px.maxSeq = 0
+  px.highestDone = -1
   px.minSeq = -1
   px.log = make(map[int]interface{})
   px.tentative = make(map[int]interface{})

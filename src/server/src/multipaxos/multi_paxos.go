@@ -272,11 +272,13 @@ func (mpx *MultiPaxos) startPaxosAgreementAndWait(mop MultiPaxosOP){
         case LCHANGE:
           lc := mAgreedOp.Op.(MultiPaxosLeaderChange)
           if lc.NewEpoch >= ilc.NewEpoch{
+            mpx.Log(1,"PAAW: stop, found log element "+strconv.Itoa(instanceNum))
             return 
           }
       }
     }
     if mpx.leader.epoch >= ilc.NewEpoch{
+      mpx.Log(1,"PAAW: stop, current leader"+strconv.Itoa(instanceNum))
       return 
     } 
   }
@@ -331,6 +333,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
     return
   }
   if mop.Epoch != mpx.leader.epoch{
+    mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found OLD leader op epoch "+strconv.Itoa(mop.Epoch))
     mpx.px.DeleteFromLog(executionPointer)
     mpx.executionPointer--
     return
@@ -359,6 +362,7 @@ func (mpx *MultiPaxos) commitAndLogInstance(executionPointer int, val interface{
         mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  new leader"+mpx.peers[mplc.ID])
         mpx.results[executionPointer] = &mop
       }else{
+        mpx.Log(1,"Commit and Log: "+strconv.Itoa(executionPointer)+"  found invalid leader op epoch "+strconv.Itoa(mop.Epoch))
         mpx.executionPointer--
       }
   }
