@@ -27,16 +27,16 @@ func Make() (*ZK, error) {
 }
 
 func (zk *ZK) Write(path string, data string) error {
-  stats, err := zk.Conn.Exists(path)
-  if err != nil {
-    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
-    return err
-  }
-
+  stats, _ := zk.Conn.Exists(path)
+  var err error
   if stats == nil {
     _, err = zk.Conn.Create(path, data, 0, zookeeper.WorldACL(zookeeper.PERM_ALL))
   } else {
     _, err = zk.Conn.Set(path, data, -1)
+  }
+
+  if err != nil {
+    fmt.Printf("Error creating or writing to path (%v): %v\n", path, err)
   }
 
   return err
