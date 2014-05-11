@@ -283,7 +283,7 @@ func (px *Paxos) Propose(seq int, v interface{}) {
   // Your code here.
   px.mu.Lock()
   if px.use_zookeeper {
-    max_seq := strconv.Itoa(px.ReadS(px.path + "/max_seq"))
+    max_seq := strconv.Atoi(px.ReadS(px.path + "/max_seq"))
     if seq > max_seq {
       px.WriteS(px.path + "/max_seq", strconv.Itoa(seq))
       px.max_seq = seq
