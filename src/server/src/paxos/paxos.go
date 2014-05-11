@@ -137,7 +137,12 @@ func (px *Paxos) Prepare(args *PrepareArgs, reply *PrepareReply) error {
     reply.Status = REJECT
   }
 
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
+    reply.Done = trconv.Atoi(data)
+  } else {
+    reply.Done = px.done[px.peers[px.me]]
+  }
   return nil
 }
 
@@ -161,7 +166,13 @@ func (px *Paxos) Accept(args *AcceptArgs, reply *AcceptReply) error {
     reply.Status = REJECT
   }
 
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
+    reply.Done = trconv.Atoi(data)
+  } else {
+    reply.Done = px.done[px.peers[px.me]]
+  }
+
   return nil
 }
 
@@ -180,7 +191,12 @@ func (px *Paxos) Decided(args *DecidedArgs, reply *DecidedReply) error {
   paxo.decided = true
 
   reply.Status = OK
-  reply.Done = px.done[px.peers[px.me]]
+  if px.use_zookeeper {
+    data, _ := px.sm.Read(px.path + "/done/" + px.peers[px.me])
+    reply.Done = trconv.Atoi(data)
+  } else {
+    reply.Done = px.done[px.peers[px.me]]
+  }
   return nil
 }
 
