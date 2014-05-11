@@ -428,8 +428,7 @@ func (px *Paxos) Read(seq int) *Paxo {
     return nil
   }
 
-  var paxo Paxo
-  paxo := json.Unmarshal(data, paxo)
+  paxo := json.Unmarshal([]byte(data), paxo)
   return &paxo
 }
 
