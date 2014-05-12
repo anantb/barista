@@ -108,11 +108,11 @@ func TestSafety(t *testing.T) {
 
   const npaxos = 2
   var pxa []*Paxos = make([]*Paxos, npaxos)
-  var pxh []interface{} = make([]interface{}, npaxos)
+  var pxh []string = make([]int, npaxos)
   defer cleanup(pxa)
 
-  var v0_decided []int = make([]int, npaxos)
-  var v1_decided []int = make([]int, npaxos)
+  var v0_decided []interface{} = make([]interface{}, npaxos)
+  var v1_decided []interface{} = make([]interface{}, npaxos)
 
   for i := 0; i < npaxos; i++ {
     pxh[i] = port("safety", i)
