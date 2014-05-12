@@ -141,6 +141,15 @@ func TestSafety(t *testing.T) {
   for i := 0; i < npaxos; i++ {
     _, v0 := pxa[i].Status(0)
     _, v1 := pxa[i].Status(1)
+
+    if v0 != v0_decided[i] {
+      t.Fatalf("wrong recovery: expected %v; got %v", v0_decided[i], v0)
+    }
+
+    if v1 != v1_decided[i] {
+      t.Fatalf("wrong recovery: expected %v; got %v", v1_decided[i], v1)
+    }
+    
   } 
   
 
