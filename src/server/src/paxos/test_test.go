@@ -125,6 +125,7 @@ func TestSafety(t *testing.T) {
   pxa[1].Start(1, 101)
   pxa[2].Start(2, 102)
   pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
+  pxa[0].Start(0, 100)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
   waitn(t, pxa, 2, npaxos)
