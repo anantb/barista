@@ -120,9 +120,9 @@ func TestSafety(t *testing.T) {
 
   fmt.Printf("Test: Safety ...\n")
 
-  pxa[0].Start(1, 100)
-  pxa[1].Start(2, 101)
-  pxa[2].Start(3, 102)
+  pxa[0].Start(0, 100)
+  pxa[1].Start(1, 101)
+  pxa[2].Start(2, 102)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
   waitn(t, pxa, 2, npaxos)
