@@ -108,7 +108,7 @@ func TestSafety(t *testing.T) {
 
   const npaxos = 2
   var pxa []*Paxos = make([]*Paxos, npaxos)
-  var pxh []string = make([]int, npaxos)
+  var pxh []string = make([]string, npaxos)
   defer cleanup(pxa)
 
   var v0_decided []interface{} = make([]interface{}, npaxos)
