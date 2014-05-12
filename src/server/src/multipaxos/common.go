@@ -18,7 +18,7 @@ const(
 	MAX_RETRY = 10
 	DEBUG = -1000
 	NPINGS = 5
-	PINGINTERVAL = 100*time.Millisecond
+	PINGINTERVAL = 5000*time.Millisecond
 	PINGWAIT = NPINGS*PINGINTERVAL
 	//op types
 	LCHANGE = "LCHANGE"
