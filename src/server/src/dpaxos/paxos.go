@@ -569,11 +569,16 @@ func (px *Paxos) ProposeNotify(seq int, value interface{}){
     teachArgs.ServerName = px.getServerName()
 
     //notify all of decision
-    for _,server := range px.peers{
+    /*for _,server := range px.peers{
       if px.isMe(server){
         px.Teach(teachArgs,teachReply)
       }else{
         call(server,"Paxos.Teach",teachArgs,teachReply,px.unix)
+      }
+    }*/
+    for _,server := range px.peers{
+      if px.isMe(server){
+        px.Teach(teachArgs,teachReply)
       }
     }
 }
