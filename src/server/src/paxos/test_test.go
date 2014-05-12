@@ -129,8 +129,8 @@ func TestSafety(t *testing.T) {
   waitn(t, pxa, 1, npaxos)
 
   for i := 0; i < npaxos; i++ {
-    _, v0_decided[i] = pxa[i].Status(0).(int)
-    _, v1_decided[i] = pxa[i].Status(1).(int)
+    _, v0_decided[i] = pxa[i].Status(0)
+    _, v1_decided[i] = pxa[i].Status(1)
   }
 
   pxa[0].Kill()
@@ -139,8 +139,8 @@ func TestSafety(t *testing.T) {
   pxa[1] = Make(pxh, 0, nil, true, use_zookeeper)  
 
   for i := 0; i < npaxos; i++ {
-    _, v0 := pxa[i].Status(0).(int)
-    _, v1 := pxa[i].Status(1).(int)
+    _, v0 := pxa[i].Status(0)
+    _, v1 := pxa[i].Status(1)
   } 
   
 
