@@ -126,7 +126,10 @@ func TestSafety(t *testing.T) {
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
   waitn(t, pxa, 2, npaxos)
-  
+  for i := 0; i < len(pxa); i++ {    
+    decided, v1 := pxa[i].Status(0)
+    fmt.Println(decided, v1)      
+  }
 
   fmt.Printf("  ... Passed\n")
 }
