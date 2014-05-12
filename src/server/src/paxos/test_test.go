@@ -121,15 +121,19 @@ func TestSafety(t *testing.T) {
   fmt.Printf("Test: Safety ...\n")
 
   pxa[0].Start(0, 100)
-  pxa[0].Kill()
   pxa[1].Start(1, 101)
-  pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
-  pxa[0].Start(0, 105)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
+  pxa[0].Kill()
+  pxa[1].Kil()
+  pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
+  pxa[1] = Make(pxh, 0, nil, true, use_zookeeper)  
      
   decided, v1 := pxa[0].Status(0)
   fmt.Println(decided, v1) 
+
+  decided, v1 := pxa[0].Status(0)
+  fmt.Println(decided, v1)
 
   if !decided {
     t.Fatalf("Failed: not decided")
