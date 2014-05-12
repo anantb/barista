@@ -121,17 +121,12 @@ func TestSafety(t *testing.T) {
   fmt.Printf("Test: Safety ...\n")
 
   pxa[0].Start(1, 100)
-  pxa[0].Kill()
   pxa[1].Start(2, 101)
   pxa[2].Start(3, 102)
-  pxa[0].Start(1, 103)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
   waitn(t, pxa, 2, npaxos)
-  for i := 0; i < len(pxa); i++ {    
-    decided, v1 := pxa[i].Status(0)
-    fmt.Println(decided, v1)      
-  }
+  
 
   fmt.Printf("  ... Passed\n")
 }
