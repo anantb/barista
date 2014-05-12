@@ -111,6 +111,9 @@ func TestSafety(t *testing.T) {
   var pxh []string = make([]string, npaxos)
   defer cleanup(pxa)
 
+  var v0_decided []int = make([]int, npaxos)
+  var v1_decided []int = make([]int, npaxos)
+
   for i := 0; i < npaxos; i++ {
     pxh[i] = port("safety", i)
   }
@@ -124,20 +127,21 @@ func TestSafety(t *testing.T) {
   pxa[1].Start(1, 101)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
+
+  for i := 0; i < npaxos; i++ {
+    _, v0_decided[i] = pxa[i].Status(0).(int)
+    _, v1_decided[i] = pxa[i].Status(1).(int)
+  }
+
   pxa[0].Kill()
-  pxa[1].Kil()
+  pxa[1].Kill()
   pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
   pxa[1] = Make(pxh, 0, nil, true, use_zookeeper)  
-     
-  decided, v1 := pxa[0].Status(0)
-  fmt.Println(decided, v1) 
 
-  decided, v1 := pxa[0].Status(0)
-  fmt.Println(decided, v1)
-
-  if !decided {
-    t.Fatalf("Failed: not decided")
-  }     
+  for i := 0; i < npaxos; i++ {
+    _, v0 := pxa[i].Status(0).(int)
+    _, v1 := pxa[i].Status(1).(int)
+  } 
   
 
   fmt.Printf("  ... Passed\n")
