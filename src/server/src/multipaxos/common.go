@@ -17,8 +17,8 @@ import "time"
 const(
 	MAX_RETRY = 10
 	DEBUG = -1000
-	NPINGS = 10
-	PINGINTERVAL = 500*time.Millisecond
+	NPINGS = 5
+	PINGINTERVAL = 100*time.Millisecond
 	PINGWAIT = NPINGS*PINGINTERVAL
 	//op types
 	LCHANGE = "LCHANGE"

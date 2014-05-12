@@ -1,0 +1,2200 @@
+Test: No decision if partitioned (no leader)...
+  ... Passed
+Test: Decision in majority partition with leader...
+  ... Passed
+Test: All agree after full heal ...
+  ... Passed
+Test: Leader switches partitions (should not bounce on old leader), new leader elected, repeat ...
+Phase 1 out of 5 passed... 
+Phase 2 out of 5 passed... 
+Phase 3 out of 5 passed... 
+Phase 4 out of 5 passed... 
+Phase 5 out of 5 passed... 
+  ... Passed
+Test: One peer switches partitions, unreliable ...
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+connection is shut down
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-10unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-parunexpected EOF
+read unix /var/read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-1: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connectionunexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-1: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+connection is shut down
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+connection is shut down
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+connection is shut down
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-1: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+read unix /var/unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+connection is shut down
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-1: broken pipe
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+connection is shut down
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+connection is shut down
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+connection is shut down
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/write unix /var/tmp/824-1000/px-30018-partitionunreliable-1: broken pipe
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-3: broken pipe
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-0: broken pipe
+connection is shut down
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-3: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+write unix /var/tmp/824-1000/px-30018-partitionunreliable-2: broken pipe
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-0: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-4: connection reset by peer
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+connection is shut down
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-1: connection reset by peer
+unexpected EOF
+unexpected EOF
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+read unix /var/tmp/824-1000/px-30018-partitionunreliable-2: connection reset by peer
+  ... Passed
+PASS
+ok  	multipaxos	40.441s
