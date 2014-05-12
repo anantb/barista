@@ -265,7 +265,7 @@ func (px *Paxos) FastPropose(seq int, v interface{}, peers []string, failCallbac
         failCallback(proposal.Epoch)
         return
       }
-      time.Sleep(50*time.Millisecond)
+      time.Sleep(20*time.Millisecond)
       continue
     }
     //LEARN phase
@@ -327,8 +327,7 @@ func (px *Paxos) propose(seq int, v interface{}, peers []string){
   done := false
   backOff := 10*time.Millisecond
   for !done && px.dead == false{
-    backOff = 10*time.Millisecond
-    time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
+    //time.Sleep(time.Duration((rand.Int63() % 100))*time.Millisecond)
     //log.Printf("NormalPropose: before prepare")
     //PREPARE phase
     proposal,value,prepared,error := px.proposerPrepare(seq,v,peers)

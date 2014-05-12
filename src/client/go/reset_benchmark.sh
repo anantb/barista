@@ -7,7 +7,7 @@ sh ~/project/barista/src/server/src/reset.sh 5432
 sh ~/project/barista/src/server/src/run.sh
 
 sudo su postgres
-cd
+
 export PATH=$PATH:/usr/lib/postgresql/9.1/bin
 DBT2PORT=5432; export DBT2PORT
 DBT2DBNAME=postgres; export DBT2DBNAME
