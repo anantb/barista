@@ -106,7 +106,7 @@ func noTestSpeed(t *testing.T) {
 func TestSafety(t *testing.T) {
   runtime.GOMAXPROCS(4)
 
-  const npaxos = 3
+  const npaxos = 2
   var pxa []*Paxos = make([]*Paxos, npaxos)
   var pxh []string = make([]string, npaxos)
   defer cleanup(pxa)
@@ -123,12 +123,10 @@ func TestSafety(t *testing.T) {
   pxa[0].Start(0, 100)
   pxa[0].Kill()
   pxa[1].Start(1, 101)
-  pxa[2].Start(2, 102)
   pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
-  pxa[0].Start(0, 100)
+  pxa[0].Start(0, 105)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
-  waitn(t, pxa, 2, npaxos)
      
   decided, v1 := pxa[0].Status(0)
   fmt.Println(decided, v1) 
