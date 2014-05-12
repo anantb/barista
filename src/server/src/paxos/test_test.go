@@ -115,7 +115,7 @@ func TestSafety(t *testing.T) {
     pxh[i] = port("safety", i)
   }
   for i := 0; i < npaxos; i++ {
-    pxa[i] = Make(pxh, i, nil)
+    pxa[i] = Make(pxh, i, nil, use_zookeeper)
   }
 
   fmt.Printf("Test: Many proposers, different values ...\n")
@@ -129,7 +129,7 @@ func TestSafety(t *testing.T) {
   waitn(t, pxa, 2, npaxos)
   waitn(t, pxa, 3, npaxos)
   for i := 0; i < len(pxa); i++ {    
-    decided, v1 := pxa[i].Status(seq)
+    decided, v1 := pxa[i].Status(0)
     fmt.Println(decided, v1)      
   }
 
