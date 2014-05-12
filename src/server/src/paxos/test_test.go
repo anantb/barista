@@ -124,12 +124,12 @@ func TestSafety(t *testing.T) {
   pxa[0].Kill()
   pxa[1].Start(1, 101)
   pxa[2].Start(2, 102)
-  pax[0] = Make(pxh, 0, nil, true, use_zookeeper)
+  pxa[0] = Make(pxh, 0, nil, true, use_zookeeper)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
   waitn(t, pxa, 2, npaxos)
      
-  decided, v1 := pxa[i].Status(0)
+  decided, v1 := pxa[0].Status(0)
   fmt.Println(decided, v1) 
 
   if !decided {
