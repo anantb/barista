@@ -40,21 +40,22 @@ func MakeClerk() *Clerk {
 }
 
 // List of machines running on the server forming a paxos group
-// 128.52.161.243:9000
-// 128.52.160.104:9000
-// 128.52.161.242:9000
-// 128.52.160.122:9000
-// 128.52.161.24:9000
+// 128.52.161.243:9000 -- barista-1
+// 128.52.160.104:9000 -- barista-2
+// 128.52.161.242:9000 -- barista-3
+// 128.52.160.122:9000 -- barista-4
+// 128.52.161.24:9000 -- barista-4
 
 // to demonstrate external consistency we create three groups
-var group_1 = []string {"128.52.160.104:9000", "128.52.161.243:9000"}
-var group_2 = []string {"128.52.161.242:9000", "128.52.160.122:9000"}
-var group_3 = []string {"128.52.161.24:9000"}
-
+var peers = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.242:9000", "128.52.160.122:9000", "128.52.161.24:9000"}
 
 func main() {  
   clerk := MakeClerk()
+  clerk.erase_and_write_to_multiple_peers()
+  
+}
 
+func (clerk *Clerk) erase_and_write_to_multiple_peers() {
   var con *barista.Connection
   var err error
 
@@ -62,46 +63,46 @@ func main() {
   // Ideally the clerk would retry to all the 5 servers but to demonstrate
   // the external consistency we retry only to two machines in the below code
 
-  // open connection to a machine in group 1
-  con, err = clerk.OpenConnection(group_1)
+  // open connection to barista-1
+  con, err = clerk.OpenConnection([]string {peers[0]})
   if err != nil {
     fmt.Println(err)
     return
   }
 
-  // create the table on a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con,
+  // create the table on barista-2  
+  _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
       "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
   
-  // delete all the data on a machine in group 3  
-  _, err = clerk.ExecuteSQL(group_3, con, "DELETE FROM courses", nil)
+  // delete all the data on barista-3  
+  _, err = clerk.ExecuteSQL([]string {peers[2]}, con, "DELETE FROM courses", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
-  // insert a record to a machine in group 1  
-  _, err = clerk.ExecuteSQL(group_1, con,
+  // insert a record to barista-1 
+  _, err = clerk.ExecuteSQL([]string {peers[0]}, con,
       "INSERT INTO courses values('6.831', 'UID')", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
-  // insert a record to a machine in group 2  
-  _, err = clerk.ExecuteSQL(group_2, con,
+  // insert a different record to barista-2  
+  _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
       "INSERT INTO courses values('6.830', 'Databases')", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
-  // insert a record to a machine in group 3 
-  _, err = clerk.ExecuteSQL(group_1, con,
+  // insert a differnet record to barista-3 
+  _, err = clerk.ExecuteSQL([]string {peers[0]}, con,
       "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
   if err != nil {
     fmt.Println(err)
@@ -112,8 +113,8 @@ func main() {
   // all the three records should print regardless of whichever 
   // machine/group you query 
 
-  // print all the records from a machine in group 1
-  res, err := clerk.ExecuteSQL(group_1, con, "SELECT * FROM courses", nil)
+  // print all the records on barista-1
+  res, err := clerk.ExecuteSQL([]string {peers[0]}, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -121,8 +122,8 @@ func main() {
   
   print_result_set(res)
 
-  // print all the records from a machine in group 2
-  res, err = clerk.ExecuteSQL(group_2, con, "SELECT * FROM courses", nil)
+  // print all the records on barista-2
+  res, err = clerk.ExecuteSQL([]string {peers[1]}, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -130,8 +131,8 @@ func main() {
   
   print_result_set(res)
 
-  // print all the records from a machine in group 3
-  res, err = clerk.ExecuteSQL(group_3, con, "SELECT * FROM courses", nil)
+  // print all the records on barista-3
+  res, err = clerk.ExecuteSQL([]string {peers[2]}, con, "SELECT * FROM courses", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -139,14 +140,13 @@ func main() {
   
   print_result_set(res)
   
-  // close the connection to a machine in group 3
+  // close the connection to barista-1
   // it should close this client's connection from all machines  
-  err = clerk.CloseConnection(group_3, con)
+  err = clerk.CloseConnection([]string {peers[0]}, con)
   if err != nil {
     fmt.Println(err)
     return
   }
-  
 }
 
 // open database connection
