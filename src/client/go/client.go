@@ -53,7 +53,7 @@ func main() {
   clerk := MakeClerk()
 
   // =========================================
-  // STRONG CONSISTENCY & FAULT-TOLERANCE DEMOa
+  // STRONG CONSISTENCY & FAULT-TOLERANCE DEMO
   // =========================================
 
   // put different records on different machine
