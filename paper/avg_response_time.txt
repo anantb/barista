@@ -1,0 +1,16 @@
+system,transaction,response
+Vanilla PostgreSQL,Delivery,0.137
+Vanilla PostgreSQL,New Order,0.160
+Vanilla PostgreSQL,Order Status,0.218
+Vanilla PostgreSQL,Payment,0.172
+Vanilla PostgreSQL,Stock Level,0.220
+Barista w/ Standard Paxos,Delivery,0.766
+Barista w/ Standard Paxos,New Order,0.733
+Barista w/ Standard Paxos,Order Status,0.568
+Barista w/ Standard Paxos,Payment,0.698
+Barista w/ Standard Paxos,Stock Level,0.851
+Barista w/ Multi-Paxos,Delivery,0.616
+Barista w/ Multi-Paxos,New Order,0.725
+Barista w/ Multi-Paxos,Order Status,0.646
+Barista w/ Multi-Paxos,Payment,0.728
+Barista w/ Multi-Paxos,Stock Level,0.820
