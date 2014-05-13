@@ -143,8 +143,8 @@ func TestSafety(t *testing.T) {
     pxa[i] = Make(pxh, i, nil, true, use_zookeeper)
   }
 
-  pxa[0].Start(0, 000)
-  pxa[1].Start(1, 001)
+  pxa[0].Start(0, -100)
+  pxa[1].Start(1, -101)
   waitn(t, pxa, 0, npaxos)
   waitn(t, pxa, 1, npaxos)
 
