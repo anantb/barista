@@ -87,7 +87,7 @@ func main() {
   // ---------------------------------------------
 
   s = "no"
-  fmt.Println("Restart Barista-2 and type 'yes' to continue")
+  fmt.Println("Restart barista-1 and type 'yes' to continue")
   for s != "yes" {
     fmt.Scan(&s)
   }
