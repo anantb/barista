@@ -92,9 +92,9 @@ func main() {
     fmt.Scan(&s)
   }
 
-  // execute an operation on the crashed machine
+  // execute an operation on the crashed machine (barista-1)
   // all missing operations along with this one should show up
-  clerk.execute_on_one_peer(peers, 1, "INSERT INTO courses values('CS 229', 'Machine Learning')")
+  clerk.execute_on_one_peer(peers, 0, "INSERT INTO courses values('CS 229', 'Machine Learning')")
   
 
 }
