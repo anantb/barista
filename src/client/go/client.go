@@ -14,7 +14,6 @@ import "sync"
 import "crypto/rand"
 import "math/big"
 import "strconv"
-import "time"
 
 func nrand() int64 {
   max := big.NewInt(int64(1) << 62)
