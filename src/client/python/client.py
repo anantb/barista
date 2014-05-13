@@ -26,6 +26,7 @@ try:
     user="postgres", password="postgres", database="postgres", client_id="client_python", seq_id="1")
 
   con = client.open_connection(con_params)
+  con.seq_id="2"
   res = client.execute_sql(con=con,
       query="SELECT 6.824 as id, 'Distributed Systems' as name",
       query_params=None)

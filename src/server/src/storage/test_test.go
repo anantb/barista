@@ -9,21 +9,45 @@ import "testing"
  * @date: 05/11/2014
  */
 
-func TestBasicLeaderModified(t *testing.T) {
+func TestBasic(t *testing.T) {
   servers := "localhost:2181"
   sm := MakeStorageManager()
   sm.Open(servers)
   defer sm.Close()
-  sm.Create("/test", "")
-  sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1", "")
-  sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/store", "")
-  sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/done", "")
-  sm.Create("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.824")
+  sm.Create("/edu", "")
+  sm.Create("/edu/mit", "")
+  sm.Create("/edu/mit/class", "")
 
-  _ = sm.Write("/test/_var_tmp_824-1000_px-12568-basic-1/store/0", "6.824")
-  data, _ = sm.Read("/test/_var_tmp_824-1000_px-12568-basic-1/store/0")
-  if data != "6.831" {
-    t.Fatalf("got=%v wanted=%v", data, "6.824")
+  // test create, write, and read
+  
+  _ = sm.Create("/edu/mit/class/6.824", "Distributed Systems")
+  _ = sm.Write("/edu/mit/class/6.831", "UI Design")
+
+  data, _ := sm.Read("/edu/mit/class/6.824")
+  if data != "Distributed Systems" {
+    t.Fatalf("got=%v wanted=%v", data, "Distributed Systems")
   }
+
+  data, _ = sm.Read("/edu/mit/class/6.831")
+  if data != "UI Design" {
+    t.Fatalf("got=%v wanted=%v", data, "UI Design")
+  }
+
+  sm.Close()
+  
+  // close the zookeper to check the persistence
+
+  sm.Open(servers)
+  data, _ = sm.Read("/edu/mit/class/6.824")
+  if data != "Distributed Systems" {
+    t.Fatalf("got=%v wanted=%v", data, "Distributed Systems")
+  }
+
+  data, _ = sm.Read("/edu/mit/class/6.831")
+  if data != "UI Design" {
+    t.Fatalf("got=%v wanted=%v", data, "UI Design")
+  }
+
+  sm.Close()
 }
 

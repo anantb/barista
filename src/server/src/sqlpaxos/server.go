@@ -40,6 +40,7 @@ type SQLPaxos struct {
   me int
   dead bool // for testing
   unreliable bool // for testing
+  use_zookeeper bool
   px *paxos.Paxos
 
   // Your definitions here.
@@ -647,7 +648,7 @@ func (sp *SQLPaxos) Kill() {
 // form the fault-tolerant key/value service.
 // me is the index of the current server in servers[].
 //
-func StartServer(servers []string, me int, pg_ports []string, ports []string, unix bool, unreliable bool) *SQLPaxos {
+func StartServer(servers []string, me int, pg_ports []string, ports []string, unix bool, unreliable bool, use_zookeeper bool) *SQLPaxos {
   // call gob.Register on structures you want
   // Go's RPC library to marshall/unmarshall.
   gob.Register(Op{})
@@ -675,6 +676,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
   sp.pg_port = pg_ports[me]
   sp.logger = logger.Make("sqlpaxos_log.txt", sp.pg_port)
   sp.unreliable = unreliable
+  sp.use_zookeeper = use_zookeeper
   
   rpcs := rpc.NewServer()
   rpcs.Register(sp)
@@ -688,7 +690,7 @@ func StartServer(servers []string, me int, pg_ports []string, ports []string, un
     }
   }
 
-  sp.px = paxos.Make(paxos_servers, me, rpcs, unix)
+  sp.px = paxos.Make(paxos_servers, me, rpcs, unix, use_zookeeper)
 
   var l net.Listener
   var e error

@@ -29,7 +29,9 @@ public class Client {
       con_params.setClient_id("client_java");
       con_params.setSeq_id("1");
 
-      Connection con = client.open_connection(con_params);	     
+      Connection con = client.open_connection(con_params);
+
+      con.setSeq_id("2");     
       ResultSet res = client.execute_sql(
           con, "SELECT 6.824 as id, 'Distributed Systems' as name", null);
 
