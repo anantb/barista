@@ -51,17 +51,13 @@ var peers = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.
 
 func main() {  
   clerk := MakeClerk()
-  clerk.erase_and_write_to_multiple_peers()
+  clerk.erase_and_write_to_multiple_peers(peers)
   
 }
 
-func (clerk *Clerk) erase_and_write_to_multiple_peers() {
+func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
   var con *barista.Connection
   var err error
-
-  // The clerk should keep retrying to servers in a round-robin function.
-  // Ideally the clerk would retry to all the 5 servers but to demonstrate
-  // the external consistency we retry only to two machines in the below code
 
   // open connection to barista-1
   con, err = clerk.OpenConnection([]string {peers[0]})
@@ -113,32 +109,19 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers() {
   // all the three records should print regardless of whichever 
   // machine/group you query 
 
-  // print all the records on barista-1
-  res, err := clerk.ExecuteSQL([]string {peers[0]}, con, "SELECT * FROM courses", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
+  // print all the records on all peers
+  for i, peer := range peers {
+    fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
+    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    
+    print_result_set(res)
   }
-  
-  print_result_set(res)
 
-  // print all the records on barista-2
-  res, err = clerk.ExecuteSQL([]string {peers[1]}, con, "SELECT * FROM courses", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
   
-  print_result_set(res)
-
-  // print all the records on barista-3
-  res, err = clerk.ExecuteSQL([]string {peers[2]}, con, "SELECT * FROM courses", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  
-  print_result_set(res)
   
   // close the connection to barista-1
   // it should close this client's connection from all machines  
