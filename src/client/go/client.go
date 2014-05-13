@@ -51,11 +51,50 @@ var peers = []string {"128.52.161.243:9000", "128.52.160.104:9000", "128.52.161.
 
 func main() {  
   clerk := MakeClerk()
-  clerk.erase_and_write_to_multiple_peers(peers)
+
+  // =========================================
+  // demo strong consistency & fault-tolerance
+  // =========================================
+
+  // put different records on different machine
+  // all operations should appear in same order on all machines
+  clerk.erase_and_write_to_different_peers(peers)  
+
+  // =========================================
+  // demo recovery
+  // =========================================
+
+  // ---------------------------------------------
+  // SETUP : kill barista-2
+  // ---------------------------------------------
+
+  var s string
+  fmt.Println("Kill Barista-2 and Press any key to continue")
+  fmt.Scan(&s)
+
+  // delete a record from barista-1
+  clerk.execute_on_one_peer(peers, 0, "DELETE FROM courses;)")
+  fmt.Println("=========================")
+
+  // insert a record on barista-3
+  clerk.execute_on_one_peer(peers, 2, "INSERT INTO courses values('6.885', 'Big Data';)")
+  fmt.Println("=========================")
+
+  // ---------------------------------------------
+  // SETUP: reboot barista-1 (the crashed machine)
+  // ---------------------------------------------
+
+  fmt.Println("Restart Barista-2 and Press any key to continue")
+  fmt.Scan(&s)
+
+  // execute an operation on the crashed machine
+  // all missing operations along with this one should show up
+  clerk.execute_on_one_peer(peers, 0, "INSERT INTO courses values('6.829', 'Computer Networks')")
   
+
 }
 
-func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
+func (clerk *Clerk) erase_and_write_to_different_peers(peers []string) {
   var con *barista.Connection
   var err error
 
@@ -68,14 +107,14 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
 
   // create the table on barista-2  
   _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
-      "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+      "CREATE TABLE IF NOT EXISTS courses (id text, name text);", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
   
-  // delete all the data on barista-3  
-  _, err = clerk.ExecuteSQL([]string {peers[2]}, con, "DELETE FROM courses", nil)
+  // erase all the data on barista-3  
+  _, err = clerk.ExecuteSQL([]string {peers[2]}, con, "DELETE FROM courses;", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -83,7 +122,7 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
 
   // insert a record to barista-1 
   _, err = clerk.ExecuteSQL([]string {peers[0]}, con,
-      "INSERT INTO courses values('6.831', 'UID')", nil)
+      "INSERT INTO courses values('6.831', 'UID');", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -91,15 +130,15 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
 
   // insert a different record to barista-2  
   _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
-      "INSERT INTO courses values('6.830', 'Databases')", nil)
+      "INSERT INTO courses values('6.830', 'Databases');", nil)
   if err != nil {
     fmt.Println(err)
     return
   }
 
   // insert a differnet record to barista-3 
-  _, err = clerk.ExecuteSQL([]string {peers[0]}, con,
-      "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+  _, err = clerk.ExecuteSQL([]string {peers[2]}, con,
+      "INSERT INTO courses values('6.824', 'Distributed Systems');", nil)
   if err != nil {
     fmt.Println(err)
     return
@@ -112,7 +151,7 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
   // print all the records on all peers
   for i, peer := range peers {
     fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
-    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
+    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses;", nil)
     if err != nil {
       fmt.Println(err)
       return
@@ -130,6 +169,42 @@ func (clerk *Clerk) erase_and_write_to_multiple_peers([] string) {
     fmt.Println(err)
     return
   }
+}
+
+func (clerk *Clerk) execute_on_one_peer(peers []string, k int, query string) {
+  var con *barista.Connection
+  var err error
+
+  // open connection to barista-1
+  con, err = clerk.OpenConnection([]string {peers[k]})
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  // insert a record to barista-1 
+  _, err = clerk.ExecuteSQL([]string {peers[k]}, con,
+      query, nil)
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
+
+  // print all the records on all peers
+  for i, peer := range peers {
+    fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
+    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    
+    print_result_set(res)
+  }
+
+  // close the connection to barista-1
+  // it should close this client's connection from all machines  
+  err = clerk.CloseConnection([]string {peers[k]}, con)
 }
 
 // open database connection
@@ -185,15 +260,15 @@ func (ck *Clerk) ExecuteSQL(
   var err error
   //fmt.Printf("Querying: %v, %v\n", query, addrs)
 
-  for {
+
   for _, addr := range addrs {
     //fmt.Printf("Querying: %v\n", addr)
     res, err :=  execute_sql(addr, query, query_params, con)
     if err == nil {
       return res, err
-    }   
-    //fmt.Println(err) 
-  }
+    } else {
+      fmt.Println(err) 
+    }
   }
 
   return nil, err
@@ -235,7 +310,8 @@ func execute_sql(
   transport, err := thrift.NewTSocket(addr)
   transport.SetTimeout(time.Duration(15)*time.Second)
   if err != nil {
-     return nil, err
+    fmt.Println(err)
+    return nil, err
   }
 
   transport.Open()
@@ -326,4 +402,3 @@ func print_result_set(res *barista.ResultSet) {
 
   fmt.Println()
 }
-
