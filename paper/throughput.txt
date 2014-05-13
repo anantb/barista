@@ -1,0 +1,16 @@
+system,transaction,response
+Vanilla PostgreSQL,Delivery,61
+Vanilla PostgreSQL,New Order,670
+Vanilla PostgreSQL,Order Status,44
+Vanilla PostgreSQL,Payment,617
+Vanilla PostgreSQL,Stock Level,43
+Barista w/ Standard Paxos,Delivery,50
+Barista w/ Standard Paxos,New Order,648
+Barista w/ Standard Paxos,Order Status,48
+Barista w/ Standard Paxos,Payment,545
+Barista w/ Standard Paxos,Stock Level,59
+Barista w/ Multi-Paxos,Delivery,47
+Barista w/ Multi-Paxos,New Order,620
+Barista w/ Multi-Paxos,Order Status,53
+Barista w/ Multi-Paxos,Payment,551
+Barista w/ Multi-Paxos,Stock Level,49
