@@ -53,7 +53,7 @@ func main() {
   clerk := MakeClerk()
 
   // =========================================
-  // demo strong consistency & fault-tolerance
+  // STRONG CONSISTENCY & FAULT-TOLERANCE DEMOa
   // =========================================
 
   // put different records on different machine
@@ -61,11 +61,11 @@ func main() {
   clerk.erase_and_write_to_different_peers(peers)  
 
   // =========================================
-  // demo recovery
+  // RECOVERY DEMO
   // =========================================
 
   // ---------------------------------------------
-  // SETUP : kill barista-1
+  // kill barista-1
   // ---------------------------------------------
 
   s := "no"
@@ -83,7 +83,7 @@ func main() {
   fmt.Println("=========================")
 
   // ---------------------------------------------
-  // SETUP: reboot barista-1 (the crashed machine)
+  // reboot barista-1 (the crashed machine)
   // ---------------------------------------------
 
   s = "no"
@@ -95,7 +95,6 @@ func main() {
   // execute an operation on the crashed machine (barista-1)
   // all missing operations along with this one should show up
   clerk.execute_on_one_peer(peers, 0, "INSERT INTO courses values('CS 229', 'Machine Learning')")
-  
 
 }
 
