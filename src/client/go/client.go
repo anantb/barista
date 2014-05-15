@@ -73,8 +73,7 @@ func main() {
     fmt.Scan(&s)
   }
 
-  // delete a record from barista-2
-  clerk.execute_on_one_peer(peers, 1, "DELETE FROM courses WHERE id='6.831'")
+
   fmt.Println("=========================")
 
   // insert a record on barista-3
@@ -91,10 +90,27 @@ func main() {
     fmt.Scan(&s)
   }
 
-  // execute an operation on the crashed machine (barista-1)
-  // all missing operations along with this one should show up
-  clerk.execute_on_one_peer(peers, 3, "INSERT INTO courses values('CS 229', 'Machine Learning')")
+  // open connection to barista-1
+  // this call will be slow because machine is still recovering
+  con, err := clerk.OpenConnection([]string {peers[0]})
+  if err != nil {
+    fmt.Println(err)
+    return
+  }
 
+  // print all the records on all peers
+  for i, peer := range peers {
+    fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
+    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    
+    print_result_set(res)
+  }
+
+  
 }
 
 func (clerk *Clerk) erase_and_write_to_different_peers(peers []string) {
