@@ -57,7 +57,44 @@ func main() {
 
   // put different records on different machine
   // all operations should appear in same order on all machines
-  clerk.erase_and_write_to_different_peers(peers)  
+
+  // open connection to barista-1
+  con, _ := clerk.OpenConnection([]string {peers[0]})
+
+  // create the table on barista-2  
+  clerk.ExecuteSQL([]string {peers[1]}, con,
+      "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
+  
+  
+  // erase all the data on barista-2 
+  clerk.ExecuteSQL([]string {peers[1]}, con, "DELETE FROM courses", nil)
+  
+
+  // insert a record to barista-3
+  clerk.ExecuteSQL([]string {peers[2]}, con,
+      "INSERT INTO courses values('6.831', 'UID')", nil)
+  
+
+  // insert a different record to barista-4
+  clerk.ExecuteSQL([]string {peers[3]}, con,
+      "INSERT INTO courses values('6.830', 'Databases')", nil)
+
+
+  // insert a differnet record to barista-5
+  clerk.ExecuteSQL([]string {peers[4]}, con,
+      "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
+  
+
+  // all queries should apply in the same order on all the machines
+  // all the three records should print regardless of whichever 
+  // machine/group you query 
+
+  // print all the records on all peers
+  for i, peer := range peers {
+    fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
+    res, _ := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)    
+    print_result_set(res)
+  }
 
   // =========================================
   // RECOVERY DEMO
@@ -76,8 +113,8 @@ func main() {
 
   fmt.Println("=========================")
 
-  // insert a record on barista-3
-  clerk.execute_on_one_peer(peers, 2, "INSERT INTO courses values('CS 142', 'Web Applications')")
+  // insert a record on barista-2
+  clerk.execute_on_one_peer(peers, 1, "INSERT INTO courses values('CS 142', 'Web Applications')")
   fmt.Println("=========================")
 
   // ---------------------------------------------
@@ -92,102 +129,18 @@ func main() {
 
   // open connection to barista-1
   // this call will be slow because machine is still recovering
-  con, err := clerk.OpenConnection([]string {peers[0]})
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
+  con, _ = clerk.OpenConnection([]string {peers[0]})
 
   // print all the records on all peers
   for i, peer := range peers {
     fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
-    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
-    if err != nil {
-      fmt.Println(err)
-      return
-    }
-    
+    res, _ := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
     print_result_set(res)
   }
-
-  
-}
-
-func (clerk *Clerk) erase_and_write_to_different_peers(peers []string) {
-  var con *barista.Connection
-  var err error
-
-  // open connection to barista-1
-  con, err = clerk.OpenConnection([]string {peers[0]})
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // create the table on barista-2  
-  _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
-      "CREATE TABLE IF NOT EXISTS courses (id text, name text)", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-  
-  // erase all the data on barista-3  
-  _, err = clerk.ExecuteSQL([]string {peers[2]}, con, "DELETE FROM courses", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // insert a record to barista-1 
-  _, err = clerk.ExecuteSQL([]string {peers[0]}, con,
-      "INSERT INTO courses values('6.831', 'UID')", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // insert a different record to barista-2  
-  _, err = clerk.ExecuteSQL([]string {peers[1]}, con,
-      "INSERT INTO courses values('6.830', 'Databases')", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // insert a differnet record to barista-3 
-  _, err = clerk.ExecuteSQL([]string {peers[2]}, con,
-      "INSERT INTO courses values('6.824', 'Distributed Systems')", nil)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
-
-  // all queries should apply in the same order on all the machines
-  // all the three records should print regardless of whichever 
-  // machine/group you query 
-
-  // print all the records on all peers
-  for i, peer := range peers {
-    fmt.Printf("Machine: barista-%v (%v)\n", i+1, peer)
-    res, err := clerk.ExecuteSQL([]string {peer}, con, "SELECT * FROM courses", nil)
-    if err != nil {
-      fmt.Println(err)
-      return
-    }
-    
-    print_result_set(res)
-  }
-
-  
   
   // close the connection to barista-1
   // it should close this client's connection from all machines  
-  err = clerk.CloseConnection([]string {peers[0]}, con)
-  if err != nil {
-    fmt.Println(err)
-    return
-  }
+  clerk.CloseConnection([]string {peers[0]}, con)
 }
 
 func (clerk *Clerk) execute_on_one_peer(peers []string, k int, query string) {
